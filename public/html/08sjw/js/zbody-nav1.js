@@ -1,0 +1,2 @@
+
+$(function(){function main(){var pageNavEl=$("#page-topnav");pageNavEl.find(".link-nav").hover(function(){pageNavEl.find(".div-cat-popup").stop().slideDown()},function(){});pageNavEl.hover(function(){},function(){pageNavEl.find(".div-cat-popup").stop().slideUp()})}main()});$(function(){function main(){var pageNavEl=$("#page-topnav");pageNavEl.find(".link-wechat").hover(function(){pageNavEl.find(".div-popup-wechat").stop().slideDown()},function(){});pageNavEl.hover(function(){},function(){pageNavEl.find(".div-popup-wechat").stop().slideUp()})}main()});
