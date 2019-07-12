@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>留言信息</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/list.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/Ecalendar.css" />
+</head>
+<body>
+    <!-- 头部开始 -->
+    <div class="header">
+        <div class="header-user" >
+            <div class="header-user-name">张海</div>
+            <div class="header-drop-down">
+                <h3>客服部经理</h3>
+                <ul class="header-drop-down-ul">
+                    <li><a href="#">消息管理</a></li>
+                    <li><a href="#">密码修改</a></li>
+                    <li><a href="#">微信绑定</a></li>
+                    <li><a href="#">操作日志</a></li>
+                </ul>
+                <div class="header-drop-down-out">退出</div>
+            </div>
+            <img class="header-user-logo" src="__STATIC__/customer_public/images/logo-s.png" alt="">
+        </div>
+    </div>
+    <!-- 头部结束 -->
+    
+    <!-- 左导航开始 -->
+    <div class="left-nav">
+        <h1><img src="__STATIC__/customer_public/images/logo.png" alt=""></h1>
+        <ul class="left-nav-ul">
+            <li class="left-nav-li1"><a href="index.html">首页</a></li>
+            <li class="left-nav-li2 on"><a href="see_msg.html">查看留言</a></li>
+            <li class="left-nav-li3"><a href="addItem.html">添加项目</a></li>
+        </ul>
+    </div>
+    <!-- 左导航结束 -->
+
+    <!-- 内容开始 -->
+    <div class="main">
+        <div class="seeMsg-top">
+            <h3>留言信息</h3>
+            <span>messages</span>
+        </div>
+        <div class="seeMsg-con">
+            <div class="seeMsg-con-hd clearfix">
+                <form action="">
+                    <span class="seeMsg-name">时间段</span>
+                    <div class="calendarWarp">
+                        <input type="text" name="date" class='ECalendar' id="ECalendar_date1"  value="" placeholder="开始日期" />
+                    </div> ~ 
+                    <div class="calendarWarp">
+                        <input type="text" name="date" class='ECalendar' id="ECalendar_date2"  value="" placeholder="结束日期" />
+                    </div>
+                    <!-- <input  type="date" value="2019-05-26"> ~ 
+                    <input  type="date" value="2019-06-26"> -->
+                    <span class="seeMsg-name">姓名</span>
+                    <input type="text">
+                    <span class="seeMsg-name">手机号</span>
+                    <input type="text">
+                    <span class="seeMsg-name">项目选择</span>
+                    <select>
+                        <option>项目1</option>
+                        <option>项目2</option>
+                        <option>项目3</option>
+                    </select>
+                    <button class="seeMsg-search">搜索</button>
+                </form>
+                <button class="seeMsg-export-btn">导出CSV</button>
+            </div>
+            <div class="seeMsg-con-bd">
+                <table class="table" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" class="table-checkbox selectAll" />
+                                <span>全选</span>
+                            </th>
+                            <th>项目</th>
+                            <th>用户名</th>
+                            <th>号码</th>
+                            <th>QQ</th>
+                            <th>微信</th>
+                            <th>email</th>
+                            <th>地址</th>
+                            <th>留言内容</th>
+                            <th>时间</th>
+                            <th>重复提交</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="messageList in messageLists">
+                            <td><input type="checkbox" class="table-checkbox checkboxone" /></td>
+                            <td>宜佳乐1</td>
+                            <td>王</td>
+                            <td>12345678888</td>
+                            <td>123456789</td>
+                            <td>12345678888</td>
+                            <td>123456789@qq.com</td>
+                            <td>广州</td>
+                            <td class="tableCon">我想加盟，请来电告诉我具体细节。我想加盟，请来电告诉我具体细节。我想加盟，请来电告诉我具体细节。我想加盟，请来电告诉我具体细节。</td>
+                            <td>2019-06-25 11:11:00</td>
+                            <td>1</td>
+                            <td>未读</td>
+                            <td  class="tableOpe">
+                                <button class="operate del">删除</button><button class="operate read">已读</button>
+                            </td>
+                        </tr>
+                        <tr v-for="messageList in messageLists">
+                            <td><input type="checkbox" class="table-checkbox checkboxone" /></td>
+                            <td>宜佳乐1</td>
+                            <td>王</td>
+                            <td>12345678888</td>
+                            <td>123456789</td>
+                            <td>12345678888</td>
+                            <td>123456789@qq.com</td>
+                            <td>广州</td>
+                            <td class="tableCon">我想加盟，请来电告诉我具体细节。我想加盟，请来电告诉我具体细节。我想加盟，请来电告诉我具体细节。我想加盟，请来电告诉我具体细节。</td>
+                            <td>2019-06-25 11:11:00</td>
+                            <td>1</td>
+                            <td>未读</td>
+                            <td  class="tableOpe">
+                                <button class="operate del">删除</button><button class="operate read">已读</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- 内容结束 -->
+</body>
+</html>
+
+<script type="text/javascript" src="__STATIC__/customer_public/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="__STATIC__/customer_public/js/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#ECalendar_date1").ECalendar({
+             type:"time",   //模式，time: 带时间选择; date: 不带时间选择;
+             stamp : false,   //是否转成时间戳，默认true;
+             offset:[0,2],   //弹框手动偏移量;
+             format:"yyyy-mm-dd hh:ii",   //时间格式 默认 yyyy-mm-dd hh:ii;
+             skin:3,   //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
+             step:10,   //选择时间分钟的精确度;
+             callback:function(v,e){} //回调函数
+        });
+        $("#ECalendar_date2").ECalendar({
+             type:"time",   //模式，time: 带时间选择; date: 不带时间选择;
+             stamp : false,   //是否转成时间戳，默认true;
+             offset:[0,2],   //弹框手动偏移量;
+             format:"yyyy-mm-dd hh:ii",   //时间格式 默认 yyyy-mm-dd hh:ii;
+             skin:3,   //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
+             step:10,   //选择时间分钟的精确度;
+             callback:function(v,e){} //回调函数
+        });
+        // 全选
+        $(".selectAll").on('click', function() {
+            if($(".selectAll").prop("checked")){
+                $(".checkboxone").prop("checked","checked");
+            }else{
+                $(".selectAll").removeAttr("checked");
+                $(".checkboxone").removeAttr("checked");
+            }
+        })
+        //删除
+        $(".operate.del").on('click', function () {
+            $(this).closest('tr').remove();
+        });
+    })
+</script>

@@ -1,0 +1,58 @@
+{extend name="public/base"}
+
+<!-- 内容开始 -->
+{block name="content"}
+<div class="main">
+    <div class="index-top">
+        <p>广州 雨 30℃ ~ 20℃ | 空气质量：优</p>
+    </div>
+    <div class="index-main clearfix">
+        <div class="index-main-l fl">
+            <div class="index-main-l-top clearfix">
+                <div class="index-liuyan fl">
+                    <b>123</b>
+                    <span>今日总留言</span>
+                </div>
+                <div class="index-liuliang fr">
+                    <b>123456</b>
+                    <span>昨日流量</span>
+                </div>
+            </div>
+            <div class="index-main-l-con clearfix">
+                <h3>最新公告</h3>
+                <i>关于留言后台安全注意事项说明</i>
+                <p>温馨提醒，为了提高名位尊敬的好商汇VIP客户的留言后台安全，请各位注意以下几点：</p>
+                <p>1、建议留言后台的密码设置不要过于简单。</p>
+                <p>2、建议客户不定时的修改留言后台密码。</p>
+                <p>3、建议项目负责人更换时注意修改后台密码。</p>
+                <p>4、定时做电脑的杀毒清理。</p>
+                <div class="index-main-l-ft fr">
+                    <span>2019-06-25</span>
+                    <span>好商汇客服经理</span>
+                </div>
+            </div>
+        </div>
+        <div class="index-main-r fr">
+            <h3>公告栏</h3>
+            <ul class="table-ul">
+                <li class="clearfix" v-for="notice in notices">
+                    <span class="table-li-l">公告</span>
+                    <span class="table-li-r">时间</span>
+                </li>
+                <li class="clearfix" v-for="notice in notices">
+                    <span class="table-li-l"><a href="#">关于留言后台安全注意事项说明</a></span>
+                    <span class="table-li-r">2019-06-25</span>
+                </li>
+                <li class="clearfix" v-for="notice in notices">
+                    <span class="table-li-l"><a href="#">关于留言后台安全注意事项说明</a></span>
+                    <span class="table-li-r">2019-06-25</span>
+                </li>
+                <li class="clearfix" v-for="notice in notices">
+                    <span class="table-li-l"><a href="#">关于留言后台安全注意事项说明</a></span>
+                    <span class="table-li-r">2019-06-25</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{/block}

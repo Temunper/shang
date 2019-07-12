@@ -1,0 +1,22 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="{:url('article/do_release')}" method="post" enctype="multipart/form-data"><br/>
+    类型<input type="text" name='type'><br/>
+    项目id<input type="text" name='project_id'><br/>
+    列表图片<input type="file" name='image'><br/>
+    标题<input type="text" name='title'><br/>
+    简介<input type="text" name='brief'><br/>
+    内容<input type="text" name='content'><br/>
+    来源<input type="text" name='source'><br/>
+    作者id<input type="text" name='author'><br/>
+    <button id="">提交</button>
+</form>
+</body>
+</html>
