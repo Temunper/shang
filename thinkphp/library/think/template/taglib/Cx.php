@@ -122,7 +122,7 @@ class Cx extends Taglib
     /**
      * foreach标签解析 循环输出数据集
      * 格式：
-     * {foreach name="userList" id="user" key="key" admin="i" mod="2" offset="3" length="5" empty=""}
+     * {foreach name="userList" id="user" key="key" index="i" mod="2" offset="3" length="5" empty=""}
      * {user.username}
      * {/foreach}
      * @access public
@@ -173,14 +173,14 @@ class Cx extends Taglib
         $parseStr .= 'else: ';
 
         // 设置了索引项
-        if (isset($tag['admin'])) {
-            $index = $tag['admin'];
+        if (isset($tag['index'])) {
+            $index = $tag['index'];
             $parseStr .= '$' . $index . '=0; ';
         }
         $parseStr .= 'foreach(' . $var . ' as $' . $key . '=>$' . $item . '): ';
         // 设置了索引项
-        if (isset($tag['admin'])) {
-            $index = $tag['admin'];
+        if (isset($tag['index'])) {
+            $index = $tag['index'];
             if (isset($tag['mod'])) {
                 $mod = (int) $tag['mod'];
                 $parseStr .= '$mod = ($' . $index . ' % ' . $mod . '); ';
@@ -481,8 +481,8 @@ class Cx extends Taglib
     }
 
     /**
-     * load 标签解析 {load file="/static/__PUB08__/js/base.js" /}
-     * 格式：{load file="/static/__PUB08__/css/base.css" /}
+     * load 标签解析 {load file="/static/js/base.js" /}
+     * 格式：{load file="/static/css/base.css" /}
      * @access public
      * @param array $tag 标签属性
      * @param string $content 标签内容

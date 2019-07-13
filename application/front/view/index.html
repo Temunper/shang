@@ -413,15 +413,18 @@
             <!-- <z:if condition="${Catalog.Alias!='project_ws'}"> -->
             {volist name="clas" id="vo"}
             <li>
-                <a href="#" target="_blank" class="link">{$vo.name} /{volist name="vo['son']" id="item"
+                <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" class="link">{$vo.name} /{volist
+                    name="vo['son']" id="item"
                     length="1"}{$item.name}{/volist}
                     <i class="icon icon-ic-nav-arrow-grey"></i></a>
                 <ul class="ul-submenu clearfix hidden">
                     <li class="li-title">
-                        <a href="#" target="_blank" class="link">{$vo.name}</a></li>
+                        <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank"
+                           class="link">{$vo.name}</a></li>
                     {volist name="vo['son']" id="item"}
                     <li>
-                        <a href="#" target="_blank" class="link">{$item.name}</a></li>
+                        <a href="{:url('Index/slist')}?class_id={$item.class_id}" target="_blank" class="link">{$item.name}</a>
+                    </li>
                     <li>
                         {/volist}
                 </ul>
@@ -441,10 +444,11 @@
                 <div class="slideshow-images">
                     <div class="images-inner" style="width: 1760px; height: 194px; left: 0px;">
                         {volist name = "ad_position" id = "item"}
-                        {if $item.ad_id eq 1001}
+                        {if $item.ad_id eq 1001 && $i<=6}
                         <a href="{:url('Index/project')}?project_id={$item.project_id}" data-id="76730"
                            data-type="cmsad" target="_blank" class="link">
                             <img src="{$item.image}" class="img"/></a>
+                        {else/}{php}$i--;{/php}
                         {/if}
                         {/volist}
                     </div>
@@ -468,9 +472,10 @@
                         </a>
                         <div data-id="pc1_a02_label" data-type="cmsadpos"></div>
                         {volist name = "ad_position" id = "item"}
-                        {if $item.ad_id eq 1002}
+                        {if $item.ad_id eq 1002 && $i<=6}
                         <a href="{:url('Index/project')}?project_id={$item.project_id}" data-id="54613"
                            data-type="cmsad" target="_blank" class="link-other">{$item.name}</a>
+                        {else/}{php}$i--;{/php}
                         {/if}
                         {/volist}
                         <a href="{:url('Index/slist')}" target="_blank" class="link-more">MORE</a></div>
@@ -479,10 +484,11 @@
                     <div class="div-inner clearfix">
                         <div class="swiper-wrapper">
                             {volist name = "ad_position" id = "item"}
-                            {if $item.ad_id eq 1003}
+                            {if $item.ad_id eq 1003 && $i<=4}
                             <a href="{:url('Index/project')}?project_id={$item.project_id}" data-id="80651"
                                data-type="cmsad" target="_blank" class="link">
                                 <img src="{$item.image}" class="img" alt=""></a>
+                            {else/}{php}$i--;{/php}
                             {/if}
                             {/volist}
                         </div>
@@ -499,9 +505,10 @@
                         </a>
                         <div data-id="pc1_a03_label" data-type="cmsadpos"></div>
                         {volist name = "ad_position" id = "item"}
-                        {if $item.ad_id eq 1004}
+                        {if $item.ad_id eq 1004 && $i<=6}
                         <a href="#" data-id="52439" data-type="cmsad" target="_blank"
                            class="link-other">{$item.name}</a>
+                        {else/}{php}$i--;{/php}
                         {/if}
                         {/volist}
                         <a href="{:url('Index/slist')}" target="_blank" class="link-more">MORE</a>
@@ -510,10 +517,11 @@
                 <div class="div-body" data-id="pc1_a03" data-type="cmsadpos">
                     <div class="div-inner clearfix">
                         {volist name = "ad_position" id = "item"}
-                        {if $item.ad_id eq 1005}
+                        {if $item.ad_id eq 1005 && $i<=6}
                         <a href="{:url('Index/project')}?project_id={$item.project_id}" data-id="57182"
                            data-type="cmsad" target="_blank" class="link">
                             <img src="{$item.image}" class="img" alt=""/></a>
+                        {else/}{php}$i--;{/php}
                         {/if}
                         {/volist}
                     </div>
@@ -542,7 +550,7 @@
                 <div class="div-body" data-id="pc1_a04" data-type="cmsadpos">
                     <div class="div-inner clearfix">
                         {volist name = "ad_position" id = "item"}
-                        {if $item.ad_id eq 1007}
+                        {if $item.ad_id eq 1007 && $i<=10}
                         <a href="{:url('Index/project')}?project_id={$item.project_id}"
                            data-id="29515" data-type="cmsad" target="_blank" class="link link-active">
                             <i class="icon-ic-panel-rank icon-ic-panel-rank-1r"></i>
@@ -551,6 +559,7 @@
                             <span class="text-hot">
                 <i class="icon icon-ic-panel-fire-small"></i>{$item.attention}</span>
                         </a>
+                        {else/}{php}$i--;{/php}
                         {/if}
                         {/volist}
                     </div>
@@ -573,9 +582,10 @@
                         </div>
                         <div class="content-tab hidden">
                             {volist name = "article" id = "vo"}
-                            {if $vo.type eq 4}
+                            {if $vo.type eq 4 && $i<=10}
                             <a href="{:url('Index/detail')}?article_id={$vo.article_id}" class="link">
                                 <i class="icon icon-ic-dot-red"></i>{$vo.title}</a>
+                            {else/}{php}$i--;{/php}
                             {/if}
                             {/volist}
                         </div>
@@ -596,8 +606,9 @@
         <div class="top">
             <p>
                 {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1008}
+                {if $item.ad_id eq 1008 && $i<=6}
                 <a target="_blank" href="{:url('Index/project')}?project_id={$item.project_id}">{$item.name}</a>|
+                {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
             </p>
@@ -606,7 +617,7 @@
         <div class="left">
             <div class="l_top">
                 {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1012}
+                {if $item.ad_id eq 1012 && $i<=1}
                 <div class="topMain">
                     <i class="light"></i>
                     <h4>{item.name}</h4>
@@ -627,12 +638,13 @@
                         <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
                         <a href="#" target="_blank" class="active">立即咨询</a></div>
                 </div>
+                {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
             </div>
             <div class="l_com">
                 {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1013}
+                {if $item.ad_id eq 1013 && $i<=1}
                 <dl>
                     <dt>
                         <img src="{$item.image}" alt=""/></dt>
@@ -641,15 +653,17 @@
                 <div class="btns">
                     <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
                     <a href="#" target="_blank" class="active">立即咨询</a></div>
+                {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
                 <ul>
                     {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1011}
+                    {if $item.ad_id eq 1011 && $i<=4}
                     <li>
                         <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
+                    {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
                 </ul>
@@ -660,11 +674,12 @@
             <div class="topImg">
                 <ul>
                     {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1009}
+                    {if $item.ad_id eq 1009 && $i<=8}
                     <li>
                         <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
+                    {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
                 </ul>
@@ -672,7 +687,7 @@
             <div class="mainImg">
                 <div class="box">
                     {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1010}
+                    {if $item.ad_id eq 1010 && $i<=24}
                     <dl>
                         <a href="{:url('Index/project')}?project_id={$item.project_id}">
                             <dt>
@@ -680,6 +695,7 @@
                             <dd>{$item.name}</dd>
                         </a>
                     </dl>
+                    {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
                 </div>
@@ -697,8 +713,9 @@
         <div class="top">
             <p>
                 {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1014}
+                {if $item.ad_id eq 1014 && $i<=6}
                 <a target="_blank" href="{:url('Index/project')}?project_id={$item.project_id}">{$item.name}</a>|
+                {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
             </p>
@@ -707,7 +724,7 @@
         <div class="left">
             <div class="l_top">
                 {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1018}
+                {if $item.ad_id eq 1018 && $i<=1}
                 <div class="topMain">
                     <i class="light"></i>
                     <h4>{item.name}</h4>
@@ -722,13 +739,14 @@
                         <a href="#" target="_blank" class="active">立即咨询</a>
                     </div>
                 </div>
+                {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
             </div>
 
             <div class="l_com">
                 {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1019}
+                {if $item.ad_id eq 1019 && $i<=1}
                 <dl>
                     <dt><img src="{$item.image}" alt=""/></dt>
                     <dd>{item.abbr}</dd>
@@ -737,13 +755,15 @@
                     <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
                     <a href="#" target="_blank" class="active">立即咨询</a>
                 </div>
+                {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
                 <ul>
                     {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1017}
+                    {if $item.ad_id eq 1017 && $i<=4}
                     <li><a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
                         <img src="{$item.image}" alt=""/></a></li>
+                    {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
                 </ul>
@@ -753,11 +773,12 @@
             <div class="topImg">
                 <ul>
                     {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1015}
+                    {if $item.ad_id eq 1015 && $i<=8}
                     <li>
                         <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
+                    {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
                 </ul>
@@ -766,7 +787,7 @@
                 <div class="box">
 
                     {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1016}
+                    {if $item.ad_id eq 1016 && $i<=24}
                     <dl>
                         <a href="{:url('Index/project')}?project_id={$item.project_id}">
                             <dt>
@@ -774,6 +795,7 @@
                             <dd>{$item.name}</dd>
                         </a>
                     </dl>
+                    {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
 
@@ -792,8 +814,9 @@
         <div class="top">
             <p>
                 {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1020}
+                {if $item.ad_id eq 1020 && $i<=6}
                 <a target="_blank" href="{:url('Index/project')}?project_id={$item.project_id}">{$item.name}</a>|
+                {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
             </p>
@@ -803,7 +826,7 @@
             <div class="l_top">
                 <div class="topMain">
                     {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1024}
+                    {if $item.ad_id eq 1024 && $i<=1}
                     <i class="light"></i>
                     <h4>{item.name}</h4>
                     <dl>
@@ -816,13 +839,14 @@
                         <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
                         <a href="#" target="_blank" class="active">立即咨询</a>
                     </div>
+                    {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
                 </div>
             </div>
             <div class="l_com">
                 {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1025}
+                {if $item.ad_id eq 1025 && $i<=1}
                 <dl>
                     <dt><img src="{$item.image}" alt=""/></dt>
                     <dd>{$item.image}</dd>
@@ -831,13 +855,15 @@
                     <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
                     <a href="#" target="_blank" class="active">立即咨询</a>
                 </div>
+                {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
                 <ul>
                     {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1023}
+                    {if $item.ad_id eq 1023 && $i<=4}
                     <li><a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
                         <img src="{$item.image}" alt=""/></a></li>
+                    {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
                 </ul>
@@ -847,9 +873,10 @@
             <div class="topImg">
                 <ul>
                     {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1021}
+                    {if $item.ad_id eq 1021 && $i<=8}
                     <li><a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
                         <img src="{$item.image}" alt=""/></a></li>
+                    {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
                 </ul>
@@ -857,7 +884,7 @@
             <div class="mainImg">
                 <div class="box">
                     {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1022}
+                    {if $item.ad_id eq 1022 && $i<=24}
                     <dl>
                         <a href="{:url('Index/project')}?project_id={$item.project_id}">
                             <dt>
@@ -865,8 +892,10 @@
                             <dd>{$item.name}</dd>
                         </a>
                     </dl>
+                    {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
+
                 </div>
             </div>
         </div>
@@ -892,164 +921,116 @@
                     <li class="link-active" style="box-shadow: none; top: 0px;">
                         <h2>项目资讯</h2>
                         <div class="div-item">
-                            {volist name = "article" id = "item" length='6'}
+                            {volist name = "article" id = "item"}
                             {if $item.type eq 1}
+                            {if $i==1}
                             <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link-topic">
                                 <div class="div-img">
                                     <img src="{$item.lis_img}" class="img" alt=""></div>
                                 <div class="div-text">{$item.title}
                                     <span>{$item.create_time}</span></div>
                             </a>
-                            {/if}
-                            {/volist}
-                            {volist name = "article" id = "item"}
-                            {if $item.type eq 1}
+                            {elseif condition="$i>1 && $i<=7" /}
                             <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link">
                                 <i class="icon icon-ic-dot-grey fl"></i>
                                 <span class="fl texts">{$item.title}</span>
                                 <span class="fr time">{$item.create_time}</span></a>
+                            {else/}{php}$i--;{/php}
+                            {/if}
                             {/if}
                             {/volist}
                         </div>
                     </li>
                     <li class="" style="box-shadow: none; top: 0px;">
-                        <h2>热门专题</h2>
+                        <h2>创业资讯</h2>
                         <div class="div-item">
-                            <a href="#" class="link-topic">
+                            {volist name = "article" id = "item"}
+                            {if $item.type eq 2}
+                            {if $i==1}
+                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link-topic">
                                 <div class="div-img">
-                                    <img src="__PUB08__/picture/843079.jpg" class="img" alt=""></div>
-                                <div class="div-text">库桥炸鸡加盟可靠吗
-                                    <span>06-17</span></div>
+                                    <img src="{$item.lis_img}" class="img" alt=""></div>
+                                <div class="div-text">{$item.title}
+                                    <span>{$item.create_time}</span></div>
                             </a>
-                            <a href="#" class="link">
+                            {elseif condition="$i>1 && $i<=7" /}
+                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link">
                                 <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">人在茶在加盟费用及加盟条件是什么？</span>
-                                <span class="fr time">06-17</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">开一家汉堡奶茶店需要多少钱</span>
-                                <span class="fr time">06-17</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">重庆串串香加盟店需要多少加盟费 这家综合性价比高</span>
-                                <span class="fr time">06-17</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">怎么加盟童话波比童装？加盟条件是什么？</span>
-                                <span class="fr time">06-17</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">辅导班加盟排行榜</span>
-                                <span class="fr time">06-17</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">加盟孕婴世界开连锁店加盟费要多少?加盟需要多少钱</span>
-                                <span class="fr time">06-17</span></a>
+                                <span class="fl texts">{$item.title}</span>
+                                <span class="fr time">{$item.create_time}</span></a>
+                            {else/}{php}$i--;{/php}
+                            {/if}
+                            {/if}
+                            {/volist}
                         </div>
                     </li>
                     <li>
-                        <h2>创业知识</h2>
+                        <h2>新闻资讯</h2>
                         <div class="div-item">
-                            <a href="#" class="link-topic">
+                            {volist name = "article" id = "item"}
+                            {if $item.type eq 3}
+                            {if $i==1}
+                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link-topic">
                                 <div class="div-img">
-                                    <img src="__PUB08__/picture/843268.jpg" class="img" alt=""></div>
-                                <div class="div-text">消费市场普遍年轻化，火锅店该如何重新定位?
-                                    <span>06-18</span></div>
+                                    <img src="{$item.lis_img}" class="img" alt=""></div>
+                                <div class="div-text">{$item.title}
+                                    <span>{$item.create_time}</span></div>
                             </a>
-                            <a href="#" class="link">
+                            {elseif condition="$i>1 && $i<=7" /}
+                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link">
                                 <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">火锅加盟店选址总不对?这些因素诗爷建议考虑</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
+                                <span class="fl texts">{$item.title}</span>
+                                <span class="fr time">{$item.create_time}</span></a>
+                            {else/}{php}$i--;{/php}
+                            {/if}
+                            {/if}
+                            {/volist}
+                        </div>
+                    </li>
+                    <li>
+                        <h2>热门专题</h2>
+                        <div class="div-item">
+                            {volist name = "article" id = "item"}
+                            {if $item.type eq 4}
+                            {if $i==1}
+                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link-topic">
+                                <div class="div-img">
+                                    <img src="{$item.lis_img}" class="img" alt=""></div>
+                                <div class="div-text">{$item.title}
+                                    <span>{$item.create_time}</span></div>
+                            </a>
+                            {elseif condition="$i>1 && $i<=7" /}
+                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link">
                                 <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">开丝芙洛皮肤管理店投资多少成本</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">虾起哄龙虾馆引爆盛夏美食，创业福利大放送!</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">加盟凡仔汉堡需要多少钱</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">加盟女装品牌须知的七个问题</span>
-                                <span class="fr time">06-17</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">加盟毛记秘制烤鸭肠好不好</span>
-                                <span class="fr time">06-17</span></a>
+                                <span class="fl texts">{$item.title}</span>
+                                <span class="fr time">{$item.create_time}</span></a>
+                            {else/}{php}$i--;{/php}
+                            {/if}
+                            {/if}
+                            {/volist}
                         </div>
                     </li>
                     <li>
                         <h2>创业故事</h2>
                         <div class="div-item">
-                            <a href="#" class="link-topic">
+                            {volist name = "article" id = "item"}
+                            {if $item.type eq 5}
+                            {if $i==1}
+                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link-topic">
                                 <div class="div-img">
-                                    <img src="__PUB08__/picture/843271.jpg" class="img" alt=""></div>
-                                <div class="div-text">想要做好火锅加盟店微信公众号，建议管理者这么做
-                                    <span>06-18</span></div>
+                                    <img src="{$item.lis_img}" class="img" alt=""></div>
+                                <div class="div-text">{$item.title}
+                                    <span>{$item.create_time}</span></div>
                             </a>
-                            <a href="#" class="link">
+                            {elseif condition="$i>1 && $i<=7" /}
+                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link">
                                 <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">开丝芙洛皮肤管理怎么样</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">引爆盛夏味蕾的虾起哄龙虾馆，山东的美食味道</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">美国想象力英语落地苏州太仓、陕西汉中、重庆、杭州江干!</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">55人大聚餐，怎么少得了车前呢?!</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">加盟的婴儿游泳馆赚钱吗</span>
-                                <span class="fr time">06-17</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">美高梅酒店加盟靠谱吗 生意怎么样</span>
-                                <span class="fr time">06-17</span></a>
-                        </div>
-                    </li>
-                    <li>
-                        <h2>创业问答</h2>
-                        <div class="div-item">
-                            <a href="#" class="link-topic">
-                                <div class="div-img">
-                                    <img src="__PUB08__/picture/843280.jpg" class="img" alt=""></div>
-                                <div class="div-text">好听又有内涵的英文名，格琳斯英语为您归纳介绍
-                                    <span>06-18</span></div>
-                            </a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">0经验加盟少儿艺术培训，难不难?</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">寿司店长新手上路，如何做好品牌合伙人?</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">火锅店选址技巧，你知道几个?</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">引爆盛夏味蕾!吃小龙虾当然要选虾起哄龙虾馆!</span>
-                                <span class="fr time">06-18</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">七杯茶奶茶加盟在县级加盟开店要多少钱?加盟费多少</span>
-                                <span class="fr time">06-17</span></a>
-                            <a href="#" class="link">
-                                <i class="icon icon-ic-dot-grey fl"></i>
-                                <span class="fl texts">加盟什么店比较好?个性内衣加盟店如何?</span>
-                                <span class="fr time">06-17</span></a>
+                                <span class="fl texts">{$item.title}</span>
+                                <span class="fr time">{$item.create_time}</span></a>
+                            {else/}{php}$i--;{/php}
+                            {/if}
+                            {/if}
+                            {/volist}
                         </div>
                     </li>
                 </ul>
@@ -1065,382 +1046,108 @@
     <div class="hd">
         <h2 class="fl">创业项目推荐</h2>
         <span class="fr">
-      <a href="#" title="品牌餐饮加盟" target="_blank">品牌餐饮加盟</a>
-      <a href="#" title="服装加盟店" target="_blank">服装加盟店</a>
-      <a href="#" title="美容保养加盟" target="_blank">美容保养加盟</a>
-      <a href="#" title="重庆火锅加盟" target="_blank">重庆火锅加盟</a>
-      <a href="#" title="智能家居加盟" target="_blank">智能家居加盟</a>
-      <a href="#" title="母婴连锁加盟" target="_blank">母婴连锁加盟</a>
-      <a href="#" title="建材加盟" target="_blank">建材加盟</a>
-      <a href="#" title="机械设备加盟" target="_blank">机械设备加盟</a>
-      <a href="#" title="少儿教育加盟" target="_blank">少儿教育加盟</a>
-      <a href="#" title="饮品加盟" target="_blank">饮品加盟</a></span>
+        {volist name = "ad_position" id = "item"}
+         {if $item.ad_id eq 1027 && $i<=6}
+      <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}加盟" target="_blank">{$item.name}加盟</a>
+         {else/}{php}$i--;{/php}
+          {/if}
+         {/volist}
+        </span>
     </div>
     <div class="bd">
         <div class="cyxmT-box clearfix">
+            {php}$k=1028;{/php}
+            {volist name="clas" id="vo" length="3"}
             <dl>
                 <dt>
-                    <a href="#" target="_blank" title="餐饮美食">餐饮美食</a>
+                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
                     <span class="red">
-            <a target="_blank" title="九牛一杯牛排杯" href="#">小吃牛排杯 流行街头</a></span>
+            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    <a href="#" title="小吃" target="_blank">小吃</a>
-                    <a href="#" title="中餐" target="_blank">中餐</a>
-                    <a href="#" title="快餐" target="_blank">快餐</a>
-                    <a href="#" title="速食" target="_blank">速食</a>
-                    <a href="#" title="特色餐饮" target="_blank">特色餐饮</a>
-                    <a href="#" title="面食" target="_blank">面食</a>
-                    <a href="#" title="冰淇淋" target="_blank">冰淇淋</a>
-                    <a href="#" title="火锅" target="_blank">火锅</a>
-                    <a href="#" title="小吃车" target="_blank">小吃车</a>
-                    <a href="#" title="养生粥" target="_blank">养生粥</a>
-                    <a href="#" title="西式快餐" target="_blank">西式快餐</a>
-                    <a href="#" title="熟食" target="_blank">熟食</a>
-                    <a href="#" title="休闲食品" target="_blank">休闲食品</a>
-                    <a href="#" title="麻辣烫" target="_blank">麻辣烫</a>
-                    <a href="#" title="牛排杯" target="_blank">牛排杯</a>
-                    <a href="#" title="鸡排" target="_blank">鸡排</a>
-                    <a href="#" title="包子铺" target="_blank">包子铺</a>
-                    <a href="#" title="甜品" target="_blank">甜品</a>
-                    <a href="#" title="寿司" target="_blank">寿司</a>
-                    <a href="#" title="烤鱼" target="_blank">烤鱼</a>
-                    <a href="#" title="烧烤" target="_blank">烧烤</a>
-                    <a href="#" title="冒菜" target="_blank">冒菜</a>
-                    <a href="#" title="排骨" target="_blank">排骨</a>
-                    <a href="#" title="黄焖鸡米饭" target="_blank">黄焖鸡米饭</a>
-                    <a href="#" title="披萨" target="_blank">披萨</a>
-                    <a href="#" title="米线" target="_blank">米线</a></dd>
+                    {volist name = "ad_position" id = "item" length="3"}
+                    {if $item.ad_id eq $k && $i<=5}
+                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                       target="_blank">{$item.name}</a>
+                    {else/}{php}$i--;{/php}
+                    {/if}
+                    {/volist}
+                </dd>
                 <em class="hot"></em>
             </dl>
+            {php}$k++;{/php}
+            {/volist}
+            {volist name="clas" id="vo" offset="3" length="3"}
             <dl>
                 <dt>
-                    <a href="#" target="_blank" title="生活服务">生活服务</a>
-                    <span class="green">
-            <a target="_blank" title="中农共信有机瓜菜工厂" href="#">无土栽培！变废为宝</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="干洗" target="_blank">干洗</a>
-                    <a href="#" title="便利店" target="_blank">便利店</a>
-                    <a href="#" title="家政" target="_blank">家政</a>
-                    <a href="#" title="蔬菜工厂" target="_blank">蔬菜工厂</a>
-                    <a href="#" title="休闲娱乐" target="_blank">休闲娱乐</a>
-                    <a href="#" title="影像馆" target="_blank">影像馆</a>
-                    <a href="#" title="旅游服务" target="_blank">旅游服务</a>
-                    <a href="#" title="宠物用品" target="_blank">宠物用品</a>
-                    <a href="#" title="皮革护理" target="_blank">皮革护理</a>
-                    <a href="#" title="中介服务" target="_blank">中介服务</a>
-                    <a href="#" title="数码产品" target="_blank">数码产品</a>
-                    <a href="#" title="其他" target="_blank">其他</a>
-                    <a href="#" title="酒店" target="_blank">酒店</a>
-                    <a href="#" title="图文快印" target="_blank">图文快印</a>
-                    <a href="#" title="通讯服务" target="_blank">通讯服务</a>
-                    <a href="#" title="音响设备" target="_blank">音响设备</a>
-                    <a href="#" title="婚庆" target="_blank">婚庆</a>
-                    <a href="#" title="娱乐机" target="_blank">娱乐机</a>
-                    <a href="#" title="数码快印" target="_blank">数码快印</a>
-                    <a href="#" title="物流快递" target="_blank">物流快递</a>
-                    <a href="#" title="3D打印" target="_blank">3D打印</a>
-                    <a href="#" title="维修服务" target="_blank">维修服务</a>
-                    <a href="#" title="道路养护" target="_blank">道路养护</a>
-                    <a href="#" title="品牌折扣店" target="_blank">品牌折扣店</a>
-                    <a href="#" title="摄影" target="_blank">摄影</a></dd>
-                <em class="hot"></em>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="酒水饮料">酒水饮料</a>
-                    <span class="orange">
-            <a target="_blank" title="臻好时冻酸奶" href="#">冻酸奶 灵活经营</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="茶饮" target="_blank">茶饮</a>
-                    <a href="#" title="奶茶" target="_blank">奶茶</a>
-                    <a href="#" title="酸奶吧" target="_blank">酸奶吧</a>
-                    <a href="#" title="白酒" target="_blank">白酒</a>
-                    <a href="#" title="红酒" target="_blank">红酒</a>
-                    <a href="#" title="茶叶" target="_blank">茶叶</a>
-                    <a href="#" title="啤酒" target="_blank">啤酒</a>
-                    <a href="#" title="果酒" target="_blank">果酒</a>
-                    <a href="#" title="养生酒" target="_blank">养生酒</a>
-                    <a href="#" title="咖啡" target="_blank">咖啡</a>
-                    <a href="#" title="养生饮品" target="_blank">养生饮品</a>
-                    <a href="#" title="饮品店" target="_blank">饮品店</a>
-                    <a href="#" title="黄酒" target="_blank">黄酒</a>
-                    <a href="#" title="纯净水" target="_blank">纯净水</a>
-                    <a href="#" title="奶酒" target="_blank">奶酒</a>
-                    <a href="#" title="酒包装" target="_blank">酒包装</a>
-                    <a href="#" title="贡茶" target="_blank">贡茶</a>
-                    <a href="#" title="冲饮品" target="_blank">冲饮品</a>
-                    <a href="#" title="其他" target="_blank">其他</a></dd>
-                <em class="hot"></em>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="服装鞋包">服装鞋包</a>
-                    <span class="green">
-            <a target="_blank" title="艾米女装" href="#">品牌的吸引低价的诱惑</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="女鞋" target="_blank">女鞋</a>
-                    <a href="#" title="女装" target="_blank">女装</a>
-                    <a href="#" title="童装" target="_blank">童装</a>
-                    <a href="#" title="牛仔裤" target="_blank">牛仔裤</a>
-                    <a href="#" title="内衣" target="_blank">内衣</a>
-                    <a href="#" title="职业装" target="_blank">职业装</a>
-                    <a href="#" title="男装" target="_blank">男装</a>
-                    <a href="#" title="男鞋" target="_blank">男鞋</a>
-                    <a href="#" title="皮草" target="_blank">皮草</a>
-                    <a href="#" title="运动户外" target="_blank">运动户外</a>
-                    <a href="#" title="围巾" target="_blank">围巾</a>
-                    <a href="#" title="童鞋" target="_blank">童鞋</a>
-                    <a href="#" title="箱包" target="_blank">箱包</a>
-                    <a href="#" title="孕妇装" target="_blank">孕妇装</a>
-                    <a href="#" title="配饰" target="_blank">配饰</a>
-                    <a href="#" title="家居服饰" target="_blank">家居服饰</a>
-                    <a href="#" title="婚纱礼服" target="_blank">婚纱礼服</a>
-                    <a href="#" title="情侣装" target="_blank">情侣装</a>
-                    <a href="#" title="亲子装" target="_blank">亲子装</a>
-                    <a href="#" title="裤子" target="_blank">裤子</a>
-                    <a href="#" title="泳装" target="_blank">泳装</a>
-                    <a href="#" title="皮具" target="_blank">皮具</a>
-                    <a href="#" title="羽绒" target="_blank">羽绒</a>
-                    <a href="#" title="面料" target="_blank">面料</a>
-                    <a href="#" title="其他" target="_blank">其他</a></dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="建材装饰">建材装饰</a>
+                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
                     <span class="blue">
-            <a target="_blank" title="智乐居全屋整装" href="#">百变定制即装即住</a></span>
+            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    <a href="#" title="装饰装修" target="_blank">装饰装修</a>
-                    <a href="#" title="冰晶画" target="_blank">冰晶画</a>
-                    <a href="#" title="墙艺" target="_blank">墙艺</a>
-                    <a href="#" title="门窗" target="_blank">门窗</a>
-                    <a href="#" title="涂料" target="_blank">涂料</a>
-                    <a href="#" title="五金配件" target="_blank">五金配件</a>
-                    <a href="#" title="防水" target="_blank">防水</a>
-                    <a href="#" title="采暖" target="_blank">采暖</a>
-                    <a href="#" title="集成墙面" target="_blank">集成墙面</a>
-                    <a href="#" title="新型建材" target="_blank">新型建材</a>
-                    <a href="#" title="其他" target="_blank">其他</a>
-                    <a href="#" title="管材" target="_blank">管材</a>
-                    <a href="#" title="地板" target="_blank">地板</a>
-                    <a href="#" title="彩装膜" target="_blank">彩装膜</a>
-                    <a href="#" title="油漆" target="_blank">油漆</a>
-                    <a href="#" title="水晶建材" target="_blank">水晶建材</a>
-                    <a href="#" title="楼梯" target="_blank">楼梯</a>
-                    <a href="#" title="瓷砖" target="_blank">瓷砖</a>
-                    <a href="#" title="吊顶" target="_blank">吊顶</a>
-                    <a href="#" title="装饰板材" target="_blank">装饰板材</a>
-                    <a href="#" title="墙体材料" target="_blank">墙体材料</a></dd>
+                    {volist name = "ad_position" id = "item" }
+                    {if $item.ad_id eq $k && $i<=5}
+                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                       target="_blank">{$item.name}</a>
+                    {else/}{php}$i--;{/php}
+                    {/if}
+                    {/volist}
+                </dd>
             </dl>
+            {php}$k++;{/php}
+            {/volist}
+            {volist name="clas" id="vo" offset="6" length="3"}
             <dl>
                 <dt>
-                    <a href="#" target="_blank" title="美容保养">美容保养</a>
-                    <span class="red">
-            <a target="_blank" title="嘉柏俪香薰化妆品" href="#">嘉柏俪精油护肤 好用</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="护肤品" target="_blank">护肤品</a>
-                    <a href="#" title="眼镜店" target="_blank">眼镜店</a>
-                    <a href="#" title="化妆品" target="_blank">化妆品</a>
-                    <a href="#" title="养生馆" target="_blank">养生馆</a>
-                    <a href="#" title="面膜" target="_blank">面膜</a>
-                    <a href="#" title="卫生健康" target="_blank">卫生健康</a>
-                    <a href="#" title="产后恢复" target="_blank">产后恢复</a>
-                    <a href="#" title="养生健康品" target="_blank">养生健康品</a>
-                    <a href="#" title="美甲" target="_blank">美甲</a>
-                    <a href="#" title="美容" target="_blank">美容</a>
-                    <a href="#" title="足浴" target="_blank">足浴</a>
-                    <a href="#" title="香水" target="_blank">香水</a>
-                    <a href="#" title="洗护用品" target="_blank">洗护用品</a>
-                    <a href="#" title="美体" target="_blank">美体</a>
-                    <a href="#" title="美发" target="_blank">美发</a>
-                    <a href="#" title="健康设备" target="_blank">健康设备</a>
-                    <a href="#" title="汗蒸房" target="_blank">汗蒸房</a>
-                    <a href="#" title="健身器材" target="_blank">健身器材</a>
-                    <a href="#" title="其他" target="_blank">其他</a></dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="母婴用品">母婴用品</a>
-                    <span class="red">
-            <a target="_blank" title="爱亲母婴生活馆" href="#">线上线下 双渠道发展</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="母婴生活馆" target="_blank">母婴生活馆</a>
-                    <a href="#" title="儿童乐园" target="_blank">儿童乐园</a>
-                    <a href="#" title="婴儿游泳馆" target="_blank">婴儿游泳馆</a>
-                    <a href="#" title="玩具" target="_blank">玩具</a>
-                    <a href="#" title="童车" target="_blank">童车</a>
-                    <a href="#" title="妈妈用品" target="_blank">妈妈用品</a>
-                    <a href="#" title="婴儿用品" target="_blank">婴儿用品</a>
-                    <a href="#" title="儿童家具" target="_blank">儿童家具</a>
-                    <a href="#" title="奶粉" target="_blank">奶粉</a>
-                    <a href="#" title="哺乳用品" target="_blank">哺乳用品</a>
-                    <a href="#" title="婴幼儿辅食" target="_blank">婴幼儿辅食</a>
-                    <a href="#" title="其他" target="_blank">其他</a></dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="教育网络">教育网络</a>
+                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
                     <span class="green">
-            <a target="_blank" title="艾宾浩斯智能教育" href="#">智能教育 复制办校</a></span>
+            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    <a href="#" title="在线教育" target="_blank">在线教育</a>
-                    <a href="#" title="少儿教育" target="_blank">少儿教育</a>
-                    <a href="#" title="学习辅导" target="_blank">学习辅导</a>
-                    <a href="#" title="网络创业" target="_blank">网络创业</a>
-                    <a href="#" title="创业培训" target="_blank">创业培训</a>
-                    <a href="#" title="学生用品" target="_blank">学生用品</a>
-                    <a href="#" title="婴幼儿培训" target="_blank">婴幼儿培训</a>
-                    <a href="#" title="认证考试" target="_blank">认证考试</a>
-                    <a href="#" title="外语培训" target="_blank">外语培训</a>
-                    <a href="#" title="书店" target="_blank">书店</a>
-                    <a href="#" title="办公用品" target="_blank">办公用品</a>
-                    <a href="#" title="体育用品" target="_blank">体育用品</a>
-                    <a href="#" title="其他" target="_blank">其他</a></dd>
+                    {volist name = "ad_position" id = "item" }
+                    {if $item.ad_id eq $k && $i<=5}
+                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                       target="_blank">{$item.name}</a>
+                    {else/}{php}$i--;{/php}
+                    {/if}
+                    {/volist}
+                </dd>
             </dl>
+            {php}$k++;{/php}
+            {/volist}
+            {volist name="clas" id="vo" offset="9" length="3"}
             <dl>
                 <dt>
-                    <a href="#" target="_blank" title="汽车服务">汽车服务</a>
+                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
                     <span class="orange">
-            <a target="_blank" title="洗车快手桑拿蒸汽洗车" href="#">双向经营 渠道多样</a></span>
+            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    <a href="#" title="汽车美容" target="_blank">汽车美容</a>
-                    <a href="#" title="洗车" target="_blank">洗车</a>
-                    <a href="#" title="汽车用品" target="_blank">汽车用品</a>
-                    <a href="#" title="汽修保养" target="_blank">汽修保养</a>
-                    <a href="#" title="电动车" target="_blank">电动车</a>
-                    <a href="#" title="车载用品" target="_blank">车载用品</a>
-                    <a href="#" title="车饰" target="_blank">车饰</a>
-                    <a href="#" title="平衡车" target="_blank">平衡车</a>
-                    <a href="#" title="自行车" target="_blank">自行车</a>
-                    <a href="#" title="立体车库" target="_blank">立体车库</a>
-                    <a href="#" title="儿童座椅" target="_blank">儿童座椅</a>
-                    <a href="#" title="其他" target="_blank">其他</a></dd>
+                    {volist name = "ad_position" id = "item" }
+                    {if $item.ad_id eq $k && $i<=5}
+                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                       target="_blank">{$item.name}</a>
+                    {else/}{php}$i--;{/php}
+                    {/if}
+                    {/volist}
+                </dd>
             </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="环保机械">环保机械</a>
-                    <span class="orange">
-            <a target="_blank" title="未来锂锂电池修复" href="#">智能电池修复整店输出</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="电池修复" target="_blank">电池修复</a>
-                    <a href="#" title="食品机械" target="_blank">食品机械</a>
-                    <a href="#" title="空气净化" target="_blank">空气净化</a>
-                    <a href="#" title="木炭机" target="_blank">木炭机</a>
-                    <a href="#" title="制香机" target="_blank">制香机</a>
-                    <a href="#" title="节能设备" target="_blank">节能设备</a>
-                    <a href="#" title="施工设备" target="_blank">施工设备</a>
-                    <a href="#" title="太阳能" target="_blank">太阳能</a>
-                    <a href="#" title="水净化" target="_blank">水净化</a>
-                    <a href="#" title="环保材料" target="_blank">环保材料</a>
-                    <a href="#" title="糖画机" target="_blank">糖画机</a>
-                    <a href="#" title="包装机械" target="_blank">包装机械</a>
-                    <a href="#" title="竹炭净化" target="_blank">竹炭净化</a>
-                    <a href="#" title="榨油机" target="_blank">榨油机</a>
-                    <a href="#" title="原水处理" target="_blank">原水处理</a>
-                    <a href="#" title="环卫用品" target="_blank">环卫用品</a>
-                    <a href="#" title="电瓶" target="_blank">电瓶</a>
-                    <a href="#" title="服装加工" target="_blank">服装加工</a>
-                    <a href="#" title="其他" target="_blank">其他</a></dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="礼品饰品">礼品饰品</a>
-                    <span class="red">
-            <a target="_blank" title="昵美创意手机壳" href="#">手机壳 无需店面</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="手机壳" target="_blank">手机壳</a>
-                    <a href="#" title="礼品" target="_blank">礼品</a>
-                    <a href="#" title="工艺品" target="_blank">工艺品</a>
-                    <a href="#" title="魔术用品" target="_blank">魔术用品</a>
-                    <a href="#" title="首饰" target="_blank">首饰</a>
-                    <a href="#" title="小饰品" target="_blank">小饰品</a>
-                    <a href="#" title="彩色钥匙" target="_blank">彩色钥匙</a>
-                    <a href="#" title="3D玩偶" target="_blank">3D玩偶</a>
-                    <a href="#" title="翡翠玉石" target="_blank">翡翠玉石</a>
-                    <a href="#" title="水晶饰品" target="_blank">水晶饰品</a>
-                    <a href="#" title="祈福饰品" target="_blank">祈福饰品</a>
-                    <a href="#" title=" 钟表" target="_blank">钟表</a>
-                    <a href="#" title="毛绒公仔" target="_blank">毛绒公仔</a>
-                    <a href="#" title="其他" target="_blank">其他</a></dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="家居用品">家居用品</a>
-                    <span class="blue">
-            <a target="_blank" title="大懒猫懒人用品体验馆" href="#">懒人用品厂家直供</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="懒人用品" target="_blank">懒人用品</a>
-                    <a href="#" title="垃圾处理器" target="_blank">垃圾处理器</a>
-                    <a href="#" title="厨具" target="_blank">厨具</a>
-                    <a href="#" title="家纺布艺" target="_blank">家纺布艺</a>
-                    <a href="#" title="日用品" target="_blank">日用品</a>
-                    <a href="#" title="智能家具" target="_blank">智能家具</a>
-                    <a href="#" title="红木家具" target="_blank">红木家具</a>
-                    <a href="#" title="灯饰" target="_blank">灯饰</a>
-                    <a href="#" title="生活馆" target="_blank">生活馆</a>
-                    <a href="#" title="安防设备" target="_blank">安防设备</a>
-                    <a href="#" title="家居饰品" target="_blank">家居饰品</a>
-                    <a href="#" title="家用电器" target="_blank">家用电器</a>
-                    <a href="#" title="餐具" target="_blank">餐具</a>
-                    <a href="#" title="洗涤用品" target="_blank">洗涤用品</a>
-                    <a href="#" title="全景画" target="_blank">全景画</a>
-                    <a href="#" title="智能橱柜" target="_blank">智能橱柜</a>
-                    <a href="#" title="床上用品" target="_blank">床上用品</a>
-                    <a href="#" title="水族" target="_blank">水族</a>
-                    <a href="#" title="渔具" target="_blank">渔具</a>
-                    <a href="#" title="卫浴" target="_blank">卫浴</a>
-                    <a href="#" title="茶具" target="_blank">茶具</a>
-                    <a href="#" title="其他" target="_blank">其他</a></dd>
-            </dl>
+            {php}$k++;{/php}
+            {/volist}
         </div>
         <div class="cyxmT-link">
             <ul>
                 <li class="red">
-                    <a target="_blank" title="万聪智学教育" href="#">
-                        <font color="red">智能教学 家长认可</font></a>
-                    <a target="_blank" title="铁骆驼电瓶修复" href="#">
-                        <font color="red">电瓶修复创业好选择</font></a>
-                    <a target="_blank" title="斗腐倌七品香豆腐" href="#">
-                        <font color="red">创业找香豆腐小吃</font></a>
-                    <a target="_blank" title="七钟茶" href="#">
-                        <font color="red">操作便捷省心省力</font></a>
-                    <a target="_blank" title="雅坐涮烤锅王" href="#">
-                        <font color="red">创意涮锅烤肉火锅</font></a>
-                    <a target="_blank" title="冰雪大王冰淇淋" href="#">
-                        <font color="red">饮品甜品&nbsp;一店多开</font></a>
-                </li>
-                <li>
-                    <a target="_blank" title="ge鸡ge鸡泡泡鸡" href="#">有个新宠叫泡泡鸡</a>
-                    <a target="_blank" title="爱依莲女装" href="#">品牌女装 整店输出</a>
-                    <a target="_blank" title="久焖提督私房牛肉面馆" href="#">面食快餐！上瘾吃不够</a>
-                    <a target="_blank" title="家亿鑫全屋整装" href="#">全屋整装毛坯房变精装</a>
-                    <a target="_blank" title="韩素生活快时尚百货" href="#">进口优品认证韩素生活</a>
-                    <a target="_blank" title="赵汝飞练字" href="#">一手练字 简单办校</a></li>
-                <li class="red">
-                    <a target="_blank" title="黑羊社奶茶" href="#">
-                        <font color="red">黑羊社天然潮饮！</font></a>
-                    <a target="_blank" title="卤三国卤味小吃" href="#">
-                        <font color="red">卤尽美味味尽三国</font></a>
-                    <a target="_blank" title="秀臣化妆品" href="#">
-                        <font color="red">化妆品 一站畅购</font></a>
-                    <a target="_blank" title="尚町啵啵鱼" href="#">
-                        <font color="red">啵啵鱼！灵活开店</font></a>
-                    <a target="_blank" title="阁下的虾" href="#">
-                        <font color="red">簋街小龙虾外卖+零售</font></a>
-                    <a target="_blank" title="澳食尚煲仔饭" href="#">
-                        <font color="red">煲仔饭 百款单品</font></a>
+                    {volist name = "ad_position" id = "item"}
+                    {if $item.ad_id eq 1022 && $i<=18}
+                    {if $i<=6 && $i>12 }
+                    <a target="_blank" title="{$item.name}" href="{:url('Index/project')}?project_id={$item.project_id}">
+                        <font color="red">{$item.name}</font></a>
+                    {else/} <a target="_blank" title="{$item.name}" href="{:url('Index/project')}?project_id={$item.project_id}"></a>
+                    {/if}
+                    {else/}{php}$i--;{/php}
+                    {/if}
+                    {/volist}
                 </li>
             </ul>
         </div>

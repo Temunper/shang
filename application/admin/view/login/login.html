@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/index.css"/>
+</head>
+<body>
+<div class="login-bg">
+    <form action="{:url('Login/admin_login')}" method="post">
+        <div class="login">
+            <img src="__ADMIN__/images/hsh.png" class="login-logo" alt=""/>
+            <input type="text" placeholder="账号" class="login-input" name="user"/>
+            <input type="password" placeholder="密码" class="login-input" name="pass"/>
+            <input type="text" placeholder="验证码" class="login-input" name="code"/>
+            <div class="login-yzm">
+                <img src="/captcha" onclick="this.src='/captcha'" alt="验证码" title="点击直接刷新" >
+                <div class="login-btn">
+                    <button>登录</button>
+                </div>
+                <div class="login-ft login-version">
+                    <span>版本v1.0</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
