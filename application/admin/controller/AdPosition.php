@@ -9,7 +9,7 @@
 namespace app\admin\controller;
 
 
-class Adposition extends Base
+class AdPosition extends Base
 {
 
 }

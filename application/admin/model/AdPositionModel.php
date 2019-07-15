@@ -11,7 +11,7 @@ namespace app\admin\model;
 
 use think\Model;
 
-class AdpositionModel extends Model
+class AdPositionModel extends Model
 {
 protected $table = 'ad_position';
 }

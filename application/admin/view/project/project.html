@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>项目管理</title>
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/list.css"/>
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/Ecalendar.css"/>
+</head>
+<body>
+<!-- 头部开始 -->
+<div class="header">
+    <div class="header-user">
+        <div class="header-user-name">{$Think.session.admin.admin_name}</div>
+        <div class="header-drop-down">
+            <ul class="header-drop-down-ul">
+                <li><a href="{:url('Admin/admin_pass')}">密码修改</a></li>
+                <li><a href="{:url('Admin/admin_name')}">姓名修改</a></li>
+            </ul>
+            <div class="header-drop-down-out"><a href="{:url('Login/admin_logout')}">退出</a></div>
+        </div>
+        <img class="header-user-logo" src="__ADMIN__/images/logo-s.png" alt="">
+    </div>
+</div>
+<!-- 头部结束 -->
+
+<!-- 左导航开始 -->
+<div class="left-nav">
+    <h1><img src="__ADMIN__/images/logo.png" alt=""></h1>
+    <ul class="left-nav-ul">
+        <li class=""><a href="{:url('Index/index')}">首页</a></li>
+        <li class=""><a href="{:url('Project/project')}">项目管理</a></li>
+        <li class=""><a href="{:url('Client_Project/client_project')}">客户项目绑定</a></li>
+        <li class=""><a href="{:url('Class/class')}">分类管理</a></li>
+        <li class=""><a href="{:url('Theme/theme')}">主题管理</a></li>
+        <li class=""><a href="{:url('Website/website')}">站点管理</a></li>
+        <li class=""><a href="{:url('Ad/ad')}">广告位管理</a></li>
+        <li class=""><a href="{:url('Adposition/ad_position')}">广告位项目管理</a></li>
+        <li class=""><a href="{:url('Message/message ')}">留言管理</a></li>
+        <li class=""><a href="{:url('Article/article')}">文章管理</a></li>
+    </ul>
+</div>
+<!-- 左导航结束 -->
+
+<!-- 内容开始 -->
+<!-- 项目列表开始 -->
+<div class="main">
+    <div class="seeMsg-con">
+        <div class="seeMsg-con-bd">
+            <table class="table" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" class="table-checkbox selectAll"/>
+                        <span>全选</span>
+                    </th>
+                    <th>项目</th>
+                    <th>经营模式</th>
+                    <th>地区</th>
+                    <th>客户电话</th>
+                    <th>400电话</th>
+                    <th>公司名</th>
+                    <th>投资金额</th>
+                    <th>客户样式</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="project" id="vo"}
+                <tr>
+                    <td><input type="checkbox" class="table-checkbox checkboxone"/></td>
+                    <td>{$vo.name}</td>
+                    <td>{$vo.pattern}</td>
+                    <td>{$vo.area}</td>
+                    <td>{$vo.client_phone}</td>
+                    <td>{$vo.company_name}</td>
+                    <td>{$vo.money}</td>
+                    <td>{$vo.kf_type}</td>
+                    <td class="tableOpe">
+                        <button class="operate del">删除</button>
+                        <button class="operate read">详情</button>
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <input type="button" class="btns btn-sm " value="添加项目">
+    </div>
+</div>
+<!-- 项目列表结束 -->
+
+
+<!-- 内容结束 -->
+
+</body>
+<script type="text/javascript" src="__ADMIN__/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/Ecalendar.jquery.min.js"></script>
+<script src="__ADMIN__/js/project.js"></script>
+</html>

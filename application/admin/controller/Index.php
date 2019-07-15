@@ -19,7 +19,7 @@ class Index extends Base
 
     public function add_pro()
     {
-        return $this->fetch('/addItem');
+        return $this->fetch('index/test');
     }
 
     public function get_msg()

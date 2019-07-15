@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/index.css" />
+</head>
+<body>
+<!-- 头部开始 -->
+<div class="header">
+    <div class="header-user" >
+        <div class="header-user-name">张海</div>
+        <div class="header-drop-down">
+            <h3>客服部经理</h3>
+            <ul class="header-drop-down-ul">
+                <li><a href="#">消息管理</a></li>
+                <li><a href="#">密码修改</a></li>
+                <li><a href="#">微信绑定</a></li>
+                <li><a href="#">操作日志</a></li>
+            </ul>
+            <div class="header-drop-down-out"><a href="{:url('Login/admin_logout')}">退出</a></div>
+        </div>
+        <img class="header-user-logo" src="__ADMIN__/images/logo-s.png" alt="">
+    </div>
+</div>
+<!-- 头部结束 -->
+
+<!-- 左导航开始 -->
+<div class="left-nav">
+    <h1><img src="__ADMIN__/images/logo.png" alt=""></h1>
+    <ul class="left-nav-ul">
+        <li class="left-nav-li1 "><a href="index.html">首页</a></li>
+        <li class="left-nav-li2"><a href="../seeMsg.html">查看留言</a></li>
+        <li class="left-nav-li3"><a href="../addItem.html">添加项目</a></li>
+    </ul>
+</div>
+<!-- 左导航结束 -->
+
+<!-- 内容开始 -->
+<div class="main">
+    <div class="index-top">
+        <p>广州 雨  30℃ ~ 20℃ | 空气质量：优</p>
+    </div>
+    <div class="index-main clearfix">
+        <div class="index-main-l fl">
+            <div class="index-main-l-top clearfix">
+                <div class="index-liuyan fl">
+                    <b>123</b>
+                    <span>今日总留言</span>
+                </div>
+                <div class="index-liuliang fr">
+                    <b>123456</b>
+                    <span>昨日流量</span>
+                </div>
+            </div>
+            <div class="index-main-l-con clearfix">
+                <h3>最新公告</h3>
+                <i>关于留言后台安全注意事项说明</i>
+                <p>温馨提醒，为了提高名位尊敬的好商汇VIP客户的留言后台安全，请各位注意以下几点：</p>
+                <p>1、建议留言后台的密码设置不要过于简单。</p>
+                <p>2、建议客户不定时的修改留言后台密码。</p>
+                <p>3、建议项目负责人更换时注意修改后台密码。</p>
+                <p>4、定时做电脑的杀毒清理。</p>
+                <div class="index-main-l-ft fr">
+                    <span>2019-06-25</span>
+                    <span>好商汇客服经理</span>
+                </div>
+            </div>
+        </div>
+        <div class="index-main-r fr">
+            <h3>公告栏</h3>
+            <ul class="table-ul">
+                <li class="clearfix" v-for="notice in notices">
+                    <span class="table-li-l">公告</span>
+                    <span class="table-li-r">时间</span>
+                </li>
+                <li class="clearfix" v-for="notice in notices">
+                    <span class="table-li-l"><a href="#">关于留言后台安全注意事项说明</a></span>
+                    <span class="table-li-r">2019-06-25</span>
+                </li>
+                <li class="clearfix" v-for="notice in notices">
+                    <span class="table-li-l"><a href="#">关于留言后台安全注意事项说明</a></span>
+                    <span class="table-li-r">2019-06-25</span>
+                </li>
+                <li class="clearfix" v-for="notice in notices">
+                    <span class="table-li-l"><a href="#">关于留言后台安全注意事项说明</a></span>
+                    <span class="table-li-r">2019-06-25</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 内容结束 -->
+
+</body>
+</html>

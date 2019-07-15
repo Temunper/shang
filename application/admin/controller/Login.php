@@ -46,7 +46,7 @@ class Login extends Controller
         if (!empty($result)) {
             if (md5($params['pass'] . $result['verify']) == $result['pass']) {
                 if ($result['status'] == 1) {
-                    Session::set('admin',['admin_name' => $result['name'], 'admin_user' => $result['user']]);
+                    Session::set('admin',['admin_name' => $result['name'], 'admin_user' => $result['user'],'admin_id'=>$result['id']]);
                     return $this->redirect('Index/index');
                 } else {
                     $this->error('账户已删除');

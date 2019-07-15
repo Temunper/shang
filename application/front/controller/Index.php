@@ -19,7 +19,7 @@ class Index extends Controller
     public function index()
     {
         $clas = new Clas();
-        $ad_position = new Adposition();
+        $ad_position = new AdPosition();
         $article = new Article();
         $d_clas = $clas->get_all_clas();
         $d_ad_position = $ad_position->get_all_ad_position();        //得到广告位的所有广告

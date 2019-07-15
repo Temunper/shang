@@ -9,17 +9,17 @@
 namespace app\front\controller;
 
 
-use app\front\model\AdpositionModel;
+use app\front\model\AdPositionModel;
 use think\Controller;
 use think\Request;
 
-class Adposition extends Controller
+class AdPosition extends Controller
 {
     protected $ad_position_model = null;
 
   public function __construct(Request $request = null)
   {
-      $this->ad_position_model = new AdpositionModel();
+      $this->ad_position_model = new AdPositionModel();
       parent::__construct($request);
   }
 
