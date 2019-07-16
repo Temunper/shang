@@ -1,0 +1,207 @@
+
+
+
+/* 查看留言开始 */
+.seeMsg-top h3{
+    display: inline-block;
+    font-size: 30px;
+    font-weight: normal;
+    margin-right: 14px;
+}
+.seeMsg-top span{
+    display: inline-block;
+    font-size: 14px;
+    color: #666;
+}
+.seeMsg-con{
+    padding: 20px 10px;
+    background: #fff;
+    margin-top: 20px;
+}
+.seeMsg-name{
+    color: #333;
+    margin-right: 5px;
+    vertical-align: middle;
+    margin-left: 30px;
+    font-size: 14px;
+}
+.seeMsg-name:nth-of-type(1){
+    margin-left: 0px;
+}
+
+.seeMsg-con-hd input,.seeMsg-con-hd select{
+    background-color: #FFF;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #DCDFE6;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 40px;
+    line-height: 40px;
+    outline: 0;
+    padding: 0 15px;
+    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 180px;
+}
+
+.seeMsg-search{
+    border: none;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    background: #337ab7;
+    color: #fff;
+    border-radius: 5px;
+    margin-left: 14px;
+    vertical-align: top;
+    letter-spacing: 5px;
+    cursor: pointer;
+    padding-top: 1px;
+    font-size: 14px;
+}
+.seeMsg-con-hd form{
+    float: left;
+}
+.seeMsg-export-btn{
+    border: none;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    background: #337ab7;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 20px;
+    vertical-align: top;
+    cursor: pointer;
+    padding-top: 1px;
+    float: right;
+    font-size: 14px;
+}
+.seeMsg-con-bd{
+    margin-top: 20px;
+}
+.table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    width: 100%;
+}
+.table thead tr th,.table tbody tr td {
+    padding: 8px 12px;
+    text-align: center;
+    color: #666;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.table tbody tr:nth-child(odd) td{
+    background: #f9f9f9;
+}
+.table .operate{
+    background: #fff;
+    padding: 6px 14px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 4px;
+}
+.table .operate.del{
+    margin-right: 10px;
+    background: #F56C6C;
+}
+.table .operate.del:hover{
+    background: #f78989;
+}
+.table .operate.read{
+    background: #67C23A;
+}
+.table .operate.read:hover{
+    background: #85ce61;
+}
+
+.table-checkbox{
+    width: 16px;
+    height: 16px;
+    vertical-align: text-top;
+}
+.tableCon{
+    max-width: 300px;
+}
+
+.table th{
+    white-space:nowrap;
+}
+.tableOpe{
+    width: 150px;
+}
+
+
+.calendarWarp input{
+    cursor: pointer;
+}
+.calendarWarp .icon{
+    pointer-events:none;
+}
+
+
+
+/* 查看留言结束 */
+
+
+/* 添加项目开始 */
+.addItem-top h3{
+    display: inline-block;
+    font-size: 30px;
+    font-weight: normal;
+    margin-right: 14px;
+}
+.addItem-con{
+    padding: 50px 20px;
+    background: #fff;
+    margin-top: 20px;
+}
+.con-item-l {
+    text-align: right;
+    vertical-align: middle;
+    float: left;
+    font-size: 14px;
+    color: #606266;
+    line-height: 40px;
+    padding: 0 12px 0 0;
+    box-sizing: border-box;
+    width: 120px;
+}
+.con-item-r {
+    background-color: #FFF;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #DCDFE6;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 40px;
+    line-height: 40px;
+    outline: 0;
+    padding: 0 15px;
+    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 300px;
+}
+.con-item{
+    margin-bottom: 22px;
+}
+
+
+
+
+
+
+
+
+
+/* 添加项目结束 */

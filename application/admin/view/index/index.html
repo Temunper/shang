@@ -90,16 +90,16 @@
 
     <!-- 头部导航 -->
     <div class="sticky-header header-section ">
-        <div class="header-left">
+        <div class="header-left index-head-set">
             <div class="profile_details">
                 <ul>
-                    <li class="dropdown profile_details_drop">
+                    <li class="dropdown profile_details_drop ">
                         <a href="__TEMPLATE__/#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <div class="profile_img">
-                                <span class="prfil-img"><img src="__TEMPLATE__/images/2.jpg" alt=""> </span>
+                                <span class="prfil-img"><img class="header-user-logo" src="__ADMIN__/images/logo-s.png"
+                                                             alt=""></span>
                                 <div class="user-name">
-                                    <p>Admin Name</p>
-                                    <span>Administrator</span>
+                                    <p>{$Think.session.admin.admin_name}</p>
                                 </div>
                                 <i class="fa fa-angle-down lnr"></i>
                                 <i class="fa fa-angle-up lnr"></i>
@@ -115,9 +115,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
     </div>
     <!-- //头部结束 -->
     <!-- 主要内容-->

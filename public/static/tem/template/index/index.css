@@ -1,0 +1,28 @@
+.sidebar-menu li .left-font-size {
+    font-size: large;
+    color: #FFFFFF;
+}
+.sidebar-menu li .left-font-size .left-icon-size {
+    font-size: x-large;
+}
+
+.sidebar-menu li .left-on {
+    border-left: 3px solid transparent;
+    border-left-color: #3c8dbc
+}
+
+#logo-border {
+    border-bottom: solid;
+    border-bottom-color: #2C2E37;
+    border-bottom-width: thin;
+    padding: 11px;
+}
+ .icon {
+     width: 1em;
+     height: 1em;
+     vertical-align: -0.15em;
+     fill: currentColor;
+     overflow: hidden;
+ }
+
+

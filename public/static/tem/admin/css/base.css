@@ -1,0 +1,215 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+/*css 初始化 */
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }  /*让这些的标签内外边距都是0*/
+fieldset, img {  border:none; vertical-align: middle; }
+ul, ol { list-style:none; }
+input { padding-top:0; padding-bottom:0; font-family: "SimSun","宋体";}
+select, input { vertical-align:middle;   }
+select, input, textarea { font-size:12px; margin:0; }
+textarea { resize:none; }
+table { border-collapse:collapse; }
+body { color:#666;  font:16px '微软雅黑';   /*测试用高度*/}
+h1,h2,h3,h4,h5,h6{font-family: "微软雅黑";}
+a{color:#333; text-decoration:none;  font-family: "微软雅黑";}
+a:hover{ color:#333; text-decoration:none; font-family: "微软雅黑";}
+i {font-style: normal; }
+
+/* 常用代码  */
+.clearfix:after { content:""; display:block; height:0; visibility:hidden; clear:both; }
+.clearfix { *zoom:1; }
+.wrap{ width: 1200px;  margin-left: auto; margin-right: auto;  }
+.fl{ float:left;}
+.fr{ float:right;}
+
+
+
+input::-webkit-input-placeholder{
+    color:#CAC9CE;
+}
+input::-moz-placeholder{   
+    color:#CAC9CE;
+}
+input:-moz-placeholder{    
+    color:#CAC9CE;
+}
+input:-ms-input-placeholder{  
+    color:#CAC9CE;
+}
+
+
+
+
+
+/* 头部开始 */
+.header{
+    height: 60px;
+    line-height: 60px;
+    background: #f6f6f6;
+    margin-left: 240px;
+    box-shadow: 0px 2px 6px #d7d7d7;
+    min-width: 1400px;
+}
+.header-user{
+    float: right;
+    margin-right: 140px;
+    position: relative;
+    cursor: pointer;
+}
+.header-user-name{
+    display: inline-block;
+    background: url(../images/down.png) no-repeat right 26px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+.header-drop-down{
+    position: absolute;
+    left: -24px;
+    top: 60px;
+    width: 180px;
+    background: #fff;
+    box-shadow: 2px 2px 10px #d7d7d7 , -2px 2px 10px #d7d7d7;
+    z-index: 2;
+    display: none;
+}
+.header-user:hover .header-drop-down{
+    display: block;
+    animation: heartDrop linear .3s;
+}
+
+@-webkit-keyframes heartDrop{
+    0% {
+            opacity: 0;
+            top: 30px;
+    }
+    100% {  
+            opacity: 1;
+            top: 60px;
+    }
+}
+
+.header-drop-down h3{
+    padding-left: 20px;
+    padding-top: 20px;
+    font-weight: normal;
+    border-bottom: 1px solid #e1e1e1;
+}
+.header-drop-down-ul{
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e1e1e1;
+}
+.header-drop-down-ul li{
+    height: 44px;
+    line-height: 44px;
+}
+.header-drop-down-ul li a{
+    color: #484848;
+}
+.header-drop-down-out{
+    padding-left: 20px;
+    height: 44px;
+    line-height: 44px;
+    cursor: pointer;
+}
+.header-user-logo{
+    vertical-align: middle;
+    margin-left: 20px;
+}
+
+/* 头部结束 */
+
+
+/* 左导航开始 */
+.left-nav{
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 20px 0;
+    height: 100%;
+    box-sizing: border-box;
+    background: #3a3f51;
+}
+.left-nav h1{
+    padding-left: 8px;
+    height: 60px;
+    background: url(../images/l-nav-t.png) repeat-x left bottom;
+}
+
+.left-nav-ul li{
+    width: 200px;
+    padding-left: 40px;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    cursor: pointer;
+}
+.left-nav-ul li a{
+    color: #fff;
+    display: block;
+    padding-left: 40px;
+}
+.left-nav-ul li:hover{
+    background: #2e3344;
+}
+.left-nav-li1 a{
+    background: url(../images/icon1.png) no-repeat left center;
+}
+.left-nav-li1:hover a{
+    background: url(../images/icon1-1.png) no-repeat left center;
+}
+.left-nav-li2 a{
+    background: url(../images/icon4.png) no-repeat left center;
+}
+.left-nav-li2:hover a{
+    background: url(../images/icon4-1.png) no-repeat left center;
+}
+.left-nav-li3 a{
+    background: url(../images/icon5.png) no-repeat left center;
+}
+.left-nav-li3:hover a{
+    background: url(../images/icon5-1.png) no-repeat left center;
+}
+
+.left-nav-ul li.on{
+    background: #2e3344;
+}
+.left-nav-li1.on a{
+    background: url(../images/icon1-1.png) no-repeat left center;
+}
+.left-nav-li2.on a{
+    background: url(../images/icon4-1.png) no-repeat left center;
+}
+.left-nav-li3.on a{
+    background: url(../images/icon5-1.png) no-repeat left center;
+}
+
+
+
+/* 左导航结束 */
+
+
+.main{
+    margin-left: 240px;
+    padding: 20px;
+    background: #e6e6e6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
