@@ -3,14 +3,14 @@
 <!-- 内容开始 -->
 {block name="content"}
 <div class="main">
-    <div class="index-top">
+ <!--   <div class="index-top">
         <p>广州 雨 30℃ ~ 20℃ | 空气质量：优</p>
-    </div>
+    </div>-->
     <div class="index-main clearfix">
         <div class="index-main-l fl">
             <div class="index-main-l-top clearfix">
                 <div class="index-liuyan fl">
-                    <b>123</b>
+                    <b>{$count}</b>
                     <span>今日总留言</span>
                 </div>
                 <div class="index-liuliang fr">
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="index-main-r fr">
+<!--        <div class="index-main-r fr">
             <h3>公告栏</h3>
             <ul class="table-ul">
                 <li class="clearfix" v-for="notice in notices">
@@ -52,7 +52,7 @@
                     <span class="table-li-r">2019-06-25</span>
                 </li>
             </ul>
-        </div>
+        </div>-->
     </div>
 </div>
 {/block}

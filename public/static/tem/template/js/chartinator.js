@@ -138,14 +138,14 @@
             chartType: 'BarChart',
 
             // Chart Id - The id applied to the chart container element as an id and a class
-            // This is overridden if the chart element has an id or is user defined
+            // This is overridden if the chart element has an id or is client defined
             chartId: 'c24_chart_' + Math.random().toString(36).substr(2, 9),
 
             // The class to apply to the chart container element
             chartClass: 'chtr-chart',
 
             // Table Id - The id applied to the table element as an id and a class
-            // This is overridden if the table element has an id or is user defined
+            // This is overridden if the table element has an id or is client defined
             tableId: 'c24_table_' + Math.random().toString(36).substr(2, 9),
 
             // The class to apply to the table element

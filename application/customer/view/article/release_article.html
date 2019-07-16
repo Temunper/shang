@@ -1,22 +1,75 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<form action="{:url('article/do_release')}" method="post" enctype="multipart/form-data"><br/>
-    类型<input type="text" name='type'><br/>
-    项目id<input type="text" name='project_id'><br/>
-    列表图片<input type="file" name='image'><br/>
-    标题<input type="text" name='title'><br/>
-    简介<input type="text" name='brief'><br/>
-    内容<input type="text" name='content'><br/>
-    来源<input type="text" name='source'><br/>
-    作者id<input type="text" name='author'><br/>
-    <button id="">提交</button>
-</form>
-</body>
-</html>
+{extend name="public/base"}
+
+<!-- 内容开始 -->
+{block name="content"}
+<div class="main">
+    <div class="addItem-top">
+        <h3>发布文章</h3>
+    </div>
+    <div class="addItem-con">
+        <form action="{:url('article/do_release')}" method="post" enctype="multipart/form-data">
+            <div class="con-item">
+                <label for="item-input3" class="con-item-l">文章类型</label>
+                <select id="item-type" class="con-item-r" name="type">
+                    <option value="0"></option>
+                    <option value="1">项目资讯</option>
+                    <option value="2">创业资讯</option>
+                    <option value="3">新闻资讯</option>
+                    <option value="4">热门专题</option>
+                    <option value="5">创业故事</option>
+                </select>
+                <select id="item-type2" class="con-item-r" name="project_id">
+                </select>
+            </div>
+            <div class="con-item">
+                <label for="item-input1" class="con-item-l">标题</label>
+                <input type="text" id="item-input1" class="con-item-r" name="title"/>
+            </div>
+            <div class="con-item">
+                <label for="item-input2" class="con-item-l">列表图片</label>
+                <input type="file" id="item-file_img" name='image'/>
+            </div>
+            <div class="con-item">
+                <label for="item-input1" class="con-item-l">简介</label>
+                <input type="text" id="item-brief" class="con-item-r" name="brief"/>
+            </div>
+            <div class="con-item">
+                <label for="item-input1" class="con-item-l">内容</label>
+                <textarea style="height: 200px;width: 300px;border-color: #DCDFE6" name="content"></textarea>
+            </div>
+            <div class="con-item">
+                <label for="item-input1" class="con-item-l">来源</label>
+                <input type="text" id="item-source" class="con-item-r" name="source"/>
+            </div>
+            <div class="login-btn">
+                <button id="publish">发布</button>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+    $(function () {
+        //登录按钮添加点击事件
+        $("#publish").on('click', function (event) {
+            $.ajax({
+                type: "POST",
+                url: "{:url('article/do_release')}",
+                data: $("form").serialize(),
+                dataType: 'json',
+                success: function (data) {
+                    if (data.status == 1) {
+                        alert(data.message);
+                        window.location.href = "{:url('article/release_article')}";
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            })
+
+        })
+    })
+</script>
+{/block}

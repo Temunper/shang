@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: vpanda
+ * Clientw: vpanda
  * Date: 2019/7/11
  * Time: 9:03
  */
@@ -11,25 +11,37 @@ namespace app\customer\model;
 use think\Db;
 use think\Model;
 
-class User extends Model
+class Client2 extends Model
 {
-    /*  //客户端登录
-      public function check_login($data)
-      {
-          return self::get($data);
-      }*/
+
 
     //新增客户端用户
     public function add_client($data)
     {
-        self::insert($data);
+        // return $re = Db::query('select verify from client where name=? limit  1', [$name]);
+        self::data($data);
+        return self::save();
+    }
+
+    //验证是否已存在的用户名
+    public function check_name($user)
+    {
+        return self::get(['name' => $user]);
+
+    }
+
+    //验证登录
+    public function check_login($map)
+    {
+        self::get($map);
+        return dump($this->getLastSql());
     }
 
     //通过账户名查询秘钥
-    public function get_verify($user)
+    public function get_verify($name)
     {
-        return Db::query('select verify from client where user=?', [$user]);
-
+        return $re = Db::query('select verify from client where name=? limit  1', [$name]);
+        //return self::get(['name' => $name])->toArray();
     }
 
     //通过id查询用户是否存在

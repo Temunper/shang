@@ -145,7 +145,7 @@
       this.element = element;
       this.options = options;
 
-      // merge user options into default options
+      // merge client options into default options
       for (var i in defaultOptions) {
         if (defaultOptions.hasOwnProperty(i)) {
           options[i] = userOptions && typeof(userOptions[i]) !== 'undefined' ? userOptions[i] : defaultOptions[i];

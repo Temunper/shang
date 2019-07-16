@@ -1,17 +1,15 @@
 <body>
 <!-- 头部开始 -->
 <div class="header">
-    <div class="header-user" >
-        <div class="header-user-name">张海</div>
+    <div class="header-user">
+        <div class="header-user-name"><!--{$client_info.name}-->{$Think.session.client_info.name}</div>
         <div class="header-drop-down">
-            <h3>客服部经理</h3>
+          <!--  <h3>客服部经理</h3>-->
             <ul class="header-drop-down-ul">
                 <li><a href="#">消息管理</a></li>
-                <li><a href="#">密码修改</a></li>
-                <li><a href="#">微信绑定</a></li>
-                <li><a href="#">操作日志</a></li>
+                <li><a href="{:url('client/show_change_pass')}">密码修改</a></li>
             </ul>
-            <div class="header-drop-down-out">退出</div>
+            <div class="header-drop-down-out"><a href="{:url('client/logout')}">退出</a></div>
         </div>
         <img class="header-user-logo" src="__STATIC__/customer_public/images/logo-s.png" alt="">
     </div>

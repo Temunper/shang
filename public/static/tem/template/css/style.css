@@ -420,7 +420,7 @@ ul.dropdown-menu{
 	-moz-animation: none;
 	background-image: none;
 }
-/*--- User Panel---*/
+/*--- Clientw Panel---*/
 .profile_details_left {
     float: left;
     padding-left: 5px;
@@ -5389,7 +5389,7 @@ figure.icons,.weather-text {
 }
 /*--Progress bars--*/
 
-/*-- User profile --*/
+/*-- Clientw profile --*/
 .malorum-top {
     background: url(../images/weather.jpg)no-repeat;
 	background-size:cover;
@@ -5579,7 +5579,7 @@ span.malorum-pro {
   top: 1px;
   font-size: 1.5rem;
 }
-/*-- User profile --*/
+/*-- Clientw profile --*/
 /*--profile--*/
 .profile{
     padding: 0;

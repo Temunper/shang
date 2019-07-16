@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: vpanda
+ * Clientw: vpanda
  * Date: 2019/7/11
  * Time: 11:41
  */
@@ -9,35 +9,59 @@
 namespace app\customer\controller;
 
 use app\customer\model\Article as ArticleModel;
-use app\customer\validate\ArticleValidate;
 use think\Request;
 use app\customer\common\Upload;
+use think\Session;
 
 class Article extends Base
 {
     //渲染客户端新增文章页面
     public function release_article()
     {
-        return $this->fetch();
+
+     /*   $db = new ArticleModel();
+        //查询当前用户所拥有的项目id，查询所有项目名称
+        $project_info = "";
+
+        $clinet_id = Session::get('client_id');
+
+        $project_id = $db->check_project($clinet_id);
+
+        if (!empty($project_id)) {
+            $str = "";
+            for ($i = 0; $i < count($project_id); $i++) {
+                $str .= $project_id[$i]['project_id'] . ',';
+            }
+            $str = rtrim($str, ',');
+            //查询所有项目名称
+            $project_info = $db->select_project($str);
+        } else {
+            $project_info = "暂无项目，请联系客服发布项目";
+        }*/
+
+        return $this->fetch('article/release_article');
     }
 
     //发布文章
     public function do_release(Request $request)
     {
         $data = $request->param();
-
-        $type = $data['article_id'] ? $data['article_id'] : "";
-        $project_id = $data['project_id'] ? $data['project_id'] : 0;
-        $title = $data['title'] ? $data['title'] : "";
-        $lis_img = $_FILES['image'] ? $_FILES['image'] : "";
+        $type = isset($data['type']) ? $data['type'] : "";
+        $project_id = isset($data['project_id']) ? $data['project_id'] : "";
+        $title = isset($data['title']) ? $data['title'] : "";
+        $lis_img = isset($_FILES['image']) ? $_FILES['image'] : "";
+        //$lis_img=$request->file('image');
         $brief = $data['brief'] ? $data['brief'] : "";
         $content = $data['content'] ? $data['content'] : "";
         $source = $data['source'] ? $data['source'] : "";
-        $author = $data['author'] ? $data['author'] : "";
-        if (empty($type)) {
-            return $this->return_info(0, '类型不能为空');
+        $author = Session::get('client_id') ? Session::get('client_id') : "";
+        if (empty($author)) {
+            return $this->return_info(0, '未登录，请登录');
         }
-        if (empty($project_id)) {
+        if (empty($type)) {
+            return $this->return_info(0, '文章类型不能为空');
+        }
+        if ($type == 1 && empty($project_id)) {
             return $this->return_info(0, '项目不能为空');
         }
         if (empty($title)) {
@@ -57,9 +81,6 @@ class Article extends Base
         if (empty($source)) {
             return $this->return_info(0, '来源不能为空');
         }
-        if (empty($author)) {
-            return $this->return_info(0, '作者不能为空');
-        }
 
 
         //   $validate = new ArticleValidate();
@@ -71,14 +92,14 @@ class Article extends Base
 
 
         $data_info = [
-            'type' => $data['type'],
-            'project_id' => $data['project_id'],
-            'title' => $data['title'],
+            'type' => $type,
+            'project_id' => $project_id,
+            'title' => $title,
             'lis_img' => $file_path,
-            'brief' => $data['brief'],
-            'content' => $data['content'],
-            'source' => $data['source'],
-            'author' => $data['author']//$_SESSION['client_id'],
+            'brief' => $brief,
+            'content' => $content,
+            'source' => $source,
+            'author' => $author,
         ];
         $db = new ArticleModel();
         $result = $db->insert($data_info);
@@ -112,13 +133,16 @@ class Article extends Base
 //显示用户自己发布的文章
     public function show_self_article()
     {
-        $author = 17; //$_SESSION['client_id'] ? $_SESSION['client_id']  : "";
+
+        $author = Session::get('client_id') ? Session::get('client_id') : "";
         //查询作者为当前用户的文章
+
         $db = new ArticleModel();
         $auto_article = $db->select_self_article($author);
-        $this->assign('article_info', $auto_article);
-
-        return $this->fetch();
+        if (empty($auto_article)) {
+            $auto_article = "未发布过文章";
+        }
+        return $this->fetch('', ['article_info' => $auto_article]);
 
 
     }

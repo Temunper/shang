@@ -1,0 +1,95 @@
+{extend name="public/base"}
+<!-- 内容开始 -->
+{block name="content"}
+<div class="main">
+    <div class="seeMsg-top">
+        <h3>文章信息</h3>
+        <span>acticle</span>
+    </div>
+    <div class="seeMsg-con">
+        <div class="seeMsg-con-bd">
+            <table class="table" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" class="table-checkbox selectAll"/>
+                        <span>全选</span>
+                    </th>
+                    <th>编号</th>
+                    <th>文章类型</th>
+                    <th>项目名称</th>
+                    <th>列表图片</th>
+                    <th>简介</th>
+                    <th>内容</th>
+                    <th>留言内容</th>
+                    <th>来源</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr v-for="messageList in messageLists">
+                    {volist name="article_info" id="vo"}
+                    <td><input type="checkbox" class="table-checkbox checkboxone"/></td>
+                    <td>{$vo.article_id}</td>
+                    <td>{$vo.type}</td>
+                    <td>{$vo.name}</td>
+                    <td><img src="{$vo.lis_img}"></td>
+                    <td>{$vo.brief}</td>
+                    <td>{$vo.content}</td>
+                    <td>{$vo.source}</td>
+                    <td>{$vo.status}</td>
+                    <td class="tableOpe">
+                        <button class="operate del">删除</button>
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{/block}
+<!-- 内容结束 -->
+{block name="script"}
+<script type="text/javascript" src="__STATIC__/customer_public/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="__STATIC__/customer_public/js/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#ECalendar_date1").ECalendar({
+            type: "time",   //模式，time: 带时间选择; date: 不带时间选择;
+            stamp: false,   //是否转成时间戳，默认true;
+            offset: [0, 2],   //弹框手动偏移量;
+            format: "yyyy-mm-dd hh:ii",   //时间格式 默认 yyyy-mm-dd hh:ii;
+            skin: 3,   //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
+            step: 10,   //选择时间分钟的精确度;
+            callback: function (v, e) {
+            } //回调函数
+        });
+        $("#ECalendar_date2").ECalendar({
+            type: "time",   //模式，time: 带时间选择; date: 不带时间选择;
+            stamp: false,   //是否转成时间戳，默认true;
+            offset: [0, 2],   //弹框手动偏移量;
+            format: "yyyy-mm-dd hh:ii",   //时间格式 默认 yyyy-mm-dd hh:ii;
+            skin: 3,   //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
+            step: 10,   //选择时间分钟的精确度;
+            callback: function (v, e) {
+            } //回调函数
+        });
+        // 全选
+        $(".selectAll").on('click', function () {
+            if ($(".selectAll").prop("checked")) {
+                $(".checkboxone").prop("checked", "checked");
+            } else {
+                $(".selectAll").removeAttr("checked");
+                $(".checkboxone").removeAttr("checked");
+            }
+        })
+        //删除
+        $(".operate.del").on('click', function () {
+            $(this).closest('tr').remove();
+        });
+    })
+</script>
+{/block}
+

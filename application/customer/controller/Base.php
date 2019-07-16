@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: vpanda
+ * Clientw: vpanda
  * Date: 2019/7/11
  * Time: 8:47
  */
@@ -32,7 +32,7 @@ class Base extends Controller
     protected function is_login()
     {
         if (empty(CLIENT_ID)) {
-            $this->error('用户未登录，无权访问', url('user/login'));
+            $this->error('用户未登录，无权访问', url('client/login'));
         }
     }
 

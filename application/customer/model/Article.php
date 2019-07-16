@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: vpanda
+ * Clientw: vpanda
  * Date: 2019/7/11
  * Time: 11:52
  */
@@ -35,17 +35,19 @@ class Article extends Model
     {
         $re = self::all(function ($query) use ($author) {
             $query->alias('a')
-                ->field('a.type,p.name,a.title,a.lis_img,a.brief,a.content,a.source,c.name,
+                ->field('a.article_id,a.type,p.name,a.title,a.lis_img,a.brief,a.content,a.source,
                     a.create_time,a.update_time,a.status')
                 ->join('project p', 'a.project_id = p.project_id', 'LEFT')
-                ->join('client c', 'a.author=c.client_id', 'LEFT')
-                ->where('author', $author)
-                ->where('a.status', 'EXP', 'in(1,2)');
+                ->where('author', '=', $author)
+                ->where('a.status', 'in(1,2)');
         });
-        foreach ($re as $k => $v) {
-            $res [$k] = $v->toArray();
+        if (!empty($re)) {
+            foreach ($re as $k => $v) {
+                $res [$k] = $v->toArray();
+            }
+            return $re;
         }
-        return $res;
+        return [];
     }
 
     //文章时间修改器
@@ -72,6 +74,24 @@ class Article extends Model
         //状态：1未审核，2审核通过，3用户删除，4管理员删除
         $value = [1 => '项目资讯', 2 => '创业资讯', 3 => '新闻资讯', 4 => '热门专题', 5 => '创业故事'];
         return $value[$type];
+    }
+
+
+    //通过id 查询所拥有的项目
+    public function check_project($client_id)
+    {
+        $re = Db::table('client_project')->field('project_id')
+            ->where('client_id', $client_id)->select();
+        if ($re) {
+            return $re;
+        }
+        return [];
+    }
+
+    public function select_project($id)
+    {
+        return Db::table('project')->field('project_id,name')->where('project_id', 'in', $id)->select();
+
     }
 
 

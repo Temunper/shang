@@ -1,0 +1,30 @@
+{extend name="public/base"}
+
+<!-- 内容开始 -->
+{block name="content"}
+<div class="main">
+    <div class="addItem-top">
+        <h3>修改密码</h3>
+    </div>
+    <div class="addItem-con">
+        <form action="{:url('client/change_pass')}" method="post">
+            <div class="con-item">
+                <label for="item-input1" class="con-item-l">用户名</label>
+                <input type="text" id="item-input1" class="con-item-r" name="name " value="{$info['name']}"
+                       disabled="disabled"/>
+            </div>
+            <div class="con-item">
+                <label for="item-input1" class="con-item-l">原密码</label>
+                <input type="password" class="con-item-r" name="pass"/>
+            </div>
+            <div class="con-item">
+                <label for="item-input1" class="con-item-l">新密码</label>
+                <input type="password" class="con-item-r" name="new_pass"/>
+            </div>
+            <div class="login-btn">
+                <button id="publish">修改</button>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}

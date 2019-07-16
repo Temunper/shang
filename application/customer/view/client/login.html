@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/base.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/index.css">
+</head>
+<body>
+<div class="login-bg">
+    <form method="post" action="{:url('client/check_login')}">
+        <div class="login">
+            <img src="__STATIC__/customer_public/images/hsh.png" class="login-logo" alt=""/>
+            <input type="text" placeholder="账号" name="user" class="login-input">
+            <input type="password" placeholder="密码" name="pass" class="login-input"/>
+            <input type="text" placeholder="验证码" name="verify" class="login-input">
+            <div><img name="verify" id="verify_img" src="{:captcha_src()}" alt="验证码" onclick="refreshVerify()">
+                <a href="javascript:refreshVerify()">点击刷新</a>
+            </div>
+            <div class="login-btn">
+                <button id="logins">登录</button>
+            </div>
+            <div class="login-ft">
+                <span>版本v1.0</span>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script src="__STATIC__/customer_public/js/jquery-1.11.3.min.js"></script>
+<script src="__STATIC__/customer_public/js/Ecalendar.jquery.min.js"></script>
+<!--点击刷新验证码-->
+<script>
+    function refreshVerify() {
+        var ts = Date.parse(new Date()) / 1000;
+        var img = document.getElementById('verify_img');
+        img.src = "/index.php/captcha?id=" + ts;
+    }
+</script>
+<!--提交数据-->
+</html>
