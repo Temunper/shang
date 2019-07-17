@@ -17,7 +17,7 @@ class Message extends Model
     //查询客户拥有的项目id
     public function check_project($client_id)
     {
-        return Db::table('client_project')->field('project_id')
+        return Db::table('clientproject')->field('project_id')
             ->where('client_id', $client_id)->select();
     }
 

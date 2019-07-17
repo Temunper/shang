@@ -13,5 +13,12 @@ use think\Model;
 
 class WebsiteModel extends Model
 {
-//
+
+    protected $table = 'website';
+    protected $resultSetType = 'collection';
+//   关联主题
+    public function theme()
+    {
+        return $this->hasOne('ThemeModel');
+    }
 }

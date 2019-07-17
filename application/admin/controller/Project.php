@@ -27,11 +27,43 @@ class Project extends Base
     //    查询项目列表，可以分类
     public function project()
     {
+        $cl = new Clas();
+        $d_class = $cl->get_all_clas();
         $params = Request::instance()->get();
+        isset($params['status']) ? $class_id = $params['status'] : $status = null;
         isset($params['class_id']) ? $class_id = $params['class_id'] : $class_id = null;
-        $result = $this->project_model->get_project_by_class($class_id);
-        $this->assign('project',$result);
+        isset($params['project_name']) ? $project_name = $params['project_name'] : $project_name = null;
+        isset($params['client_name']) ? $client_name = $params['client_name'] : $client_name = null;
+        isset($params['bind_code']) ? $bind_code = $params['bind_code']:$bind_code = null;
+        $default_class = $cl->get_class_by_id($class_id);
+        $c = [];
+        foreach ($d_class as $item) {
+            if ($item['class_id'] == $class_id && $item['son'] != null) {
+                foreach ($item['son'] as $value) {
+                    $c [] = $value['class_id'];
+                }
+                $class_id = $c;
+                $class_id = implode(',', $class_id);
+            }
+        }
+        $search = ['project_name' => $project_name, 'client_name' => $client_name];
+        $d_project = $this->project_model->get_project_by_class($status,$class_id, $project_name, $client_name,$bind_code);
+        $this->assign('search', $search);
+        $this->assign('default_class', $default_class);
+        $this->assign('class', $d_class);
+        $this->assign('project', $d_project);
         return $this->fetch();
+    }
+
+    //    项目详情
+    public function project_content()
+    {
+        $params = Request::instance()->get();
+        $result = $this->project_model->table('project')
+            ->where('project_id', '=', $params['project_id'])
+            ->find();
+        $data = ['code' => 200, 'project' => $result];
+        echo json_encode($data);
     }
 
     //添加项目
@@ -88,6 +120,10 @@ class Project extends Base
         }
     }
 
+//    根据id获取pro
+    public function get_project_by_id($project_id){
+       return $this->project_model->get_project_by_id($project_id);
+    }
 
     //    项目验证
     public function check_project($project)

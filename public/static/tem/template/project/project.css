@@ -1,0 +1,19 @@
+.tbody-font-size {
+    font-size: small;
+}
+
+.panel-info.widget-shadow {
+    padding: 0.5em 1em;
+}
+
+.project-btn {
+    border-color: grey;
+    border-width: thin;
+    border-style: solid;
+}
+
+.search-content {
+    display: inline;
+    width: 200px;
+    border-color: grey;
+}

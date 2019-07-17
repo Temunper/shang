@@ -80,7 +80,7 @@ class Article extends Model
     //通过id 查询所拥有的项目
     public function check_project($client_id)
     {
-        $re = Db::table('client_project')->field('project_id')
+        $re = Db::table('clientproject')->field('project_id')
             ->where('client_id', $client_id)->select();
         if ($re) {
             return $re;

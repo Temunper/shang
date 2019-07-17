@@ -6466,7 +6466,6 @@ h4.asd label {
 		width: 50%;
 	}
 }
-
 	.profile-text {
 		padding: 1.5em 2em;
 	}
@@ -6560,6 +6559,7 @@ h4.asd label {
 		width: 50%;
 	}
 
+>>>>>>> Stashed changes
 @media(max-width:1080px){
 	.logo a {
 		padding: 0.9em 2.35em .7em;

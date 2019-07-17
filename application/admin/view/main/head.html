@@ -1,0 +1,26 @@
+<div class="sticky-header header-section ">
+    <div class="header-left index-head-set">
+        <div class="profile_details">
+            <ul>
+                <li class="dropdown profile_details_drop ">
+                    <a href="__TEMPLATE__/#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <div class="profile_img">
+                                <span class="prfil-img"><img class="header-user-logo" src="__ADMIN__/images/logo-s.png"
+                                                             alt=""></span>
+                            <div class="user-name name-size">
+                                <p>{$Think.session.admin.admin_name}</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu drp-mnu">
+                        <li><a href="__TEMPLATE__/#"><i class="fa fa-cog"></i> Settings</a></li>
+                        <li><a href="__TEMPLATE__/#"><i class="fa fa-user"></i> My Account</a></li>
+                        <li><a href="__TEMPLATE__/#"><i class="fa fa-suitcase"></i> Profile</a></li>
+                        <li><a href="{:url('Login/admin_logout')}"><i class="fa fa-sign-out"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -15,8 +15,11 @@ use think\Model;
 class ClasModel extends Model
 {
     protected $table = 'class';
+//    得到所有分类
     function get_all_clas(){
         $result = Db::table($this->table)->order('sort')->select();
         return $result;
     }
+
+
 }

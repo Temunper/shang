@@ -10,3 +10,14 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+/**
+ * @param array $data
+ * @return array|false|string
+ */
+function json_encode_unicode($data = [])
+{
+    if (empty($data)) {
+        return '';
+    }
+    return json_encode($data, JSON_UNESCAPED_UNICODE);
+}

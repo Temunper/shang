@@ -24,5 +24,14 @@
      fill: currentColor;
      overflow: hidden;
  }
+ .name-size{
+     font-size: 20px;
+ }
+ .page-bar{
+     margin-left: 44%;
+ }
+ .space-between{
+     margin-top: 20px;
+ }
 
 
