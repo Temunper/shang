@@ -72,31 +72,28 @@ class Client extends Base
             Session::set('client_id', $cus_info['client_id']);
             Session::set('client_info', $cus_info);
             $status = 1;
-            $result="登录成功";
+            $result = "登录成功";
         }
         return ['status' => $status, 'message' => $result,];
     }
 
 
 //注销
-    public
-    function logout()
+    public function logout()
     {
         Session::delete('client_id');
         Session::delete('client_info');
-        $this->success('注销登录，正在返回', 'client/login');
+        $this->redirect('client/login');
     }
 
 //修改密码
-    public
-    function show_change_pass()
+    public function show_change_pass()
     {
         //渲染修改页面
         return $this->view->fetch('', ['info' => $info = Session::get('client_info')]);
     }
 
-    public
-    function change_pass(Request $request)
+    public function change_pass(Request $request)
     {
 
         //通过session 获取当前用户密码和秘钥
