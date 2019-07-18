@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: TEM
+ * Clientw: TEM
  * Date: 2019/7/11
  * Time: 9:44
  */
@@ -80,6 +80,5 @@ class Theme extends Base
 //            echo json_encode($data);
 //        }
 //    }
-
 
 }

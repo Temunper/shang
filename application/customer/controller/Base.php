@@ -26,7 +26,7 @@ class Base extends Controller
     {
         $this->status = $stauts;
         $this->result = $result;
-        return json(['status' => $this->status, 'message' => $this->result]);
+        return ['status' => $this->status, 'message' => $this->result];
     }
 
     protected function is_login()

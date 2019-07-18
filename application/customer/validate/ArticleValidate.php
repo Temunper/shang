@@ -17,7 +17,6 @@ class ArticleValidate extends BaseValidate
         'brief|简介' => 'require',
         'content|内容' => 'require',
         'source|来源' => 'require',
-        'author|作者' => 'require',
     ];
 
     protected $msg = [
@@ -30,7 +29,6 @@ class ArticleValidate extends BaseValidate
         'brief.require' => '简介必须',
         'content.require' => '内容必须',
         'source.require' => '来源必须',
-        'author.require' => '作者称必须',
     ];
 
 

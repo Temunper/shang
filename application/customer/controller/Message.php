@@ -19,40 +19,45 @@ class Message extends Base
     //客户查看自己的留言
     public function see_msg(Request $request)
     {
-
-        $str = [];
+        $data = Request::instance()->post();
         $db = new MessageModel();
-        $clinet_id = Session::get('client_id');
-        $client_info = Session::get('client_info');
-        $project_id = $db->check_project($clinet_id);  //获得项目id
+        $client_id = Session::get('client_id'); //获得当前用户Id
+        $project_id = $db->check_project($client_id);  //获得当前用户所有项目id
         //拼接成字符串
         if (!empty($project_id)) {
-            $str = "";
-            for ($i = 0; $i < count($project_id); $i++) {
-                $str .= $project_id[$i]['project_id'] . ',';
-            }
-            $str = rtrim($str, ',');
-            $limit = $request->param('limit') ? $request->param('limit') : 15;
-            $message_info = $db->show_client_message($str, $limit);
-//        return dump($message_info);
-            //处理ip,转换成地区
-            $str = [];
-            foreach ($message_info as $key => $value) {
-                $str[$key]['message_id'] = $value['message_id'];
-                $str[$key]['client'] = $value['client'];
-                $str[$key]['time'] = $value['time'];
-                $str[$key]['name'] = $value['name'];
-                $str[$key]['ip'] = $this->get_city($value['ip']);
-                $str[$key]['content'] = $value['content'];
-                $str[$key]['phone'] = $value['phone'];
-                $str[$key]['status'] = $value['status'];
-            }
-        } else {
-
-            $str = "未发布任何项目";
+            //通过项目id查询所有项目名，
+            $project_info = $db->check_project_name($project_id); //返回给前端二级联动用
         }
+        if (isset($data['search'])) {
+            $time1 = $data['date1'] ? strtotime($data['date1']) : 0;
+            $time2 = $data['date2'] ? strtotime($data['date2']) : time();
+            $name = !empty($data['name']) ? trim($data['name']) : "";
+            $phone = !empty($data['phone']) ? trim($data['phone']) : "";
+            $id = !empty($data['project_id']) ? $data['project_id'] : $project_id;
+            $map = [
+                'client' => $name,
+                'phone' => $phone,
+            ];
+            if (empty($name)) {
+                unset($map['client']);
+            }
+            if (empty($phone)) {
+                unset($map['phone']);
+            }
+            $re = $db->check_exact($time1, $time2, $map, $id);
+            // dump($re);die;
+            return $this->view->fetch('', ['message_info' => $re, 'project' => $project_info]);
+
+        }
+
+        // return dump($str);
+        $limit = $request->param('limit') ? $request->param('limit') : 15;
+        $message_info = $db->show_client_message($project_id, $limit);
         //渲染查看留言视图
-        return $this->fetch('', ['message_info' => $str,    'client_info' => $client_info,]);
+        return $this->fetch('', [
+            'message_info' => $message_info,
+            'project' => $project_info,
+        ]);
     }
 
 
@@ -68,18 +73,21 @@ class Message extends Base
         $csv = new Csv2();
         $csv->put_csv($message_info, $csv_title);
         //修改数据的状态
+        $result = $db->cheange_status($data);
+
     }
 
     //用户删除留言，传入留言message_id
     public function delete_message(Request $request)
     {
-        $data = $request->param();
+        $status = 0;
+        $data = $request->param('message_id');
         if (empty($data['message_id'])) {
             return '非法操作';
         }
         //删除留言
         $db = new Message();
-        $result = $db->delete_message($data['message_id']);
+        $result = $db->delete_message($data);
         if ($result) {
             return $this->return_info(1, '删除成功');
         }
@@ -87,25 +95,5 @@ class Message extends Base
 
     }
 
-    //模糊查询
-    public function vague_select(Request $request)
-    {
-
-    }
-
-    //通过ip获取地区
-    function get_city($ip)
-    {
-        if (empty($ip)) {
-            return null;
-        }
-        $url = "http://ip.taobao.com/service/getIpInfo.php?ip=" . $ip;
-        $ipinfo = json_decode(file_get_contents($url));
-        if ($ipinfo->code == '1') {
-            return false;
-        }
-        $city = $ipinfo->data->region . $ipinfo->data->city;
-        return $city;
-    }
 
 }

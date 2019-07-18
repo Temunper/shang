@@ -18,7 +18,7 @@
                 <a href="javascript:refreshVerify()">点击刷新</a>
             </div>
             <div class="login-btn">
-                <button id="logins">登录</button>
+                <button id="logins" type="button" name="">登录</button>
             </div>
             <div class="login-ft">
                 <span>版本v1.0</span>
@@ -34,8 +34,27 @@
     function refreshVerify() {
         var ts = Date.parse(new Date()) / 1000;
         var img = document.getElementById('verify_img');
-        img.src = "/index.php/captcha?id=" + ts;
+        img.src = "/captcha?id=" + ts;
     }
 </script>
 <!--提交数据-->
+<script>
+    $(function () {
+        $("#logins").on('click', function (event) {
+            $.ajax({
+                type: "POST",
+                url: "{:url('client/check_login')}",
+                data: $("form").serialize(),
+                dataType: 'json',
+                success: function (data) {   //返回值状态为1才执行
+                    if (data.status == 1) {
+                        window.location.href = "{:url('index/index')}";
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            })
+        })
+    })
+</script>
 </html>

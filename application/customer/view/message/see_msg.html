@@ -1,107 +1,117 @@
 {extend name="public/base"}
-    <!-- 内容开始 -->
+<!-- 内容开始 -->
 {block name="content"}
-    <div class="main">
-        <div class="seeMsg-top">
-            <h3>留言信息</h3>
-            <span>messages</span>
-        </div>
-        <div class="seeMsg-con">
-            <div class="seeMsg-con-hd clearfix">
-                <form action="">
-                    <span class="seeMsg-name">时间段</span>
-                    <div class="calendarWarp">
-                        <input type="text" name="date" class='ECalendar' id="ECalendar_date1"  value="" placeholder="开始日期" />
-                    </div> ~
-                    <div class="calendarWarp">
-                        <input type="text" name="date" class='ECalendar' id="ECalendar_date2"  value="" placeholder="结束日期" />
-                    </div>
-                    <!-- <input  type="date" value="2019-05-26"> ~
-                    <input  type="date" value="2019-06-26"> -->
-                    <span class="seeMsg-name">姓名</span>
-                    <input type="text">
-                    <span class="seeMsg-name">手机号</span>
-                    <input type="text">
-                    <span class="seeMsg-name">项目选择</span>
-                    <select>
-                        <option>项目1</option>
-                        <option>项目2</option>
-                        <option>项目3</option>
-                    </select>
-                    <button class="seeMsg-search">搜索</button>
-                </form>
-                <button class="seeMsg-export-btn">导出CSV</button>
-            </div>
-            <div class="seeMsg-con-bd">
-                <table class="table" cellspacing="0" cellpadding="0">
-                    <thead>
-                        <tr>
-                            <th>
-                                <input type="checkbox" class="table-checkbox selectAll" />
-                                <span>全选</span>
-                            </th>
-                            <th>项目</th>
-                            <th>用户名</th>
-                            <th>时间</th>
-                            <th>项目</th>
-                            <th>地址</th>
-                            <th>时间</th>
-                            <th>手机号</th>
-                            <th>状态</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {volist name="message_info" id="vo"}
-                        <tr v-for="messageList in messageLists">
-                            <td><input type="checkbox" class="table-checkbox checkboxone" /></td>
-                            <td>{$vo.message_id}</td>
-                            <td>{$vo.client}</td>
-                            <td>{$vo.time}</td>
-                            <td>{$vo.name}</td>
-                            <td>{$vo.ip}</td>
-                            <td class="tableCon">{$vo.content}</td>
-                            <td>{$vo.phone}</td>
-                            <td>{$vo.status}</td>
-                            <td  class="tableOpe">
-                                <button class="operate del">删除</button>
-                            </td>
-                        </tr>
+<div class="main">
+    <div class="seeMsg-top">
+        <h3>留言信息</h3>
+        <span>messages</span>
+    </div>
+    <div class="seeMsg-con">
+        <div class="seeMsg-con-hd clearfix">
+            <form action="{:url('message/see_msg')}" method="post">
+                <span class="seeMsg-name">时间段</span>
+                <div class="calendarWarp">
+                    <input type="text" name="date1" class='ECalendar' id="ECalendar_date1" value="" placeholder="开始日期"/>
+                </div>
+                ~
+                <div class="calendarWarp">
+                    <input type="text" name="date2" class='ECalendar' id="ECalendar_date2" value="" placeholder="结束日期"/>
+                </div>
+                <!-- <input  type="date" value="2019-05-26"> ~
+                <input  type="date" value="2019-06-26"> -->
+                <span class="seeMsg-name">姓名</span>
+                <input type="text" name="name">
+                <span class="seeMsg-name" name="phone">手机号</span>
+                <input type="text">
+                <span class="seeMsg-name">项目选择</span>
+                <select name="project_id">
+                    <option value=""></option>
+                    {volist name="project" id="vo"}
+                    <option value="{$vo.project_id}">{$vo.name}</option>
                     {/volist}
-                    </tbody>
-                </table>
+                </select>
+                <button class="seeMsg-search" name="search">搜索</button>
+            </form>
+            <div class="Special_button">
+                <button class="seeMsg-export-btn">导出CSV</button>
+                <button class="seeMsg-export-btn">批量删除</button>
             </div>
+        </div>
+        <div class="seeMsg-con-bd">
+            <table class="table" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" class="table-checkbox selectAll"/>
+                        <span>全选</span>
+                    </th>
+                    <th>项目</th>
+                    <th>用户名</th>
+                    <th>时间</th>
+                    <th>项目</th>
+                    <th>地址</th>
+                    <th>时间</th>
+                    <th>手机号</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="message_info" id="vo"}
+                <tr v-for="messageList in messageLists" id="tr_{$vo.message_id}">
+                    <td><input type="checkbox" class="table-checkbox checkboxone"/></td>
+                    <td>{$vo.message_id}</td>
+                    <td>{$vo.client}</td>
+                    <td>{$vo.time}</td>
+                    <td>{$vo.name}</td>
+                    <td>{$vo.ip}</td>
+                    <td class="tableCon">{$vo.content}</td>
+                    <td>{$vo.phone}</td>
+                    <td>{$vo.status}</td>
+                    <td class="tableOpe">
+                        <a id="de_{$vo.message_id}" href="javascript:void(0)">
+                            <button class="operate del" id="delete_ar">删除
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 {/block}
 {block name="script"}
 
 <script type="text/javascript">
-    $(function(){
+    $(function () {
         $("#ECalendar_date1").ECalendar({
-             type:"time",   //模式，time: 带时间选择; date: 不带时间选择;
-             stamp : false,   //是否转成时间戳，默认true;
-             offset:[0,2],   //弹框手动偏移量;
-             format:"yyyy-mm-dd hh:ii",   //时间格式 默认 yyyy-mm-dd hh:ii;
-             skin:3,   //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
-             step:10,   //选择时间分钟的精确度;
-             callback:function(v,e){} //回调函数
+            type: "time",   //模式，time: 带时间选择; date: 不带时间选择;
+            stamp: false,   //是否转成时间戳，默认true;
+            offset: [0, 2],   //弹框手动偏移量;
+            format: "yyyy-mm-dd hh:ii",   //时间格式 默认 yyyy-mm-dd hh:ii;
+            skin: 3,   //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
+            step: 10,   //选择时间分钟的精确度;
+            callback: function (v, e) {
+            } //回调函数
         });
         $("#ECalendar_date2").ECalendar({
-             type:"time",   //模式，time: 带时间选择; date: 不带时间选择;
-             stamp : false,   //是否转成时间戳，默认true;
-             offset:[0,2],   //弹框手动偏移量;
-             format:"yyyy-mm-dd hh:ii",   //时间格式 默认 yyyy-mm-dd hh:ii;
-             skin:3,   //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
-             step:10,   //选择时间分钟的精确度;
-             callback:function(v,e){} //回调函数
+            type: "time",   //模式，time: 带时间选择; date: 不带时间选择;
+            stamp: false,   //是否转成时间戳，默认true;
+            offset: [0, 2],   //弹框手动偏移量;
+            format: "yyyy-mm-dd hh:ii",   //时间格式 默认 yyyy-mm-dd hh:ii;
+            skin: 3,   //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
+            step: 10,   //选择时间分钟的精确度;
+            callback: function (v, e) {
+            } //回调函数
         });
         // 全选
-        $(".selectAll").on('click', function() {
-            if($(".selectAll").prop("checked")){
-                $(".checkboxone").prop("checked","checked");
-            }else{
-                $(".selectAll").removeAttr("checked");
+        $(".selectAll").on('click', function () {
+            if ($(".selectAll").prop("checked")) {
+                $(".checkboxone").prop("checked", "checked");  /*全部选中*/
+            } else {
+                $(".selectAll").removeAttr("checked");     /*全部取消*/
                 $(".checkboxone").removeAttr("checked");
             }
         })
@@ -111,4 +121,8 @@
         });
     })
 </script>
-{/block}
+
+
+<script>
+</script>
+/block}

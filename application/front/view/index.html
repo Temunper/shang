@@ -1141,9 +1141,11 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1022 && $i<=18}
                     {if $i<=6 && $i>12 }
-                    <a target="_blank" title="{$item.name}" href="{:url('Index/project')}?project_id={$item.project_id}">
+                    <a target="_blank" title="{$item.name}"
+                       href="{:url('Index/project')}?project_id={$item.project_id}">
                         <font color="red">{$item.name}</font></a>
-                    {else/} <a target="_blank" title="{$item.name}" href="{:url('Index/project')}?project_id={$item.project_id}"></a>
+                    {else/} <a target="_blank" title="{$item.name}"
+                               href="{:url('Index/project')}?project_id={$item.project_id}"></a>
                     {/if}
                     {else/}{php}$i--;{/php}
                     {/if}

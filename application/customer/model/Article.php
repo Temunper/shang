@@ -41,6 +41,8 @@ class Article extends Model
                 ->where('author', '=', $author)
                 ->where('a.status', 'in(1,2)');
         });
+
+        // return dump($this->getLastSql());
         if (!empty($re)) {
             foreach ($re as $k => $v) {
                 $res [$k] = $v->toArray();

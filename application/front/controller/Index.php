@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: TEM
+ * Clientw: TEM
  * Date: 2019/7/11
  * Time: 11:24
  */
@@ -24,22 +24,30 @@ class Index extends Controller
         $d_clas = $clas->get_all_clas();
         $d_ad_position = $ad_position->get_all_ad_position();        //得到广告位的所有广告
         $d_article = $article->get_all_article();
-        $this->assign('article',$d_article);
+        $this->assign('article', $d_article);
         $this->assign('ad_position', $d_ad_position);  //返回三个广告类的值
         $this->assign('clas', $d_clas);    //返回分类
         return $this->fetch('/index');
     }
 
+    //项目库
     public function slist()
     {
+
+        $re = Db::query("select p.* ,ad.* from project p left join ad_position ad on p.project_id=ad.project_id where ad.status=1  order by ad.sort desc ");
+        $this->assign('list_info', $re);
         return $this->fetch('/list');
     }
 
+    //排行榜
     public function detail()
     {
-        return $this->fetch('/detail');
+        $re = Db::query('select * from article where status=2');
+
+        return $this->fetch('/detail', ['article' => $re]);
     }
 
+    //创业咨询
     public function newslist()
     {
         return $this->fetch('/newslist');

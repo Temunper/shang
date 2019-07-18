@@ -4,12 +4,11 @@
     <div class="header-user">
         <div class="header-user-name">{$Think.session.client_info.name}</div>
         <div class="header-drop-down">
-          <!--  <h3>客服部经理</h3>-->
+            <!--  <h3>客服部经理</h3>-->
             <ul class="header-drop-down-ul">
-                <li><a href="#">消息管理</a></li>
                 <li><a href="{:url('client/show_change_pass')}">密码修改</a></li>
             </ul>
-            <div class="header-drop-down-out"><a href="{:url('client/logout')}">退出</a></div>
+            <div class="header-drop-down-out"><a  style="display:block"  href="{:url('client/logout')}">退出</a></div>
         </div>
         <img class="header-user-logo" src="__STATIC__/customer_public/images/logo-s.png" alt="">
     </div>

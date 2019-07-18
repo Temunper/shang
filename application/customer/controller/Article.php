@@ -19,7 +19,7 @@ class Article extends Base
     public function release_article()
     {
 
-     /*   $db = new ArticleModel();
+        $db = new ArticleModel();
         //查询当前用户所拥有的项目id，查询所有项目名称
         $project_info = "";
 
@@ -37,82 +37,80 @@ class Article extends Base
             $project_info = $db->select_project($str);
         } else {
             $project_info = "暂无项目，请联系客服发布项目";
-        }*/
+        }
 
-        return $this->fetch('article/release_article');
+        return $this->fetch('', ['project_info' => $project_info]);
     }
 
     //发布文章
     public function do_release(Request $request)
     {
-        $data = $request->param();
-        $type = isset($data['type']) ? $data['type'] : "";
-        $project_id = isset($data['project_id']) ? $data['project_id'] : "";
-        $title = isset($data['title']) ? $data['title'] : "";
-        $lis_img = isset($_FILES['image']) ? $_FILES['image'] : "";
-        //$lis_img=$request->file('image');
-        $brief = $data['brief'] ? $data['brief'] : "";
-        $content = $data['content'] ? $data['content'] : "";
-        $source = $data['source'] ? $data['source'] : "";
-        $author = Session::get('client_id') ? Session::get('client_id') : "";
-        if (empty($author)) {
-            return $this->return_info(0, '未登录，请登录');
-        }
-        if (empty($type)) {
-            return $this->return_info(0, '文章类型不能为空');
-        }
-        if ($type == 1 && empty($project_id)) {
-            return $this->return_info(0, '项目不能为空');
-        }
-        if (empty($title)) {
-            return $this->return_info(0, '标题不能为空');
-        } elseif (strlen($title) < 2 || strlen($title) > 25) {
-            return $this->return_info(0, '标题长度为2-25');
-        }
-        if (empty($lis_img)) {
-            return $this->return_info(0, '图片不能为空');
-        }
-        if (empty($brief)) {
-            return $this->return_info(0, '简介不能为空');
-        }
-        if (empty($content)) {
-            return $this->return_info(0, '内容不能为空');
-        }
-        if (empty($source)) {
-            return $this->return_info(0, '来源不能为空');
-        }
 
-
-        //   $validate = new ArticleValidate();
-        // if ($validate->goCheck()) {
-        //验证成功
-        //保存图片,返回图片保存路径
-        $img = new Upload();
-        $file_path = $img->upload_file($lis_img);
-
-
-        $data_info = [
-            'type' => $type,
-            'project_id' => $project_id,
-            'title' => $title,
-            'lis_img' => $file_path,
-            'brief' => $brief,
-            'content' => $content,
-            'source' => $source,
-            'author' => $author,
+        $status = 0;
+        $result = "123";
+        $date_now = time();
+        $data = $request->param(true);
+        $rule = [
+            'type|类型' => 'egt:1',
+            'title|标题' => 'require|length:2,20',
+            'image|列图' => 'require',
+            'brief|简介' => 'require|length:5,20',
+            'content|内容' => 'require',
+            'source|来源' => 'require',
         ];
-        $db = new ArticleModel();
-        $result = $db->insert($data_info);
-        if ($result) {
-            return $this->return_info(1, '添加成功');
+        $msg = [
+            'type' => ['egt' => '项目类型必选'],
+            'title' => ['require' => '标题不能为空',
+                'length' => '标题长度需为2-20字符'],
+            'image' => ['require' => '列图不能为空'],
+            'brief' => ['require' => '简介不能为空',
+                'length' => '简介需为5-20字符'],
+            'content' => ['require' => '内容不能为空'],
+            'source' => ['require' => '来源不能为空'],
+        ];
+        //验证规则
+        $result = $this->validate($data, $rule, $msg);
+        if ($result === true) {
+            //通过验证，
+            $type = $data['type'];
+            $project_id = !empty($data['project_id']) ? $data['project_id'] : "";
+            $title = $data['title'];
+            $lis_img = !$_FILES['image'] ? $_FILES['image'] : "";
+            $brief = $data['brief'];
+            $content = $data['content'];
+            $source = $data['source'];
+            $author = Session::get('client_id');
+            //验证成功
+            //如果普通不为空，则保存图片,返回图片保存路径
+            if (!empty($lis_img)) {
+                $img = new Upload();
+                $file_path = $img->upload_file($lis_img);
+
+            }
+            $info = [
+                'type' => $type,
+                'project_id' => $project_id,
+                'title' => $title,
+                'lis_img' => $file_path,
+                'brief' => $brief,
+                'content' => $content,
+                'source' => $source,
+                'author' => $author,
+                'create_time' => $date_now,
+                'update_time' => $date_now,
+            ];
+
+            $status = 1;
+            $result = "发布成功";
         }
-        return $this->return_info(0, '添加失败，请检查');
+        return ['status' => $status, 'message' => $result, 'data' => $data];
     }
     //return $this->return_info(0, '验证失败，请检查');
 
 
 //用户删除文章，传入文章id ，判断是否当前用户拥有的文章，修改文章状态为3
-    public function delete_article(Request $request)
+    public
+    function delete_article(Request $request)
     {
         $article_id = $request->param('article_id') ? $request->param('article_id') : 0;
         //验证文章是否是当前用户所拥有的
@@ -131,7 +129,8 @@ class Article extends Base
     }
 
 //显示用户自己发布的文章
-    public function show_self_article()
+    public
+    function show_self_article()
     {
 
         $author = Session::get('client_id') ? Session::get('client_id') : "";
@@ -139,6 +138,7 @@ class Article extends Base
 
         $db = new ArticleModel();
         $auto_article = $db->select_self_article($author);
+        // return dump($auto_article);
         if (empty($auto_article)) {
             $auto_article = "未发布过文章";
         }

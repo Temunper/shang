@@ -17,7 +17,7 @@ class Index extends Base
     //渲染客户后台主页
     public function index()
     {
-         // $this->is_login();
+          $this->is_login();
 
         //统计今天总留言
         $client_id = Session::get('client_id');

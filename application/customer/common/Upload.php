@@ -56,7 +56,6 @@ class Upload
 
     function upload_file($fileInfo, $upload = "./upload", $imagesExt = ['gif', 'png', 'jpg'])
     {
-
         if ($fileInfo['error'] === 0) {
 
             $ext = strtolower(pathinfo($fileInfo['name'], PATHINFO_EXTENSION));

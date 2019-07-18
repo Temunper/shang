@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: TEM
+ * Clientw: TEM
  * Date: 2019/7/13
  * Time: 16:45
  */
@@ -34,12 +34,13 @@ class ProjectModel extends Model
         $class_id ? $where = 'class_id in(' . $class_id . ')' : $where = null;
         $client_name ? $client = "client_name like '%" . $client_name . "%'" : $client = null;
         $result = Db::table("view_pro")
-            ->order('project_id', 'desc')
             ->where($where)
             ->where($and)
             ->where($client)
             ->where($bind)
             ->where($c_status)
+            ->order('project_id', 'desc')
+            ->field('*','time')
             ->paginate(10)->each(function ($item,$key){
                 if ($item['status'] == 1){
                     $item['status'] = '正常';

@@ -31,7 +31,7 @@
                 <tr v-for="messageList in messageLists">
                     {volist name="article_info" id="vo"}
                     <td><input type="checkbox" class="table-checkbox checkboxone"/></td>
-                    <td>{$vo.article_id}</td>
+                    <td>{$vo.article_id|defualt="暂无"}</td>
                     <td>{$vo.type}</td>
                     <td>{$vo.name}</td>
                     <td><img src="{$vo.lis_img}"></td>
@@ -52,8 +52,6 @@
 {/block}
 <!-- 内容结束 -->
 {block name="script"}
-<script type="text/javascript" src="__STATIC__/customer_public/js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="__STATIC__/customer_public/js/Ecalendar.jquery.min.js"></script>
 <script type="text/javascript">
     $(function () {
         $("#ECalendar_date1").ECalendar({

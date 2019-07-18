@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: TEM
+ * Clientw: TEM
  * Date: 2019/7/11
  * Time: 9:45
  */
@@ -16,7 +16,7 @@ class ThemeModel extends Model
 {
     protected $table = 'theme';
     protected $autoWriteTimestamp = false;
-    protected $resultSetType = 'collection';
+    protected $resultSetType = 'collection';             //使对象可以直接转换为字符串数组
     protected $type = [
         'time' => 'timestamp',
     ];
@@ -61,7 +61,7 @@ class ThemeModel extends Model
 //模型关联
     public function website()
     {
-        return $this->belongsTo('WebsiteModel',$this->alias(['theme_model'=>'theme','website_model'=>'website']));
+        return $this->hasMany('WebsiteModel','theme_id','theme_id',['theme'=>'theme','website'=>'website'],'right');
     }
 
 }
