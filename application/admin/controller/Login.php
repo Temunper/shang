@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * Clientw: TEM
+ * userw: TEM
  * Date: 2019/7/11
  * Time: 8:37
  */
@@ -50,7 +50,7 @@ class Login extends Controller
                 if ($result['status'] == 1) {
                     Session::set('admin', ['admin_name' => $result['name'], 'admin_user' => $result['user'], 'admin_id' => $result['id']]);
 
-                    return $this->redirect('Index/index');
+                    $this->redirect('Index/index');
                 } else {
                     $this->error('账户已删除');
                 }
@@ -67,6 +67,6 @@ class Login extends Controller
     {
         session_start();
         Session::destroy();
-        return $this->redirect('Login/login');
+        $this->redirect('Login/login');
     }
 }
