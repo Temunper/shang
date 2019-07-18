@@ -22,18 +22,18 @@ class Theme extends Base
     }
 
 //    主题页
-    public function theme()
+    public function theme(Request $request)
     {
-        $d_theme = ThemeModel::all();
-        $d_theme = $d_theme->toArray();
+        isset($request['status']) ? $status = $request['status'] : $status = null;
+        $d_theme = $this->get_all_theme($status);
         $this->assign('theme', $d_theme);
         return $this->fetch();
     }
 
 //    查看所有主题
-    public function get_all_theme()
+    public function get_all_theme($status)
     {
-        return $this->theme_model->get_all_theme();
+        return $this->theme_model->get_all_theme($status);
     }
 
 //    添加主题

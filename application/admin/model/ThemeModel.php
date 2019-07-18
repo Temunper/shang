@@ -23,10 +23,17 @@ class ThemeModel extends Model
     protected $insert = ['time'];
 
 //    查询所有主题
-    function get_all_theme()
+    function get_all_theme($status)
     {
+        $status?$c_status = "status = ". $status:$c_status = "status = 1";
         $result = Db::table($this->table)
-            ->select();
+            ->where($status)
+            ->select()->each(function ($item,$key){
+            if ($item['status'] == 1){
+                $item['status'] = '正常';
+            }else $item['status'] = '已删除';
+            return $item;
+        });;
         return $result;
     }
 

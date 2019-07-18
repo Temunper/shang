@@ -24,4 +24,5 @@ class AdminModel extends Model
      $result = Db::table($this->table)->where(['user'=>$user])->find();
      return $result;
     }
+
 }

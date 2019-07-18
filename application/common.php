@@ -21,3 +21,4 @@ function json_encode_unicode($data = [])
     }
     return json_encode($data, JSON_UNESCAPED_UNICODE);
 }
+

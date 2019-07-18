@@ -29,7 +29,7 @@ class ProjectModel extends Model
                     break;
             }
         } else $bind = null;
-        $status?$c_status = "status = ". $status:$c_status = null;
+        $status?$c_status = "status = ". $status:$c_status = "status = 1";
         $project_name ? $and = "name like '%" . $project_name . "%'" : $and = null;
         $class_id ? $where = 'class_id in(' . $class_id . ')' : $where = null;
         $client_name ? $client = "client_name like '%" . $client_name . "%'" : $client = null;

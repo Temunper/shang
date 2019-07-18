@@ -18,7 +18,9 @@ class ClasModel extends Model
 
     function get_all_clas()
     {
-        $result = Db::table($this->table)->order('sort')->select();
+        $result = Db::table($this->table)
+            ->where('status','=','1')
+            ->order('sort')->select();
         return $result;
     }
 
