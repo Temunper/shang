@@ -1,402 +1,13 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>08商机网</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <link rel="stylesheet" type="text/css" href="__PUB08__/css/index3.css"/>
-    <link rel="stylesheet" type="text/css" href="__PUB08__/css/normalize.min.css">
-    <link rel="stylesheet" type="text/css" href="__PUB08__/css/zhome.css">
-    <link rel="stylesheet" type="text/css" href="__PUB08__/css/header.css">
-
-    <!-- 这里是hsh的css -->
-    <link rel="stylesheet" href="__PUB08__/css/hshmain.css"/>
-    <!-- 这里是hsh的css -->
-    <script src="__PUB08__/js/jquery-1.11.3.min.js"></script>
-    <!-- <script type="text/javascript" src="__PUB08__/js/mfjq2015.min.js"></script> -->
-    <script type="text/javascript" src="__PUB08__/js/jquery.placeholder.min.js"></script>
-    <script type="text/javascript" src="__PUB08__/js/jquery.cookie.min.js"></script>
-    <script type="text/javascript" src="__PUB08__/js/imgfix.js"></script>
-    <script type="text/javascript" src="__PUB08__/js/global.js"></script>
-    <script type="text/javascript" src="__PUB08__/js/index.js"></script>
-    <script type="text/javascript" src="__PUB08__/js/zbody-header1.js"></script>
-
-    <script type="text/javascript" src="__PUB08__/js/zbody-nav1.js"></script>
-    <script src="__PUB08__/js/common.js" type="text/javascript" charset="utf-8"></script>
-</head>
-
-
-<body class="page-index">
-
+﻿{extend name="public/base"}
 
 <!-- 首屏开始 -->
 
-<div id="page-topnav" class="page-topnav">
-    <div class="page-inner">
-        <div class="div-left">
-            <a href="#" class="link">首页</a>
-            <a href="#" class="link" rel="sidebar">收藏</a>
-            <a href="#" class="link">创业指南</a></div>
-        <div class="div-right">
-            <a href="#" class="link link-wechat">微信
-                <div class="div-popup-wechat none" style="display:none;">
-                    <div class="div-anchor"></div>
-                    <div class="div-body">
-                        <p>
-                            <img src="__PUB08__/picture/img-wechat-code1_v2.0.png" class="img"/></p>
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="link">找项目</a>
-            <a href="#" class="link link-nav">
-                <i class="icon icon-ic-menu-nav"></i>网站导航</a>
-        </div>
-        <div class="div-cat-popup" style="display:none;">
-            <div class="div-popup-inner clearfix">
-                <div class="div-col div-col-1">
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-1">餐饮
-                                <i class="icon icon-ic-word-h"></i></a>
-                        </h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">火锅</a>
-                            <a target="_blank" href="#" class="link">烧烤</a>
-                            <a target="_blank" href="#" class="link">炸鸡</a>
-                            <a target="_blank" href="#" class="link">鱼火锅</a>
-                            <a target="_blank" href="#" class="link">蟹煲</a>
-                            <a target="_blank" href="#" class="link">奶茶饮品</a>
-                            <a target="_blank" href="#" class="link">牛排杯</a>
-                            <a target="_blank" href="#" class="link">冒菜</a>
-                            <a target="_blank" href="#" class="link">果汁果饮</a>
-                            <a target="_blank" href="#" class="link">快餐</a>
-                            <a target="_blank" href="#" class="link">中餐</a>
-                            <a target="_blank" href="#" class="link">烤鱼</a>
-                            <a target="_blank" href="#" class="link">小吃</a>
-                            <a target="_blank" href="#" class="link">酸菜鱼</a>
-                            <a target="_blank" href="#" class="link">西餐</a>
-                            <a target="_blank" href="#" class="link">美蛙鱼头</a>
-                            <a target="_blank" href="#" class="link">蛋糕</a>
-                            <a target="_blank" href="#" class="link">甜品</a>
-                            <a target="_blank" href="#" class="link">酸奶</a>
-                            <a target="_blank" href="#" class="link">饺子</a></div>
-                    </div>
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-2">母婴</a></h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">婴儿游泳&#32;</a>
-                            <a target="_blank" href="#" class="link">儿童乐园</a>
-                            <a target="_blank" href="#" class="link">母婴用品</a>
-                            <a target="_blank" href="#" class="link">月子中心</a>
-                            <a target="_blank" href="#" class="link">儿童玩具</a>
-                            <a target="_blank" href="#" class="link">儿童摄影</a>
-                            <a target="_blank" href="#" class="link">儿童手工</a>
-                            <a target="_blank" href="#" class="link">小儿推拿</a></div>
-                    </div>
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-3">零售
-                                <i class="icon icon-ic-word-n"></i></a>
-                        </h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">白酒</a>
-                            <a target="_blank" href="#" class="link">便利店</a>
-                            <a target="_blank" href="#" class="link">零食店</a>
-                            <a target="_blank" href="#" class="link">渔具</a>
-                            <a target="_blank" href="#" class="link">啤酒</a>
-                            <a target="_blank" href="#" class="link">茶叶</a>
-                            <a target="_blank" href="#" class="link">零售百货</a>
-                            <a target="_blank" href="#" class="link">超市</a>
-                            <a target="_blank" href="#" class="link">成人用品</a>
-                            <a target="_blank" href="#" class="link">红酒</a>
-                            <a target="_blank" href="#" class="link">药店</a>
-                            <a target="_blank" href="#" class="link">水果店</a>
-                            <a target="_blank" href="#" class="link">文具店</a>
-                            <a target="_blank" href="#" class="link">书店</a>
-                            <a target="_blank" href="#" class="link">眼镜</a>
-                            <a target="_blank" href="#" class="link">牛奶</a>
-                            <a target="_blank" href="#" class="link">佛教用品</a>
-                            <a target="_blank" href="#" class="link">无人售货</a>
-                            <a target="_blank" href="#" class="link">炒货</a>
-                            <a target="_blank" href="#" class="link">办公用品</a></div>
-                    </div>
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-4">服装</a></h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">内衣</a>
-                            <a target="_blank" href="#" class="link">女装</a>
-                            <a target="_blank" href="#" class="link">鞋</a>
-                            <a target="_blank" href="#" class="link">品牌服装</a>
-                            <a target="_blank" href="#" class="link">男士专属&#32;</a>
-                            <a target="_blank" href="#" class="link">精品童装</a>
-                            <a target="_blank" href="#" class="link">箱包</a>
-                            <a target="_blank" href="#" class="link">休闲</a>
-                            <a target="_blank" href="#" class="link">户外</a>
-                            <a target="_blank" href="#" class="link">皮草</a>
-                            <a target="_blank" href="#" class="link">婚纱礼服</a>
-                            <a target="_blank" href="#" class="link">服装定制</a></div>
-                    </div>
-                </div>
-                <div class="div-col div-col-2">
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-5">教育
-                                <i class="icon icon-ic-word-n"></i></a>
-                        </h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">早教</a>
-                            <a target="_blank" href="#" class="link">幼儿园</a>
-                            <a target="_blank" href="#" class="link">教育培训&#32;</a>
-                            <a target="_blank" href="#" class="link">英语培训</a>
-                            <a target="_blank" href="#" class="link">潜能培训</a>
-                            <a target="_blank" href="#" class="link">IT培训</a>
-                            <a target="_blank" href="#" class="link">出国留学</a>
-                            <a target="_blank" href="#" class="link">学习辅导&#32;</a>
-                            <a target="_blank" href="#" class="link">作文培训</a>
-                            <a target="_blank" href="#" class="link">机器人教育</a>
-                            <a target="_blank" href="#" class="link">舞蹈培训</a>
-                            <a target="_blank" href="#" class="link">艺术教育</a>
-                            <a target="_blank" href="#" class="link">少儿编程</a>
-                            <a target="_blank" href="#" class="link">绘本馆</a>
-                            <a target="_blank" href="#" class="link">书法</a>
-                            <a target="_blank" href="#" class="link">国学馆</a>
-                            <a target="_blank" href="#" class="link">美术教育</a>
-                            <a target="_blank" href="#" class="link">数学培训</a>
-                            <a target="_blank" href="#" class="link">冬夏令营</a>
-                            <a target="_blank" href="#" class="link">在线教育</a></div>
-                    </div>
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-6">建材
-                                <i class="icon icon-ic-word-n"></i></a>
-                        </h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">油漆涂料</a>
-                            <a target="_blank" href="#" class="link">地板</a>
-                            <a target="_blank" href="#" class="link">门窗栏杆</a>
-                            <a target="_blank" href="#" class="link">家居日用&#32;</a>
-                            <a target="_blank" href="#" class="link">灯饰</a>
-                            <a target="_blank" href="#" class="link">墙纸</a>
-                            <a target="_blank" href="#" class="link">家具</a>
-                            <a target="_blank" href="#" class="link">硅藻泥</a></div>
-                    </div>
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-7">服务</a></h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">干洗</a>
-                            <a target="_blank" href="#" class="link">家政</a>
-                            <a target="_blank" href="#" class="link">商务酒店</a>
-                            <a target="_blank" href="#" class="link">汽车服务</a>
-                            <a target="_blank" href="#" class="link">摄影</a>
-                            <a target="_blank" href="#" class="link">家电清洗</a>
-                            <a target="_blank" href="#" class="link">宠物店</a>
-                            <a target="_blank" href="#" class="link">新奇特</a>
-                            <a target="_blank" href="#" class="link">房产中介</a>
-                            <a target="_blank" href="#" class="link">民宿</a>
-                            <a target="_blank" href="#" class="link">充电站</a>
-                            <a target="_blank" href="#" class="link">婚庆服务</a></div>
-                    </div>
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-8">游乐
-                                <i class="icon icon-ic-word-h"></i></a>
-                        </h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">VR体验馆</a>
-                            <a target="_blank" href="#" class="link">游乐</a>
-                            <a target="_blank" href="#" class="link">酒吧</a>
-                            <a target="_blank" href="#" class="link">KTV</a>
-                            <a target="_blank" href="#" class="link">网咖</a>
-                            <a target="_blank" href="#" class="link">影院</a>
-                            <a target="_blank" href="#" class="link">游戏</a>
-                            <a target="_blank" href="#" class="link">密室逃脱</a></div>
-                    </div>
-                </div>
-                <!-- </z:if> -->
-                <!-- <z:if condition="${Catalog.Alias!='project_ws'}"> -->
-                <div class="div-col div-col-3">
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-9">珠宝礼品
-                                <i class="icon icon-ic-word-n"></i></a>
-                        </h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">饰品</a>
-                            <a target="_blank" href="#" class="link">翡翠玉石</a>
-                            <a target="_blank" href="#" class="link">礼品</a>
-                            <a target="_blank" href="#" class="link">首饰</a>
-                            <a target="_blank" href="#" class="link">珠宝</a></div>
-                    </div>
-                    <!-- </z:if> -->
-                    <!-- <z:if condition="${Catalog.Alias!='project_ws'}"> -->
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-10">美容保健
-                                <i class="icon icon-ic-word-h"></i></a>
-                        </h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">汗蒸</a>
-                            <a target="_blank" href="#" class="link">美甲纹绣</a>
-                            <a target="_blank" href="#" class="link">养生</a>
-                            <a target="_blank" href="#" class="link">美容</a>
-                            <a target="_blank" href="#" class="link">化妆品</a>
-                            <a target="_blank" href="#" class="link">保健</a>
-                            <a target="_blank" href="#" class="link">减肥瘦身</a>
-                            <a target="_blank" href="#" class="link">护肤品</a>
-                            <a target="_blank" href="#" class="link">健身房</a>
-                            <a target="_blank" href="#" class="link">视力保健</a>
-                            <a target="_blank" href="#" class="link">足浴足疗</a>
-                            <a target="_blank" href="#" class="link">美发</a>
-                            <a target="_blank" href="#" class="link">养发</a>
-                            <a target="_blank" href="#" class="link">皮肤管理</a>
-                            <a target="_blank" href="#" class="link">理疗</a>
-                            <a target="_blank" href="#" class="link">艾炙</a>
-                            <a target="_blank" href="#" class="link">推拿按摩</a>
-                            <a target="_blank" href="#" class="link">口腔牙科</a>
-                            <a target="_blank" href="#" class="link">整形美容</a>
-                            <a target="_blank" href="#" class="link">假发</a></div>
-                    </div>
-                    <!-- </z:if> -->
-                    <!-- <z:if condition="${Catalog.Alias!='project_ws'}"> -->
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-11">家居</a></h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">建材厨卫</a>
-                            <a target="_blank" href="#" class="link">装饰装修</a>
-                            <a target="_blank" href="#" class="link">家具饰品</a>
-                            <a target="_blank" href="#" class="link">窗帘</a>
-                            <a target="_blank" href="#" class="link">家居用品</a>
-                            <a target="_blank" href="#" class="link">集成墙饰</a>
-                            <a target="_blank" href="#" class="link">卫浴</a>
-                            <a target="_blank" href="#" class="link">家纺</a>
-                            <a target="_blank" href="#" class="link">电暖画</a>
-                            <a target="_blank" href="#" class="link">智能家居</a>
-                            <a target="_blank" href="#" class="link">智能锁</a>
-                            <a target="_blank" href="#" class="link">橱柜</a>
-                            <a target="_blank" href="#" class="link">集成灶</a></div>
-                    </div>
-                    <!-- </z:if> -->
-                    <!-- <z:if condition="${Catalog.Alias!='project_ws'}"> -->
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-12">环保</a></h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">空气净化</a>
-                            <a target="_blank" href="#" class="link">家电</a>
-                            <a target="_blank" href="#" class="link">汽车用品</a>
-                            <a target="_blank" href="#" class="link">电动车</a>
-                            <a target="_blank" href="#" class="link">数码产品</a>
-                            <a target="_blank" href="#" class="link">车衣</a>
-                            <a target="_blank" href="#" class="link">室内环保</a>
-                            <a target="_blank" href="#" class="link">平衡车</a>
-                            <a target="_blank" href="#" class="link">太阳能</a>
-                            <a target="_blank" href="#" class="link">新能源汽车</a>
-                            <a target="_blank" href="#" class="link">净水器</a></div>
-                    </div>
-                </div>
-                <!-- </z:if> -->
-                <!-- <z:if condition="${Catalog.Alias!='project_ws'}"> -->
-                <div class="div-col div-col-4">
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-13">微商</a></h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">保健品</a>
-                            <a target="_blank" href="#" class="link">面膜</a>
-                            <a target="_blank" href="#" class="link">内衣</a>
-                            <a target="_blank" href="#" class="link">食品</a>
-                            <a target="_blank" href="#" class="link">化妆品</a></div>
-                    </div>
-                    <!-- </z:if> -->
-                    <!-- <z:if condition="${Catalog.Alias!='project_ws'}"> -->
-                    <div class="div-item">
-                        <h1>
-                            <a target="_blank" href="#" class="link link-cat-14">金融
-                                <i class="icon icon-ic-word-n"></i></a>
-                        </h1>
-                        <div class="div-links clearfix">
-                            <a target="_blank" href="#" class="link">贷款网</a>
-                            <a target="_blank" href="#" class="link">理财</a></div>
-                    </div>
-                </div>
-                <!-- </z:if> --></div>
-        </div>
-    </div>
-</div>
-<div class="back" style="background-color: #fff; min-width: 1200px;">
-    <div class="container clearfix lxmargtopnone">
-        <a class="logo-lib fl" href="index.html">
-            <img src="__PUB08__/picture/logo_top3.png" alt="08商机网"></a>
-        <div id="titleselect">
-            <div class="inputbox">
-                <div class="selectdropdown">
-                    <p>行业选择</p>
-                    <i class="icon1"></i>
-                    <i class="icon2"></i>
-                </div>
-                <div class="selectboxdown1">
-                    <input type="hidden" name="CatalogInnerCode" id="searchCatalogInnerCode" value=""/>
-                    <ul>
-                        {volist name="clas" id="vo"}
-                        <li data-id="{$vo.class_id}">{$vo.name}</li>
-                        {/volist}
-                    </ul>
-                </div>
-                <div class="selectboxdown2">
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1026}
-                    <div class="selectlist clearfix">
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank" data-id="8724"
-                           data-type="cmsad">
-                            <p>{$item.name}</p>
-                            <span>{$item.attention}</span></a>
-                    </div>
-                    {/if}
-                    {/volist}
 
-                </div>
-                <input type="text" name="selectinput" id="selectinput" class="selectinput" value=""
-                       placeholder="请输入项目名称"/>
-                <img src="__PUB08__/picture/icon-sousuo26x26.png" alt="" class="btn-submit"/>
-                <s style="height: 0;display: block;clear: both;"></s>
-                <div class="selecttext">
-                    <span class="text">投资金额：</span>
-                    <a href="#" class="link">3-5万</a>
-                    <a href="#" class="link">5-10万</a>
-                    <a href="#" class="link">10-20万</a>
-                    <a href="#" class="link">20-50万</a>
-                    <a href="#" class="link">50-100万</a>
-                    <a href="#" class="link">100万以上</a></div>
-                <div class="titleselectbox"></div>
-            </div>
-        </div>
-        <ul class="header_right fl">
-            <li class="header_right_li fl">
-                <a data-pointkey="XQ001-004" href="{:url('Index/slist')}" target="_blank" class="lookfor">
-                    <i>
-                        <img src="__PUB08__/picture/project library.png" alt=""></i>
-                    <span>项目库</span></a>
-            </li>
-            <li class="header_right_li fl">
-                <a href="{:url('Index/detail')}" class="index">
-                    <i>
-                        <img src="__PUB08__/picture/rankinglist.png" alt=""></i>
-                    <span>排行榜</span></a>
-            </li>
-            <li class="fl">
-                <a data-pointkey="XQ001-005" href="{:url('Index/newslist')}" target="_blank" class="ranking">
-                    <i>
-                        <img src="__PUB08__/picture/consultation.png" alt=""></i>
-                    <span>资讯</span></a>
-            </li>
-        </ul>
-    </div>
-</div>
+<!--首屏结束-->
+<!--搜索栏开始-->
+
+<!--搜索栏结束-->
+{block name="content"}
 <div class="page-nav">
     <div class="page-inner">
         <a href="#" class="link link-150">项目分类</a>
@@ -434,9 +45,9 @@
             <!-- <z:if condition="${Catalog.Alias!='project_ws'}"> -->
 
             <!--</z:if> -->
-            <li class="erweimabox">
+       <!--     <li class="erweimabox">
                 <p>扫一扫有惊喜</p>
-                <img src="__PUB08__/picture/newcode.png"/></li>
+                <img src="__PUB08__/picture/newcode.png"/></li>-->
         </ul>
         <!--轮播图-->
         <div class="div-center">
@@ -895,7 +506,6 @@
                     {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
-
                 </div>
             </div>
         </div>
@@ -1046,1341 +656,393 @@
     <div class="hd">
         <h2 class="fl">创业项目推荐</h2>
         <span class="fr">
-        {volist name = "ad_position" id = "item"}
-         {if $item.ad_id eq 1027 && $i<=6}
-      <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}加盟" target="_blank">{$item.name}加盟</a>
-         {else/}{php}$i--;{/php}
-          {/if}
-         {/volist}
-        </span>
+      <a href="#" title="品牌餐饮加盟" target="_blank">品牌餐饮加盟</a>
+      <a href="#" title="服装加盟店" target="_blank">服装加盟店</a>
+      <a href="#" title="美容保养加盟" target="_blank">美容保养加盟</a>
+      <a href="#" title="重庆火锅加盟" target="_blank">重庆火锅加盟</a>
+      <a href="#" title="智能家居加盟" target="_blank">智能家居加盟</a>
+      <a href="#" title="母婴连锁加盟" target="_blank">母婴连锁加盟</a>
+      <a href="#" title="建材加盟" target="_blank">建材加盟</a>
+      <a href="#" title="机械设备加盟" target="_blank">机械设备加盟</a>
+      <a href="#" title="少儿教育加盟" target="_blank">少儿教育加盟</a>
+      <a href="#" title="饮品加盟" target="_blank">饮品加盟</a></span>
     </div>
     <div class="bd">
         <div class="cyxmT-box clearfix">
-            {php}$k=1028;{/php}
-            {volist name="clas" id="vo" length="3"}
             <dl>
                 <dt>
-                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <a href="#" target="_blank" title="餐饮美食">餐饮美食</a>
                     <span class="red">
-            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
+            <a target="_blank" title="九牛一杯牛排杯" href="#">小吃牛排杯 流行街头</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position" id = "item" length="3"}
-                    {if $item.ad_id eq $k && $i<=5}
-                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
-                       target="_blank">{$item.name}</a>
-                    {else/}{php}$i--;{/php}
-                    {/if}
-                    {/volist}
-                </dd>
+                    <a href="#" title="小吃" target="_blank">小吃</a>
+                    <a href="#" title="中餐" target="_blank">中餐</a>
+                    <a href="#" title="快餐" target="_blank">快餐</a>
+                    <a href="#" title="速食" target="_blank">速食</a>
+                    <a href="#" title="特色餐饮" target="_blank">特色餐饮</a>
+                    <a href="#" title="面食" target="_blank">面食</a>
+                    <a href="#" title="冰淇淋" target="_blank">冰淇淋</a>
+                    <a href="#" title="火锅" target="_blank">火锅</a>
+                    <a href="#" title="小吃车" target="_blank">小吃车</a>
+                    <a href="#" title="养生粥" target="_blank">养生粥</a>
+                    <a href="#" title="西式快餐" target="_blank">西式快餐</a>
+                    <a href="#" title="熟食" target="_blank">熟食</a>
+                    <a href="#" title="休闲食品" target="_blank">休闲食品</a>
+                    <a href="#" title="麻辣烫" target="_blank">麻辣烫</a>
+                    <a href="#" title="牛排杯" target="_blank">牛排杯</a>
+                    <a href="#" title="鸡排" target="_blank">鸡排</a>
+                    <a href="#" title="包子铺" target="_blank">包子铺</a>
+                    <a href="#" title="甜品" target="_blank">甜品</a>
+                    <a href="#" title="寿司" target="_blank">寿司</a>
+                    <a href="#" title="烤鱼" target="_blank">烤鱼</a>
+                    <a href="#" title="烧烤" target="_blank">烧烤</a>
+                    <a href="#" title="冒菜" target="_blank">冒菜</a>
+                    <a href="#" title="排骨" target="_blank">排骨</a>
+                    <a href="#" title="黄焖鸡米饭" target="_blank">黄焖鸡米饭</a>
+                    <a href="#" title="披萨" target="_blank">披萨</a>
+                    <a href="#" title="米线" target="_blank">米线</a></dd>
                 <em class="hot"></em>
             </dl>
-            {php}$k++;{/php}
-            {/volist}
-            {volist name="clas" id="vo" offset="3" length="3"}
             <dl>
                 <dt>
-                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
-                    <span class="blue">
-            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
-                </dt>
-                <dd>
-                    {volist name = "ad_position" id = "item" }
-                    {if $item.ad_id eq $k && $i<=5}
-                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
-                       target="_blank">{$item.name}</a>
-                    {else/}{php}$i--;{/php}
-                    {/if}
-                    {/volist}
-                </dd>
-            </dl>
-            {php}$k++;{/php}
-            {/volist}
-            {volist name="clas" id="vo" offset="6" length="3"}
-            <dl>
-                <dt>
-                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <a href="#" target="_blank" title="生活服务">生活服务</a>
                     <span class="green">
-            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
+            <a target="_blank" title="中农共信有机瓜菜工厂" href="#">无土栽培！变废为宝</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position" id = "item" }
-                    {if $item.ad_id eq $k && $i<=5}
-                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
-                       target="_blank">{$item.name}</a>
-                    {else/}{php}$i--;{/php}
-                    {/if}
-                    {/volist}
-                </dd>
+                    <a href="#" title="干洗" target="_blank">干洗</a>
+                    <a href="#" title="便利店" target="_blank">便利店</a>
+                    <a href="#" title="家政" target="_blank">家政</a>
+                    <a href="#" title="蔬菜工厂" target="_blank">蔬菜工厂</a>
+                    <a href="#" title="休闲娱乐" target="_blank">休闲娱乐</a>
+                    <a href="#" title="影像馆" target="_blank">影像馆</a>
+                    <a href="#" title="旅游服务" target="_blank">旅游服务</a>
+                    <a href="#" title="宠物用品" target="_blank">宠物用品</a>
+                    <a href="#" title="皮革护理" target="_blank">皮革护理</a>
+                    <a href="#" title="中介服务" target="_blank">中介服务</a>
+                    <a href="#" title="数码产品" target="_blank">数码产品</a>
+                    <a href="#" title="其他" target="_blank">其他</a>
+                    <a href="#" title="酒店" target="_blank">酒店</a>
+                    <a href="#" title="图文快印" target="_blank">图文快印</a>
+                    <a href="#" title="通讯服务" target="_blank">通讯服务</a>
+                    <a href="#" title="音响设备" target="_blank">音响设备</a>
+                    <a href="#" title="婚庆" target="_blank">婚庆</a>
+                    <a href="#" title="娱乐机" target="_blank">娱乐机</a>
+                    <a href="#" title="数码快印" target="_blank">数码快印</a>
+                    <a href="#" title="物流快递" target="_blank">物流快递</a>
+                    <a href="#" title="3D打印" target="_blank">3D打印</a>
+                    <a href="#" title="维修服务" target="_blank">维修服务</a>
+                    <a href="#" title="道路养护" target="_blank">道路养护</a>
+                    <a href="#" title="品牌折扣店" target="_blank">品牌折扣店</a>
+                    <a href="#" title="摄影" target="_blank">摄影</a></dd>
+                <em class="hot"></em>
             </dl>
-            {php}$k++;{/php}
-            {/volist}
-            {volist name="clas" id="vo" offset="9" length="3"}
             <dl>
                 <dt>
-                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <a href="#" target="_blank" title="酒水饮料">酒水饮料</a>
                     <span class="orange">
-            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
+            <a target="_blank" title="臻好时冻酸奶" href="#">冻酸奶 灵活经营</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position" id = "item" }
-                    {if $item.ad_id eq $k && $i<=5}
-                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
-                       target="_blank">{$item.name}</a>
-                    {else/}{php}$i--;{/php}
-                    {/if}
-                    {/volist}
-                </dd>
+                    <a href="#" title="茶饮" target="_blank">茶饮</a>
+                    <a href="#" title="奶茶" target="_blank">奶茶</a>
+                    <a href="#" title="酸奶吧" target="_blank">酸奶吧</a>
+                    <a href="#" title="白酒" target="_blank">白酒</a>
+                    <a href="#" title="红酒" target="_blank">红酒</a>
+                    <a href="#" title="茶叶" target="_blank">茶叶</a>
+                    <a href="#" title="啤酒" target="_blank">啤酒</a>
+                    <a href="#" title="果酒" target="_blank">果酒</a>
+                    <a href="#" title="养生酒" target="_blank">养生酒</a>
+                    <a href="#" title="咖啡" target="_blank">咖啡</a>
+                    <a href="#" title="养生饮品" target="_blank">养生饮品</a>
+                    <a href="#" title="饮品店" target="_blank">饮品店</a>
+                    <a href="#" title="黄酒" target="_blank">黄酒</a>
+                    <a href="#" title="纯净水" target="_blank">纯净水</a>
+                    <a href="#" title="奶酒" target="_blank">奶酒</a>
+                    <a href="#" title="酒包装" target="_blank">酒包装</a>
+                    <a href="#" title="贡茶" target="_blank">贡茶</a>
+                    <a href="#" title="冲饮品" target="_blank">冲饮品</a>
+                    <a href="#" title="其他" target="_blank">其他</a></dd>
+                <em class="hot"></em>
             </dl>
-            {php}$k++;{/php}
-            {/volist}
+            <dl>
+                <dt>
+                    <a href="#" target="_blank" title="服装鞋包">服装鞋包</a>
+                    <span class="green">
+            <a target="_blank" title="艾米女装" href="#">品牌的吸引低价的诱惑</a></span>
+                </dt>
+                <dd>
+                    <a href="#" title="女鞋" target="_blank">女鞋</a>
+                    <a href="#" title="女装" target="_blank">女装</a>
+                    <a href="#" title="童装" target="_blank">童装</a>
+                    <a href="#" title="牛仔裤" target="_blank">牛仔裤</a>
+                    <a href="#" title="内衣" target="_blank">内衣</a>
+                    <a href="#" title="职业装" target="_blank">职业装</a>
+                    <a href="#" title="男装" target="_blank">男装</a>
+                    <a href="#" title="男鞋" target="_blank">男鞋</a>
+                    <a href="#" title="皮草" target="_blank">皮草</a>
+                    <a href="#" title="运动户外" target="_blank">运动户外</a>
+                    <a href="#" title="围巾" target="_blank">围巾</a>
+                    <a href="#" title="童鞋" target="_blank">童鞋</a>
+                    <a href="#" title="箱包" target="_blank">箱包</a>
+                    <a href="#" title="孕妇装" target="_blank">孕妇装</a>
+                    <a href="#" title="配饰" target="_blank">配饰</a>
+                    <a href="#" title="家居服饰" target="_blank">家居服饰</a>
+                    <a href="#" title="婚纱礼服" target="_blank">婚纱礼服</a>
+                    <a href="#" title="情侣装" target="_blank">情侣装</a>
+                    <a href="#" title="亲子装" target="_blank">亲子装</a>
+                    <a href="#" title="裤子" target="_blank">裤子</a>
+                    <a href="#" title="泳装" target="_blank">泳装</a>
+                    <a href="#" title="皮具" target="_blank">皮具</a>
+                    <a href="#" title="羽绒" target="_blank">羽绒</a>
+                    <a href="#" title="面料" target="_blank">面料</a>
+                    <a href="#" title="其他" target="_blank">其他</a></dd>
+            </dl>
+            <dl>
+                <dt>
+                    <a href="#" target="_blank" title="建材装饰">建材装饰</a>
+                    <span class="blue">
+            <a target="_blank" title="智乐居全屋整装" href="#">百变定制即装即住</a></span>
+                </dt>
+                <dd>
+                    <a href="#" title="装饰装修" target="_blank">装饰装修</a>
+                    <a href="#" title="冰晶画" target="_blank">冰晶画</a>
+                    <a href="#" title="墙艺" target="_blank">墙艺</a>
+                    <a href="#" title="门窗" target="_blank">门窗</a>
+                    <a href="#" title="涂料" target="_blank">涂料</a>
+                    <a href="#" title="五金配件" target="_blank">五金配件</a>
+                    <a href="#" title="防水" target="_blank">防水</a>
+                    <a href="#" title="采暖" target="_blank">采暖</a>
+                    <a href="#" title="集成墙面" target="_blank">集成墙面</a>
+                    <a href="#" title="新型建材" target="_blank">新型建材</a>
+                    <a href="#" title="其他" target="_blank">其他</a>
+                    <a href="#" title="管材" target="_blank">管材</a>
+                    <a href="#" title="地板" target="_blank">地板</a>
+                    <a href="#" title="彩装膜" target="_blank">彩装膜</a>
+                    <a href="#" title="油漆" target="_blank">油漆</a>
+                    <a href="#" title="水晶建材" target="_blank">水晶建材</a>
+                    <a href="#" title="楼梯" target="_blank">楼梯</a>
+                    <a href="#" title="瓷砖" target="_blank">瓷砖</a>
+                    <a href="#" title="吊顶" target="_blank">吊顶</a>
+                    <a href="#" title="装饰板材" target="_blank">装饰板材</a>
+                    <a href="#" title="墙体材料" target="_blank">墙体材料</a></dd>
+            </dl>
+            <dl>
+                <dt>
+                    <a href="#" target="_blank" title="美容保养">美容保养</a>
+                    <span class="red">
+            <a target="_blank" title="嘉柏俪香薰化妆品" href="#">嘉柏俪精油护肤 好用</a></span>
+                </dt>
+                <dd>
+                    <a href="#" title="护肤品" target="_blank">护肤品</a>
+                    <a href="#" title="眼镜店" target="_blank">眼镜店</a>
+                    <a href="#" title="化妆品" target="_blank">化妆品</a>
+                    <a href="#" title="养生馆" target="_blank">养生馆</a>
+                    <a href="#" title="面膜" target="_blank">面膜</a>
+                    <a href="#" title="卫生健康" target="_blank">卫生健康</a>
+                    <a href="#" title="产后恢复" target="_blank">产后恢复</a>
+                    <a href="#" title="养生健康品" target="_blank">养生健康品</a>
+                    <a href="#" title="美甲" target="_blank">美甲</a>
+                    <a href="#" title="美容" target="_blank">美容</a>
+                    <a href="#" title="足浴" target="_blank">足浴</a>
+                    <a href="#" title="香水" target="_blank">香水</a>
+                    <a href="#" title="洗护用品" target="_blank">洗护用品</a>
+                    <a href="#" title="美体" target="_blank">美体</a>
+                    <a href="#" title="美发" target="_blank">美发</a>
+                    <a href="#" title="健康设备" target="_blank">健康设备</a>
+                    <a href="#" title="汗蒸房" target="_blank">汗蒸房</a>
+                    <a href="#" title="健身器材" target="_blank">健身器材</a>
+                    <a href="#" title="其他" target="_blank">其他</a></dd>
+            </dl>
+            <dl>
+                <dt>
+                    <a href="#" target="_blank" title="母婴用品">母婴用品</a>
+                    <span class="red">
+            <a target="_blank" title="爱亲母婴生活馆" href="#">线上线下 双渠道发展</a></span>
+                </dt>
+                <dd>
+                    <a href="#" title="母婴生活馆" target="_blank">母婴生活馆</a>
+                    <a href="#" title="儿童乐园" target="_blank">儿童乐园</a>
+                    <a href="#" title="婴儿游泳馆" target="_blank">婴儿游泳馆</a>
+                    <a href="#" title="玩具" target="_blank">玩具</a>
+                    <a href="#" title="童车" target="_blank">童车</a>
+                    <a href="#" title="妈妈用品" target="_blank">妈妈用品</a>
+                    <a href="#" title="婴儿用品" target="_blank">婴儿用品</a>
+                    <a href="#" title="儿童家具" target="_blank">儿童家具</a>
+                    <a href="#" title="奶粉" target="_blank">奶粉</a>
+                    <a href="#" title="哺乳用品" target="_blank">哺乳用品</a>
+                    <a href="#" title="婴幼儿辅食" target="_blank">婴幼儿辅食</a>
+                    <a href="#" title="其他" target="_blank">其他</a></dd>
+            </dl>
+            <dl>
+                <dt>
+                    <a href="#" target="_blank" title="教育网络">教育网络</a>
+                    <span class="green">
+            <a target="_blank" title="艾宾浩斯智能教育" href="#">智能教育 复制办校</a></span>
+                </dt>
+                <dd>
+                    <a href="#" title="在线教育" target="_blank">在线教育</a>
+                    <a href="#" title="少儿教育" target="_blank">少儿教育</a>
+                    <a href="#" title="学习辅导" target="_blank">学习辅导</a>
+                    <a href="#" title="网络创业" target="_blank">网络创业</a>
+                    <a href="#" title="创业培训" target="_blank">创业培训</a>
+                    <a href="#" title="学生用品" target="_blank">学生用品</a>
+                    <a href="#" title="婴幼儿培训" target="_blank">婴幼儿培训</a>
+                    <a href="#" title="认证考试" target="_blank">认证考试</a>
+                    <a href="#" title="外语培训" target="_blank">外语培训</a>
+                    <a href="#" title="书店" target="_blank">书店</a>
+                    <a href="#" title="办公用品" target="_blank">办公用品</a>
+                    <a href="#" title="体育用品" target="_blank">体育用品</a>
+                    <a href="#" title="其他" target="_blank">其他</a></dd>
+            </dl>
+            <dl>
+                <dt>
+                    <a href="#" target="_blank" title="汽车服务">汽车服务</a>
+                    <span class="orange">
+            <a target="_blank" title="洗车快手桑拿蒸汽洗车" href="#">双向经营 渠道多样</a></span>
+                </dt>
+                <dd>
+                    <a href="#" title="汽车美容" target="_blank">汽车美容</a>
+                    <a href="#" title="洗车" target="_blank">洗车</a>
+                    <a href="#" title="汽车用品" target="_blank">汽车用品</a>
+                    <a href="#" title="汽修保养" target="_blank">汽修保养</a>
+                    <a href="#" title="电动车" target="_blank">电动车</a>
+                    <a href="#" title="车载用品" target="_blank">车载用品</a>
+                    <a href="#" title="车饰" target="_blank">车饰</a>
+                    <a href="#" title="平衡车" target="_blank">平衡车</a>
+                    <a href="#" title="自行车" target="_blank">自行车</a>
+                    <a href="#" title="立体车库" target="_blank">立体车库</a>
+                    <a href="#" title="儿童座椅" target="_blank">儿童座椅</a>
+                    <a href="#" title="其他" target="_blank">其他</a></dd>
+            </dl>
+            <dl>
+                <dt>
+                    <a href="#" target="_blank" title="环保机械">环保机械</a>
+                    <span class="orange">
+            <a target="_blank" title="未来锂锂电池修复" href="#">智能电池修复整店输出</a></span>
+                </dt>
+                <dd>
+                    <a href="#" title="电池修复" target="_blank">电池修复</a>
+                    <a href="#" title="食品机械" target="_blank">食品机械</a>
+                    <a href="#" title="空气净化" target="_blank">空气净化</a>
+                    <a href="#" title="木炭机" target="_blank">木炭机</a>
+                    <a href="#" title="制香机" target="_blank">制香机</a>
+                    <a href="#" title="节能设备" target="_blank">节能设备</a>
+                    <a href="#" title="施工设备" target="_blank">施工设备</a>
+                    <a href="#" title="太阳能" target="_blank">太阳能</a>
+                    <a href="#" title="水净化" target="_blank">水净化</a>
+                    <a href="#" title="环保材料" target="_blank">环保材料</a>
+                    <a href="#" title="糖画机" target="_blank">糖画机</a>
+                    <a href="#" title="包装机械" target="_blank">包装机械</a>
+                    <a href="#" title="竹炭净化" target="_blank">竹炭净化</a>
+                    <a href="#" title="榨油机" target="_blank">榨油机</a>
+                    <a href="#" title="原水处理" target="_blank">原水处理</a>
+                    <a href="#" title="环卫用品" target="_blank">环卫用品</a>
+                    <a href="#" title="电瓶" target="_blank">电瓶</a>
+                    <a href="#" title="服装加工" target="_blank">服装加工</a>
+                    <a href="#" title="其他" target="_blank">其他</a></dd>
+            </dl>
+            <dl>
+                <dt>
+                    <a href="#" target="_blank" title="礼品饰品">礼品饰品</a>
+                    <span class="red">
+            <a target="_blank" title="昵美创意手机壳" href="#">手机壳 无需店面</a></span>
+                </dt>
+                <dd>
+                    <a href="#" title="手机壳" target="_blank">手机壳</a>
+                    <a href="#" title="礼品" target="_blank">礼品</a>
+                    <a href="#" title="工艺品" target="_blank">工艺品</a>
+                    <a href="#" title="魔术用品" target="_blank">魔术用品</a>
+                    <a href="#" title="首饰" target="_blank">首饰</a>
+                    <a href="#" title="小饰品" target="_blank">小饰品</a>
+                    <a href="#" title="彩色钥匙" target="_blank">彩色钥匙</a>
+                    <a href="#" title="3D玩偶" target="_blank">3D玩偶</a>
+                    <a href="#" title="翡翠玉石" target="_blank">翡翠玉石</a>
+                    <a href="#" title="水晶饰品" target="_blank">水晶饰品</a>
+                    <a href="#" title="祈福饰品" target="_blank">祈福饰品</a>
+                    <a href="#" title=" 钟表" target="_blank">钟表</a>
+                    <a href="#" title="毛绒公仔" target="_blank">毛绒公仔</a>
+                    <a href="#" title="其他" target="_blank">其他</a></dd>
+            </dl>
+            <dl>
+                <dt>
+                    <a href="#" target="_blank" title="家居用品">家居用品</a>
+                    <span class="blue">
+            <a target="_blank" title="大懒猫懒人用品体验馆" href="#">懒人用品厂家直供</a></span>
+                </dt>
+                <dd>
+                    <a href="#" title="懒人用品" target="_blank">懒人用品</a>
+                    <a href="#" title="垃圾处理器" target="_blank">垃圾处理器</a>
+                    <a href="#" title="厨具" target="_blank">厨具</a>
+                    <a href="#" title="家纺布艺" target="_blank">家纺布艺</a>
+                    <a href="#" title="日用品" target="_blank">日用品</a>
+                    <a href="#" title="智能家具" target="_blank">智能家具</a>
+                    <a href="#" title="红木家具" target="_blank">红木家具</a>
+                    <a href="#" title="灯饰" target="_blank">灯饰</a>
+                    <a href="#" title="生活馆" target="_blank">生活馆</a>
+                    <a href="#" title="安防设备" target="_blank">安防设备</a>
+                    <a href="#" title="家居饰品" target="_blank">家居饰品</a>
+                    <a href="#" title="家用电器" target="_blank">家用电器</a>
+                    <a href="#" title="餐具" target="_blank">餐具</a>
+                    <a href="#" title="洗涤用品" target="_blank">洗涤用品</a>
+                    <a href="#" title="全景画" target="_blank">全景画</a>
+                    <a href="#" title="智能橱柜" target="_blank">智能橱柜</a>
+                    <a href="#" title="床上用品" target="_blank">床上用品</a>
+                    <a href="#" title="水族" target="_blank">水族</a>
+                    <a href="#" title="渔具" target="_blank">渔具</a>
+                    <a href="#" title="卫浴" target="_blank">卫浴</a>
+                    <a href="#" title="茶具" target="_blank">茶具</a>
+                    <a href="#" title="其他" target="_blank">其他</a></dd>
+            </dl>
         </div>
         <div class="cyxmT-link">
             <ul>
                 <li class="red">
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1022 && $i<=18}
-                    {if $i<=6 && $i>12 }
-                    <a target="_blank" title="{$item.name}"
-                       href="{:url('Index/project')}?project_id={$item.project_id}">
-                        <font color="red">{$item.name}</font></a>
-                    {else/} <a target="_blank" title="{$item.name}"
-                               href="{:url('Index/project')}?project_id={$item.project_id}"></a>
-                    {/if}
-                    {else/}{php}$i--;{/php}
-                    {/if}
-                    {/volist}
+                    <a target="_blank" title="万聪智学教育" href="#">
+                        <font color="red">智能教学 家长认可</font></a>
+                    <a target="_blank" title="铁骆驼电瓶修复" href="#">
+                        <font color="red">电瓶修复创业好选择</font></a>
+                    <a target="_blank" title="斗腐倌七品香豆腐" href="#">
+                        <font color="red">创业找香豆腐小吃</font></a>
+                    <a target="_blank" title="七钟茶" href="#">
+                        <font color="red">操作便捷省心省力</font></a>
+                    <a target="_blank" title="雅坐涮烤锅王" href="#">
+                        <font color="red">创意涮锅烤肉火锅</font></a>
+                    <a target="_blank" title="冰雪大王冰淇淋" href="#">
+                        <font color="red">饮品甜品&nbsp;一店多开</font></a>
+                </li>
+                <li>
+                    <a target="_blank" title="ge鸡ge鸡泡泡鸡" href="#">有个新宠叫泡泡鸡</a>
+                    <a target="_blank" title="爱依莲女装" href="#">品牌女装 整店输出</a>
+                    <a target="_blank" title="久焖提督私房牛肉面馆" href="#">面食快餐！上瘾吃不够</a>
+                    <a target="_blank" title="家亿鑫全屋整装" href="#">全屋整装毛坯房变精装</a>
+                    <a target="_blank" title="韩素生活快时尚百货" href="#">进口优品认证韩素生活</a>
+                    <a target="_blank" title="赵汝飞练字" href="#">一手练字 简单办校</a></li>
+                <li class="red">
+                    <a target="_blank" title="黑羊社奶茶" href="#">
+                        <font color="red">黑羊社天然潮饮！</font></a>
+                    <a target="_blank" title="卤三国卤味小吃" href="#">
+                        <font color="red">卤尽美味味尽三国</font></a>
+                    <a target="_blank" title="秀臣化妆品" href="#">
+                        <font color="red">化妆品 一站畅购</font></a>
+                    <a target="_blank" title="尚町啵啵鱼" href="#">
+                        <font color="red">啵啵鱼！灵活开店</font></a>
+                    <a target="_blank" title="阁下的虾" href="#">
+                        <font color="red">簋街小龙虾外卖+零售</font></a>
+                    <a target="_blank" title="澳食尚煲仔饭" href="#">
+                        <font color="red">煲仔饭 百款单品</font></a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
+{/block}
 <!-- 创业项目推荐结束 -->
 
-<!-- 分类开始 -->
-<div id="div-zhome-rmxm" class="div-zhome-block div-zhome-rmxm">
-    <div class="div-inner">
-        <div id="item4">
-            <div class="item4box container">
-                <div class="itemsmallbox">
-                    <div class="item4boxtitle">
-                        <ul>
-                            <li class="on">
-                                <a href="#">餐饮</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">母婴</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">零售</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">服装</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">教育</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">建材</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">服务</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">游乐</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">珠宝礼品</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">美容保健</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">家居</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">环保</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">微商</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">金融</a>
-                                <i>
-                                </i>
-                            </li>
-                        </ul>
-                        <div class="selectmore">
-                            <i>
-                            </i>
-                            <p>
-                                <a href="#" target="_blank">查看更多</a></p>
-                        </div>
-                    </div>
-                    <div class="item4boxcontent">
-                        <div class="contentlist" style="display: block;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2019/05/09/822135.png"
-                                             alt="怒火八零"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/07/13/562122.jpg"
-                                             alt="喫茶时光"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/07/13/562137.jpg"
-                                             alt="重庆崽儿火锅"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/07/13/562124.jpg"
-                                             alt="蜜秘鸡地炸鸡"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/07/24/689149.jpg"
-                                             alt="雪之蜜语"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/06/25/683369.jpg"
-                                             alt="汉釜宫烤肉"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/06/25/683370.jpg"
-                                             alt="魔力玛卡水晶冒菜"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/06/25/683371.jpg"
-                                             alt="汤姆之家汉堡"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/06/25/683373.jpg"
-                                             alt="盖式蟹煲"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/06/25/683374.jpg"
-                                             alt="薯战薯决"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/07/06/684907.jpg"
-                                             alt="库桥炸鸡"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742484.jpg"
-                                             alt="禾香麦田煲仔饭"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742487.jpg"
-                                             alt="金陵鸭血粉丝"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742488.jpg"
-                                             alt="米大娘"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742490.jpg"
-                                             alt="蜜潮小海鲜"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/10/25/596323.jpg"
-                                             alt="爱玩爱游婴儿游泳亲子中心"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466924.png"
-                                             alt="婴乐士婴儿游泳馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466926.png"
-                                             alt="亲亲天使婴儿游泳馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466927.png"
-                                             alt="香港3861婴幼儿游泳馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466928.png"
-                                             alt="维尼宝贝婴儿游泳馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466934.png"
-                                             alt="&amp;amp;nbsp;伊亲婴儿游泳馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466935.png"
-                                             alt="水宝宝婴儿游泳馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587422.jpg"
-                                             alt="小飞象母婴孕婴"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587423.jpg"
-                                             alt="皇家宝贝孕婴"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690700.jpg"
-                                             alt="美贝美妈"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690701.jpg"
-                                             alt="丽丰宝贝母婴生活馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690702.jpg"
-                                             alt="乐宝爱婴婴儿游泳馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742498.jpg"
-                                             alt="鲱鱼宝宝早教中心"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742499.jpg"
-                                             alt="乐宝爱婴婴儿游泳馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742500.jpg"
-                                             alt="丽丰宝贝母婴生活馆"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/07/13/562201.jpg"
-                                             alt="悠百佳"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466993.png"
-                                             alt="高参海"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466988.png"
-                                             alt="书洋南"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466982.png"
-                                             alt="新业红酒"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466994.png"
-                                             alt="四海调味品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466983.png"
-                                             alt="西塞尔红酒庄"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466984.png"
-                                             alt="新爵士红酒庄"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466985.png"
-                                             alt="西美红酒"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466986.png"
-                                             alt="梧桐堡红酒"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466987.png"
-                                             alt="西堡红酒"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466991.png"
-                                             alt="蜀竹茶业"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466992.png"
-                                             alt="圣旨峰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466981.png"
-                                             alt="一搏红酒"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466995.png"
-                                             alt="双合调味品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/08/01/569621.jpg"
-                                             alt="奥松酒庄红酒"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490148.png"
-                                             alt="美季美优"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490150.png"
-                                             alt="思安尼女装"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490153.png"
-                                             alt="十月妈咪孕妇装"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490155.png"
-                                             alt="司歌时尚女装"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490156.png"
-                                             alt="硕天皮具"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490157.png"
-                                             alt="首森皮具"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490158.png"
-                                             alt="首邦箱包"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490160.png"
-                                             alt="ShoeBox鞋业"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490161.png"
-                                             alt="仕宇阁男装"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490162.png"
-                                             alt="十月情"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/04/18/533333.jpg"
-                                             alt="爱居兔服饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/08/16/574580.jpg"
-                                             alt="莎娜美内衣"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690715.jpg"
-                                             alt="闺秘内衣"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/07/691294.jpg"
-                                             alt="欧诗雨"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742506.jpg"
-                                             alt="都市女人心内衣"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/10/29/463218.png"
-                                             alt="积木宝贝国际早教"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742523.jpg"
-                                             alt="童画少儿美术教育"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/05/21/672591.jpg"
-                                             alt="聚能教育"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742521.jpg"
-                                             alt="Gemstone创思童思维教育"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742522.jpg"
-                                             alt="大卫美术教育"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/31/697765.png"
-                                             alt="优贝乐早教"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/06/29/683956.jpg"
-                                             alt="金色摇篮幼儿园"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490204.jpg"
-                                             alt="汤姆之家"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690725.jpg"
-                                             alt="趣学英语"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2019/06/14/842272.jpg"
-                                             alt="记忆王人工智能英语"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690726.jpg"
-                                             alt="3Q儿童商学院"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690728.jpg"
-                                             alt="爱乐祺托育早教"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690730.jpg"
-                                             alt="童画少儿美术教育"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742519.jpg"
-                                             alt="艾宾浩斯智能英语"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/11/02/742520.jpg"
-                                             alt="编程猫"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/04/01/529361.jpg"
-                                             alt="伟业板材"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490230.jpg"
-                                             alt="升华云峰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490233.jpg"
-                                             alt="欧丹尼硅藻泥"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490227.jpg"
-                                             alt="永阳"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490237.jpg"
-                                             alt="美克美家"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490239.jpg"
-                                             alt="顺皇"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/01/20/507496.jpg"
-                                             alt="添景灯饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/07/13/562206.jpg"
-                                             alt="碧海金贝贝壳粉"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/07/31/569322.jpg"
-                                             alt="贝饰美贝壳粉"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/07/31/569323.jpg"
-                                             alt="泥立方硅藻泥"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490234.jpg"
-                                             alt="美的照明"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/07/31/569324.jpg"
-                                             alt="绿仙居硅藻泥"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2019/05/25/835030.jpg"
-                                             alt="古海硅藻泥"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/02/16/511537.jpg"
-                                             alt="洁希亚国际洗衣干洗"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466904.png"
-                                             alt="威浪连锁干洗"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466905.png"
-                                             alt="澳洁洗衣店"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466906.png"
-                                             alt="泰洁干洗店"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466907.png"
-                                             alt="沣漩洗衣"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466908.png"
-                                             alt="朵拉洗衣"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466915.png"
-                                             alt="凯利家电清洗"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466916.png"
-                                             alt="美妤世家"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/01/20/507484.jpg"
-                                             alt="赫柏婚礼"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466917.png"
-                                             alt="首席公馆酒店"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466918.png"
-                                             alt="尚俭太空舱连锁酒店"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466920.png"
-                                             alt="树森摄影"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/09/466921.png"
-                                             alt="童真100儿童摄影"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/01/20/507485.jpg"
-                                             alt="布兰奇"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/08/01/569623.jpg"
-                                             alt="朵拉洗衣"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/21/468136.png"
-                                             alt="盗梦科技VR体验馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466568.png"
-                                             alt="城市007"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466588.png"
-                                             alt="RAINBOW儿童游乐设施"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466569.png"
-                                             alt="密室工厂"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466589.png"
-                                             alt="时空穿越"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466584.png"
-                                             alt="巨龙游乐儿童乐园"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466573.png"
-                                             alt="第9街区"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466574.png"
-                                             alt="暴风魔镜"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466577.png"
-                                             alt="嘟嘟童年"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466578.png"
-                                             alt="奥乐奥儿童乐园"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466579.png"
-                                             alt="奥特翔儿童乐园"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466580.png"
-                                             alt="妙妙城堡儿童乐园"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466576.png"
-                                             alt="浪漫鼠"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466583.png"
-                                             alt="全美游乐儿童乐园"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/08/466586.png"
-                                             alt="新时代游乐"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466965.png"
-                                             alt="谢瑞麟珠宝首饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/11/467141.png"
-                                             alt="欧阳盛世礼品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466966.png"
-                                             alt="tous珠宝首饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466967.png"
-                                             alt="同心珠宝首饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466968.png"
-                                             alt="tiffany珠宝首饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466969.png"
-                                             alt="同晖首饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466970.png"
-                                             alt="tesiro珠宝首饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466971.png"
-                                             alt="SU素创意首饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466972.png"
-                                             alt="尚韵珠宝"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466973.png"
-                                             alt="玉尔龙饰品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466976.png"
-                                             alt="悦南家居饰品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466977.png"
-                                             alt="万仟堂家居饰品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466978.png"
-                                             alt="意大利VK时尚饰品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466979.png"
-                                             alt="威妮华饰品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466980.png"
-                                             alt="Vela饰品"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490163.jpg"
-                                             alt="SO丝傲假发美发"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490184.jpg"
-                                             alt="科雯瑜伽"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490168.png"
-                                             alt="十指秀美甲"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490169.png"
-                                             alt="舒医化妆品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490170.png"
-                                             alt="植润堂养发"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490171.png"
-                                             alt="香阁娜"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490172.png"
-                                             alt="舒适堡"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490173.png"
-                                             alt="水胭脂"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490174.png"
-                                             alt="易发堂养发馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490176.png"
-                                             alt="阿芙"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490177.png"
-                                             alt="头等大事养发馆"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690746.jpg"
-                                             alt="欧芭莎"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690747.jpg"
-                                             alt="莎迪姿祛斑祛痘"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690748.jpg"
-                                             alt="群芳泽"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/08/02/690749.jpg"
-                                             alt="百莲凯美容院"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490185.png"
-                                             alt="米兰墙饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490186.png"
-                                             alt="兴源墙饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490187.png"
-                                             alt="绿森林墙饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490188.png"
-                                             alt="原叶墙饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490189.png"
-                                             alt="春之元墙饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490190.png"
-                                             alt="泉佳美墙饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490191.png"
-                                             alt="太氧谷墙饰"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490199.png"
-                                             alt="长相知家纺"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490192.png"
-                                             alt="贝迪佳背景墙饰界"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490194.png"
-                                             alt="硕而博家电"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490195.png"
-                                             alt="扬子集成吊顶"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490196.png"
-                                             alt="斯贝斯电器"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490198.png"
-                                             alt="硕方"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/08/01/569626.jpg"
-                                             alt="3A玻璃贴膜"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/08/01/569638.jpg"
-                                             alt="鸿扬宅配&amp;nbsp;"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490211.jpg"
-                                             alt="双兢"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490212.jpg"
-                                             alt="善华加湿器"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490213.jpg"
-                                             alt="瑞河电工"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490214.jpg"
-                                             alt="欧迈克汽车美容"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490215.jpg"
-                                             alt="驰易佳换油中心"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490216.jpg"
-                                             alt="正道车业"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490217.jpg"
-                                             alt="亚美高"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490218.jpg"
-                                             alt="小糖人智能糖画机"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490219.jpg"
-                                             alt="丝诺"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490220.jpg"
-                                             alt="西门子爱格瑞"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490221.jpg"
-                                             alt="首迈万捷"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490222.jpg"
-                                             alt="法兰尼净水器"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490223.jpg"
-                                             alt="泰浦乐toppuror"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490224.jpg"
-                                             alt="车豪智能车衣"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490225.jpg"
-                                             alt="保时杰智能遥控车衣"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490241.png"
-                                             alt="韩味源"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490251.png"
-                                             alt="阿斯卡蒸汽眼罩"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490253.png"
-                                             alt="SO美花卉瘦身茶"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490254.png"
-                                             alt="三叶减肥茶"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490255.png"
-                                             alt="闪亮蒸汽眼罩"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490256.png"
-                                             alt="康美柯减肥药"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490257.png"
-                                             alt="耶巴马黛茶"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490258.png"
-                                             alt="美瑞克斯"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490260.png"
-                                             alt="顺心饮料"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/07/20/688180.jpg"
-                                             alt="一芙化妆品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/07/20/688181.jpg"
-                                             alt="雪姬化妆品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/07/20/688182.jpg"
-                                             alt="香柏树化妆品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/07/20/688183.jpg"
-                                             alt="顺桥化妆品"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/07/20/688184.jpg"
-                                             alt="TONY&amp;nbsp;MOLY"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/07/20/688185.jpg"
-                                             alt="艾苛蜜"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587630.jpg"
-                                             alt="云保汇车险超市"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587631.jpg"
-                                             alt="华保联合车险超市"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587632.jpg"
-                                             alt="聚惠保"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587634.jpg"
-                                             alt="阳光仁保车险超市"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587635.jpg"
-                                             alt="保联优品车险超市"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587636.jpg"
-                                             alt="优汇保车险超市"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587638.jpg"
-                                             alt="华泰保险"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587639.jpg"
-                                             alt="惠运保车险超市"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587640.jpg"
-                                             alt="鑫汇保车险超市"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587641.jpg"
-                                             alt="广汇保车险超市"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587642.jpg"
-                                             alt="腾渤车险超市"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587643.jpg"
-                                             alt="汇通锦华"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587644.jpg"
-                                             alt="速车贷"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587645.jpg"
-                                             alt="易鑫车贷"></a>
-                                </li>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2018/01/18/639076.png"
-                                             alt="银方投资"></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- 广告位分类开始 -->
+
 <!-- 分类结束 -->
 
 
 <!-- 这是底部开始 -->
-<div id="item7" style="background: #f5f7f9">
-    <div class="item7box container">
-        <div class="item7boxleft">
-            <img src="__PUB08__/picture/logo-bottom2.png">
-        </div>
-        <div class="item7boxmid">
-            <span style="float:left;">招商热线： </span><img style=" display:block;float:left;margin:5px 0 0px -5px"
-                                                        src="__PUB08__/picture/tellbottom-1.png">
-            <s style="height: 0;display: block;clear: both;"></s>
-            <p>最新商机，一手掌握，微信扫码或关注公众号：kmway6</p>
-            <!--400 end-->
-        </div>
-        <div class="item7boxright">
-            <!-- <div class="imgbox">
-                <img src="__PUB08__/picture/newcode.png">
-                <div class="text">立即关注</div>
-            </div> -->
-        </div>
-    </div>
-</div>
-
-<div class="page-footer lxbackroundnone" style="background: #f5f7f9">
-    <div class="page-inner">
-
-        <div class="div-copyright">
-            <span class="text" style="display: block; padding-bottom: 10px;">创业有风险 投资需谨慎 成都氪星网络科技有限公司 成都高新区世纪城南路599号天府软件园D区6栋505号</span>
-            <span class="text"><img src="__PUB08__/picture/3-1.png"/></span>
-        </div>
-    </div>
-</div>
-
-
-</body>
-</html>

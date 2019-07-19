@@ -53,80 +53,33 @@ class Upload
         return false;
     }
 
-
-    function upload_file($fileInfo, $upload = "./upload", $imagesExt = ['gif', 'png', 'jpg'])
+    /**
+     * @param $file  上传的文件
+     * @param $domain  域名
+     * @param $pack    文件夹名
+     * @return mixed|null
+     */
+    public function file($file, $domain, $pack)
     {
-        if ($fileInfo['error'] === 0) {
-
-            $ext = strtolower(pathinfo($fileInfo['name'], PATHINFO_EXTENSION));
-
-            if (!in_array($ext, $imagesExt)) {
-
-                return "文件非法类型";
-
-            }
-
-            if (!is_dir($upload)) {
-
-                mkdir($upload, 0777, true);
-
-            }
-
-            $fileName = md5(uniqid(microtime(true), true)) . "." . $ext;
-
-            $destName = $upload . "/" . $fileName;
-
-            if (!move_uploaded_file($fileInfo['tmp_name'], $destName)) {
-
-                return "文件上传失败！";
-
-            }
-            //返回文件路径名称
-            return $destName;
-
-        } else {
-
-            switch ($fileInfo['error']) {
-
-                case 1:
-
-                    echo '上传的文件超过了 php.ini 中 upload_max_filesize 选项限制的值';
-
-                    break;
-
-                case 2:
-
-                    echo '上传文件的大小超过了 HTML 表单中 MAX_FILE_SIZE 选项指定的值';
-
-                    break;
-
-                case 3:
-
-                    echo '文件只有部分被上传';
-
-                    break;
-
-                case 4:
-
-                    echo '没有文件被上传';
-
-                    break;
-
-                case 6:
-
-                    echo '找不到临时文件夹';
-
-                    break;
-
-                case 7:
-
-                    echo '文件写入失败';
-
-                    break;
-
-            }
-
+        $upload_path = ROOT_PATH . 'public' . DS . 'uploads' . DS . $pack;       //上传路径
+        $photo_path = null;          //真实路径
+        $local = ROOT_PATH . 'public';
+        $info = null;
+        if (!file_exists($upload_path)) {                 //生成目录
+            mkdir($upload_path, true);
         }
+        if (!empty($file)) {                          //文件不为空则将文件输出到uploads
+            $info = $file->move($upload_path);
+            if ($info) {
+                $photo_path = $info->getRealPath();      //真实地址
 
+//            http://local.study.cn/uploads/20190406/a1e131b66e45458b6bf50b69b5707d2b.png   //服务器地址
+//            C:\dev\php_study\tp5\public\uploads\20190406  //本地地址
+
+                $photo_path = str_replace($local, $domain, $photo_path);
+                $photo_path = str_replace('\\', '/', $photo_path);
+            }
+        }
+        return $photo_path;
     }
 }
