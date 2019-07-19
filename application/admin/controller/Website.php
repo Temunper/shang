@@ -90,10 +90,11 @@ class Website extends Base
         if (!$file)
             $file_path = $request->param('file_path');
         else {
-            if (mime_content_type($file) != ('image/gif' | 'image/png' | 'image/jpg')) {
-                $data = ['code' => 202, 'data' => '上传文件格式不正确'];
-                echo json_encode($data);
-            }
+            Upload::check($file);die;
+//            if () {
+//                $data = ['code' => 202, 'data' => '上传文件格式不正确'];
+//                echo json_encode($data);
+//            }
             $file_path = Upload::file($file, $request->domain(),'logo');
         }
         $website = WebsiteModel::getByDomain($request['domain']);

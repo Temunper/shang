@@ -15,14 +15,15 @@ use think\Model;
 class AdModel extends Model
 {
     protected $table = 'ad';
-    protected $resultSetType = 'collection';
     protected $insert = ['status'];
+    protected $resultSetType = 'collection';
+
 
 //    查询所有广告位
-    function get_all_ad($status, $theme_id,$name)
+    function get_all_ad($status, $theme_id, $name)
     {
-        $name?$a_name = "a.name = ".$name:$a_name=null;
-        $status ? $a_status = "a.status = " . $status : $a_status = "status = 1";
+        $name ? $a_name = "a.name = " . $name : $a_name = null;
+        $status ? $a_status = "a.status = " . $status : $a_status = "a.status = 1";
         $theme_id ? $t_theme_id = "t.theme_id " . $theme_id : $t_theme_id = null;
         $result = Db::table($this->table)
             ->alias('a')
@@ -38,15 +39,11 @@ class AdModel extends Model
             });
         return $result;
     }
+
     //    读取器和修改器
     public function getStatusAttr($value)
     {
         $status = [1 => '正常', 2 => '删除'];
         return $status[$value];
-    }
-
-    public function setStatusAttr($value, $data)
-    {
-        return '正常' == $data['status'] ? 1 : 2;
     }
 }

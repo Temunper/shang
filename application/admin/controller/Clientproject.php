@@ -31,22 +31,22 @@ class Clientproject extends Base
         $client = new Client();
         $client = $client->get_all_client();
         $project = $this->clientproject_model->get_pro_no_bind();
-        $this->assign($client);
-        $this->assign($project);
+        $this->assign('client',json_encode($client));
+        $this->assign('project',json_encode($project));
         return $this->fetch();
     }
 
 //  添加绑定
-    public function add_clientproject()
+    public function add()
     {
         $client = new ClientModel();
         $project = new ProjectModel();
-        $params = Request::instance()->post();
+        $params = Request::instance()->param();
         $client = $client->get_client_by_id($params['client_id']);
         $project = $project->get_project_by_id($params['project_id']);
         $bool = $this->clientproject_model->get_cp_by_id($params);
         if ($client && $project) {
-            if ($bool) {
+            if (!$bool) {
                 $result = $this->clientproject_model->add_cp($params);
                 $result ? $data = "绑定成功" : $data = "绑定失败";
                 $data = ['code' => 200, 'data' => $data];

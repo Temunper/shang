@@ -17,14 +17,14 @@ use think\Request;
 class AdPosition extends Base
 {
 //    广告位页面
-    public function ad_position(Request $request)
+    public function ad_position()
     {
+        $request = Request::instance()->param();
         isset($request['sort']) ? $sort = $request['sort'] : $sort = null;
         isset($request['status']) ? $status = $request['status'] : $status = null;
         isset($request['name']) ? $name = $request['name'] : $name = null;
         isset($request['theme_id']) ? $theme_id = $request['theme_id'] : $theme_id = null;
-        $ad = AdModel::all();
-        $ad = $ad->toArray();
+        $ad = AdModel::all()->toArray();
         $ad_id = array();
         foreach ($ad as $item) {
             if ($item['theme_id'] == $theme_id) $ad_id[] = $item['ad_id'];
@@ -32,6 +32,7 @@ class AdPosition extends Base
         $adp = new AdPositionModel();
         $ad_position = $adp->get_all_adp($status, $name, $sort, $ad_id);
         $this->assign($ad_position);
+        dump($ad_position);die;
         return $this->fetch();
     }
 

@@ -8,15 +8,19 @@
     <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link href="__TEMPLATE__/css/style.css" rel='stylesheet' type='text/css'/>
     <link href='__TEMPLATE__/css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
+    <link href="__TEMPLATE__/index/index.css" rel='stylesheet' type='text/css'/>
+    <link href="__TEMPLATE__/clientproject/clientproject.css" rel='stylesheet' type='text/css'/>
+    <link href="__TEMPLATE__/css/custom.css" rel="stylesheet">
+    <link href="__TEMPLATE__/select2/css/select2.min.css" rel="stylesheet">
     <script src="__TEMPLATE__/js/jquery-1.11.1.min.js"></script>
     <script src="__TEMPLATE__/js/modernizr.custom.js"></script>
     <script src="__TEMPLATE__/js/Chart.js"></script>
     <script src="__TEMPLATE__/js/metisMenu.min.js"></script>
     <script src="__TEMPLATE__/js/custom.js"></script>
-    <link href="__TEMPLATE__/css/custom.css" rel="stylesheet">
     <script src="__TEMPLATE__/js/pie-chart.js" type="text/javascript"></script>
-    <link href="__TEMPLATE__/index/index.css" rel='stylesheet' type='text/css'/>
     <script src="__TEMPLATE__/icon/iconfont.js"></script>
+
+
 </head>
 <body class="cbp-spmenu-push">
 <!-- 页面开始 -->
@@ -29,12 +33,38 @@
     {include file="main/head" /}
     <!-- //头部结束 -->
     <!-- 主要内容-->
+    <div id="page-wrapper" style="min-height: 567px;">
+        <div class="main-page" style="width: 50%">
+            <div class="forms validation">
+
+                <div class="widget-shadow" data-example-id="basic-forms">
+                    <div class="form-title">
+                        <h4>客户与项目绑定</h4>
+                    </div>
+                    <div class="form-body">
+                        <form data-toggle="validator" novalidate="true">
+                            <div class="form-group">
+                                <h4 class="set-customer" data-client = '{$client}'>客户名： <select class="small-search-input set-customer-btn"  style="width: 200px"></select>
+                                </h4>
+                                <h4 class="set-project" data-project = '{$project}'>项目名：<select class="small-search-input set-project-btn"  style="width: 200px"></select>
+                                </h4><br>
+                            </div>
+                        </form>
+                        <button type="submit" class="btn btn-primary confirm-cp">绑定</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- 主要内容结束 -->
 </div>
 
 
-
 </body>
 <script src="__TEMPLATE__/bootstrap/js/bootstrap.js"></script>
+<script src="__TEMPLATE__/clientproject/clientproject.js"></script>
+<script src="__TEMPLATE__/select2/js/select2.min.js"></script>
+<script src="__TEMPLATE__/select2/js/select2.full.min.js"></script>
 </html>

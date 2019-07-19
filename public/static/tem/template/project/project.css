@@ -17,3 +17,26 @@
     width: 200px;
     border-color: grey;
 }
+
+.add-page {
+    position: absolute;
+    z-index: 1000000;
+    margin-top: -687px;
+    margin-left: -15px;
+    width: 87%;
+    height: 100%;
+}
+
+.list-page {
+    filter: blur(1px);
+}
+
+.signup-page input[type="text"] {
+    background: none;
+    padding: 14px 15px 14px 17px;
+}
+
+.form-set {
+    display: inline-block;
+    float: left;
+}

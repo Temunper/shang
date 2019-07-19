@@ -9,11 +9,15 @@
 namespace app\admin\common;
 
 
+use think\Controller;
+use think\File;
+use think\Validate;
+
 class Upload
 {
     public static function file($file, $domain, $pack)
     {
-        $upload_path = ROOT_PATH . 'public' . DS . 'uploads' . DS . $pack;       //上传路径
+        $upload_path = ROOT_PATH . 'public' . DS . 'upload' . DS . $pack;       //上传路径
         $photo_path = null;          //真实路径
         $local = ROOT_PATH . 'public';
         $info = null;
@@ -21,7 +25,7 @@ class Upload
             mkdir($upload_path, true);
         }
         if (!empty($file)) {                          //文件不为空则将文件输出到uploads
-            $info = $file->move($upload_path);
+            $info = $file->validate(['ext'=>'jpg,png,gif'])->move($upload_path,'');
             if ($info) {
                 $photo_path = $info->getRealPath();      //真实地址
 
@@ -30,8 +34,19 @@ class Upload
 
                 $photo_path = str_replace($local, $domain, $photo_path);
                 $photo_path = str_replace('\\', '/', $photo_path);
+                return $photo_path;
+            }else{
+               return "false";
             }
         }
-        return $photo_path;
+
+    }
+
+//    判断文件类型
+    public static function check($file)
+    {
+        $finfo = finfo_open(FILEINFO_MIME); // 返回 mime 类型
+        var_dump(finfo_file($finfo, $file));
+        finfo_close($finfo);
     }
 }

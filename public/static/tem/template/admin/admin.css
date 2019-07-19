@@ -1,0 +1,14 @@
+.hidden-input{
+    position: absolute;
+    width: 10%;
+    z-index: 1000;
+    top: 202px;
+    left: 339px;
+    visibility: hidden;
+}
+.hidden-input-text{
+    height: 30px;
+}
+.set-right{
+    margin-left: 68px;
+}

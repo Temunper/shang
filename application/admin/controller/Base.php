@@ -26,11 +26,5 @@ class Base extends Controller
     }
     //    文件上传
 
-    /**
-     * @param $file  上传的文件
-     * @param $domain  域名
-     * @param $pack    文件夹名
-     * @return mixed|null
-     */
 
 }

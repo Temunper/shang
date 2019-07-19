@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="file" value="上传"><input type="button" class="confirm" value="确定">
+</body>
+<script src="__TEMPLATE__/js/jquery-1.11.1.min.js"></script>
+<script>
+
+//     $(".confirm").click(function () {
+//         var file_obj = document.getElementById('file').files[0];    //得到文件
+//         var fd = new FormData();          //创建表单
+//         // fd.append("old_user_name",$("#update-name").attr("placeholder"));
+//         // fd.append("user_name", user_name);
+//         // fd.append("email", email);
+//         // fd.append("kind", kind);
+//         // fd.append("resume", resume);
+// //判断是否传文件
+//         if (typeof (file_obj) != 'undefined') {
+//             fd.append('pic', file_obj);//向fd里面添加一个文件
+//             fd.append('name', 'fdsfass');
+//             fd.append('theme_id', '2');
+//             fd.append('ad_id', 1050);
+//         }
+//         fd.append('pic', file_obj);
+//
+//         $.ajax({
+//             url: "/admin/ad/update",
+//             type: 'POST',
+//             data: fd,
+//             processData: false,
+//             contentType: false,
+//             mimeType: "multipart/form-data",
+//             dataType: "json",
+//             success: function (data) {
+//                 var data = jQuery.parseJSON(data);
+//                 alert(data.data);
+//             }
+//         })
+//     });
+
+
+    $(".confirm").click(function () {
+        $.ajax({
+            url: "/admin/ad/update_status",
+            type: 'POST',
+            data: {
+                'ad_id': 1050,
+                'status': 2
+            },
+            dataType: 'json',
+            success: function (data) {
+                var data = jQuery.parseJSON(data);
+                alert(data.data);
+            }
+        })
+    });
+</script>
+</html>

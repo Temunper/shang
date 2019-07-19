@@ -17,9 +17,9 @@ class Index extends Base
         return $this->fetch('index/index');
     }
 
-    public function add_pro()
+    public function index2()
     {
-        return $this->fetch('index/test');
+        return $this->fetch('index/index2');
     }
 
     public function get_msg()

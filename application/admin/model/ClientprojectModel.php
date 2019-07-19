@@ -14,7 +14,7 @@ use think\Model;
 
 class ClientprojectModel extends Model
 {
-    protected $table = 'clientproject';
+    protected $table = 'client_project';
 
 //查询
     function get_cp_by_id($cp)
@@ -39,6 +39,7 @@ class ClientprojectModel extends Model
     {
         $result = Db::table('view_pro')
             ->where('client_id is null')
+            ->field('project_id,name')
             ->select();
         return $result;
     }
