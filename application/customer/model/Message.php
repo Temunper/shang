@@ -9,6 +9,7 @@
 
 namespace app\customer\model;
 
+use app\customer\common\Convert;
 use think\Db;
 use think\Model;
 
@@ -30,17 +31,19 @@ class Message extends Model
     }
 
     //显示所有留言
-    public function show_client_message($data, $limit)
+    public function show_client_message($data)
     {
         //显示留言数据
-        $re = self::all(function ($query) use ($data, $limit) {
+        $re = self::all(function ($query) use ($data) {
             $query->alias('m')
                 ->field('m.message_id,m.client,m.time,ad.name,m.ip,m.content,m.phone,m.status')
                 ->join('project ad', 'm.project_id = ad.project_id', 'LEFT')
                 ->where('m.status', 'in', [1, 2])
                 ->where('m.project_id', 'in', $data)
-                ->limit($limit)->order('m.project_id', 'asc');
+                ->order('m.project_id', 'asc')
+                ->limit(15);
         });
+
         $res = [];
         if (!empty($re)) {
             foreach ($re as $k => $v) {
@@ -63,8 +66,8 @@ class Message extends Model
                 ->where('m.time', '<=', $time2)
                 ->where($data)
                 ->where('m.project_id', 'in', $project)
-                ->limit(15)
-                ->order('m.project_id', 'asc');
+                ->order('m.project_id', 'asc')
+                ->limit(15);
         });
         //   return dump($this->getLastSql());
 
@@ -96,22 +99,22 @@ class Message extends Model
     //获取ip修改器
   /*  public function getIpAttr($ip)
     {
-        return $this->get_city($ip);
+        return Convert::convert_ip($ip);
     }*/
 
-    //软删除客户的留言,将留言状态修改为4
-    public function delete_message($data)
+    //软删除客户的留言,将留言状态修改为3
+    public function delete_message_m($data)
     {
-        /* return Db::table('message')
-             ->where($data)
-             ->update(['status' => 3]);*/
-        return self::where($data)->update(['status' => 3]);
+        return self::where('message_id', 'in', $data)->update(['status' => 3]);
+
+
     }
 
     //客户导出数据，将留言状态status修改为3
     public function cheange_status($data)
     {
-        return self::where($data)->update(['status' => 2]);
+        return self::where('message_id', 'in', $data)->update(['status' => 2]);
+
     }
 
 
@@ -120,10 +123,11 @@ class Message extends Model
     {
         $re = self::all(function ($query) use ($data) {
             $query->alias('m')
-                ->field('m.message_id,m.client,m.time,ad.name,m.ip,m.content,m.phone,m.status')
+                ->field('m.message_id,m.client,m.time,ad.name,m.ip,m.content,m.phone')
                 ->join('ad_position ad', 'm.project_id = ad.project_id', 'LEFT')
-                ->where('message_id', $data);
+                ->where('m.message_id', 'in', $data);
         });
+        //dump($this->getLastSql());exit;
         if (!empty($re)) {
             foreach ($re as $k => $v) {
                 $result[$k] = $v->toArray();

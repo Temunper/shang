@@ -8,9 +8,9 @@
 
 namespace app\customer\controller;
 
+use app\customer\common\Upload;
 use app\customer\model\Article as ArticleModel;
 use think\Request;
-use app\customer\common\Upload;
 use think\Session;
 
 class Article extends Base
@@ -25,7 +25,7 @@ class Article extends Base
 
         $clinet_id = Session::get('client_id');
 
-        $project_id = $db->check_project($clinet_id);
+        $project_id = $db->check_project($clinet_id);  //获取当前用户所有项目id
 
         if (!empty($project_id)) {
             $str = "";
@@ -33,8 +33,7 @@ class Article extends Base
                 $str .= $project_id[$i]['project_id'] . ',';
             }
             $str = rtrim($str, ',');
-            //查询所有项目名称
-            $project_info = $db->select_project($str);
+            $project_info = $db->select_project($str);   //得到所有项目信息
         } else {
             $project_info = "暂无项目，请联系客服发布项目";
         }
@@ -78,83 +77,85 @@ class Article extends Base
         ];
         //执行验证
         $result = $this->validate($data, $rule, $msg);
-        if ($result === true) {
-            //通过验证，
-
-            $type = $data['type'];
-            if ($data['type'] == 1) {  //判断是否是项目类型 ，如果是，则判断是否存在项目id
-                if (empty($data['project_id'])) {
-                    return ['status' => $status, 'message' => '项目不能为空'];
-                }
-            }
-            $project_id = !empty($data['project_id']) ? $data['project_id'] : "";
-            $title = $data['title'];
-            $file = $request->file('image');
-            $brief = $data['brief'];
-            $content = $data['content'];
-            $source = $data['source'];
-            $author = Session::get('client_id');
-            //如果普通不为空，则保存图片,返回图片保存路径
-            if (!$file)
-                $file_path = $request->param('file_path');
-            else {
-                //判断上传图片是否在允许上传的类型$allow中
-                if (!in_array($file->getInfo()['type'], $allow)) {
-                    $data = ['code' => 202, 'data' => '上传文件格式不正确'];
-                }
-                $file_path = Upload::file($file, $request->domain(), 'artilce');
-            }
-            $info = [
-                'type' => $type,
-                'project_id' => $project_id,
-                'title' => $title,
-                'lis_img' => $file_path,
-                'brief' => $brief,
-                'content' => $content,
-                'source' => $source,
-                'author' => $author,
-                'create_time' => $date_now,
-                'update_time' => $date_now,
-            ];
-            //执行插入
-            $db = new ArticleModel();
-            $re = $db->add_artilce($info);
-            if ($re) {
-                //如果为真，则修改返回成功信息
-                $status = 1;
-                $result = "发布成功";
-            } else {
-                //为假，返回失败信息
-                $result = "发布失败";
+        //验证结果不为真，则返回错误信息
+        if ($result !== true) {
+            return ['status' => $status, 'message' => $result];
+        }
+        //验证结果为真，继续执行
+        $type = $data['type'];
+        //判断是否是项目类型 ，如果是，则判断是否存在项目id
+        if ($data['type'] == 1) {
+            if (empty($data['project_id'])) {
+                return ['status' => $status, 'message' => '具体项目不能为空'];
             }
         }
+        $project_id = !empty($data['project_id']) ? $data['project_id'] : "";
+        $title = $data['title'];
+        $file = $request->file('image');
+        $brief = $data['brief'];
+        $content = $data['content'];
+        $source = $data['source'];
+        $author = Session::get('client_id');
+        //如果图片不为空，则保存图片,返回图片保存路径
+        if (!$file)
+            $file_path = $request->param('file_path');
+        else {
+            //存在图片，则判断上传图片是否在允许上传的类型$allow中
+            if (!in_array($file->getInfo()['type'], $allow)) {
+                $data = ['code' => 202, 'data' => '上传文件格式不正确'];
+            }
+            $file_path = Upload::file($file, $request->domain(), 'artilce');  //通过验证， 保存图片，返回路径
+        }
+        $info = [
+            'type' => $type,
+            'project_id' => $project_id,
+            'title' => $title,
+            'lis_img' => $file_path,
+            'brief' => $brief,
+            'content' => $content,
+            'source' => $source,
+            'author' => $author,
+            'create_time' => $date_now,
+            'update_time' => $date_now,
+        ];
+        //执行插入
+        $db = new ArticleModel();
+        $re = $db->add_artilce($info);
+        if ($re) {
+            //如果为真，则修改返回成功信息
+            $status = 1;
+            $result = "发布成功";
+        } else {
+            //为假，返回失败信息
+            $result = "发布失败";
+        }
+        //返回信息
         return ['status' => $status, 'message' => $result];
     }
 
 
     //用户删除文章，传入文章id ，判断是否当前用户拥有的文章，修改文章状态为3
-    public
-    function delete_article(Request $request)
+    public function delete_article(Request $request)
     {
+        //接收article_id
         $article_id = $request->param('article_id') ? $request->param('article_id') : 0;
         //验证文章是否是当前用户所拥有的
         $own = $_SESSION['client_info']['name'];
         $db = new ArticleModel();
         $result = $db->check_own($own, $article_id);
         if ($result) {
-            //为真，则修改文章状态为3
+            //为真，通过验证，则修改文章状态为3
             $change = $db->change_status($article_id);
             if ($change) {
                 return $this->return_info(1, '删除成功');
             }
-            return $this->return_info(0, '非法失败');
+            return $this->return_info(0, '删除失败');
         }
         return $this->return_info(0, '非法删除');
     }
 
-//显示用户自己发布的文章
-    public
-    function show_self_article()
+    //显示用户自己发布的文章
+    public function show_self_article()
     {
 
         $author = Session::get('client_id') ? Session::get('client_id') : "";
@@ -162,10 +163,11 @@ class Article extends Base
 
         $db = new ArticleModel();
         $auto_article = $db->select_self_article($author);
-        // return dump($auto_article);
+        // 如果返回值为空，则未查询到与当前用户相关的文章
         if (empty($auto_article)) {
             $auto_article = "未发布过文章";
         }
+        //渲染视图
         return $this->fetch('', ['article_info' => $auto_article]);
     }
 

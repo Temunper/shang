@@ -25,18 +25,36 @@ class Article extends Base
     //渲染文章页面，显示所有文章
     public function show_all_article()
     {
-        $data = Request::instance()->param();
-        //如果有ajax提交过来的搜索条件，则处理
-        //显示所有文章，按照时间的排序
+        //设置返回状态值
+        $status = 0;
+        $result = ""; //设置初始返回信息
+        $data = Request::instance()->param('search');  //提交按钮button 命名为search  如果提交中存在search 则为搜索事件，反正正常输出所有信息
+        if (isset($data['search'])) {
+            //存在search 执行搜索事件
+            $data = array_filter($data);  //除去data数组中值为false的的项
+            if (empty($data)) {
+                //判断取出空项后的数组是否为空，为空，则返回提示信息
+                $result = "请选择搜索信息";
+                return ['status' => $result, 'message' => $result];
+            }
+            //存在索引，则执行搜索
+            $article_info = $this->article_model->search_article($data);
+
+        } else {
+            //如果有ajax提交过来的搜索条件，则处理
+            //显示所有文章，按照时间的排序
+            $article_info = $this->article_model->all_article();
+        }
+        return $this->view->fetch('', ['article_info' => $article_info]);
     }
 
     //审批通过文章，修改状态
     public function approval_article()
     {
         //设置默认返回值，默认更新失败
-        $code = 0;
+        $code = 201;
         $results = "更新文章状态失败";
-        $status = 2;
+        $status = 2; //设置要修改的文章状态值
         //接收传入的article_id
         $data = Request::instance()->param('article_id');
         $article_id = $data ? (int)$data : 0;
@@ -55,9 +73,9 @@ class Article extends Base
     public function detele_article()
     {
         //设置默认返回值，默认更新失败
-        $code = 0;
+        $code = 201;
         $results = "删除文章失败";
-        $status = 4;
+        $status = 4;  //设置要修改的文章状态值
         //接收传入的article_id
         $data = Request::instance()->param('article_id');
         $article_id = $data ? (int)$data : 0;
@@ -69,12 +87,6 @@ class Article extends Base
             $results = "删除成功";
         }
         return ['code' => $code, 'msg' => $results];
-    }
-
-    //文章查询功能
-    public function query_article()
-    {
-        //根据 时间段，状态值，，
     }
 
 

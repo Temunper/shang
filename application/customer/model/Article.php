@@ -67,7 +67,7 @@ class Article extends Model
     public function getStatusAttr($status)
     {
         //状态：1未审核，2审核通过，3用户删除，4管理员删除
-        $value = [1 => '未审核', 2 => '审核通过', 3 => '用户删除', 4 => '客户删除', 5 => '管理员删除'];
+        $value = [1 => '未审核', 2 => '审核通过', 3 => '用户删除', 4 => '管理员删除'];
         return $value[$status];
     }
 
@@ -89,12 +89,13 @@ class Article extends Model
         }
         return [];
     }
-        //返回用户所拥有的项目id
-       public function select_project($id)
-       {
-           return Db::table('project')->field('project_id,name')->where('project_id', 'in', $id)->select();
-   
-       }
+
+    //返回用户所拥有的项目id
+    public function select_project($id)
+    {
+        return Db::table('project')->field('project_id,name')->where('project_id', 'in', $id)->select();
+
+    }
 
     /**
      * 新增文章

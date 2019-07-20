@@ -9,12 +9,13 @@
 namespace app\admin\controller;
 
 use app\admin\model\MessageModel;
-use \think\Session;
-use \think\Request;
+use think\Request;
 
 class Message extends Base
 {
     protected $message_model = null;
+    protected $code = 201;
+    protected $result = ""; //设置初始返回信息
 
     public function __construct(Request $request = null)
     {
@@ -23,56 +24,54 @@ class Message extends Base
 
     }
 
-    //渲染留言页面
+    //渲染后台查看留言页面
     public function message_page()
     {
-        return $this->view->fetch();
+        //获取留言信息，按照时间倒序
+
+        //设置返回状态值
+
+        $data = Request::instance()->param('search');  //提交按钮button 命名为search  如果提交中存在search 则为搜索留言事件，否则正常输出所有信息
+        if (isset($data['search'])) {
+            //存在search 执行搜索事件
+            $data = array_filter($data);  //除去data数组中值为false的的项
+            if (empty($data)) {
+                //判断取出空项后的数组是否为空，为空，则返回提示信息
+                $this->result = "请选择搜索信息";
+                return ['code' => $this->code, 'msg' => $this->result];
+            }
+            //存在索引，则传入参数执行搜索
+            $message_info = $this->message_model->search_message($data);
+
+        } else {
+            //如果有ajax提交过来的搜索条件，则处理
+            //显示所有文章，按照时间的排序
+            $message_info = $this->message_model->search_message();
+        }
+        return $this->view->fetch('', ['message_info' => $message_info]);
     }
 
-    //接收留言信息，验证信息，写入信息
-    public function check_message()
+    //系统删除留言功能
+    public function system_delete()
     {
-        $code = 1;
-
-        //获取当前用户信息
-        $client_info = Session::get('admin');
-        $client_name = $client_info['admin_name'];
-        $ip = Request::instance()->server('ip');
-        $data = Request::instance()->param(['project_id', 'content', 'phone']);
-        $rule = [
-            'project_id' => 'require',
-            'content' => 'require',
-            'phone' => 'require|length:11'
-        ];
-        $msg = [
-            'project_id' => ['require' => '项目不能为空'],
-            'content' => ['require' => '内容不能为空'],
-            'phone' => ['require' => '手机号不能为空',
-                'length' => '请输入合法的手机号'],
-        ];
-        $result = $this->validate($data, $rule, $msg);
-        if ($result === true) {
-            //通过验证。执行新增留言操作
-            $new_info = [
-                'client' => $client_name,
-                'time' => time(),
-                'project_id' => $data['project_id'],
-                'ip' => $ip,
-                'content' => $data['content'],
-                'phone' => $data['phone'],
-                'status' => 1,
-            ];
-            $res = $this->message_model->new_message($new_info);
-            if ($res) {
-                //执行成功，修改状态值和返回信息
-                $code = 200;
-                $result = "留言成功";
-            } else {
-                $result = "留言失败";
-            }
+        $data = Request::instance()->param('ids');
+        //如果$data['ids']为空，则返回错误信息
+        if (empty($data['ids'])) {
+            return ['code' => $this->code, 'msg' => '请选择要删除的数据'];
         }
-        //未通过验证，返回错误信息
-        return ['code' => $code, 'msg' => $result];
+        //不为空，则执行
+        $result = $this->message_model->system_do_delete($data);  //执行删除动作
+        if ($result) {
+            //为真，则执行成功，修改状态值和返回信息
+            $this->code = 200;
+            $this->result = "删除成功";
+        }
+        {
+            //执行失败，修改返回信息
+            $this->result = "删除失败";
+        }
+        //返回信息
+        return ['code' => $this->code, 'msg' => $this->result];
     }
 
 
