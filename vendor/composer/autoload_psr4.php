@@ -10,5 +10,5 @@ return array(
     'think\\captcha\\' => array($vendorDir . '/topthink/think-captcha/src'),
     'think\\' => array($baseDir . '/thinkphp/library/think'),
     'app\\' => array($baseDir . '/application'),
-    'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
+    'Overtrue\\Pinyin\\' => array($vendorDir . '/overtrue/pinyin/src'),
 );

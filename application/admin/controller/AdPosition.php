@@ -12,7 +12,9 @@ namespace app\admin\controller;
 use app\admin\common\Upload;
 use app\admin\model\AdModel;
 use app\admin\model\AdPositionModel;
+use think\Model;
 use think\Request;
+use think\Validate;
 
 class AdPosition extends Base
 {
@@ -31,50 +33,69 @@ class AdPosition extends Base
         }
         $adp = new AdPositionModel();
         $ad_position = $adp->get_all_adp($status, $name, $sort, $ad_id);
-        $this->assign($ad_position);
-        dump($ad_position);die;
+        $this->assign('ad_position', $ad_position);
         return $this->fetch();
     }
 
 //    删除广告位--项目
-    public function update_status(Request $request)
+    public function update_status()
     {
-        $adp = $request['ad_position'];
-        $d_adp = AdPositionModel::get('ad_position_id');
-        $d_adp->status = $adp['status'];
-        $d_adp->isUpdate(true)->save();
-        $data = ['code' => 200, 'data' => '更改成功'];
-        echo json_encode($data);
+        $request = Request::instance()->param();
+        $adp_id = $request['ad_position_id'];
+        $d_adp = AdPositionModel::get($adp_id);
+        if ($d_adp) {
+            $d_adp->status = 2;
+            if ($d_adp->isUpdate(true)->save()) {
+                $data = ['code' => 200, 'data' => '删除成功'];
+                return json_encode($data);
+            } else {
+                $data = ['code' => 202, 'data' => '删除失败'];
+                return json_encode($data);
+            }
+        } else {
+            $data = ['code' => 202, 'data' => 'id不存在'];
+            return json_encode($data);
+        }
+
     }
 
 //    广告位--项目添加
     public function add(Request $request)
     {
         $file = $request->file('file');
-        if (!$file)
+        if (empty($file))
             $file_path = $request->param('file_path');
         else {
-            if (mime_content_type($file) != ('image/gif' | 'image/png' | 'image/jpg')) {
-                $data = ['code' => 202, 'data' => '上传文件格式不正确'];
-                echo json_encode($data);
-            }
             $file_path = Upload::file($file, $request->domain(), 'ad_position');
         }
+        if ($file_path == "false") {
+            $data = ['code' => 202, 'data' => '文件格式只能为jpg和png'];
+            return json_encode($data);
+        }
         $adp = new AdPositionModel();
-        $adp->ad_id = $request['ad_id'];
-        $adp->project_id = $request['project_id'];
-        $adp->name = $request['name'];
+        $d_adp = $adp->where('ad_id', '=', $request->param('ad_id'))->where(" status = 1")->select();
+        foreach ($d_adp as $value) {
+            if ($value['name'] == $request->param('name')) {
+                $data = ['code' => 202, 'data' => '同一个广告位下已存在该name'];
+                return json_encode($data);
+            }
+        }
+        $adp->ad_id = $request->param('ad_id');
+        $adp->project_id = $request->param('project_id');
+        $adp->name = $request->param('name');
         $adp->image = $file_path;
-        $adp->abbr = $request['abbr'];
-        $adp->sort = $request['sort'];
-        $adp->click_num = $request['click_num'];
-        $adp->attention = $request['attention'];
-        if ($adp->save()) {
+        $adp->abbr = $request->param('abbr');
+        $adp->sort = $request->param('sort');
+        $adp->click_num = $request->param('click_num');
+        $adp->attention = $request->param('attention');
+        $adp->status = 1;
+        $result = $this->validate($adp->toArray(), 'AdPosition');
+        if ($adp->save() && true === $result) {
             $data = ['code' => 200, 'data' => '添加成功'];
-            echo json_encode($data);
+            return json_encode($data);
         } else {
-            $data = ['code' => 202, 'data' => '添加失败'];
-            echo json_encode($data);
+            $data = ['code' => 202, 'data' => '添加失败,' . $result];
+            return json_encode($data);
         }
     }
 
@@ -82,30 +103,39 @@ class AdPosition extends Base
     public function update(Request $request)
     {
         $file = $request->file('file');
-        if (!$file)
+        if (empty($file))
             $file_path = $request->param('file_path');
         else {
-            if (mime_content_type($file) != ('image/gif' | 'image/png' | 'image/jpg')) {
-                $data = ['code' => 202, 'data' => '上传文件格式不正确'];
-                echo json_encode($data);
-            }
             $file_path = Upload::file($file, $request->domain(), 'ad_position');
         }
-        $adp = AdPositionModel::get($request['ad_position_id']);
-        $adp->ad_id = $request['ad_id'];
-        $adp->project_id = $request['project_id'];
-        $adp->name = $request['name'];
+        if ($file_path == "false") {
+            $data = ['code' => 202, 'data' => '文件格式只能为jpg和png'];
+            return json_encode($data);
+        }
+        $adp = new AdPositionModel();
+        $d_adp = $adp->where('ad_id', '=', $request->param('ad_id'))->where(" status = 1")->select();
+        $adp = AdPositionModel::get($request->param('ad_position_id'));
+        foreach ($d_adp as $value) {
+            if ($value['name'] == $request->param('name') && $adp->name != $request->param('name')) {
+                $data = ['code' => 202, 'data' => '同一个广告位下已存在该name'];
+                return json_encode($data);
+            }
+        }
+        $adp->ad_id = $request->param('ad_id');
+        $adp->project_id = $request->param('project_id');
+        $adp->name = $request->param('name');
         if ($file_path) $adp->image = $file_path;
-        $adp->abbr = $request['abbr'];
-        $adp->sort = $request['sort'];
-        $adp->click_num = $request['click_num'];
-        $adp->attention = $request['attention'];
-        if ($adp->isUpdate(true)->save()) {
+        $adp->abbr = $request->param('abbr');
+        $adp->sort = $request->param('sort');
+        $adp->click_num = $request->param('click_num');
+        $adp->attention = $request->param('attention');
+        $result = $this->validate($adp->toArray(), 'AdPosition');
+        if ($adp->isUpdate(true)->save() && $result === true) {
             $data = ['code' => 200, 'data' => '修改成功'];
-            echo json_encode($data);
+            return json_encode($data);
         } else {
-            $data = ['code' => 202, 'data' => '修改失败'];
-            echo json_encode($data);
+            $data = ['code' => 202, 'data' => '修改失败' . $result];
+            return json_encode($data);
         }
     }
 }

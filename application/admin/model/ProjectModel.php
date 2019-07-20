@@ -17,7 +17,7 @@ class ProjectModel extends Model
     protected $table = 'project';
 
     //根据分类查询项目
-    function get_project_by_class($status,$class_id, $project_name, $client_name, $bind_code)
+    function get_project_by_class($status, $class_id, $project_name, $client_name, $bind_code)
     {
         if ($bind_code) {
             switch ($bind_code) {
@@ -29,7 +29,7 @@ class ProjectModel extends Model
                     break;
             }
         } else $bind = null;
-        $status?$c_status = "status = ". $status:$c_status = "status = 1";
+        $status ? $c_status = "status = " . $status : $c_status = "status = 1";
         $project_name ? $and = "name like '%" . $project_name . "%'" : $and = null;
         $class_id ? $where = 'class_id in(' . $class_id . ')' : $where = null;
         $client_name ? $client = "client_name like '%" . $client_name . "%'" : $client = null;
@@ -40,11 +40,11 @@ class ProjectModel extends Model
             ->where($bind)
             ->where($c_status)
             ->order('project_id', 'desc')
-            ->field('*','time')
-            ->paginate(10)->each(function ($item,$key){
-                if ($item['status'] == 1){
+            ->field('*', 'time')
+            ->paginate(10)->each(function ($item, $key) {
+                if ($item['status'] == 1) {
                     $item['status'] = '正常';
-                }else $item['status'] = '已删除';
+                } else $item['status'] = '已删除';
                 return $item;
             });
         return $result;
@@ -62,29 +62,23 @@ class ProjectModel extends Model
     //    添加项目
     function add_project($project)
     {
-        $result = Db::table($this->table)
-            ->insert($project);
+        $result = Db::table($this->table)->insert($project);
+
         return $result;
     }
 
-    //    更改状态，批量
-    function update_status($status)
+    //    删除
+    function update_status($project_id)
     {
-        try {
-            $result = $this->isUpdate()->saveAll($status);
-            Db::commit();
-        } catch (Exception $e) {
-            // 回滚事务
-            Db::rollback();
-        }
+        $result = $this->where('project_id', 'in', $project_id)->update(['status' => '1']);
         return $result;
     }
 
     //更改项目内容
-    function update_project($project, $id)
+    function update_project($project)
     {
         $result = Db::table($this->table)
-            ->where('project_id', '=', $id)
+            ->where('project_id', '=', $project['project_id'])
             ->update($project);
         return $result;
     }
@@ -97,16 +91,16 @@ class ProjectModel extends Model
 //    }
 
     // status属性读取器
-    protected function setStatus($data)
-    {
-        $status = [1 => '正常', 2 => '已删除'];
-        $result = [];
-        foreach ($data as $value) {
-            $value['status'] = $status[$value['status']];
-            $result[] = $value;
-        }
-        return $result;
-    }
+//    protected function setStatus($data)
+//    {
+//        $status = [1 => '正常', 2 => '已删除'];
+//        $result = [];
+//        foreach ($data as $value) {
+//            $value['status'] = $status[$value['status']];
+//            $result[] = $value;
+//        }
+//        return $result;
+//    }
 
 //    通过项目id获取项目
     function get_project_by_id($project_id)

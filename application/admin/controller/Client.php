@@ -33,5 +33,10 @@ class Client extends Base
         $result = $this->client_model->get_all_client();
         return $result;
       }
+//      创建用户
+     public function add($client){
+        $result = $this->client_model->add($client);
+        return $result;
+     }
 
 }
