@@ -48,7 +48,8 @@ class ClientprojectModel extends Model
     function del_cp($cp)
     {
         $result = Db::table($this->table)
-            ->delete('client_id = ' . $cp['client_id'] . ' and ' . ' project_id = ' . $cp['project_id']);
+            ->where('client_id = ' . $cp['client_id'] . ' and ' . ' project_id = ' . $cp['project_id'])
+            ->delete();
         return $result;
     }
 }

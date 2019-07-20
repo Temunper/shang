@@ -31,8 +31,8 @@ class Clientproject extends Base
         $client = new Client();
         $client = $client->get_all_client();
         $project = $this->clientproject_model->get_pro_no_bind();
-        $this->assign('client',json_encode($client));
-        $this->assign('project',json_encode($project));
+        $this->assign('client', json_encode($client));
+        $this->assign('project', json_encode($project));
         return $this->fetch();
     }
 
@@ -61,17 +61,30 @@ class Clientproject extends Base
         }
     }
 
+
 //    删除（解除）绑定
     public function unbinding()
     {
         $params = Request::instance()->post();
-        $result = $this->clientproject_model->del_cp($params);
-        if ($result) {
-            $data = ['code' => 200, 'data' => "解绑成功"];
-            echo json_encode($data);
+        if (true === $result = $this->validate($params, 'Clientproject')) {
+            $result = $this->clientproject_model->del_cp($params);
+            if ($result) {
+                $data = ['code' => 200, 'data' => "解绑成功"];
+                return json_encode($data);
+            } else {
+                $data = ['code' => 202, 'data' => "解绑失败"];
+                return json_encode($data);
+            }
         } else {
-            $data = ['code' => 202, 'data' => "解绑失败"];
-            echo json_encode($data);
+            $data = ['code' => 202, 'data' => "解绑失败," . $result];
+            return json_encode($data);
         }
+    }
+
+//    添加项目的时候添加绑定
+    public function before_pro($params)
+    {
+        $result = $this->clientproject_model->add_cp($params);
+        return $result;
     }
 }

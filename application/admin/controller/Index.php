@@ -9,6 +9,8 @@
 namespace app\admin\controller;
 
 
+use app\admin\common\Account;
+
 class Index extends Base
 {
 
@@ -22,8 +24,9 @@ class Index extends Base
         return $this->fetch('index/index2');
     }
 
-    public function get_msg()
+    public function test()
     {
-        return $this->fetch('/seeMsg');
+        $name = 'min';
+        Account::create($name);
     }
 }

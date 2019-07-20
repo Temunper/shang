@@ -7,7 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInit51906c22808a1500cf68bcd693f1721f
 {
     public static $files = array (
-        'ce89ac35a6c330c55f4710717db9ff78' => __DIR__ . '/..' . '/kriswallsmith/assetic/src/functions.php',
+        'dc1275c308c5b416beb314b6317daca2' => __DIR__ . '/..' . '/overtrue/pinyin/src/const.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
     );
 
@@ -22,9 +22,9 @@ class ComposerStaticInit51906c22808a1500cf68bcd693f1721f
         array (
             'app\\' => 4,
         ),
-        'S' => 
+        'O' => 
         array (
-            'Symfony\\Component\\Process\\' => 26,
+            'Overtrue\\Pinyin\\' => 16,
         ),
     );
 
@@ -45,26 +45,9 @@ class ComposerStaticInit51906c22808a1500cf68bcd693f1721f
         array (
             0 => __DIR__ . '/../..' . '/application',
         ),
-        'Symfony\\Component\\Process\\' => 
+        'Overtrue\\Pinyin\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/process',
-        ),
-    );
-
-    public static $prefixesPsr0 = array (
-        'C' => 
-        array (
-            'ComponentInstaller' => 
-            array (
-                0 => __DIR__ . '/..' . '/robloach/component-installer/src',
-            ),
-        ),
-        'A' => 
-        array (
-            'Assetic' => 
-            array (
-                0 => __DIR__ . '/..' . '/kriswallsmith/assetic/src',
-            ),
+            0 => __DIR__ . '/..' . '/overtrue/pinyin/src',
         ),
     );
 
@@ -73,7 +56,6 @@ class ComposerStaticInit51906c22808a1500cf68bcd693f1721f
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit51906c22808a1500cf68bcd693f1721f::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit51906c22808a1500cf68bcd693f1721f::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit51906c22808a1500cf68bcd693f1721f::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

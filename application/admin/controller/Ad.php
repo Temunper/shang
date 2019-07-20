@@ -13,6 +13,7 @@ use app\admin\common\Upload;
 use app\admin\model\AdModel;
 use think\Controller;
 use think\Request;
+use think\Validate;
 
 class Ad extends Base
 {
@@ -34,10 +35,19 @@ class Ad extends Base
     {
         $request = Request::instance()->param();
         $d_ad = AdModel::get($request['ad_id']);
-        $d_ad->status = $request['status'];
-        $d_ad->isUpdate(true)->save();
-        $data = ['code' => 200, 'data' => '更改成功'];
-        echo json_encode($data);
+        if ($d_ad) {
+            $d_ad->status = 2;
+            if ($d_ad->isUpdate(true)->save()) {
+                $data = ['code' => 200, 'data' => '删除成功'];
+                echo json_encode($data);
+            } else {
+                $data = ['code' => 202, 'data' => '删除失败'];
+                echo json_encode($data);
+            }
+        } else {
+            $data = ['code' => 202, 'data' => 'id不存在'];
+            return json_encode($data);
+        }
     }
 
 //    广告位添加
@@ -54,7 +64,7 @@ class Ad extends Base
             return json_encode($data);
         }
         $ad = new AdModel();
-        $d_ad = $ad->where('theme_id', '=', $request->param('theme_id'))->select();
+        $d_ad = $ad->where('theme_id', '=', $request->param('theme_id'))->where("status = 1")->select();
         foreach ($d_ad as $value) {
             if ($value['name'] == $request->param('name')) {
                 $data = ['code' => 202, 'data' => '同主题下广告位重复'];
@@ -65,11 +75,12 @@ class Ad extends Base
         $ad->theme_id = $request->param('theme_id');
         $ad->image = $file_path;
         $ad->status = 1;
-        if ($ad->save()) {
+        $result = $this->validate($ad->toArray(), 'Ad');
+        if ($ad->save() && $result === true) {
             $data = ['code' => 200, 'data' => '添加成功'];
             return json_encode($data);
         } else {
-            $data = ['code' => 202, 'data' => '添加失败'];
+            $data = ['code' => 202, 'data' => '添加失败,' . $result];
             return json_encode($data);
         }
     }
@@ -88,7 +99,7 @@ class Ad extends Base
             return json_encode($data);
         }
         $ad = new AdModel();
-        $d_ad = $ad->where('theme_id', '=', $request->param('theme_id'))->select();
+        $d_ad = $ad->where('theme_id', '=', $request->param('theme_id'))->where("status = 1")->select();
         $ad = AdModel::get($request->param('ad_id'));
         foreach ($d_ad as $value) {
             if ($value['name'] == $request->param('name') && $ad->name != $request->param('name')) {
@@ -99,11 +110,12 @@ class Ad extends Base
         $ad->name = $request->param('name');
         $ad->theme_id = $request->param('theme_id');
         if ($file_path) $ad->image = $file_path;
-        if ($ad->isUpdate(true)->save()) {
+        $result = $this->validate($ad->toArray(), 'Ad');
+        if ($ad->isUpdate(true)->save() && $result === true) {
             $data = ['code' => 200, 'data' => '修改成功'];
             echo json_encode($data);
         } else {
-            $data = ['code' => 202, 'data' => '修改失败'];
+            $data = ['code' => 202, 'data' => '修改失败,' . $result];
             echo json_encode($data);
         }
     }

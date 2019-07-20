@@ -31,4 +31,10 @@ class ClientModel extends Model
             ->select();
          return $result;
      }
+//     创建用户
+     function add($client){
+        $result = Db::table($this->table)
+            ->insert($client);
+        return $result;
+     }
 }
