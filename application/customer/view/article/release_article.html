@@ -7,7 +7,7 @@
         <h3>发布文章</h3>
     </div>
     <div class="addItem-con">
-        <form action="{:url('article/do_release')}" method="post" enctype="multipart/form-data">
+        <form action="{:url('article/do_release')}" method="post" enctype="multipart/form-data" id="uploadForm">
             <div class="con-item">
                 <label for="item-input3" class="con-item-l">文章类型</label>
                 <select id="item-type" class="con-item-r" name="type">
@@ -27,7 +27,7 @@
             </div>
             <div class="con-item">
                 <label for="item-input2" class="con-item-l">列表图片</label>
-                <input type="file" id="item-file_img" name='image'/>
+                <input type="file" id="pic_img" name='image'/>
             </div>
             <div class="con-item">
                 <label for="item-input1" class="con-item-l">简介</label>
@@ -51,19 +51,20 @@
 {/block}
 
 {block name="script"}
+<!--提交表单-->
 <script>
     $(function () {
         $("#publish").on('click', function (event) {
-            var formDate = new FormData();
-            var img_file = document.getElementById('item-file_img');
-            var file_obj = img_file.files[0];
+            // var formDate = new FormData("#uploadForm");
+            var formDate = new FormData(document.getElementById("uploadForm"));
+            formDate.append('img', $('#pic_img')[0].files[0]);
+            console.log($('#pic_img')[0].files[0]);
             var type_obj = $("#item-type").val();
             var title_obj = $("#item-input1").val();
             var brief_obj = $("#item-brief").val();
             var content_obj = $("#item-content").val();
             var source_obj = $("#item-source").val();
             formDate.append('type', type_obj);
-            formDate.append('img', file_obj);
             formDate.append('title', title_obj);
             formDate.append('brief', brief_obj);
             formDate.append('content', content_obj);
@@ -75,6 +76,8 @@
                 async: false,
                 processData: false,
                 contentType: false,
+                cache: false,
+                dataType: 'json',
                 beforeSend: function () {
                     console.log("正在进行，请稍候");
                 },

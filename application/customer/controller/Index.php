@@ -17,8 +17,7 @@ class Index extends Base
     //渲染客户后台主页
     public function index()
     {
-          $this->is_login();
-
+        $this->is_login();  //判断用户是否登录
         //统计今天总留言
         $client_id = Session::get('client_id');
         $client_info = Session::get('client_info');
@@ -28,16 +27,16 @@ class Index extends Base
         $time_now = time();
 
         $db = new IndexModel();
-        $project_id = $db->check_project($client_id);  //获得项目id
+        $project_id = $db->check_project($client_id);  //根据当前拥用户client_id获得用户所有项目id
         $count = [];
         if (!empty($project_id)) {
             $str = "";
             for ($i = 0; $i < count($project_id); $i++) {
-                $str .= $project_id[$i]['project_id'] . ',';
+                $str .= $project_id[$i] . ',';
             }
             $str = rtrim($str, ',');
-            $count = $db->check_count($str, $time, $time_now);
-            $count = $count[0]['total'];
+            $count = $db->check_count($str);
+            $count = $count[0]['count(*)'];
         } else {
             $count = "未发布任何项目";
         }

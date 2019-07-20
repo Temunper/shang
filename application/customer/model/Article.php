@@ -82,19 +82,28 @@ class Article extends Model
     //通过id 查询所拥有的项目
     public function check_project($client_id)
     {
-        $re = Db::table('clientproject')->field('project_id')
+        $re = Db::table('client_project')->field('project_id')
             ->where('client_id', $client_id)->select();
         if ($re) {
             return $re;
         }
         return [];
     }
+        //返回用户所拥有的项目id
+       public function select_project($id)
+       {
+           return Db::table('project')->field('project_id,name')->where('project_id', 'in', $id)->select();
+   
+       }
 
-    public function select_project($id)
+    /**
+     * 新增文章
+     * 传入一个数组@param
+     * 成功返回受影响行数
+     */
+    public function add_artilce($params)
     {
-        return Db::table('project')->field('project_id,name')->where('project_id', 'in', $id)->select();
-
+        return self::insert($params);
     }
-
 
 }

@@ -45,11 +45,18 @@ class Article extends Base
     //发布文章
     public function do_release(Request $request)
     {
+        //设置允许上传的图片类型
+        $allow = [
+            'image/gif',
+            'image/png',
+            'image/jpg',
+            'image/jpeg'
+        ];
 
-        $status = 0;
-        $result = "123";
-        $date_now = time();
+        $status = 0;   //设置初始状态值
+        $date_now = time();  //获得当前时间戳
         $data = $request->param(true);
+        //设置验证规则
         $rule = [
             'type|类型' => 'egt:1',
             'title|标题' => 'require|length:2,20',
@@ -58,6 +65,7 @@ class Article extends Base
             'content|内容' => 'require',
             'source|来源' => 'require',
         ];
+        //设置错误返回信息
         $msg = [
             'type' => ['egt' => '项目类型必选'],
             'title' => ['require' => '标题不能为空',
@@ -68,24 +76,33 @@ class Article extends Base
             'content' => ['require' => '内容不能为空'],
             'source' => ['require' => '来源不能为空'],
         ];
-        //验证规则
+        //执行验证
         $result = $this->validate($data, $rule, $msg);
         if ($result === true) {
             //通过验证，
+
             $type = $data['type'];
+            if ($data['type'] == 1) {  //判断是否是项目类型 ，如果是，则判断是否存在项目id
+                if (empty($data['project_id'])) {
+                    return ['status' => $status, 'message' => '项目不能为空'];
+                }
+            }
             $project_id = !empty($data['project_id']) ? $data['project_id'] : "";
             $title = $data['title'];
-            $lis_img = !$_FILES['image'] ? $_FILES['image'] : "";
+            $file = $request->file('image');
             $brief = $data['brief'];
             $content = $data['content'];
             $source = $data['source'];
             $author = Session::get('client_id');
-            //验证成功
             //如果普通不为空，则保存图片,返回图片保存路径
-            if (!empty($lis_img)) {
-                $img = new Upload();
-                $file_path = $img->upload_file($lis_img);
-
+            if (!$file)
+                $file_path = $request->param('file_path');
+            else {
+                //判断上传图片是否在允许上传的类型$allow中
+                if (!in_array($file->getInfo()['type'], $allow)) {
+                    $data = ['code' => 202, 'data' => '上传文件格式不正确'];
+                }
+                $file_path = Upload::file($file, $request->domain(), 'artilce');
             }
             $info = [
                 'type' => $type,
@@ -99,16 +116,23 @@ class Article extends Base
                 'create_time' => $date_now,
                 'update_time' => $date_now,
             ];
-
-            $status = 1;
-            $result = "发布成功";
+            //执行插入
+            $db = new ArticleModel();
+            $re = $db->add_artilce($info);
+            if ($re) {
+                //如果为真，则修改返回成功信息
+                $status = 1;
+                $result = "发布成功";
+            } else {
+                //为假，返回失败信息
+                $result = "发布失败";
+            }
         }
-        return ['status' => $status, 'message' => $result, 'data' => $data];
+        return ['status' => $status, 'message' => $result];
     }
-    //return $this->return_info(0, '验证失败，请检查');
 
 
-//用户删除文章，传入文章id ，判断是否当前用户拥有的文章，修改文章状态为3
+    //用户删除文章，传入文章id ，判断是否当前用户拥有的文章，修改文章状态为3
     public
     function delete_article(Request $request)
     {
@@ -143,8 +167,6 @@ class Article extends Base
             $auto_article = "未发布过文章";
         }
         return $this->fetch('', ['article_info' => $auto_article]);
-
-
     }
 
 

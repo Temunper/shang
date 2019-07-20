@@ -24,38 +24,39 @@ class Client extends Base
     //验证登录
     public function check_login(Request $request)
     {
-        $status = 0;
-        $result = "";
-        //验证是否已经登录，存在session
-        $this->already_login();
+        $this->already_login();//判断用户是否已经登录，防止重复登录
+        $status = 0;            //设置初始返回状态值
+        $result = "";           //设置初始返回信息
         $data = $request->param();
-        $user = $data['user'];
-        $pass = $data['pass'];
-
         //简单验证
+        //验证规则
         $rule = [
             'user|用户名' => 'require',
             'pass|密码' => 'require',
             'verify|验证码' => 'require|captcha',
         ];
+        //自定义错误信息
         $msg = [
             'user' => ['require' => '用户名不能为空，请检查'],
             'pass' => ['require' => '密码不能为空，请检查'],
             'verify' => ['require' => '验证码不能为空，请检查',
                 'captcha' => '验证码错误'],
         ];
+        //验证信息
         $result = $this->validate($data, $rule, $msg);
-        if ($result === true) {
-
+        if ($result === true) {  //全等于true 则验证通过
+            $user = $data['user'];
+            $pass = $data['pass'];
             $db = new ClientModel();
             //通过用户名获取账户秘钥
-            $verify = $db->get_verify($user);
-            if (empty($verify)) {
+            $verify = $db->get_verify($user);  //通过用户名获取用户秘钥
+            if (empty($verify)) {    //如果秘钥为空，返回错误信息
                 return ['status' => $status, 'message' => '用户名或密码错误，请检查'];
             }
+            //查找到秘钥
             $map = [
                 'user' => htmlentities($user),
-                'pass' => md5($data['pass'] . $verify['verify'])
+                'pass' => md5($pass . $verify['verify'])
             ];
             //验证用户名和密码是否正确
             $cus_info = $db->check_login($map);

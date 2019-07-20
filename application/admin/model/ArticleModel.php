@@ -27,5 +27,15 @@ class ArticleModel
         return $result;
     }
 
+    /**
+     * 传入$params 文章id数组
+     * 审批文章，修改status =》2
+     * 返回受影响行数
+     */
+    public function change_status($params,$status)
+    {
+        return Db::table($this->table)->where($params)->update(['status' => $status]);
+    }
+
 
 }

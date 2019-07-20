@@ -59,13 +59,17 @@ class Upload
      * @param $pack    文件夹名
      * @return mixed|null
      */
-    public function file($file, $domain, $pack)
+    public static function file($file, $domain, $pack)
     {
         $upload_path = ROOT_PATH . 'public' . DS . 'uploads' . DS . $pack;       //上传路径
+        //判断文件夹是否存在
+        if (!file_exists($upload_path)) {
+            mkdir($upload_path, true);
+        }
         $photo_path = null;          //真实路径
         $local = ROOT_PATH . 'public';
         $info = null;
-        if (!file_exists($upload_path)) {                 //生成目录
+        if (!file_exists($upload_path)) {                 //如果目录不存在，则生成目录
             mkdir($upload_path, true);
         }
         if (!empty($file)) {                          //文件不为空则将文件输出到uploads

@@ -35,8 +35,8 @@ class Website extends Base
         if (!$file)
             $file_path = $request->param('file_path');
         else {
-            $file_path = Upload::file($file, $request->domain(),'logo');
-            if (mime_content_type($file) != ('image/gif' | 'image/png' | 'image/jpg')) {
+            $file_path = Upload::file($file, $request->domain(), 'logo');
+            if (mime_content_type($file) != ('image/gif' & 'image/png' | 'image/jpg')) {
                 $data = ['code' => 202, 'data' => '上传文件格式不正确'];
                 echo json_encode($data);
             }
@@ -90,12 +90,11 @@ class Website extends Base
         if (!$file)
             $file_path = $request->param('file_path');
         else {
-            Upload::check($file);die;
-//            if () {
-//                $data = ['code' => 202, 'data' => '上传文件格式不正确'];
-//                echo json_encode($data);
-//            }
-            $file_path = Upload::file($file, $request->domain(),'logo');
+            if (mime_content_type($file) != ('image/gif' | 'image/png' | 'image/jpg')) {
+                $data = ['code' => 202, 'data' => '上传文件格式不正确'];
+                echo json_encode($data);
+            }
+            $file_path = Upload::file($file, $request->domain(), 'logo');
         }
         $website = WebsiteModel::getByDomain($request['domain']);
         if (!preg_match('/^1[34578]\d{9}$/', $request['phone'])) {
@@ -126,8 +125,6 @@ class Website extends Base
             echo json_encode($data);
         }
     }
-
-
 
 
 //    文件验证

@@ -95,5 +95,12 @@ class Message extends Base
 
     }
 
+    //通过项目ip查询当天留言总数
+    public function check_message_count($project_id)
+    {
+        $db = new MessageModel();
+        return $db->check_count($project_id);
+    }
+
 
 }

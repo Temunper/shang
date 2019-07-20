@@ -93,11 +93,11 @@ class Message extends Model
         return date('Y-m-d H:i:s', $time);
     }
 
-    //留言时间修改器
-    /*    public function getIpAttr($ip)
-        {
-            return $this->get_city($ip);
-        }*/
+    //获取ip修改器
+  /*  public function getIpAttr($ip)
+    {
+        return $this->get_city($ip);
+    }*/
 
     //软删除客户的留言,将留言状态修改为4
     public function delete_message($data)
@@ -165,5 +165,19 @@ class Message extends Model
         $ipContent = file_get_contents($url);
         $ipContent = json_decode($ipContent, true);
         return $ipContent;
+    }
+
+    //通过项目ip 查询当天留言总数
+    //传入项目id数组$params
+    public function check_count($params)
+    {
+        $time_old = strtotime(date('Ymd'));  //当天零点的时间戳
+        $time_new = time(); // 当前时间的时间戳
+        $re = self::all(function ($query) use ($time_new, $time_old, $params) {
+            $query->where($params)
+                ->where('time', '>=', $time_old)
+                ->where('time', '<=', $time_new);
+        });
+        return dump($this->getLastSql());
     }
 }

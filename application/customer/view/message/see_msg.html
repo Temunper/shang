@@ -45,12 +45,12 @@
                         <input type="checkbox" class="table-checkbox selectAll"/>
                         <span>全选</span>
                     </th>
-                    <th>项目</th>
+
                     <th>用户名</th>
                     <th>时间</th>
                     <th>项目</th>
                     <th>地址</th>
-                    <th>时间</th>
+                    <th>留言</th>
                     <th>手机号</th>
                     <th>状态</th>
                     <th>操作</th>
@@ -59,8 +59,7 @@
                 <tbody>
                 {volist name="message_info" id="vo"}
                 <tr v-for="messageList in messageLists" id="tr_{$vo.message_id}">
-                    <td><input type="checkbox" class="table-checkbox checkboxone"/></td>
-                    <td>{$vo.message_id}</td>
+                    <td><input type="checkbox" class="table-checkbox checkboxone" value="{$vo.message_id}"></td>
                     <td>{$vo.client}</td>
                     <td>{$vo.time}</td>
                     <td>{$vo.name}</td>
@@ -69,7 +68,9 @@
                     <td>{$vo.phone}</td>
                     <td>{$vo.status}</td>
                     <td class="tableOpe">
-                        <a id="de_{$vo.message_id}" href="javascript:void(0)">
+                        <a id="de_{$vo.message_id}"
+                           href="{:url('message_delete_message'),['message_id'=>$vo.message_id]}"
+                           data-id="{$vo.message_id} ">
                             <button class="operate del" id="delete_ar">删除
                             </button>
                         </a>
@@ -114,10 +115,26 @@
                 $(".selectAll").removeAttr("checked");     /*全部取消*/
                 $(".checkboxone").removeAttr("checked");
             }
-        })
+        });
         //删除
-        $(".operate.del").on('click', function () {
-            $(this).closest('tr').remove();
+        $("#delete_ar").on('click', function (event) {
+            //获取当前行的
+            var did = $(this).attr('data-id');
+            $.ajax({
+                type: "POST",               //提交方式
+                url: "{:url('message/delete_message')]}",  //url
+                data: {did: did},
+                dataType: 'json',
+                success: function (data) {
+                    if (data.status == 1) {
+                        alert(data.message);
+                        $(this).closest('tr').remove();
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            })
+
         });
     })
 </script>
