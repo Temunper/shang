@@ -18,22 +18,23 @@ class ThemeModel extends Model
     protected $autoWriteTimestamp = false;
     protected $resultSetType = 'collection';             //使对象可以直接转换为字符串数组
     protected $type = [
-        'time' => 'timestamp',
+        'time' => 'timestamp:Y-m-d h-i-s',
     ];
-    protected $insert = ['time'];
+    protected $insert = ['time', 'status'];
+
 
 //    查询所有主题
     function get_all_theme($status)
     {
-        $status?$c_status = "status = ". $status:$c_status = "status = 1";
+        $status ? $c_status = "status = " . $status : $c_status = "status = 1";
         $result = Db::table($this->table)
             ->where($status)
-            ->select()->each(function ($item,$key){
-            if ($item['status'] == 1){
-                $item['status'] = '正常';
-            }else $item['status'] = '已删除';
-            return $item;
-        });;
+            ->paginate(1000000)->each(function ($item, $key) {
+                if ($item['status'] == 1) {
+                    $item['status'] = '正常';
+                } else $item['status'] = '已删除';
+                return $item;
+            });;
         return $result;
     }
 
@@ -65,10 +66,18 @@ class ThemeModel extends Model
         return time();
     }
 
+    //    读取器和修改器
+    public function getStatusAttr($value)
+    {
+        $status = [1 => '正常', 2 => '删除'];
+        return $status[$value];
+    }
+
+
 //模型关联
     public function website()
     {
-        return $this->hasMany('WebsiteModel','theme_id','theme_id',['theme'=>'theme','website'=>'website'],'right');
+        return $this->hasMany('WebsiteModel', 'theme_id', 'theme_id', ['theme' => 'theme', 'website' => 'website'], 'right');
     }
 
 }

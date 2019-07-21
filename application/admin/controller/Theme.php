@@ -22,10 +22,11 @@ class Theme extends Base
     }
 
 //    主题页
-    public function theme(Request $request)
+    public function theme()
     {
-        isset($request['status']) ? $status = $request['status'] : $status = null;
-        $d_theme = $this->get_all_theme($status);
+        $d_theme = ThemeModel::all(function ($query) {
+            $query->where('status', '1');
+        })->toArray();
         $this->assign('theme', $d_theme);
         return $this->fetch();
     }
@@ -37,39 +38,48 @@ class Theme extends Base
     }
 
 //    添加主题
-    public function add_theme(Request $request)
+    public function add_theme()
     {
-
-        $user = ThemeModel::getByName($request['name']);
-        if (!$user) {
+        $request = Request::instance()->param();
+        $theme = new ThemeModel();
+        if ($request['name']) {
+            $theme = $theme->where('name', '=', $request['name'])->where('status = 1')->select()->toArray();
+        } else {
+            $data = ['code' => 202, 'data' => '主题名不为空'];
+            return json_encode($data);
+        }
+        if (!$theme) {
             $this->theme_model->name = $request['name'];
+            $this->theme_model->status = 1;
             if ($this->theme_model->save()) {
                 $data = ['code' => 200, 'data' => '添加成功'];
-                echo json_encode($data);
+                return json_encode($data);
             } else {
                 $data = ['code' => 202, 'data' => '添加失败'];
-                echo json_encode($data);
+                return json_encode($data);
             }
         } else {
             $data = ['code' => 202, 'data' => '主题已存在'];
-            echo json_encode($data);
+            return json_encode($data);
         }
     }
 
-//    更改主题状态
-    public function update_theme(Request $request)
+//    更改主题状态(删除)
+    public function update()
     {
+        $request = Request::instance()->param();
         $theme = $request['theme'];
         $d_theme = ThemeModel::get($theme['theme_id']);
-        $d_theme->status = $theme['status'];
+        $d_theme->status = 2;
         $d_theme->isUpdate(true)->save();
         $data = ['code' => 200, 'data' => '更改成功'];
         echo json_encode($data);
     }
 
 //    删除主题
-//    public function del_theme(Request $request)
+//    public function del_theme()
 //    {
+//$request = Request::instance()->param();
 //        $theme = ThemeModel::get($request['theme_id']);
 //        if ($theme) {
 //            $theme->delete();

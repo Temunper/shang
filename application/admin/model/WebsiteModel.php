@@ -28,7 +28,7 @@ class WebsiteModel extends Model
     function get_all_website($domain, $status)
     {
         $domain ? $where = "w.domain = like '%" . $domain . "%'" : $where = null;
-        $status ? $w_status = "w.status = " . $status : $w_status = null;
+        $status ? $w_status = "w.status = " . $status : $w_status = "w.status = 1";
         $result = Db::table($this->table)
             ->order('website_id', 'desc')
             ->alias('w')
@@ -39,6 +39,8 @@ class WebsiteModel extends Model
                 if ($item['status'] == 1) {
                     $item['status'] = '正常';
                 } else $item['status'] = '已删除';
+                if ($item['type'] == 2) $item['type'] = 'WAP';
+                else $item['type'] = 'PC';
                 return $item;
             });
         return $result;
@@ -51,8 +53,4 @@ class WebsiteModel extends Model
         return $status[$value];
     }
 
-    public function setStatusAttr($value, $data)
-    {
-        return '正常' == $data['status'] ? 1 : 2;
-    }
 }

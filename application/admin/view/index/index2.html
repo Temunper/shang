@@ -20,15 +20,13 @@
     //         // fd.append("resume", resume);
     // //判断是否传文件
     //         fd.append('file', file_obj);//向fd里面添加一个文件
-    //         fd.append('sort', '1005');
-    //         fd.append('name', 'cccddd');
-    //         fd.append('describe', 'ddddddddddddddddddddddddddddddddfdsafasd');
-    //         fd.append('f_class_id', 1003);
-    //         fd.append('class_id', 1017)
+    //         fd.append('domain', 'cdddcc');
+    //         fd.append('website_id', '3');
+    //
     //
     //         fd.append('file', file_obj);
     //         $.ajax({
-    //             url: "/admin/clas/update",
+    //             url: "/admin/website/update",
     //             type: 'POST',
     //             data: fd,
     //             processData: false,
@@ -45,14 +43,10 @@
 
     $(".confirm").click(function () {
         $.ajax({
-            url: "/admin/project/add",
+            url: "/admin/index/test",
             type: 'post',
             data: {
-                project: {
-                    project_id: 13,
-                    name: "hero111"
-                },
-                client_name:''
+                website_id:1
             },
             dataType: 'json',
             success: function (data) {

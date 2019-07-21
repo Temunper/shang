@@ -20,15 +20,17 @@
 
 .add-page {
     position: absolute;
-    z-index: 1000000;
-    margin-top: -687px;
+    z-index: 10;
+    margin-top: -764px;
     margin-left: -15px;
     width: 87%;
     height: 100%;
+    overflow-y: inherit;
+    visibility: hidden;
 }
 
 .list-page {
-    filter: blur(1px);
+    /*filter: blur(1px);*/
 }
 
 .signup-page input[type="text"] {
@@ -39,4 +41,60 @@
 .form-set {
     display: inline-block;
     float: left;
+}
+
+.input-left {
+    width: 54%;
+    float: left;
+}
+
+.input-right {
+    float: left;
+    width: 45%;
+}
+
+.font-left {
+    display: inline-block;
+    float: left
+}
+
+.text-area {
+    height: 78px;
+    margin-top: 15px;
+}
+
+.add-left {
+    height: 700px;
+    margin-left: 0;
+    width: 50%;
+    float: left;
+}
+
+.add-right {
+    height: 700px;
+    width: 50%;
+    float: right;
+}
+.submit-a{
+    width: 111px;
+    margin-top: 5px;
+    /*margin-left: 137px;*/
+}
+.submit-b{
+    width: 111px;
+    margin-left: 91px;
+    margin-top: 5px;
+}
+.left-first{
+    margin-top: -15px;
+}
+.line{
+    margin-left: 5px;
+    position: absolute;
+    margin-top: 8px;
+}
+
+#client_name{
+    margin-left: 90px;
+    margin-top: -46px;
 }
