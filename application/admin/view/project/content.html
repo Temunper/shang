@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>项目管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="__TEMPLATE__/css/style.css" rel='stylesheet' type='text/css'/>
+    <link href='__TEMPLATE__/css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
+    <script src="__TEMPLATE__/js/jquery-1.11.1.min.js"></script>
+    <script src="__TEMPLATE__/js/modernizr.custom.js"></script>
+    <script src="__TEMPLATE__/js/Chart.js"></script>
+    <script src="__TEMPLATE__/js/metisMenu.min.js"></script>
+    <script src="__TEMPLATE__/js/custom.js"></script>
+    <link href="__TEMPLATE__/css/custom.css" rel="stylesheet">
+    <script src="__TEMPLATE__/js/pie-chart.js" type="text/javascript"></script>
+    <link href="__TEMPLATE__/index/index.css" rel='stylesheet' type='text/css'/>
+    <link href="__TEMPLATE__/project/project.css" rel='stylesheet' type='text/css'/>
+    <script src="__TEMPLATE__/js/p.js"></script>
+</head>
+<body class="cbp-spmenu-push">
+<!-- 页面开始 -->
+<div class="main-content">
+    <!--左导航栏-->
+    {include file="main/left" /}
+    <!--左导航栏-->
+
+    <!-- 头部导航 -->
+    {include file="main/head" /}
+    <!-- //头部结束 -->
+
+
+    <!-- 主要内容-->
+    <div id="page-wrapper" style="min-height: 893px;height: 900px">
+
+        <!-- 详情开始 -->
+        <div class="bg content-page">
+            <div class="signup-page" style="margin-left: 90px;width: 80%;height: 826px;margin-top:-10px;">
+                <h2 class="title1" style="background-color: orange">项目详情</h2>
+                <div class="sign-up-row widget-shadow add-left">
+                    <div>
+                        <h6 class="font-left"> 项目名称</h6>
+                        <div class="col-sm-10">
+                            <input type="text" id="d_name" placeholder="" class="form-control1" value="{$project.name}">
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-left">项目简称</h6>
+                        <div class="col-sm-8">
+                            <input type="text" id="d_abbr" placeholder="" class="form-control1" value="{$project.abbr}">
+                        </div>
+                    </div>
+                    <div class="clearfix input-left">
+                        <h6 class="font-left">经营模式</h6>
+                        <div class="col-sm-9">
+                            <input type="text" id="d_pattern" placeholder="" class="form-control1" value="{$project.pattern}">
+                        </div>
+                    </div>
+                    <div class="clearfix input-right">
+                        <h6 class="font-left">群众</h6>
+                        <div class="col-sm-8" style="margin-left: 37px">
+                            <input type="text" id="d_crowd" placeholder="" class="form-control1" value="{$project.crowd}">
+                        </div>
+                    </div>
+                    <div class="clearfix area-data" data-place="{$project.area}">
+                        <h6 class="font-left">地区</h6>
+                        <div class="col-sm-4">
+                            <select class="form-control1" id="d_province"></select><i class="line">—</i>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control1 " id="d_city">
+                                <option value="0">市</option>
+                            </select><i class="line">—</i>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control1 " id="d_country">
+                                <option value="0">区/县</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 分类二级联动 -->
+                    <div class="input-left clearfix class-data" data-class="{$project.class_id}">
+                        <h6 class="font-left">一级分类</h6>
+                        <div class="col-sm-9">
+                            <select class="form-control1 d_first-class">
+                                <option value="" selected></option>
+                                {volist name="class" id="vo"}
+                                <option value="{$vo['class_id']}" data-son='{:json_encode_unicode($vo["son"])}'>
+                                    {$vo.name}
+                                </option>
+                                {/volist}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-right clearfix">
+                        <h6 class="font-left">二级分类</h6>
+                        <div class="col-sm-8">
+                            <select class="form-control1 d_second-class">
+                                <option value="" selected></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="clearfix input-left">
+                        <h6 class="font-left">客户电话</h6>
+                        <div class="col-sm-9">
+                            <input type="text" id="d_client_phone" placeholder="" class="form-control1" value="{$project.client_phone}">
+                        </div>
+                    </div>
+                    <div class="clearfix input-right">
+                        <h6 class="font-left">400-电话</h6>
+                        <div class="col-sm-8">
+                            <input type="text" id="d_400" placeholder="" class="form-control1" value="{$project.num_400}">
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-left">公司名称</h6>
+                        <div class="col-sm-10">
+                            <input type="text" id="d_company_name" placeholder="" class="form-control1" value="{$project.company_name}">
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-left">公司简称</h6>
+                        <div class="col-sm-10">
+                            <input type="text" id="d_company_addr" placeholder="" class="form-control1" value="{$project.company_addr}">
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-left">加盟优势</h6>
+                        <div class="col-sm-10">
+                            <textarea id="d_superiority" placeholder=""
+                                      class="form-control1 text-area">{$project.superiority}</textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-left">投资金额</h6>
+                        <div class="col-sm-6">
+                            <label> <select id="d_money" class="form-control1" style="margin-top: 10px">
+                                <option value="1">1-10万</option>
+                                <option value="2">10-20万</option>
+                                <option value="3">20-50万</option>
+                                <option value="4">50-100万</option>
+                            </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="clearfix input-left binding-client" style="        margin-left: 121px;margin-top: -47px;">
+                        <h6 class="font-left ">绑定客户客户</h6>
+                        <div class="col-sm-5" style="margin-left: 6px;margin-top: 3px;">
+                            <input id="d_client_name" readonly
+                                   class="form-control1" value="{$project.client_name}">
+                        </div>
+                        <input type="button" class="del-binding btn btn-sm btn-primary" id="binding-btn" value="解除绑定">
+                    </div>
+                </div>
+
+                <div class="sign-up-row widget-shadow add-right">
+                    <div class="left-first">
+                        <h6 class="font-left">市场前景</h6>
+                        <div class="col-sm-10">
+                            <textarea id="d_prospect" placeholder="" class="form-control1 text-area">{$project.prospect}</textarea>
+                        </div>
+                    </div>
+                    <div class="left-first">
+                        <h6 class="font-left">利润分析</h6>
+                        <div class="col-sm-10">
+                            <textarea id="d_analysis" placeholder="" class="form-control1 text-area">{$project.analysis}</textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-left">企业介绍</h6>
+                        <div class="col-sm-10">
+                            <textarea id="d_summary" placeholder="" class="form-control1 text-area">{$project.summary}</textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-left">联系我们</h6>
+                        <div class="col-sm-10">
+                            <textarea id="d_contact" placeholder="" class="form-control1 text-area">{$project.contact}</textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-left">关键词&nbsp;&nbsp;&nbsp;</h6>
+                        <div class="col-sm-10">
+                            <textarea id="d_keywords" placeholder="" class="form-control1 text-area">{$project.keywords}</textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-left">描述&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                        <div class="col-sm-10">
+                            <textarea id="d_description" placeholder=""
+                                      class="form-control1 text-area">{$project.description}</textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="font-left">客服类型</h6>
+                        <div class="col-sm-10">
+                            <input id="d_kf_type" placeholder="" class="form-control1" style="margin-top: 10px" value="{$project.kf_type}">
+                        </div>
+                    </div>
+
+                    <input type="button" class="btn btn-success d-submit-a" value="确认修改">
+
+                    <input type="button" class="btn btn-danger d-submit-b" value="取消">
+
+                </div>
+            </div>
+        </div>
+        <!-- 详情结束 -->
+        <!-- 主要内容结束 -->
+    </div>
+</div>
+<!---->
+
+</body>
+<script src="__TEMPLATE__/bootstrap/js/bootstrap.js"></script>
+<script src="__TEMPLATE__/icon/iconfont.js"></script>
+<script src="__TEMPLATE__/project/content.js">
+</script>
+<script>
+    var data_project = JSON.parse('{:json_encode_unicode($project)}').data;
+</script>
+</html>

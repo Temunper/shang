@@ -30,6 +30,7 @@ class Clas extends Controller
     /**
      * @return null
      */
+
 //    clas页
     public function clas()
     {
@@ -43,7 +44,6 @@ class Clas extends Controller
         $result = $this->clas_model->get_all_clas();
         $result = $this->set_tree($result);
         return $result;
-
     }
 
 //    查询分类

@@ -21,4 +21,11 @@ function json_encode_unicode($data = [])
     }
     return json_encode($data, JSON_UNESCAPED_UNICODE);
 }
-
+//全局过滤参数
+function special_filter($list){
+    $result = [];
+    foreach ($list as $key=>$item){
+        $result[$key] =htmlspecialchars($item, ENT_QUOTES);
+    }
+    return $result;
+}

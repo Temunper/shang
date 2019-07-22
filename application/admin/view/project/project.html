@@ -33,11 +33,12 @@
 
     <!-- 主要内容-->
     <div id="page-wrapper" style="min-height: 893px;">
+        <!-- 列表开始 -->
         <div class="main-page list-page">
 
             <!-- 项目分类 -->
             <div class="panel-info widget-shadow" style="height: 47px">
-                <label>一级分类：
+                <label class="all-class" data-all-class='{:json_encode_unicode($class)}'>一级分类：
                     <select name="" class="btn btn-toolbar btn-sm project-btn down-class">
                         <option value="0">所有</option>
                         <option value="" data-son=''>======</option>
@@ -87,7 +88,6 @@
                             <th>序号</th>
                             <th>项目名</th>
                             <th>经营模式</th>
-                            <th>地区</th>
                             <th>客户名</th>
                             <th>客户电话</th>
                             <th>400电话</th>
@@ -103,20 +103,19 @@
                         {volist name="project" id="vo"}
                         <tr>
                             <th scope="row">{$i}</th>
-                            <td>{$vo.name}</td>
+                            <td class="data-project" data-project='{:json_encode_unicode($vo)}'>{$vo.name}</td>
                             <td>{$vo.pattern}</td>
-                            <td>{$vo.area}</td>
                             <td>{$vo.client_name}</td>
                             <td>{$vo.client_phone}</td>
-                            <td>{$vo.400_num}</td>
+                            <td>{$vo.num_400}</td>
                             <td>{$vo.company_name}</td>
                             <td>{$vo.money}</td>
                             <td>{$vo.kf_name}</td>
                             <td>{$vo.kf_type}</td>
                             <td>{$vo.status}</td>
                             <td>
-                                <input type="button" value="详情" class="btn btn-info btn-sm">
-                                <input type="button" value="删除" class="btn btn-danger btn-sm">
+                                <input type="button" value="详情" class="btn btn-info btn-sm project-content">
+                                <input type="button" value="删除" class="btn btn-danger btn-sm project-del">
                             </td>
                         </tr>
                         {/volist}
@@ -130,181 +129,7 @@
             <!-- 项目列表结束 -->
             <!-- 项目添加 -->
         </div>
-
-
-        <div class="bg add-page">
-            <div class="signup-page" style="margin-left: 156px;width: 80%;height: 826px;margin-top:-10px;">
-                <h2 class="title1">添加项目</h2>
-                <div class="sign-up-row widget-shadow add-left">
-                    <div>
-                        <h6 class="font-left"> 项目名称</h6>
-                        <div class="col-sm-10">
-                            <input type="text" id="name" placeholder="" class="form-control1">
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="font-left">项目简称</h6>
-                        <div class="col-sm-8">
-                            <input type="text" id="abbr" placeholder="" class="form-control1">
-                        </div>
-                    </div>
-                    <div class="clearfix input-left">
-                        <h6 class="font-left">经营模式</h6>
-                        <div class="col-sm-9">
-                            <input type="text" id="pattern" placeholder="" class="form-control1">
-                        </div>
-                    </div>
-                    <div class="clearfix input-right">
-                        <h6 class="font-left">群众</h6>
-                        <div class="col-sm-8" style="margin-left: 37px">
-                            <input type="text" id="crowd" placeholder="" class="form-control1">
-                        </div>
-                    </div>
-                    <div class="clearfix">
-                        <h6 class="font-left">地区</h6>
-                        <div class="col-sm-4">
-                            <select class="form-control1" id="province"></select><i class="line">—</i>
-                        </div>
-                        <div class="col-sm-4">
-                            <select class="form-control1 " id="city">
-                                <option value="0">市</option>
-                            </select><i class="line">—</i>
-                        </div>
-                        <div class="col-sm-3">
-                            <select class="form-control1 " id="country">
-                                <option value="0">区/县</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- 分类二级联动 -->
-                    <div class="input-left clearfix">
-                        <h6 class="font-left">一级分类</h6>
-                        <div class="col-sm-9">
-                            <select class="form-control1 first-class">
-                                <option value="" selected></option>
-                                {volist name="class" id="vo"}
-                                <option value="{$vo['class_id']}" data-son='{:json_encode_unicode($vo["son"])}'>
-                                    {$vo.name}
-                                </option>
-                                {/volist}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="input-right clearfix">
-                        <h6 class="font-left">二级分类</h6>
-                        <div class="col-sm-8">
-                            <select class="form-control1 second-class">
-                                <option value="" selected></option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="clearfix input-left">
-                        <h6 class="font-left">客户电话</h6>
-                        <div class="col-sm-9">
-                            <input type="text" id="client_phone" placeholder="" class="form-control1">
-                        </div>
-                    </div>
-                    <div class="clearfix input-right">
-                        <h6 class="font-left">400-电话</h6>
-                        <div class="col-sm-8">
-                            <input type="text" id="400" placeholder="" class="form-control1">
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="font-left">公司名称</h6>
-                        <div class="col-sm-10">
-                            <input type="text" id="company_name" placeholder="" class="form-control1">
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="font-left">公司简称</h6>
-                        <div class="col-sm-10">
-                            <input type="text" id="company_addr" placeholder="" class="form-control1">
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="font-left">加盟优势</h6>
-                        <div class="col-sm-10">
-                            <textarea id="superiority" placeholder=""
-                                      class="form-control1 text-area"></textarea>
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="font-left">投资金额</h6>
-                        <div class="col-sm-10">
-                            <label> <select id="money" class="form-control1" style="margin-top: 10px">
-                                <option value="1">1-10万</option>
-                                <option value="2">10-20万</option>
-                                <option value="3">20-50万</option>
-                                <option value="4">50-100万</option>
-                            </select>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="clearfix input-left " style="margin-left: 120px;margin-top: -48px;">
-                        <h6 class="font-left ">*创建客户</h6>
-                        <div class="col-sm-10" style="margin-left: 0px;margin-top: -40px;">
-                            <input id="client_name" placeholder="client_name"
-                                   class="form-control1">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sign-up-row widget-shadow add-right">
-                    <div class="left-first">
-                        <h6 class="font-left">市场前景</h6>
-                        <div class="col-sm-10">
-                            <textarea id="prospect" placeholder="" class="form-control1 text-area"></textarea>
-                        </div>
-                    </div>
-                    <div class="left-first">
-                        <h6 class="font-left">利润分析</h6>
-                        <div class="col-sm-10">
-                            <textarea id="analysis" placeholder="" class="form-control1 text-area"></textarea>
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="font-left">企业介绍</h6>
-                        <div class="col-sm-10">
-                            <textarea id="summary" placeholder="" class="form-control1 text-area"></textarea>
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="font-left">联系我们</h6>
-                        <div class="col-sm-10">
-                            <textarea id="contact" placeholder="" class="form-control1 text-area"></textarea>
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="font-left">关键词&nbsp;&nbsp;&nbsp;</h6>
-                        <div class="col-sm-10">
-                            <textarea id="keywords" placeholder="" class="form-control1 text-area"></textarea>
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="font-left">描述&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
-                        <div class="col-sm-10">
-                            <textarea id="description" placeholder=""
-                                      class="form-control1 text-area"></textarea>
-                        </div>
-                    </div>
-                    <div>
-                        <h6 class="font-left">客服类型</h6>
-                        <div class="col-sm-10">
-                            <input id="kf_type" placeholder="" class="form-control1" style="margin-top: 10px">
-                        </div>
-                    </div>
-
-                    <input type="button" class="btn btn-success submit-a" value="确认提交">
-
-                    <input type="button" class="btn btn-danger submit-b" value="取消">
-
-                </div>
-            </div>
-        </div>
-
-
+        <!-- 列表结束 -->
         <!-- 主要内容结束 -->
     </div>
 </div>
@@ -314,5 +139,8 @@
 <script src="__TEMPLATE__/bootstrap/js/bootstrap.js"></script>
 <script src="__TEMPLATE__/icon/iconfont.js"></script>
 <script src="__TEMPLATE__/project/project.js">
+</script>
+<script>
+    var data_project = JSON.parse('{:json_encode_unicode($project)}').data;
 </script>
 </html>

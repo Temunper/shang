@@ -16144,6 +16144,7 @@ var district = [{
 }];
 
 function initProvince(peleid) {
+    console.log(peleid);
     $('#' + peleid).empty();
     $('#' + peleid).append('<option value="0">省/直辖市</option>');
     var pele = document.getElementById(peleid);
@@ -16195,34 +16196,32 @@ function getNum(proid, cityid, countryid) {
     proid = (Array(2).join('0') + proid).slice(-2);
     cityid = (Array(3).join('0') + cityid).slice(-3);
     countryid = (Array(4).join('0') + countryid).slice(-4);
-    var area ="1"+ proid + cityid + countryid;
+    var area = "1" + proid + cityid + countryid;
     return area;
 }
 
 function getPlace(area) {
-
-    console.log(area);
+    area = area.toString();
     var d_province = parseInt(area.substring(1, 3));
-    console.log(d_province);
     var d_city = parseInt(area.substring(3, 6));
     var d_country = parseInt(area.substring(6, 10));
 
-    for (i = 0; i < province.length; i++) {
-        if (d_province === province[i].ProID) {
-            d_province = province[i].name;
-        }
-    }
-
-    for (i = 0;i< city.length;i++) {
-        if (d_city === city[i]['CityID']) {
-            d_city = city[i]['name'];
-        }
-    }
-    for (i = 0;i< district.length;i++) {
-        if (d_country === district[i]['Id']) {
-            d_country = district[i]['DisName'];
-        }
-    }
+    // for (i = 0; i < province.length; i++) {
+    //     if (d_province === province[i].ProID) {
+    //         d_province = province[i].name;
+    //     }
+    // }
+    //
+    // for (i = 0; i < city.length; i++) {
+    //     if (d_city === city[i]['CityID']) {
+    //         d_city = city[i]['name'];
+    //     }
+    // }
+    // for (i = 0; i < district.length; i++) {
+    //     if (d_country === district[i]['Id']) {
+    //         d_country = district[i]['DisName'];
+    //     }
+    // }
     area = {
         province: d_province,
         city: d_city,

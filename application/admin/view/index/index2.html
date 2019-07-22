@@ -43,10 +43,10 @@
 
     $(".confirm").click(function () {
         $.ajax({
-            url: "/admin/index/test",
+            url: "/admin/project/add",
             type: 'post',
             data: {
-                website_id:1
+               name:1
             },
             dataType: 'json',
             success: function (data) {

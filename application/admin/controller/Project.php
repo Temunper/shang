@@ -63,6 +63,7 @@ class Project extends Base
     public function add()
     {
         $params = Request::instance()->post();
+        $params = special_filter($params);
         $d_project = $params['project'];
         $d_client = $params['client_name'];
         $project = $this->validate($d_project, 'Project');
@@ -71,7 +72,7 @@ class Project extends Base
                 if ($d_client) {            //判断是否需要绑定新的用户
                     try {
                         Db::startTrans();        //若需要添加客户，开启事务
-                        $this->project_model->add_project($d_project+['kf_id' => Session::get('admin')['admin_id']]);
+                        $this->project_model->add_project($d_project + ['kf_id' => Session::get('admin')['admin_id']]);
                         $d_project = ProjectModel::getByName($d_project['name']);
                         $d_client = Account::create($d_client);         //创建账号
                         $pass = $d_client;
@@ -120,7 +121,9 @@ class Project extends Base
     //更改项目内容
     public function update()
     {
-        $params = Request::instance()->post();
+
+        $params = Request::instance()->param();
+        $params = special_filter($params);
         $result = $this->validate($params, 'Project');
         if ($result === true) {
             $result = $this->project_model->update_project($params);
@@ -146,12 +149,15 @@ class Project extends Base
     //    项目详情
     public function content()
     {
+        $cl = new Clas();
         $params = Request::instance()->get();
-        $result = $this->project_model
+        $result = $this->project_model->table('view_pro')
             ->where('project_id', '=', $params['project_id'])
             ->find();
-        $data = ['code' => 200, 'project' => $result];
-        return json_encode($data);
+        $d_class = $cl->get_all_clas();
+        $this->assign("class",$d_class);
+        $this->assign("project",$result);
+        return $this->fetch();
     }
     //    项目验证
 //    public function check_project($project)
