@@ -63,9 +63,8 @@ class Project extends Base
     public function add()
     {
         $params = Request::instance()->post();
-        $params = special_filter($params);
-        $d_project = $params['project'];
         $d_client = $params['client_name'];
+        $d_project = special_filter($params['project']);
         $project = $this->validate($d_project, 'Project');
         if ($project === true) {
             if (!$this->project_model->get_project_by_name($d_project['name'])) {      //判断项目是否存在
@@ -155,9 +154,18 @@ class Project extends Base
             ->where('project_id', '=', $params['project_id'])
             ->find();
         $d_class = $cl->get_all_clas();
-        $this->assign("class",$d_class);
-        $this->assign("project",$result);
+        $this->assign("class", $d_class);
+        $this->assign("project", $result);
         return $this->fetch();
+    }
+
+//    添加项目
+    public function plus()
+    {
+        $cl = new Clas();
+        $d_class = $cl->get_all_clas();
+        $this->assign("class", $d_class);
+        return $this->fetch('project/add');
     }
     //    项目验证
 //    public function check_project($project)

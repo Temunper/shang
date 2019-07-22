@@ -41,7 +41,7 @@
                 <div class="sign-up-row widget-shadow add-left">
                     <div>
                         <h6 class="font-left"> 项目名称</h6>
-                        <div class="col-sm-10">
+                        <div class="col-sm-10 data-project-id" data-project-id="{$project.project_id}">
                             <input type="text" id="d_name" placeholder="" class="form-control1" value="{$project.name}">
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <!-- 分类二级联动 -->
-                    <div class="input-left clearfix class-data" data-class="{$project.class_id}">
+                    <div class="input-left clearfix class-data" data-class="{$project.class_id}"  data-all-class='{:json_encode_unicode($class)}'>
                         <h6 class="font-left">一级分类</h6>
                         <div class="col-sm-9">
                             <select class="form-control1 d_first-class">
@@ -135,7 +135,7 @@
                     </div>
                     <div>
                         <h6 class="font-left">投资金额</h6>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 get-money" data-money="{$project.money}">
                             <label> <select id="d_money" class="form-control1" style="margin-top: 10px">
                                 <option value="1">1-10万</option>
                                 <option value="2">10-20万</option>
@@ -145,7 +145,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="clearfix input-left binding-client" style="        margin-left: 121px;margin-top: -47px;">
+                    <div class="clearfix input-left binding-client" style="margin-left: 121px;margin-top: -47px;" data-client="{$project.client_id}" data-project="{$project.project_id}">
                         <h6 class="font-left ">绑定客户客户</h6>
                         <div class="col-sm-5" style="margin-left: 6px;margin-top: 3px;">
                             <input id="d_client_name" readonly
@@ -201,8 +201,6 @@
                     </div>
 
                     <input type="button" class="btn btn-success d-submit-a" value="确认修改">
-
-                    <input type="button" class="btn btn-danger d-submit-b" value="取消">
 
                 </div>
             </div>

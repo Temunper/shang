@@ -16144,7 +16144,6 @@ var district = [{
 }];
 
 function initProvince(peleid) {
-    console.log(peleid);
     $('#' + peleid).empty();
     $('#' + peleid).append('<option value="0">省/直辖市</option>');
     var pele = document.getElementById(peleid);
