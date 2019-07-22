@@ -63,14 +63,13 @@ class ProjectModel extends Model
     function add_project($project)
     {
         $result = Db::table($this->table)->insert($project);
-
         return $result;
     }
 
     //    删除
     function update_status($project_id)
     {
-        $result = $this->where('project_id', 'in', $project_id)->update(['status' => '1']);
+        $result = $this->where('project_id', 'in', $project_id)->update(['status' => '2']);
         return $result;
     }
 

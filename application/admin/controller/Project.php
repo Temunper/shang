@@ -70,17 +70,17 @@ class Project extends Base
             if (!$this->project_model->get_project_by_name($d_project['name'])) {      //判断项目是否存在
                 if ($d_client) {            //判断是否需要绑定新的用户
                     try {
-                        Db::startTrans();
-                        $this->project_model->add_project(array_merge($d_project, ['kf_id' => Session::get('admin')['admin_id']]));
+                        Db::startTrans();        //若需要添加客户，开启事务
+                        $this->project_model->add_project($d_project+['kf_id' => Session::get('admin')['admin_id']]);
                         $d_project = ProjectModel::getByName($d_project['name']);
-                        $d_client = Account::create($d_client);
+                        $d_client = Account::create($d_client);         //创建账号
                         $pass = $d_client;
                         $client = new Client();
                         $client->add($d_client['client']);
                         $d_client = ClientModel::getByName($d_client['client']['name']);
-                        $client_project = new Clientproject();
+                        $client_project = new Clientproject();               //实例化绑定项目和用户的类，绑定账号
                         $client_project->before_pro(['project_id' => $d_project->project_id, 'client_id' => $d_client->client_id]);
-                        Db::commit();
+                        Db::commit();              //提交事务
                         $data = ['code' => 200, 'data' => "添加成功", 'pass' => $pass];
                         return json_encode($data);
                     } catch (Exception $e) {
@@ -88,7 +88,7 @@ class Project extends Base
                         $data = ['code' => 202, 'data' => "添加失败"];
                         return json_encode($data);
                     }
-                } else {
+                } else {                          //若不创建用户，则直接添加
                     $this->project_model->add_project(array_merge($d_project, ['kf_id' => Session::get('admin')['admin_id']]));
                     $data = ['code' => 200, 'data' => "添加成功"];
                     return json_encode($data);

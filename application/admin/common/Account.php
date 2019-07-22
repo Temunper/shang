@@ -36,7 +36,7 @@ class Account
         }
         $pinyin = new pinyin();
         $password = substr($pass, 0, 12);
-        $verify = substr($pass, 13, 18);
+        $verify = substr($pass, 12, 18);
         $pass = md5($pass);
         $user = $pinyin->convert($name);
         $user = implode('', $user);
