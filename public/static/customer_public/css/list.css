@@ -120,6 +120,10 @@
     margin-right: 10px;
     background: #F56C6C;
 }
+.table .operate.delr {
+    margin-right: 10px;
+    background: #F56C6C;
+}
 
 .table .operate.del:hover {
     background: #f78989;

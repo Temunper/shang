@@ -8,45 +8,81 @@
     </div>
     <div class="seeMsg-con">
         <div class="seeMsg-con-bd">
+            <div class="seeMsg-con-hd clearfix">
+                <form action="{:url('article/show_self_article')}" method="post">
+                    <span class="seeMsg-name">时间段</span>
+                    <div class="calendarWarp">
+                        <input type="text" name="date1" class='ECalendar' id="ECalendar_date1" value=""
+                               placeholder="开始日期"/>
+                    </div>
+                    ~
+                    <div class="calendarWarp">
+                        <input type="text" name="date2" class='ECalendar' id="ECalendar_date2" value=""
+                               placeholder="结束日期"/>
+                    </div>
+                    <span class="seeMsg-name">文章类型</span>
+                    <select name="type">
+                        <option value=""></option>
+                        <option value="1">项目资讯</option>
+                        <option value="2">创业资讯</option>
+                        <option value="3">新闻资讯</option>
+                        <option value="4">热门专题</option>
+                        <option value="5">创业故事</option>
+                    </select>
+                    <span class="seeMsg-name">文章来源</span>
+                    <input type="text" name="source">
+                    <span class="seeMsg-name">审批状态</span>
+                    <select name="status">
+                        <option value=""></option>
+                        <option value="2">已通过</option>
+                        <option value="1">未审核</option>
+
+                    </select>
+
+                    <button class="seeMsg-search" name="search">搜索</button>
+                </form>
+                <div class="Special_button">
+                    <button class="seeMsg-export-btn" id="btn" type="button" style="margin-right: 115px">批量删除</button>
+                </div>
+            </div>
             <table class="table" cellspacing="0" cellpadding="0">
                 <thead>
                 <tr>
                     <th>
-                        <input type="checkbox" class="table-checkbox selectAll"/>
+                        <input type="checkbox" class="table-checkbox selectAll">
                         <span>全选</span>
                     </th>
-                    <th>编号</th>
                     <th>文章类型</th>
-                    <th>项目名称</th>
-                    <th>列表图片</th>
+                    <th>文章标题</th>
                     <th>简介</th>
-                    <th>内容</th>
-                    <th>留言内容</th>
                     <th>来源</th>
+                    <th>状态</th>
                     <th>操作</th>
                 </tr>
                 </thead>
 
                 <tbody>
+                {volist name="article_info" id="vo"}
                 <tr v-for="messageList in messageLists">
-                    {volist name="article_info" id="vo"}
-                    <td><input type="checkbox" class="table-checkbox checkboxone"/></td>
-                    <td>{$vo.article_id|defualt="暂无"}</td>
+                    <td><input type="checkbox" class="table-checkbox checkboxone" name="id[]" value="{$vo.article_id}">
+                    </td>
                     <td>{$vo.type}</td>
-                    <td>{$vo.name}</td>
-                    <td><img src="{$vo.lis_img}"></td>
+                    <td>{$vo.title}</td>
                     <td>{$vo.brief}</td>
-                    <td>{$vo.content}</td>
                     <td>{$vo.source}</td>
                     <td>{$vo.status}</td>
                     <td class="tableOpe">
-                        <button class="operate del">删除</button>
+                        <button class="operate delr" type="button" id="redact" data-id="{$vo.article_id}">编辑</button><button class="operate del" id="del" data-id="{$vo.article_id}">删除</button>
                     </td>
                 </tr>
                 {/volist}
                 </tbody>
             </table>
         </div>
+
+    </div>
+    <div align="center">
+        {$article_info->render()}
     </div>
 </div>
 {/block}
@@ -82,11 +118,75 @@
                 $(".selectAll").removeAttr("checked");
                 $(".checkboxone").removeAttr("checked");
             }
-        })
-        //删除
-        $(".operate.del").on('click', function () {
-            $(this).closest('tr').remove();
         });
+        //删除单条记录
+        $(".operate.del").on('click', function () {
+            if (confirm("确定要删除该文章吗")) {
+                //确定要删除，获取当前列的data-id
+                var ids = $(this).attr('data-id');
+                $.ajax({
+                    type: "POST",                   //设置提交方式为POST
+                    url: "{:url('message/delete_message')}", //设置URL
+                    data: {ids: ids},     //提交的数据
+                    dataType: 'json',        //提交的格式
+                    success: function (data) {
+                        if (data.status == 1) {        //返回值status 为1时为执行成功
+                            $(this).closest('tr').remove();   //执行成功，删除该列
+                            alert(data.message);              //弹出成功信息
+                            window.location.reload();
+                        } else {
+                            alert(data.message);            //执行失败，弹出失败信息
+                        }
+                    }
+                });
+            }
+        });
+
+        //批量删除
+        $("#btn").on('click', function () {
+
+            var msg_id = $('[name="id[]"]:checked').map(function () {
+                return this.value;
+            });
+            if (msg_id.length < 1) {
+                alert("请选择要删除的文章");
+                return;
+            } else {
+                var ids = [];
+                for (var i = 0; i < msg_id.length; i++) {
+                    ids += msg_id[i] + ',';
+                }
+                if (ids.length > 0) {
+                    ids = ids.substring(0, ids.length - 1);
+                }
+
+                // alert(ids);
+                //取出被选中的主键
+                $.ajax({
+                    type: "POST",                   //设置提交方式为POST
+                    url: "{:url('article/delete_article')}", //设置URL
+                    data: {ids: ids},     //提交的数据
+                    dataType: 'json',        //提交的格式
+                    cache: false,
+                    async: false,
+                    success: function (data) {
+                        if (data.status == 1) {        //返回值status 为1时为执行成功
+                            alert(data.message);              //弹出成功信息
+                            window.location.reload();
+                        } else {
+                            alert(data.message);            //执行失败，弹出失败信息
+                        }
+                    }
+                });
+            }
+        });
+
+        //点击编辑操作
+        $(".operate.delr").on('click', function () {
+            var ids = $(this).attr('data-id');  //获得当前行的项目id
+            //跳转到编辑文章页面
+            window.open("redact_article/ids/" + ids);
+        })
     })
 </script>
 {/block}

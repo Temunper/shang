@@ -16,7 +16,7 @@ use think\Session;
 class Message extends Base
 {
     //客户查看自己的留言
-    public function see_msg(Request $request)
+    public function see_msg()
     {
         $data = Request::instance()->post();
         //dump($data);die;
@@ -46,7 +46,8 @@ class Message extends Base
                 unset($map['phone']);
             }
             //执行搜索，返回搜索信息
-            $message_info = $db->check_exact($time1, $time2, $map, $id);
+             $message_info = $db->check_exact($time1, $time2, $map, $id);
+
         } else {
             //不存在search字段，则返回用户所有留言
             $message_info = $db->show_client_message($project_id);

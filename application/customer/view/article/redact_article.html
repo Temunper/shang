@@ -4,14 +4,14 @@
 {block name="content"}
 <div class="main">
     <div class="addItem-top">
-        <h3>发布文章</h3>
+        <h3>编辑文章</h3>
     </div>
     <div class="addItem-con">
         <form action="{:url('article/do_release')}" method="post" enctype="multipart/form-data" id="uploadForm">
             <div class="con-item">
-                <label for="item-input3" class="con-item-l">文章类型</label>
+                <label for="item-input1" class="con-item-l">文章类型</label>
                 <select id="item-type" class="con-item-r" name="type">
-                    <option value="">请选择文章类型</option>
+                    <option value="{$type_id}">当前类型:{$article_info.type}</option>
                     <option value="1">项目资讯</option>
                     <option value="2">创业资讯</option>
                     <option value="3">新闻资讯</option>
@@ -19,7 +19,7 @@
                     <option value="5">创业故事</option>
                 </select>
                 <select id="item-type2" class="con-item-r" name="project_id">
-                    <option>请选择相关项目</option>
+                    <option>当前项目: {$article_info.project_id ?? '未选择相关项目'}</option>
                     {volist name="project_info" id="vo"}
                     <option value="{$vo.project_id}">{$vo.name}</option>
                     {/volist}
@@ -27,27 +27,33 @@
             </div>
             <div class="con-item">
                 <label for="item-input1" class="con-item-l">标题</label>
-                <input type="text" id="item-title" class="con-item-r" name="title"/>
+                <input type="text" id="item-title" class="con-item-r" name="title" value="{$article_info['title']}">
             </div>
             <div class="con-item">
-                <label for="item-input2" class="con-item-l">列表图片</label>
-                <input type="file" id="pic_img" name='image'/>
+                <label for="item-input1" class="con-item-l">列表图片</label>
+                <img src="{$article_info['lis_img']}" style="height: 200px;width: 300px">
             </div>
+            <div class="con-item">
+                <label for="item-input1" class="con-item-l">更换列图</label>
+                <input type="file" id="pic_img" name='image'>
+            </div>
+
             <div class="con-item">
                 <label for="item-input1" class="con-item-l">简介</label>
-                <input type="text" id="item-brief" class="con-item-r" name="brief"/>
+                <input type="text" id="item-brief" class="con-item-r" name="brief" value="{$article_info['brief']}">
             </div>
             <div class="con-item">
                 <label for="item-input1" class="con-item-l">内容</label>
                 <textarea style="height: 200px;width: 300px;border-color: #DCDFE6" name="content"
-                          id="item-content"></textarea>
+                          id="item-content">{$article_info['content']}</textarea>
             </div>
             <div class="con-item">
                 <label for="item-input1" class="con-item-l">来源</label>
-                <input type="text" id="item-source" class="con-item-r" name="source"/>
+                <input type="text" id="item-source" class="con-item-r" name="source" value="{$article_info['source']}">
             </div>
             <div class="login-btn">
-                <button id="publish" type="button">发布</button>
+                <input type="hidden" value="{$article_info['article_id']}" id="hide" name="article_id">
+                <button id="publish" type="button">修改</button>
             </div>
         </form>
     </div>
@@ -60,22 +66,24 @@
     $(function () {
         $("#publish").on('click', function (event) {
             // var formDate = new FormData("#uploadForm");
+
             var formDate = new FormData(document.getElementById("uploadForm"));
             formDate.append('img', $('#pic_img')[0].files[0]);
-            console.log($('#pic_img')[0].files[0]);
             var type_obj = $("#item-type").val();
+            var pro_obj = $("#item-project").val();
             var title_obj = $("#item-title").val();
             var brief_obj = $("#item-brief").val();
             var content_obj = $("#item-content").val();
             var source_obj = $("#item-source").val();
             formDate.append('type', type_obj);
             formDate.append('title', title_obj);
+            formDate.append('project_id', pro_obj);
             formDate.append('brief', brief_obj);
             formDate.append('content', content_obj);
             formDate.append('source', source_obj);
             $.ajax({
                 type: "POST",
-                url: "{:url('article/do_release')}",
+                url: "{:url('article/change_self_article')}",
                 data: formDate,
                 async: false,
                 processData: false,

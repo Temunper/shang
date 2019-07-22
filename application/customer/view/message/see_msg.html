@@ -19,7 +19,7 @@
                 </div>
                 <!-- <input  type="date" value="2019-05-26"> ~
                 <input  type="date" value="2019-06-26"> -->
-                <span class="seeMsg-name"> 姓名</span>
+                <span class="seeMsg-name">用户名</span>
                 <input type="text" name="name">
                 <span class="seeMsg-name">手机号</span>
                 <input type="text" name="phone">
@@ -62,7 +62,7 @@
                                value="{$vo['message_id']}"></td>
                     <td>{$vo.client}</td>
                     <td>{$vo.time}</td>
-                    <td>{$vo.name}</td>
+                    <td>{$vo.project_id}</td>
                     <td>{$vo.ip}</td>
                     <td class="tableCon">{$vo.content}</td>
                     <td>{$vo.phone}</td>
@@ -75,14 +75,11 @@
                 </tbody>
             </table>
         </div>
-        <!--分页开始-->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">{$message_info->render()}</div>
-                <div class="col-md-4"></div>
-            </div>
+        <div align="center">
+            {$message_info->render()}
         </div>
+        <!--分页开始-->
+
         <!--分页结束-->
     </div>
 </div>
@@ -167,7 +164,6 @@
         });
 
         //批量删除
-
         $("#btn").on('click', function () {
 
             var msg_id = $('[name="id[]"]:checked').map(function () {

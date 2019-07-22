@@ -8,46 +8,45 @@
 
 namespace app\admin\controller;
 
-use app\admin\model\MessageModel;
+use app\admin\model\Message as MessageModel;
 use think\Request;
 
 class Message extends Base
 {
     protected $message_model = null;
-    protected $code = 201;
+    protected $code = 202;
     protected $result = ""; //设置初始返回信息
 
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
-        $this->message_model = new MessageModel();
-
+        $this->message_model = new MessageModel();   //创建模型实例
     }
 
     //渲染后台查看留言页面
     public function message_page()
     {
         //获取留言信息，按照时间倒序
-
         //设置返回状态值
-
         $data = Request::instance()->param('search');  //提交按钮button 命名为search  如果提交中存在search 则为搜索留言事件，否则正常输出所有信息
         if (isset($data['search'])) {
-            //存在search 执行搜索事件
-            $data = array_filter($data);  //除去data数组中值为false的的项
-            if (empty($data)) {
-                //判断取出空项后的数组是否为空，为空，则返回提示信息
-                $this->result = "请选择搜索信息";
-                return ['code' => $this->code, 'msg' => $this->result];
-            }
-            //存在索引，则传入参数执行搜索
-            $message_info = $this->message_model->search_message($data);
+            //存在search ，执行搜索事件
+            //取出时间字段
+            $time = $data['time1'] ? $data['time1'] : 0;
+            $time2 = $data['time2'] ? $data['time2'] : 0;
+            //删除字段中的时间字段
+            unset($data['time1']);
+            unset($data['time2']);
+            $data = array_filter($data);  //删去data数组中值为false的的项，清除值为空的搜索字段
+            //执行搜索
+            $message_info = $this->message_model->search_message($time, $time2, $data);
 
         } else {
-            //如果有ajax提交过来的搜索条件，则处理
-            //显示所有文章，按照时间的排序
-            $message_info = $this->message_model->search_message();
+            //不存在search 字段 ，则执行搜索所有留言
+            //显示所有留言，按照时间的排序
+            $message_info = $this->message_model->show_all_message();
         }
+        //渲染模板
         return $this->view->fetch('', ['message_info' => $message_info]);
     }
 

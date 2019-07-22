@@ -20,36 +20,51 @@ class Article extends Model
     public function check_own($own, $id)
     {
         $data = ['article_id' => $id, 'author' => $own];
-        return self::where($data)->find();
+        return self::where($data)->find()->toArray();
+
+    }
+
+    //通过文章id 获取当前文章图片路径
+    public function get_image_path($article)
+    {
+        return self::where('article_id', $article)->value('lis_img');
+    }
+
+    //更新文章信息
+    public function update_article($params)
+    {
+        return self::update($params);
     }
 
     //删除文章，修改状态
     public function change_status($article_id)
     {
         $statue = 3;
-        return self::save(['status' => $statue], ['article_id' => $article_id]);
+        return self::where('article_id', 'in', $article_id)->update(['status' => $statue]);
     }
+
+    //精确搜索文章
+    public function accurate_article($time1, $time2, $params, $author)
+    {
+        return $re = self::where('update_time', '>', $time1)
+            ->where('update_time', '<', $time2)
+            ->where($params)
+            ->where('author', $author)
+            ->where('status', 'in', '1,2')
+            ->order('update_time', 'desc')
+            ->paginate(15);
+
+    }
+
 
     //查询用户自己发布的所有文章状态为1,2
     public function select_self_article($author)
     {
-        $re = self::all(function ($query) use ($author) {
-            $query->alias('a')
-                ->field('a.article_id,a.type,p.name,a.title,a.lis_img,a.brief,a.content,a.source,
-                    a.create_time,a.update_time,a.status')
-                ->join('project p', 'a.project_id = p.project_id', 'LEFT')
-                ->where('author', '=', $author)
-                ->where('a.status', 'in(1,2)');
-        });
+        return self::order('update_time', 'desc')
+            ->where('status', 'in', '1,2')
+            ->where('author', $author)
+            ->paginate(15);
 
-        // return dump($this->getLastSql());
-        if (!empty($re)) {
-            foreach ($re as $k => $v) {
-                $res [$k] = $v->toArray();
-            }
-            return $re;
-        }
-        return [];
     }
 
     //文章时间修改器
@@ -64,6 +79,20 @@ class Article extends Model
         return date('Y-m-d H:i:s', $update_time);
     }
 
+    //项目名称获取器
+    public function getProjectIdAttr($project_id)
+    {
+        return $this->check_project_name2($project_id);
+    }
+
+    //根据项目id查询项目名称，返回项目名称
+    public function check_project_name2($project_id)
+    {
+        return Db::table('project')->where('project_id', $project_id)->value('name');
+
+    }
+
+    //文章状态获取器
     public function getStatusAttr($status)
     {
         //状态：1未审核，2审核通过，3用户删除，4管理员删除
@@ -71,6 +100,7 @@ class Article extends Model
         return $value[$status];
     }
 
+    //文章类型获取器
     public function getTypeAttr($type)
     {
         //状态：1未审核，2审核通过，3用户删除，4管理员删除
@@ -82,12 +112,10 @@ class Article extends Model
     //通过id 查询所拥有的项目
     public function check_project($client_id)
     {
-        $re = Db::table('client_project')->field('project_id')
+        return $re = Db::table('client_project')->field('project_id')
             ->where('client_id', $client_id)->select();
-        if ($re) {
-            return $re;
-        }
-        return [];
+
+        //dump($this->getLastSql());die;
     }
 
     //返回用户所拥有的项目id
@@ -107,4 +135,12 @@ class Article extends Model
         return self::insert($params);
     }
 
+    //获取当前文章的type 字段值
+    public function get_type($client_id, $article_id)
+    {
+        return Db::table('article')->where('article_id', $article_id)
+            ->where('author', $client_id)
+            ->value('type');
+
+    }
 }

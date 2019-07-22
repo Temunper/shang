@@ -22,9 +22,30 @@
                 <input type="password" class="con-item-r" name="new_pass"/>
             </div>
             <div class="login-btn">
-                <button id="publish">修改</button>
+                <button id="publish" type="button">修改</button>
             </div>
         </form>
     </div>
 </div>
+{/block}
+{block name="script"}
+<script>
+    $(function () {
+        $("#publish").on('click', function (event) {
+            $.ajax({
+                type: "POST",
+                url: "{:url('client/change_pass')}",
+                data: $("form").serialize(),
+                dataType: 'json',
+                success: function (data) {   //返回值状态为1才执行
+                    if (data.status == 1) {
+                        alert(data.mssage);
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            })
+        })
+    })
+</script>
 {/block}

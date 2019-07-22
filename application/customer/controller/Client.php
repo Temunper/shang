@@ -8,10 +8,9 @@
 
 namespace app\customer\controller;
 
-use think\Controller;
-use think\Session;
-use think\Request;
 use app\customer\model\Client as ClientModel;
+use think\Request;
+use think\Session;
 
 class Client extends Base
 {
@@ -78,47 +77,68 @@ class Client extends Base
         return ['status' => $status, 'message' => $result,];
     }
 
-
 //注销
     public function logout()
     {
         Session::delete('client_id');
         Session::delete('client_info');
-        $this->redirect('client/login');
+        $this->redirect('client/login');  //重定向到登录页
     }
 
-//修改密码
+//渲染修改密码页
     public function show_change_pass()
     {
         //渲染修改页面
         return $this->view->fetch('', ['info' => $info = Session::get('client_info')]);
     }
 
+//修改密码
     public function change_pass(Request $request)
     {
-
+        $status = 0;
         //通过session 获取当前用户密码和秘钥
         $info = Session::get('client_info');
-        //与提交的原密码验证
-        $old_pass = $request->post('pass');
-        $new_pass = $request->post('new_pass');
-        $old_pass = md5($old_pass . $info['verify']);
+        //获取提交的数据
+        $data = $request->post();
+
+        //验证规则
+        $rule = [
+            'pass|原密码' => 'require',
+            'new_pass|新密码' => 'require|length:8,20'
+        ];
+        //验证错误返回信息
+        $msg = [
+            'pass' => ['require' => '原密码不能为空'],
+            'new_pass' => ['require' => '新密码不能为空',
+                'length' => '密码长度需为8至20位']
+        ];
+
+        $result = $this->validate($data, $rule, $msg);
+        if ($result !== true) {
+            //未通过验证，返回错误信息
+            return ['status' => $status, 'message' => $result];
+        }
+        //通过验证。
+        //
+        $old_pass = md5($data['pass'] . $info['verify']);
+        //与session中的用户密码验证
         if ($old_pass != $info['pass']) {
-            return $this->return_info(0, '原密码错误');
-        }
-        if (empty($new_pass)) {
-            return $this->return_info(0, '新密码不能为空');
-        }
-        if (strlen($new_pass) < 3 || strlen($new_pass) > 22) {
-            return $this->return_info(0, '密码长度为4-21');
+            //原密码错误，返回错误信息
+            return ['status' => $status, 'message' => '原密码错误'];
         }
         $db = new ClientModel();
-
-        $result = $db->save(['pass' => $new_pass], ['client_id' => $info['client_id']]);
+        $new = md5($data['new_pass'] . $info['verify']);
+        $result = $db->save(['pass' => $new], ['client_id' => $info['client_id']]);
         if ($result) {
-            return $this->return_info(1, '更新成功');
+            $status = 1;
+            $result = "更新成功,请重新登录";
         }
-        return $this->return_info(0, '更新失败');
+        {
+            $result = "更新失败";
+        }
+        $this->logout();
+        return ['status' => $status, 'message' => $result];
+
     }
 
 //随机生成用户账号
