@@ -4,78 +4,18 @@
         <div id="item4">
             <div class="item4box container">
                 <div class="itemsmallbox">
+                    <!--循环出父类名称-->
                     <div class="item4boxtitle">
                         <ul>
+                            {volist name = "clas" id = "item"}
+                            {if $item.f_class_id eq 0}
                             <li class="on">
-                                <a href="#">餐饮</a>
+                                <a href="#">{$item.name}</a>
                                 <i>
                                 </i>
                             </li>
-                            <li class="">
-                                <a href="#">母婴</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">零售</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">服装</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">教育</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">建材</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">服务</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">游乐</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">珠宝礼品</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">美容保健</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">家居</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">环保</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">微商</a>
-                                <i>
-                                </i>
-                            </li>
-                            <li class="">
-                                <a href="#">金融</a>
-                                <i>
-                                </i>
-                            </li>
+                            {/if}
+                            {/volist}
                         </ul>
                         <div class="selectmore">
                             <i>
@@ -84,134 +24,26 @@
                                 <a href="#" target="_blank">查看更多</a></p>
                         </div>
                     </div>
+                    <!--循环出父类名称结束-->
                     <div class="item4boxcontent">
+                        <!--广告父类循环-->
+                        {volist name="clas" id="vo"}
                         <div class="contentlist" style="display: block;">
                             <ul>
+                                <!--内容子广告循环-->
+                             <!--父类项目-->
+                                {volist name="vo['son']" id="item" }
                                 <li class="row1 col1">
                                     <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2019/05/09/822135.png"
+                                        <img src="{$item['image']}"
                                              alt="怒火八零"></a>
+                                    <span>{$item['name']}</span>
                                 </li>
+                                {/volist}
+                                <!--内容子广告结束-->
                             </ul>
                         </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/10/25/596323.jpg"
-                                             alt="爱玩爱游婴儿游泳亲子中心"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/07/13/562201.jpg"
-                                             alt="悠百佳"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490148.png"
-                                             alt="美季美优"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/10/29/463218.png"
-                                             alt="积木宝贝国际早教"></a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/04/01/529361.jpg"
-                                             alt="伟业板材"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/02/16/511537.jpg"
-                                             alt="洁希亚国际洗衣干洗"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/21/468136.png"
-                                             alt="盗梦科技VR体验馆"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/11/10/466965.png"
-                                             alt="谢瑞麟珠宝首饰"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490163.jpg"
-                                             alt="SO丝傲假发美发"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490185.png"
-                                             alt="米兰墙饰"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490211.jpg"
-                                             alt="双兢"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2016/12/07/490241.png"
-                                             alt="韩味源"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="contentlist" style="display: none;">
-                            <ul>
-                                <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="https://www.kmway.com/upload/resources/image/2017/09/19/587630.jpg"
-                                             alt="云保汇车险超市"></a>
-                                </li>
-                            </ul>
-                        </div>
+                        {/volist}
                     </div>
                 </div>
             </div>

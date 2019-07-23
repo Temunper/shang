@@ -10,24 +10,43 @@ namespace app\front\controller;
 
 
 use app\front\model\ProjectModel;
-use think\Model;
+use think\Controller;
+use think\Request;
 
-class Project extends Model
+class Project extends Controller
 {
-    protected $project_model = null;
-
-    public function __construct($data = [])
-    {
-        $this->project_model = new ProjectModel();
-        parent::__construct($data);
-    }
-
 //  根据类型获得项目
-    public function get_project_by_class()
+    /*   public function get_project_by_class()
+       {
+           $result = $this->project_model->get_project_with_class();
+           return $result;
+       }*/
+
+    public function project()
     {
-        $result = $this->project_model->get_project_with_class();
-        return $result;
+        $code = 202;
+        //接收传入的project_id 参数
+        $data = Request::instance()->param('project_id');
+
+        //根据project_id 查询所有相关信息
+        if (empty($data)) {
+            return json_encode(['code' => $code, 'msg' => '请选择要进入的项目']);
+        }
+
+        $base = new Index();
+        $base->base_message();  //引入网页公共信息
+        // 查询项目的所有相关信息
+        $db = new ProjectModel();
+        $project_info = $db->get_project_info($data);
+        if (empty($project_info)) {
+            return json_encode(['code' => 201, 'msg' => '不存在的项目，请检查']);   //查询数据为空，则返回错误信息
+        }
+        $this->assign('project_info', $project_info);    //返回当前项目的所有信息
+        return $this->view->fetch();
+
     }
+
+
 
 //    首页的生成树处理
 //    public function get_index_pro($class)

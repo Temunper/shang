@@ -20,16 +20,22 @@ class ArticleModel extends Model
 
 
     //根据类型type_id 显示文章咨询
-    public function show_article($param, $limit)
+    public function show_article($type)
     {
         //根据排序sort
-        $result = Db::table($this->table)
-            ->where($param)
-            ->where('status', '=', 1)
+        return Db::table($this->table)
+            ->where('type', $type)
+            ->where('status', '=', '2')
             ->order('update_time', 'desc')
-            ->paginate($limit);
-        //   return dump($this->getLastSql());
-        return $result;
+            ->paginate(15);
+
+    }
+
+    public function show_one_article($article_id)
+    {
+        //根据排序sort
+        return Db::table($this->table)->where('article_id', $article_id)->find();
+
     }
 
     //得到所有的文章

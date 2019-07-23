@@ -21,15 +21,7 @@
 <body>
 {include file="public/header"}
 {include file="public/search"}
-<div class="page-nav">
-    <div class="page-inner">
-        <a href="#" class="link link-150">项目分类</a>
-        <a href="list.html" class="link link-175">项目库</a>
-        <a href="newslist.html" class="link link-175">排行榜</a>
-        <a href="newslist.html" class="link link-175">创业资讯</a>
-        <a href="#" class="link link-175">精选展会</a>
-        <span style="color: #fff;float: right;line-height: 40px;">更新时间：2019-06-18</span></div>
-</div>
+{include file="public/hurdle"}
 <!-- 头部结束 -->
 
 
@@ -139,18 +131,19 @@
     <div class="content_list">
         <ul>
 
-
+    <!--循环开始-->
+            {volist name="ad_position" id="vo"}
             <li>
-                <img src="__PUB08__/images/cont_01_03.png"/>
-                <div class="cont_t"><a href="#">达芬奇全屋宅配</a><img src="__PUB08__/images/cont_b_01.png"/></div>
+                <img src="{vo.image}"/>
+                <div class="cont_t"><a href="#">{$vo.name}</a><img src="__PUB08__/images/cont_b_01.png"/></div>
                 <div class="cont_c">
                     <p>品牌行业：环保机械</p>
                     <p>所属地区：山东省</p>
                     <p class="cont_cm">热门关注：<img src="__PUB08__/images/cont_b_02.png"/></p>
-                    <p class="cont_cm">已申请加盟：7931</p>
+                    <p class="cont_cm">关注量:{$vo.attention}</p>
                 </div>
                 <div class="cont_b">
-                    <a href="project.html">
+                    <a href="../project/project.html">
                         <div class="cont_b_l left">查看详情</div>
                     </a>
                     <a href="#">
@@ -158,6 +151,10 @@
                     </a>
                 </div>
             </li>
+            <!--循环结束-->
+{/volist}
+
+
         </ul>
         <div style="clear:both"></div>
     </div>

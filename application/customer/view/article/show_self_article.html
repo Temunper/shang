@@ -126,7 +126,7 @@
                 var ids = $(this).attr('data-id');
                 $.ajax({
                     type: "POST",                   //设置提交方式为POST
-                    url: "{:url('message/delete_message')}", //设置URL
+                    url: "{:url('article/delete_article')}", //设置URL
                     data: {ids: ids},     //提交的数据
                     dataType: 'json',        //提交的格式
                     success: function (data) {

@@ -8,15 +8,7 @@
 
 <!--搜索栏结束-->
 {block name="content"}
-<div class="page-nav">
-    <div class="page-inner">
-        <a href="#" class="link link-150">项目分类</a>
-        <a href="{:url('Index/slist')}" class="link link-175">项目库</a>
-        <a href="{:url('Index/detail')}" class="link link-175">排行榜</a>
-        <a href="{:url('Index/newslist')}" class="link link-175">创业资讯</a>
-        <a href="#" class="link link-175">精选展会</a>
-        <span style="color: #fff;float: right;line-height: 40px;">更新时间：2019-06-18</span></div>
-</div>
+{include file="public/hurdle"}
 <div class="page-zhome-content">
     <div class="page-inner topinner">
         <!--  项目分类  -->
@@ -651,162 +643,127 @@
 <!-- 热门资讯结束 -->
 
 
+
 <!-- 创业项目推荐开始 -->
 <div class="cyxmT Gdv-com">
     <div class="hd">
         <h2 class="fl">创业项目推荐</h2>
         <span class="fr">
-      <a href="#" title="品牌餐饮加盟" target="_blank">品牌餐饮加盟</a>
+        {volist name = "ad_position" id = "item"}
+         {if $item.ad_id eq 1027 && $i<=6}
+      <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}加盟" target="_blank">{$item.name}加盟</a>
+         {else/}{php}$i--;{/php}
+          {/if}
+         {/volist}
         </span>
     </div>
     <div class="bd">
         <div class="cyxmT-box clearfix">
+            {php}$k=1028;{/php}
+            {volist name="clas" id="vo" length="3"}
             <dl>
                 <dt>
-                    <a href="#" target="_blank" title="餐饮美食">餐饮美食</a>
+                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
                     <span class="red">
-            <a target="_blank" title="九牛一杯牛排杯" href="#">小吃牛排杯 流行街头</a></span>
+            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    <a href="#" title="小吃" target="_blank">小吃</a>
+                    {volist name = "ad_position" id = "item" length="3"}
+                    {if $item.ad_id eq $k && $i<=5}
+                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                       target="_blank">{$item.name}</a>
+                    {else/}{php}$i--;{/php}
+                    {/if}
+                    {/volist}
                 </dd>
                 <em class="hot"></em>
             </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="生活服务">生活服务</a>
-                    <span class="green">
-            <a target="_blank" title="中农共信有机瓜菜工厂" href="#">无土栽培！变废为宝</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="干洗" target="_blank">干洗</a>
-                </dd>
-                <em class="hot"></em>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="酒水饮料">酒水饮料</a>
-                    <span class="orange">
-            <a target="_blank" title="臻好时冻酸奶" href="#">冻酸奶 灵活经营</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="茶饮" target="_blank">茶饮</a>
-                </dd>
-                <em class="hot"></em>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="服装鞋包">服装鞋包</a>
-                    <span class="green">
-            <a target="_blank" title="艾米女装" href="#">品牌的吸引低价的诱惑</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="女鞋" target="_blank">女鞋</a>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="建材装饰">建材装饰</a>
-                    <span class="blue">
-            <a target="_blank" title="智乐居全屋整装" href="#">百变定制即装即住</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="装饰装修" target="_blank">装饰装修</a>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="美容保养">美容保养</a>
-                    <span class="red">
-            <a target="_blank" title="嘉柏俪香薰化妆品" href="#">嘉柏俪精油护肤 好用</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="护肤品" target="_blank">护肤品</a>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="母婴用品">母婴用品</a>
-                    <span class="red">
-            <a target="_blank" title="爱亲母婴生活馆" href="#">线上线下 双渠道发展</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="母婴生活馆" target="_blank">母婴生活馆</a>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="教育网络">教育网络</a>
-                    <span class="green">
-            <a target="_blank" title="艾宾浩斯智能教育" href="#">智能教育 复制办校</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="在线教育" target="_blank">在线教育</a>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="汽车服务">汽车服务</a>
-                    <span class="orange">
-            <a target="_blank" title="洗车快手桑拿蒸汽洗车" href="#">双向经营 渠道多样</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="汽车美容" target="_blank">汽车美容</a>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="环保机械">环保机械</a>
-                    <span class="orange">
-            <a target="_blank" title="未来锂锂电池修复" href="#">智能电池修复整店输出</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="电池修复" target="_blank">电池修复</a>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="礼品饰品">礼品饰品</a>
-                    <span class="red">
-            <a target="_blank" title="昵美创意手机壳" href="#">手机壳 无需店面</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="手机壳" target="_blank">手机壳</a>
-            </dl>
-            <dl>
-                <dt>
-                    <a href="#" target="_blank" title="家居用品">家居用品</a>
-                    <span class="blue">
-            <a target="_blank" title="大懒猫懒人用品体验馆" href="#">懒人用品厂家直供</a></span>
-                </dt>
-                <dd>
-                    <a href="#" title="懒人用品" target="_blank">懒人用品</a>
+            {php}$k++;{/php}
+            {/volist}
 
+            {volist name="clas" id="vo" offset="3" length="3"}
+            <dl>
+                <dt>
+                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <span class="blue">
+            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
+                </dt>
+                <dd>
+                    {volist name = "ad_position" id = "item" }
+                    {if $item.ad_id eq $k && $i<=5}
+                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                       target="_blank">{$item.name}</a>
+                    {else/}{php}$i--;{/php}
+                    {/if}
+                    {/volist}
                 </dd>
             </dl>
+            {php}$k++;{/php}
+            {/volist}
+
+            {volist name="clas" id="vo" offset="6" length="3"}
+            <dl>
+                <dt>
+                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <span class="green">
+            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
+                </dt>
+                <dd>
+                    {volist name = "ad_position" id = "item" }
+                    {if $item.ad_id eq $k && $i<=5}
+                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                       target="_blank">{$item.name}</a>
+                    {else/}{php}$i--;{/php}
+                    {/if}
+                    {/volist}
+                </dd>
+            </dl>
+            {php}$k++;{/php}
+            {/volist}
+
+            {volist name="clas" id="vo" offset="9" length="3"}
+            <dl>
+                <dt>
+                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <span class="orange">
+            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
+                </dt>
+                <dd>
+                    {volist name = "ad_position" id = "item" }
+                    {if $item.ad_id eq $k && $i<=5}
+                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                       target="_blank">{$item.name}</a>
+                    {else/}{php}$i--;{/php}
+                    {/if}
+                    {/volist}
+                </dd>
+            </dl>
+            {php}$k++;{/php}
+            {/volist}
         </div>
-        <div class="cyxmT-link">
+        <!--热门推荐开始-->
+     <div class="cyxmT-link">
             <ul>
                 <li class="red">
-                    <a target="_blank" title="万聪智学教育" href="#">
-                        <font color="red">智能教学 家长认可</font></a>
+                    {volist name = "ad_position" id = "item"  offset = "0" length="5"}
+                    <a target="_blank" title="$item.name}" href="{:url('Index/project')}?project_id={$item.project_id}" style="color: red">{$item.name}</a>
+                    {/volist}
                 </li>
                 <li>
-                    <a target="_blank" title="ge鸡ge鸡泡泡鸡" href="#">有个新宠叫泡泡鸡</a>
+                    {volist name = "ad_position" id = "item"  offset = "5" length="5"}
+                    <a target="_blank" title="$item.name}" href="{:url('Index/project')}?project_id={$item.project_id}">{$item.name}</a>
+                    {/volist}
+                </li>
                 <li class="red">
-                    <a target="_blank" title="黑羊社奶茶" href="#">
-                        <font color="red">黑羊社天然潮饮！</font></a>
+                    {volist name = "ad_position" id = "item"  offset = "10" length="5"}
+                    <a target="_blank" title="$item.name}" href="{:url('Index/project')}?project_id={$item.project_id}" style="color: red">{$item.name}！</a>
+                    {/volist}
                 </li>
             </ul>
         </div>
+        <!--热门推荐结束-->
     </div>
 </div>
+
 {/block}
-<!-- 创业项目推荐结束 -->
 
-<!-- 广告位分类开始 -->
-
-<!-- 分类结束 -->
-
-
-<!-- 这是底部开始 -->

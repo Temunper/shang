@@ -37,25 +37,25 @@
 
 
                     <li class="active">
-                        <a href="{:url('index/newslist',['type'=>1])}"><span class="xwzx"></span>项目资讯 </a>
+                        <a href="{:url('article/newslist',['type'=>1])}"><span class="xwzx"></span>项目资讯 </a>
                     </li>
 
 
                     <li class="">
-                        <a href="{:url('index/newslist',['type'=>2])}"><span class="rmzt"></span>创业咨询 </a>
+                        <a href="{:url('article/newslist',['type'=>2])}"><span class="rmzt"></span>创业咨询 </a>
                     </li>
 
 
                     <li class="">
-                        <a href="{:url('index/newslist',['type'=>3])}"><span class="cyzs"></span>新闻咨询 </a>
+                        <a href="{:url('article/newslist',['type'=>3])}"><span class="cyzs"></span>新闻咨询 </a>
                     </li>
 
 
                     <li class="">
-                        <a href="{:url('index/newslist',['type'=>4])}"><span class="cygs"></span>热门咨询 </a>
+                        <a href="{:url('article/newslist',['type'=>4])}"><span class="cygs"></span>热门咨询 </a>
                     </li>
                     <li class="">
-                        <a href="{:url('index/newslist',['type'=>5])}"><span class="cygs"></span>创业故事 </a>
+                        <a href="{:url('article/newslist',['type'=>5])}"><span class="cygs"></span>创业故事 </a>
                     </li>
 
                 </ul>
@@ -72,13 +72,13 @@
         </div>
         <!--左侧导航结束-->
 
-        <!--列表开始-->
+        <!--内容开始-->
         <div id="tab" class="clearfix">
             <div class="pub-info">
-
                 {volist name="article_info" id="vo"}
+                {if $vo.type eq $type}
                 <div class="pub-info-list ">
-                    <a href="detail.html"><img src="{$vo.lis_img}" class="l"></a>
+                    <a href="../detail/detail.html"><img src="{$vo.lis_img}" class="l"></a>
                     <a href="{:url('index/detail',['article_id'=>$vo.article_id])}">
                         <h3 class="title">{$vo.title}</h3></a>
                     <p>
@@ -94,6 +94,7 @@
                                 </span>
                     </div>
                 </div>
+                {/if}
                 {/volist}
 
                 <!--显示页数-->
@@ -106,92 +107,9 @@
         </div>
         <!--列表结束-->
     </div>
-    <div class="right-ctn r">
-        <div class="latest-news r-box clearfix">
-            <div class="title btnone"><a href="{:url('index/newslist',['type'=>1])}">最新项目资讯</a>
-            </div>
-            <ul>
-                {volist name="project_notice" id="pro"}
-                <li><span class="red"></span><a href="{:url('index/detail',['article_id'=>$pro.article_id])}">{$pro.title}</a>
-                </li>
-                {/volist}
-            </ul>
-
-
-        </div>
-
-        <div class="new_bd">
-            <div class="title1">
-                <a href="{:url('index/newslist',['type'=>2])}" id="business" class="live">创业咨询</a>
-            </div>
-            <ul class="new">
-                {volist name="business_notice" id="bus"}
-                <li>
-                    <a href="{:url('index/detail',['article_id'=>$bus.article_id])}" target="_blank"
-                       title="{$bus.title}">
-                        <i></i>{$bus.title}</a>
-                </li>
-                {/volist}
-            </ul>
-
-        </div>
-        <div class="new_bd">
-            <div class="title1">
-                <a href="{:url('index/newslist',['type'=>3])}" id="news" class="live">新闻咨询</a>
-
-            </div>
-
-            <ul class="new">
-                {volist name="news_notice" id="ne"}
-                <li>
-                    <a href="{:url('index/detail',['article_id'=>$ne.article_id])}" target="_blank"
-                       title="{$ne.title}">
-                        <i></i>{$ne.title}</a>
-                </li>
-                {/volist}
-            </ul>
-        </div>
-        <div class="new_bd" id="hangyenews">
-            <div class="title1">
-                <a href="{:url('index/newslist',['type'=>4])}" class="live">热门专题</a>
-
-            </div>
-            <ul>
-                {volist name="hot_notice" id="hot"}
-                <li>
-                    <a href="{:url('index/detail',['article_id'=>$hot.article_id])}" target="_blank"
-                       title="{$hot.title}">{$hot.title}</a>
-                    <span>
-                    
-						
-							
-								{$hot.update_time}
-							
-							
-					
-                </span>
-                </li>
-                {/volist}
-            </ul>
-        </div>
-        <div class="new_bd">
-            <div class="title1">
-                <a href="{:url('index/newslist',['type'=>5])}" id="new" class="live">创业故事</a>
-            </div>
-            <ul class="new">
-                {volist name="business_story" id="vo"}
-                <li>
-                    <a href="{:url('index/detail',['article_id'=>$vo.article_id])}" target="_blank"
-                       title="{$vo.title}"><i></i>{$vo.title}</a>
-                </li>
-                {/volist}
-            </ul>
-        </div>
-
-        <div class="fixdbox">
-
-        </div>
-    </div>
+    <!--右侧咨询开始-->
+  {include file="public/consult"}
+    <!--右侧咨询结束-->
 </div>
 {include file="public/advertise"/}
 {include file="public/footer"/}

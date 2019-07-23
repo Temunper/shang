@@ -26,4 +26,13 @@ class ProjectModel extends Model
             ->select();
         return $result;
     }
+
+    //通过项目id  查询项目的所有信息
+    public function get_project_info($project_id)
+    {
+
+        return Db::table('project')->where('project_id', $project_id)
+            ->where('status', 2)->find();
+
+    }
 }

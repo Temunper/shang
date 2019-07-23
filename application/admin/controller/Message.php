@@ -17,6 +17,7 @@ class Message extends Base
     protected $code = 202;
     protected $result = ""; //设置初始返回信息
 
+    //构造函数，获取模型实例
     public function __construct(Request $request = null)
     {
         parent::__construct($request);

@@ -10,6 +10,7 @@ namespace app\customer\controller;
 
 use app\customer\common\Upload;
 use app\customer\model\Article as ArticleModel;
+use think\Exception;
 use think\Request;
 use think\Session;
 
@@ -233,7 +234,6 @@ class Article extends Base
         $status = 0;   //设置初始状态值
         $date_now = time();  //获得当前时间戳
         $data = $request->param(true);
-        dump($data);die;
         //设置验证规则
         $rule = [
             'type|类型' => 'egt:1',
@@ -257,6 +257,7 @@ class Article extends Base
         if ($result !== true) {
             return ['status' => $status, 'message' => $result]; //返回错误信息
         }
+        //为真，继续执行
         $db = new ArticleModel();
         $client_id = Session::get('client_id');  //获取当前用户id
         array_merge($data, ['update_time' => time()]);  //添加更新时间字段
@@ -276,23 +277,22 @@ class Article extends Base
             $file_path = Upload::file($file, $request->domain(), 'artilce');  //通过验证， 保存图片，返回路径
             array_merge($data, ['lis_img' => $file_path]);  //合并成数组
             //更新数据
-            //获取通过文字id获取旧图片路径
-
             $article_id = (int)$data['article_id'];
-            $res = $db->update_article($data);
-            $old_path = $db->get_image_path($article_id);
-            unlink($old_path);   //删除旧有图片
+            $old_path = $db->get_image_path($article_id);  //获得旧图片的路径
+            try {
+                $data = array_merge($data, ['status' => 1]);       //拼接字段status =》1 ,将文章设置为未审核状态
+                $res = $db->update_article($data);   //执行更新
+                unlink($old_path);   //删除旧有图片
+            } catch (Exception $e) {
+                $result = $e->getMessage();
+            }
+
         }
         if ($res) {
             //更新成功，修改返回状态值和返回信息
             $status = 1;
             $result = "更新成功";
-        } else {
-            //更新失败，修改返回信息
-            $result = "更新失败";
         }
         return ['status' => $status, 'message' => $result]; //返回信息
     }
-
-
 }

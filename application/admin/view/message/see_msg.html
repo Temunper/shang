@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>项目管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="__TEMPLATE__/css/style.css" rel='stylesheet' type='text/css'/>
+    <link href='__TEMPLATE__/css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
+    <script src="__TEMPLATE__/js/jquery-1.11.1.min.js"></script>
+    <script src="__TEMPLATE__/js/modernizr.custom.js"></script>
+    <script src="__TEMPLATE__/js/Chart.js"></script>
+    <script src="__TEMPLATE__/js/metisMenu.min.js"></script>
+    <script src="__TEMPLATE__/js/custom.js"></script>
+    <link href="__TEMPLATE__/css/custom.css" rel="stylesheet">
+    <script src="__TEMPLATE__/js/pie-chart.js" type="text/javascript"></script>
+    <link href="__TEMPLATE__/index/index.css" rel='stylesheet' type='text/css'/>
+    <link href="__TEMPLATE__/project/project.css" rel='stylesheet' type='text/css'/>
+    <script src="__TEMPLATE__/js/p.js"></script>
+</head>
+<body class="cbp-spmenu-push">
+<!-- 页面开始 -->
+<div class="main-content">
+    <!--左导航栏-->
+    {include file="main/left" /}
+    <!--左导航栏-->
+
+    <!-- 头部导航 -->
+    {include file="main/head" /}
+    <!-- //头部结束 -->
+    <div class="main">
+        <div class="seeMsg-top">
+            <h3>留言信息</h3>
+            <span>messages</span>
+        </div>
+        <div class="seeMsg-con">
+            <div class="seeMsg-con-hd clearfix">
+                <form action="{:url('message/see_msg')}" method="post">
+                    <span class="seeMsg-name">时间段</span>
+                    <div class="calendarWarp">
+                        <input type="text" name="date1" class='ECalendar' id="ECalendar_date1" value="" placeholder="开始日期"/>
+                    </div>
+                    ~
+                    <div class="calendarWarp">
+                        <input type="text" name="date2" class='ECalendar' id="ECalendar_date2" value="" placeholder="结束日期"/>
+                    </div>
+                    <!-- <input  type="date" value="2019-05-26"> ~
+                    <input  type="date" value="2019-06-26"> -->
+                    <span class="seeMsg-name">用户名</span>
+                    <input type="text" name="name">
+                    <span class="seeMsg-name">手机号</span>
+                    <input type="text" name="phone">
+                    <span class="seeMsg-name">项目选择</span>
+                    <select name="project_id">
+                        <option></option>
+                        {volist name="project" id="vo"}
+                        <option value="{$vo.project_id}">{$vo.name}</option>
+                        {/volist}
+                    </select>
+                    <button class="seeMsg-search" name="search">搜索</button>
+                </form>
+                <div class="Special_button">
+                    <button class="seeMsg-export-btn" id="btn" type="button">批量删除</button>
+                </div>
+            </div>
+            <div class="seeMsg-con-bd">
+                <table class="table" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" class="table-checkbox selectAll"/>
+                            <span>全选</span>
+                        </th>
+                        <th>用户名</th>
+                        <th>时间</th>
+                        <th>项目</th>
+                        <th>地址</th>
+                        <th>留言</th>
+                        <th>手机号</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {volist name="message_info" id="vo"}
+                    <tr v-for="messageList in messageLists">
+                        <td><input type="checkbox" class="table-checkbox checkboxone" name="id[]"
+                                   value="{$vo['message_id']}"></td>
+                        <td>{$vo.client}</td>
+                        <td>{$vo.time}</td>
+                        <td>{$vo.project_id}</td>
+                        <td>{$vo.ip}</td>
+                        <td class="tableCon">{$vo.content}</td>
+                        <td>{$vo.phone}</td>
+                        <td>{$vo.status}</td>
+                        <td class="tableOpe">
+                            <button class="operate del" data-id="{$vo.message_id}">删除</button>
+                        </td>
+                    </tr>
+                    {/volist}
+                    </tbody>
+                </table>
+            </div>
+            <div align="center">
+                {$message_info->render()}
+            </div>
+            <!--分页开始-->
+
+            <!--分页结束-->
+        </div>
+    </div>
+
+    <!-- 主要内容-->
+
+    <!---->
+</div>
+</body>
+<script src="__TEMPLATE__/bootstrap/js/bootstrap.js"></script>
+<script src="__TEMPLATE__/icon/iconfont.js"></script>
+<script src="__TEMPLATE__/project/add.js">
+</script>
+</html>
+<script type="text/javascript">
+    $(function () {
+        $("#ECalendar_date1").ECalendar({
+            type: "time",   //模式，time: 带时间选择; date: 不带时间选择;
+            stamp: false,   //是否转成时间戳，默认true;
+            offset: [0, 2],   //弹框手动偏移量;
+            format: "yyyy-mm-dd hh:ii",   //时间格式 默认 yyyy-mm-dd hh:ii;
+            skin: 3,   //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
+            step: 10,   //选择时间分钟的精确度;
+            callback: function (v, e) {
+            } //回调函数
+        });
+        $("#ECalendar_date2").ECalendar({
+            type: "time",   //模式，time: 带时间选择; date: 不带时间选择;
+            stamp: false,   //是否转成时间戳，默认true;
+            offset: [0, 2],   //弹框手动偏移量;
+            format: "yyyy-mm-dd hh:ii",   //时间格式 默认 yyyy-mm-dd hh:ii;
+            skin: 3,   //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
+            step: 10,   //选择时间分钟的精确度;
+            callback: function (v, e) {
+            } //回调函数
+        });
+        // 全选
+        $(".selectAll").on('click', function () {
+            if ($(".selectAll").prop("checked")) {
+                $(".checkboxone").prop("checked", "checked");
+            } else {
+                $(".selectAll").removeAttr("checked");
+                $(".checkboxone").removeAttr("checked");
+            }
+        });
+        //删除单条记录
+        $(".operate.del").on('click', function () {
+            if (confirm("确定要删除这条留言吗")) {
+                //确定要删除，获取当前列的data-id
+                var ids = $(this).attr('data-id');
+                $.ajax({
+                    type: "POST",                   //设置提交方式为POST
+                    url: "{:url('message/delete_message')}", //设置URL
+                    data: {ids: ids},     //提交的数据
+                    dataType: 'json',        //提交的格式
+                    success: function (data) {
+                        if (data.status == 1) {        //返回值status 为1时为执行成功
+                            $(this).closest('tr').remove();   //执行成功，删除该列
+                            alert(data.message);              //弹出成功信息
+                            window.location.reload();
+                        } else {
+                            alert(data.message);            //执行失败，弹出失败信息
+                        }
+                    }
+                });
+            }
+        });
+
+        //批量删除
+        $("#btn").on('click', function () {
+
+            var msg_id = $('[name="id[]"]:checked').map(function () {
+                return this.value;
+            });
+            if (msg_id.length < 1) {
+                alert("请选择要删除的留言");
+                return;
+            } else {
+                var ids = [];
+                for (var i = 0; i < msg_id.length; i++) {
+                    ids += msg_id[i] + ',';
+                }
+                if (ids.length > 0) {
+                    ids = ids.substring(0, ids.length - 1);
+                }
+
+                // alert(ids);
+                //取出被选中的主键
+                $.ajax({
+                    type: "POST",                   //设置提交方式为POST
+                    url: "{:url('message/delete_message')}", //设置URL
+                    data: {ids: ids},     //提交的数据
+                    dataType: 'json',        //提交的格式
+                    cache: false,
+                    async: false,
+                    success: function (data) {
+                        if (data.status == 1) {        //返回值status 为1时为执行成功
+                            alert(data.message);              //弹出成功信息
+                            window.location.reload();
+                        } else {
+                            alert(data.message);            //执行失败，弹出失败信息
+                        }
+                    }
+                });
+            }
+        });
+
+    })
+</script>
