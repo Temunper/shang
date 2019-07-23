@@ -34,17 +34,35 @@ class Clas extends Controller
 //    clas页
     public function clas()
     {
-        $this->assign('class',$this->get_all_clas());
+        $this->assign('clas', $this->get_all_clas());
+        return $this->fetch();
+    }
+
+//    add页
+    public function plus()
+    {
+        $this->assign('clas', $this->get_all_clas());
+        return $this->fetch("clas/add");
+    }
+
+//    content页
+    public function content(){
+        $request = Request::instance()->param();
+        $clas = ClasModel::get($request['class_id'],function ($query){
+           $query->where("status",1);
+        });
+        $this->assign('clas', $this->get_all_clas());
+        $this->assign('d_clas',$clas->toArray());
         return $this->fetch();
     }
 
 //    得到所有的分类
     public function get_all_clas()
-    {
-        $result = $this->clas_model->get_all_clas();
-        $result = $this->set_tree($result);
-        return $result;
-    }
+{
+    $result = $this->clas_model->get_all_clas();
+    $result = $this->set_tree($result);
+    return $result;
+}
 
 //    查询分类
     public function get_class_by_id($class_id)
@@ -107,13 +125,15 @@ class Clas extends Controller
             return json_encode($data);
         }
         $clas->status = 1;
+        $clas->f_class_id = $request->param('f_class_id');
         $clas->sort = $request->param('sort');
         $clas->name = $request->param('name');
         $clas->describe = $request->param('describe');
         $clas->image = $file_path;
-        $clas->pinyin = implode('', $pinyin->convert($request->param('name')));
-        $validate = $this->validate($clas, 'Clas');
-        if ($validate && $clas->save()) {
+        $pinyin = implode('', $pinyin->convert($request->param('name')));
+        if ($pinyin) $clas->pinyin = $request->param('name');
+        $validate = $this->validate($clas->toArray(), 'Clas');
+        if ($validate === true && $clas->save()) {
             $data = ['code' => 200, 'data' => "添加成功"];
             return json_encode($data);
         } else {
@@ -124,7 +144,7 @@ class Clas extends Controller
     }
 
 //    删除分类
-    public function del_clas()
+    public function delete()
     {
         $params = Request::instance()->post();
         $d_clas = $this->get_all_clas();
@@ -139,10 +159,10 @@ class Clas extends Controller
         }
         $result = $this->clas_model->del_clas($class_id, 2);
         if ($result) {
-            $data = ['code' => 200, 'msg' => "删除成功"];
+            $data = ['code' => 200, 'data' => "删除成功"];
             return json_encode($data);
         } else {
-            $data = ['code' => 202, 'msg' => "删除失败"];
+            $data = ['code' => 202, 'data' => "删除失败"];
             return json_encode($data);
         }
     }
@@ -182,7 +202,6 @@ class Clas extends Controller
         if ($file_path) $clas->image = $file_path;
         $clas->pinyin = implode('', $pinyin->convert($request->param('name')));
         $validate = $this->validate($clas->toArray(), 'Clas');
-        dump($validate);
         if ($validate && $clas->isUpdate(true)->save()) {
             $data = ['code' => 200, 'data' => "修改成功"];
             return json_encode($data);

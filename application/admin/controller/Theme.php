@@ -31,6 +31,12 @@ class Theme extends Base
         return $this->fetch();
     }
 
+//    添加页
+    public function plus()
+    {
+        return $this->fetch("theme/add");
+    }
+
 //    查看所有主题
     public function get_all_theme($status)
     {
@@ -38,9 +44,10 @@ class Theme extends Base
     }
 
 //    添加主题
-    public function add_theme()
+    public function add()
     {
         $request = Request::instance()->param();
+        $request = special_filter($request);
         $theme = new ThemeModel();
         if ($request['name']) {
             $theme = $theme->where('name', '=', $request['name'])->where('status = 1')->select()->toArray();
@@ -64,16 +71,49 @@ class Theme extends Base
         }
     }
 
-//    更改主题状态(删除)
+//    修改主题名
     public function update()
+    {
+        $request = Request::instance()->param();
+        $d_theme = ThemeModel::all();
+        $theme = ThemeModel::get($request['theme_id']);
+        if ($theme) {
+            foreach ($d_theme as $value) {
+                if ($value['name'] == $request['name'] && $request['name'] != $theme['name']) {
+                    $data = ['code' => 202, 'data' => '主题名已存在'];
+                    return json_encode($data);
+                }
+            }
+            $theme->name = $request['name'];
+            if ($theme->save()) {
+                $data = ['code' => 200, 'data' => '修改成功'];
+                return json_encode($data);
+            } else {
+                $data = ['code' => 200, 'data' => '修改失败'];
+                return json_encode($data);
+            }
+        } else {
+            $data = ['code' => 202, 'data' => '被修改主题不存在'];
+            return json_encode($data);
+        }
+
+
+    }
+
+//    更改主题状态(删除)
+    public function update_status()
     {
         $request = Request::instance()->param();
         $theme = $request['theme'];
         $d_theme = ThemeModel::get($theme['theme_id']);
         $d_theme->status = 2;
-        $d_theme->isUpdate(true)->save();
-        $data = ['code' => 200, 'data' => '更改成功'];
-        echo json_encode($data);
+        if ($d_theme->isUpdate(true)->save()) {
+            $data = ['code' => 200, 'data' => '更改成功'];
+            return json_encode($data);
+        } else {
+            $data = ['code' => 202, 'data' => '更改失败'];
+            return json_encode($data);
+        }
     }
 
 //    删除主题

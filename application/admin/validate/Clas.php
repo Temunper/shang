@@ -14,7 +14,7 @@ use think\Validate;
 class Clas extends Validate
 {
     protected $rule = [
-        ['sort', 'require'],
+        ['sort', 'require|integer'],
         ['name', 'require'],
         ['describe', 'require'],
         ['image', 'require'],

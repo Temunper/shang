@@ -11,6 +11,8 @@ namespace app\admin\controller;
 
 use app\admin\common\Upload;
 use app\admin\model\AdModel;
+use app\admin\model\ProjectModel;
+use app\admin\model\ThemeModel;
 use think\Controller;
 use think\Request;
 use think\Validate;
@@ -30,6 +32,25 @@ class Ad extends Base
         return $this->fetch();
     }
 
+//添加页
+    public function plus()
+    {
+        $theme = ThemeModel::all();
+        $this->assign('theme', $theme->toArray());
+        return $this->fetch("ad/add");
+    }
+
+//内容页
+    public function content()
+    {
+        $theme = ThemeModel::all();
+        $request = Request::instance()->param();
+        $ad = AdModel::get($request['ad_id']);
+        $this->assign('theme', $theme->toArray());
+        $this->assign('ad', $ad->toArray());
+        return $this->fetch();
+    }
+
 //    删除（修改状态）
     public function update_status()
     {
@@ -39,10 +60,10 @@ class Ad extends Base
             $d_ad->status = 2;
             if ($d_ad->isUpdate(true)->save()) {
                 $data = ['code' => 200, 'data' => '删除成功'];
-                echo json_encode($data);
+                return json_encode($data);
             } else {
                 $data = ['code' => 202, 'data' => '删除失败'];
-                echo json_encode($data);
+                return json_encode($data);
             }
         } else {
             $data = ['code' => 202, 'data' => 'id不存在'];
@@ -88,6 +109,7 @@ class Ad extends Base
 //    广告位修改
     public function update(Request $request)
     {
+
         $file = $request->file('file');
         if (empty($file))
             $file_path = $request->param('file_path');
@@ -104,7 +126,7 @@ class Ad extends Base
         foreach ($d_ad as $value) {
             if ($value['name'] == $request->param('name') && $ad->name != $request->param('name')) {
                 $data = ['code' => 202, 'data' => '同主题下广告位重复'];
-                echo json_encode($data);
+                return json_encode($data);
             }
         }
         $ad->name = $request->param('name');
@@ -113,10 +135,10 @@ class Ad extends Base
         $result = $this->validate($ad->toArray(), 'Ad');
         if ($ad->isUpdate(true)->save() && $result === true) {
             $data = ['code' => 200, 'data' => '修改成功'];
-            echo json_encode($data);
+            return json_encode($data);
         } else {
             $data = ['code' => 202, 'data' => '修改失败,' . $result];
-            echo json_encode($data);
+            return json_encode($data);
         }
     }
 

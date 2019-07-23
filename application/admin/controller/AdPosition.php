@@ -12,12 +12,31 @@ namespace app\admin\controller;
 use app\admin\common\Upload;
 use app\admin\model\AdModel;
 use app\admin\model\AdPositionModel;
+use app\admin\model\ProjectModel;
+use app\admin\model\ThemeModel;
 use think\Model;
 use think\Request;
 use think\Validate;
 
 class AdPosition extends Base
 {
+//    添加页
+public function plus(){
+    $theme = ThemeModel::all();
+    $ad = AdModel::all();
+    $project = ProjectModel::all();
+    $this->assign('project', json_encode($project));
+    $this->assign('ad', json_encode($ad));
+    $this->assign('theme', $theme->toArray());
+    return $this->fetch("ad_position/add");
+}
+
+//    内容页
+public function content(){
+
+    return $this->fetch();
+}
+
 //    广告位页面
     public function ad_position()
     {

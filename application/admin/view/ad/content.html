@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="__TEMPLATE__/css/style.css" rel='stylesheet' type='text/css'/>
+    <link href='__TEMPLATE__/css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
+    <script src="__TEMPLATE__/js/jquery-1.11.1.min.js"></script>
+    <script src="__TEMPLATE__/js/modernizr.custom.js"></script>
+    <script src="__TEMPLATE__/js/Chart.js"></script>
+    <script src="__TEMPLATE__/js/metisMenu.min.js"></script>
+    <script src="__TEMPLATE__/js/custom.js"></script>
+    <link href="__TEMPLATE__/css/custom.css" rel="stylesheet">
+    <script src="__TEMPLATE__/js/pie-chart.js" type="text/javascript"></script>
+    <link href="__TEMPLATE__/index/index.css" rel='stylesheet' type='text/css'/>
+    <script src="__TEMPLATE__/icon/iconfont.js"></script>
+</head>
+<body class="cbp-spmenu-push">
+<!-- 页面开始 -->
+<div class="main-content">
+    <!--左导航栏-->
+    {include file="main/left" /}
+    <!--左导航栏-->
+
+    <!-- 头部导航 -->
+    {include file="main/head" /}
+    <!-- //头部结束 -->
+    <!-- 主要内容-->
+    <div id="page-wrapper" style="min-height: 893px;">
+        <div class="panel-body widget-shadow">
+            <div class="form-title"><h4>广告位修改</h4></div>
+            <div>
+                <div class="col-sm-10">
+                    <h4 class=""> 广告位修改</h4>
+                    <input type="text" id="name" placeholder="" class="form-control1" value="{$ad.name}"> 
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-10">
+                    <h4 class="">主题</h4>
+                    <select name="" id="theme" data-theme="{$ad.theme_id}">
+                        <option value=""></option>
+                        {volist name="theme" id="vo"}
+                        <option value="{$vo.theme_id}">{$vo.name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-10">
+                    <div>*注意：上传图片的优先级更高，若使用cdn请不要上传图片，否则图片会覆盖</div>
+                    <div>原图:<img src="{$ad.image}"></div>
+                    <h4 class=""> 图片：上传</h4>
+                    <input type="file" id="file" placeholder="" class="form-control1" value="图片上传">
+                </div>
+            </div>
+            <div>
+                <div class="col-sm-10">
+                    <h4 class=""> 图片：cdn</h4>
+                    <input type="text" id="file_path" placeholder="" class="form-control1">
+                </div>
+            </div>
+        </div>
+        <input type="button" id="update-ad" value="确认提交" data-ad="{$ad.ad_id}">
+    </div>
+    <!-- 主要内容结束 -->
+</div>
+
+
+</body>
+<script src="__TEMPLATE__/bootstrap/js/bootstrap.js"></script>
+<script src="__TEMPLATE__/ad/content.js"></script>
+
+</html>

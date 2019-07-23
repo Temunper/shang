@@ -1,0 +1,19 @@
+.confirm-name{
+    visibility: hidden;
+}
+.form-control1, .form-control_2.input-sm .change-name{
+    border: 1px solid #ccc;
+    padding: 5px 8px;
+    color: #616161;
+    background: #fff;
+    box-shadow: none !important;
+    font-size: 0.85em;
+    font-weight: 300;
+    height: 40px;
+    border-radius: 0;
+    -webkit-appearance: none;
+    resize: none;
+    width: 18%;
+    margin-left: -70px;
+    visibility: hidden;
+}

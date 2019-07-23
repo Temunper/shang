@@ -19,8 +19,14 @@ class ClasModel extends Model
     function get_all_clas()
     {
         $result = Db::table($this->table)
-            ->where('status','=','1')
-            ->order('sort')->select();
+            ->where('status', '=', '1')
+            ->order('sort')
+            ->paginate(100000)->each(function ($item, $key) {
+                if ($item['status'] == 1) {
+                    $item['status'] = '正常';
+                } else $item['status'] = '已删除';
+                return $item;
+            });
         return $result;
     }
 
@@ -45,18 +51,19 @@ class ClasModel extends Model
     }
 
     //    删除分类
-    function del_clas($clas_id,$status)
+    function del_clas($clas_id, $status)
     {
         $result = Db::table($this->table)
-            ->where('class_id ', 'in', $clas_id)
-            ->update(['status'=>$status]);
+            ->where('class_id','in',$clas_id)
+            ->update(['status' => $status]);
         return $result;
     }
 
     //    更改分类
-    function update_clas($clas){
+    function update_clas($clas)
+    {
         $result = Db::table($this->table)
-            ->where('class_id','=',$clas['class_id'])
+            ->where('class_id', '=', $clas['class_id'])
             ->update($this->class);
         return $result;
     }

@@ -10,6 +10,7 @@ namespace app\admin\controller;
 
 
 use app\admin\common\Upload;
+use app\admin\model\ThemeModel;
 use app\admin\model\WebsiteModel;
 use think\Request;
 
@@ -22,8 +23,27 @@ class Website extends Base
         $website_model = new WebsiteModel();
         isset($request['domain']) ? $domain = $request['domain'] : $domain = null;
         isset($request['status']) ? $status = $request['status'] : $status = null;
-        $website = $website_model->get_all_website($domain, $status)->toArray();
-        $this->assign($website);
+        $website = $website_model->get_all_website($domain, $status);
+        $this->assign('website', $website);
+        return $this->fetch();
+    }
+
+//  添加站点
+    public function plus()
+    {
+        $theme = ThemeModel::all();
+        $this->assign('theme', $theme->toArray());
+        return $this->fetch("website/add");
+    }
+
+//    站点内容
+    public function content()
+    {
+        $request = Request::instance()->param();
+        $theme = ThemeModel::all();
+        $website = WebsiteModel::get($request['website_id']);
+        $this->assign('website', $website->toArray());
+        $this->assign('theme', $theme->toArray());
         return $this->fetch();
     }
 
@@ -105,18 +125,19 @@ class Website extends Base
 //            $data = ['code' => 202, 'data' => '電話號碼格式不正確'];
 //            return json_encode($data);
 //        }
+        $param = special_filter($request->param());
         if (!$website) {
             $website = new WebsiteModel();
-            $website->domain = $request->param('domain');
-            $website->theme_id = $request->param('theme_id');
+            $website->domain = $param['domain'];
+            $website->theme_id = $param['theme_id'];
             $website->logo = $file_path;
-            $website->filing_number = $request->param('filing_number');
-            $website->company_name = $request->param('company_name');
-            $website->company_addr = $request->param('company_addr');
-            $website->phone = $request->param('phone');
-            $website->type = $request->param('type');
-            $website->keywords = $request->param('keywords');
-            $website->description = $request->param('description');
+            $website->filing_number = $param['filing_number'];
+            $website->company_name = $param['company_name'];
+            $website->company_addr = $param['company_abbr'];
+            $website->phone = $param['phone'];
+            $website->type = $param['type'];
+            $website->keywords = $param['keywords'];
+            $website->description = $param['description'];
             $website->status = 1;
             $validate = $this->validate($website->toArray(), 'Website');
             if ($validate === true && $website->save()) {

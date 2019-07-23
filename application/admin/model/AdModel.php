@@ -31,6 +31,7 @@ class AdModel extends Model
             ->where($a_status)
             ->where($t_theme_id)
             ->where($a_name)
+            ->field('a.ad_id,a.name,a.theme_id,a.image,a.status,t.name as theme_name')
             ->paginate(20)->each(function ($item, $key) {
                 if ($item['status'] == 1) {
                     $item['status'] = '正常';
