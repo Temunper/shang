@@ -1,12 +1,12 @@
 $(".del-adp").click(function () {
-    var ad_id = $(this).attr("data-adp");
+    var adp_id = $(this).attr("data-adp");
     var r = confirm("是否删广告位？");
     var del = $(this);
     if (r === true) {
         $.ajax({
-            url: "/admin/ad/update_status",
+            url: "/admin/ad_position/update_status",
             data: {
-                ad_id: ad_id
+                ad_position_id: adp_id
             },
             dataType: "json",
             type: "POST",

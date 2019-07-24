@@ -39,7 +39,7 @@ class Account
         $password = substr($pass, 0, 12);
         $verify = substr($pass, 12, 18);
         $num = substr($pass, 18, 21);
-        $pass = md5($pass);
+        $pass = md5($password . $verify);
         $user = $pinyin->convert($name);
         $user = implode('', $user);
         if (!$user) $user = $name . $num;
