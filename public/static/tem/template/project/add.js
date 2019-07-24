@@ -41,6 +41,7 @@ $(".submit-a").click(function () {
         data: {
             project: {
                 name: $("#name").val(),
+                yw_name: $("#yw_name").val(),
                 abbr: $("#abbr").val(),
                 pattern: $("#pattern").val(),
                 crowd: $("#crowd").val(),
@@ -65,10 +66,13 @@ $(".submit-a").click(function () {
         dataType: 'json',
         type: 'POST',
         success: function (data) {
-            data = jQuery.parseJSON(data);
-            if (data.pass === undefined)
+            data = JSON.parse(data);
+            if (data.pass !== undefined) {
+                var password = JSON.parse(data.pass);
+                var client = JSON.parse(data.pass).client;
+                alert("客户的账号生成：\n" + "用户名:" + client.user + "\n" + "密码:" + password.password);
+            } else
                 alert(data.data);
-            else alert("客户的账号生成：" + jQuery.parseJSON(data.pass));
         }
     })
 });

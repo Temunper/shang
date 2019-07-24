@@ -21,12 +21,10 @@ class ClasModel extends Model
         $result = Db::table($this->table)
             ->where('status', '=', '1')
             ->order('sort')
-            ->paginate(100000)->each(function ($item, $key) {
-                if ($item['status'] == 1) {
-                    $item['status'] = '正常';
-                } else $item['status'] = '已删除';
-                return $item;
-            });
+            ->select();
+        foreach ($result as $key => $value) {
+            $value['status'] == 1 ? $result[$key]['status'] = '正常' : $result[$key]['status'] = '删除';
+        }
         return $result;
     }
 
@@ -54,7 +52,7 @@ class ClasModel extends Model
     function del_clas($clas_id, $status)
     {
         $result = Db::table($this->table)
-            ->where('class_id','in',$clas_id)
+            ->where('class_id', 'in', $clas_id)
             ->update(['status' => $status]);
         return $result;
     }

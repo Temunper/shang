@@ -34,11 +34,6 @@ $(".project-search").click(function () {
 });
 
 
-//取消
-$(".submit-b").click(function () {
-    $(".add-page").css('visibility', 'hidden');
-    $(".list-page").css('filter', 'blur(0px)')
-});
 //添加按钮
 $(".add-project").click(function () {
    window.open("/admin/project/plus");

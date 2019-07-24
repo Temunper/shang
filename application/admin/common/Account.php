@@ -21,7 +21,7 @@ class Account
         $user = null;
         $verify = null;
         $password = null;
-        for ($i = 0; $i < 18; $i++) {
+        for ($i = 0; $i < 21; $i++) {
             switch (rand(0, 2)) {
                 case 0:
                     $pass .= chr(rand(48, 57));
@@ -35,12 +35,15 @@ class Account
             }
         }
         $pinyin = new pinyin();
+
         $password = substr($pass, 0, 12);
         $verify = substr($pass, 12, 18);
+        $num = substr($pass, 18, 21);
         $pass = md5($pass);
         $user = $pinyin->convert($name);
         $user = implode('', $user);
-        if (!$user) $user = $name;
+        if (!$user) $user = $name . $num;
+        else $user .= $num;
         $client = ['client' => ['name' => $name, 'user' => $user, 'verify' => $verify, 'pass' => $pass], 'password' => $password];
         return $client;
     }

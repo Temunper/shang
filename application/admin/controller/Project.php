@@ -81,7 +81,7 @@ class Project extends Base
                         $client_project = new Clientproject();               //实例化绑定项目和用户的类，绑定账号
                         $client_project->before_pro(['project_id' => $d_project->project_id, 'client_id' => $d_client->client_id]);
                         Db::commit();              //提交事务
-                        $data = ['code' => 200, 'data' => "添加成功", 'pass' => $pass];
+                        $data = ['code' => 200, 'data' => "添加成功", 'pass' => json_encode($pass)];
                         return json_encode($data);
                     } catch (Exception $e) {
                         Db::rollback();

@@ -26,6 +26,4 @@ $(".web-delete").click(function () {
            }
        })
    }
-
-
 });

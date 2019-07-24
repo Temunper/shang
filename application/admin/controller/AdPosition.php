@@ -14,28 +14,37 @@ use app\admin\model\AdModel;
 use app\admin\model\AdPositionModel;
 use app\admin\model\ProjectModel;
 use app\admin\model\ThemeModel;
-use think\Model;
 use think\Request;
-use think\Validate;
+
 
 class AdPosition extends Base
 {
 //    添加页
-public function plus(){
-    $theme = ThemeModel::all();
-    $ad = AdModel::all();
-    $project = ProjectModel::all();
-    $this->assign('project', json_encode($project));
-    $this->assign('ad', json_encode($ad));
-    $this->assign('theme', $theme->toArray());
-    return $this->fetch("ad_position/add");
-}
+    public function plus()
+    {
+        $theme = ThemeModel::all();
+        $ad = AdModel::all();
+        $project = ProjectModel::all();
+        $this->assign('project', json_encode($project));
+        $this->assign('ad', json_encode($ad));
+        $this->assign('theme', $theme->toArray());
+        return $this->fetch("ad_position/add");
+    }
 
 //    内容页
-public function content(){
-
-    return $this->fetch();
-}
+    public function content()
+    {
+        $theme = ThemeModel::all();
+        $ad = AdModel::all();
+        $project = ProjectModel::all();
+        $request = Request::instance()->param();
+        $adp = AdPositionModel::get($request['ad_position_id']);
+        $this->assign('adp', $adp->toArray());
+        $this->assign('project', json_encode($project));
+        $this->assign('ad', json_encode($ad));
+        $this->assign('theme', $theme->toArray());
+        return $this->fetch();
+    }
 
 //    广告位页面
     public function ad_position()
@@ -45,14 +54,36 @@ public function content(){
         isset($request['status']) ? $status = $request['status'] : $status = null;
         isset($request['name']) ? $name = $request['name'] : $name = null;
         isset($request['theme_id']) ? $theme_id = $request['theme_id'] : $theme_id = null;
+        isset($request['ad_id']) ? $ad_id = $request['ad_id'] : $ad_id = null;
+        isset($request['project_id']) ? $project_id = $request['project_id'] : $project_id = null;
         $ad = AdModel::all()->toArray();
-        $ad_id = array();
+        $id = [];
         foreach ($ad as $item) {
-            if ($item['theme_id'] == $theme_id) $ad_id[] = $item['ad_id'];
+            if ($item['theme_id'] == $theme_id) $id[] = $item['ad_id'];
         }
+        if ($ad_id) $id [] = $ad_id;
         $adp = new AdPositionModel();
-        $ad_position = $adp->get_all_adp($status, $name, $sort, $ad_id);
+        $ad_position = $adp->get_all_adp($status, $name, $sort, $ad_id, $project_id);
         $this->assign('ad_position', $ad_position);
+        $theme = ThemeModel::all();
+        $ad = AdModel::all();
+        $project = ProjectModel::all();
+        $ad_name = null; $project_name =null;
+        foreach ($ad as $item){
+            if ($item['ad_id']==$ad_id){
+                $ad_name = $item['name'];
+            }
+        }
+        foreach ($project as $item){
+            if ($item['project_id']==$project_id){
+                $project_name = $item['name'];
+            }
+        }
+        $search = ['sort' => $sort, 'theme_id' => $theme_id, 'ad' => $ad_name, 'project' => $project_name];
+        $this->assign('project', json_encode($project));
+        $this->assign('ad', json_encode($ad));
+        $this->assign('theme', $theme->toArray());
+        $this->assign('search', $search);
         return $this->fetch();
     }
 

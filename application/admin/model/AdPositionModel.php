@@ -19,11 +19,12 @@ class AdPositionModel extends Model
     protected $insert = ['status'];
 
 //   返回页面
-    function get_all_adp($status, $name, $sort, $ad_id)
+    function get_all_adp($status, $name, $sort, $ad_id , $project_id)
     {
         $status ? $d_status = 'status = ' . $status : $d_status = "status = 1";
         $name ? $d_name = 'name = ' . $name : $d_name = null;
         $ad_id ? $d_ad = 'ad_id in (' . $ad_id .')': $d_ad = null;
+        $project_id ? $project = 'project_id = ' . $project_id : $project = null;
         switch ($sort) {
             case 1:
                 $order = 'click_num';
@@ -42,6 +43,7 @@ class AdPositionModel extends Model
             ->where($d_status)
             ->where($d_name)
             ->where($d_ad)
+            ->where($project)
             ->order($order,$down)
             ->paginate(10)->each(function ($item,$key){
                 if ($item['status'] == 1){

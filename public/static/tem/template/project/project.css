@@ -60,14 +60,14 @@
 }
 
 .add-left {
-    height: 700px;
+    height: 735px;
     margin-left: 0;
     width: 50%;
     float: left;
 }
 
 .add-right {
-    height: 700px;
+    height: 735px;
     width: 50%;
     float: right;
 }
