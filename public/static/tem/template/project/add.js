@@ -70,6 +70,7 @@ $(".submit-a").click(function () {
             if (data.pass !== undefined) {
                 var password = JSON.parse(data.pass);
                 var client = JSON.parse(data.pass).client;
+                $(".user").text(client.user);$(".password").text(password.password);
                 alert("客户的账号生成：\n" + "用户名:" + client.user + "\n" + "密码:" + password.password);
             } else
                 alert(data.data);
