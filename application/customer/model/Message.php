@@ -48,14 +48,13 @@ class Message extends Model
     }
 
     //精确搜索
-    public function check_exact($time1, $time2, $data, $project)
+    public function check_exact($time1, $time2, $data)
     {
 
         return $re = self::where('status', 'in', [1, 2])
             ->where('time', '>=', $time1)
             ->where('time', '<=', $time2)
             ->where($data)
-            ->where('project_id', 'in', $project)
             ->order('time', 'desc')
             ->paginate(15);
         //    return dump($this->getLastSql());
@@ -91,7 +90,7 @@ class Message extends Model
     //获取ip修改器
     public function getIpAttr($ip)
     {
-        $re= $this->ip->getlocation($ip);
+        $re = $this->ip->getlocation($ip);
         return $re['country'];
     }
 

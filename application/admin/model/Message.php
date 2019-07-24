@@ -30,17 +30,19 @@ class Message extends Model
         //显示留言数据
         return self::order('time', 'desc')->where('status', 'in', '1,2')
             ->paginate(15);
+
     }
 
     //精确搜索
     public function search_message($time1, $time2, $data)
     {
-        return $re = self::where('status', 'in', [1, 2])
-            ->where('time', '>=', $time1)
-            ->where('time', '<=', $time2)
+        return self::where('status', 'in', '1,2')
+            ->where('time', '>', $time1)
+            ->where('time', '<', $time2)
             ->where($data)
             ->order('time', 'desc')
             ->paginate(15);
+
     }
 
     //系统删除功能

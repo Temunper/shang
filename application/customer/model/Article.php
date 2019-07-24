@@ -33,7 +33,7 @@ class Article extends Model
     //更新文章信息
     public function update_article($params)
     {
-        return self::update($params);
+        self::update($params);
     }
 
     //删除文章，修改状态
@@ -133,6 +133,7 @@ class Article extends Model
     public function add_artilce($params)
     {
         return self::insert($params);
+
     }
 
     //获取当前文章的type 字段值

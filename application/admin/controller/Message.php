@@ -25,29 +25,31 @@ class Message extends Base
     }
 
     //渲染后台查看留言页面
-    public function message_page()
+    public function message()
     {
         //获取留言信息，按照时间倒序
         //设置返回状态值
-        $data = Request::instance()->param('search');  //提交按钮button 命名为search  如果提交中存在search 则为搜索留言事件，否则正常输出所有信息
+        $data = Request::instance()->param();  //提交按钮button 命名为search  如果提交中存在search 则为搜索留言事件，否则正常输出所有信息
+
         if (isset($data['search'])) {
             //存在search ，执行搜索事件
             //取出时间字段
-            $time = $data['time1'] ? $data['time1'] : 0;
-            $time2 = $data['time2'] ? $data['time2'] : 0;
+            //    dump($data);die;
+            $date1 = !empty($data['date1']) ? $data['date1'] : 0;
+            $date2 = !empty($data['date1']) ? $data['date1'] :time();
             //删除字段中的时间字段
-            unset($data['time1']);
-            unset($data['time2']);
+            unset($data['date1']);
+            unset($data['date2']);
             $data = array_filter($data);  //删去data数组中值为false的的项，清除值为空的搜索字段
             //执行搜索
-            $message_info = $this->message_model->search_message($time, $time2, $data);
-
+            $message_info = $this->message_model->search_message($date1, $date2, $data);
         } else {
             //不存在search 字段 ，则执行搜索所有留言
             //显示所有留言，按照时间的排序
             $message_info = $this->message_model->show_all_message();
         }
         //渲染模板
+       // dump($message_info);die;
         return $this->view->fetch('', ['message_info' => $message_info]);
     }
 

@@ -34,9 +34,9 @@
             <h3>留言信息</h3>
             <span>messages</span>
         </div>
-        <div class="seeMsg-con">
+        <div class="seeMsg-con"  style="margin-left: 240px;padding: 20px;">
             <div class="seeMsg-con-hd clearfix">
-                <form action="{:url('message/see_msg')}" method="post">
+                <form action="{:url('message/message')}" method="post">
                     <span class="seeMsg-name">时间段</span>
                     <div class="calendarWarp">
                         <input type="text" name="date1" class='ECalendar' id="ECalendar_date1" value="" placeholder="开始日期"/>
@@ -48,16 +48,9 @@
                     <!-- <input  type="date" value="2019-05-26"> ~
                     <input  type="date" value="2019-06-26"> -->
                     <span class="seeMsg-name">用户名</span>
-                    <input type="text" name="name">
+                    <input type="text" name="client">
                     <span class="seeMsg-name">手机号</span>
                     <input type="text" name="phone">
-                    <span class="seeMsg-name">项目选择</span>
-                    <select name="project_id">
-                        <option></option>
-                        {volist name="project" id="vo"}
-                        <option value="{$vo.project_id}">{$vo.name}</option>
-                        {/volist}
-                    </select>
                     <button class="seeMsg-search" name="search">搜索</button>
                 </form>
                 <div class="Special_button">
@@ -116,7 +109,8 @@
     <!---->
 </div>
 </body>
-<script src="__TEMPLATE__/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="__STATIC__/lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__STATIC__/customer_public/js/Ecalendar.jquery.min.js"></script>
 <script src="__TEMPLATE__/icon/iconfont.js"></script>
 <script src="__TEMPLATE__/project/add.js">
 </script>
@@ -159,7 +153,7 @@
                 var ids = $(this).attr('data-id');
                 $.ajax({
                     type: "POST",                   //设置提交方式为POST
-                    url: "{:url('message/delete_message')}", //设置URL
+                    url: "{:url('message/system_delete')}", //设置URL
                     data: {ids: ids},     //提交的数据
                     dataType: 'json',        //提交的格式
                     success: function (data) {
@@ -197,7 +191,7 @@
                 //取出被选中的主键
                 $.ajax({
                     type: "POST",                   //设置提交方式为POST
-                    url: "{:url('message/delete_message')}", //设置URL
+                    url: "{:url('message/system_delete')}", //设置URL
                     data: {ids: ids},     //提交的数据
                     dataType: 'json',        //提交的格式
                     cache: false,

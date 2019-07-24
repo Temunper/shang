@@ -20,7 +20,7 @@
                 <!-- <input  type="date" value="2019-05-26"> ~
                 <input  type="date" value="2019-06-26"> -->
                 <span class="seeMsg-name">用户名</span>
-                <input type="text" name="name">
+                <input type="text" name="client">
                 <span class="seeMsg-name">手机号</span>
                 <input type="text" name="phone">
                 <span class="seeMsg-name">项目选择</span>
@@ -186,7 +186,7 @@
                 $.ajax({
                     type: "POST",                   //设置提交方式为POST
                     url: "{:url('message/delete_message')}", //设置URL
-                    data: {ids: ids},     //提交的数据
+                    data: redact_article,     //提交的数据
                     dataType: 'json',        //提交的格式
                     cache: false,
                     async: false,

@@ -29,15 +29,15 @@
     <!-- 头部导航 -->
     {include file="main/head" /}
     <!-- //头部结束 -->
-    <div class="main">
+    <div class="main" >
         <div class="seeMsg-top">
             <h3>文章信息</h3>
-            <span>article</span>
+            <span>messages</span>
         </div>
-        <div class="seeMsg-con">
+        <div class="seeMsg-con" style="margin-left: 240px;padding: 20px;" >
             <div class="seeMsg-con-bd">
                 <div class="seeMsg-con-hd clearfix">
-                    <form action="{:url('article/show__article')}" method="post">
+                    <form action="{:url('article/article')}" method="post">
                         <span class="seeMsg-name">时间段</span>
                         <div class="calendarWarp">
                             <input type="text" name="date1" class='ECalendar' id="ECalendar_date1" value=""
@@ -57,6 +57,8 @@
                             <option value="4">热门专题</option>
                             <option value="5">创业故事</option>
                         </select>
+                        <span class="seeMsg-name">标题名称</span>
+                        <input type="text" name="title">
                         <span class="seeMsg-name">文章来源</span>
                         <input type="text" name="source">
                         <span class="seeMsg-name">审批状态</span>
@@ -84,6 +86,7 @@
                         <th>文章类型</th>
                         <th>文章标题</th>
                         <th>简介</th>
+                        <th>更新时间</th>
                         <th>来源</th>
                         <th>状态</th>
                         <th>操作</th>
@@ -99,11 +102,12 @@
                         <td>{$vo.type}</td>
                         <td>{$vo.title}</td>
                         <td>{$vo.brief}</td>
+                        <td>{$vo.update_time}</td>
                         <td>{$vo.source}</td>
                         <td>{$vo.status}</td>
                         <td class="tableOpe">
-                            <button class="operate delr" type="button" id="redact" data-id="{$vo.article_id}">审批
-                            </button>
+                            <button class="operate delr" type="button" id="redact" data-id="{$vo.article_id}">通过</button>
+                            <button class="operate delr" type="button" id="reject" data-id="{$vo.article_id}">驳回</button>
                             <button class="operate del" id="del" data-id="{$vo.article_id}">删除</button>
                         </td>
                     </tr>
@@ -123,6 +127,9 @@
     <!---->
 </div>
 </body>
+<script type="text/javascript" src="__STATIC__/customer_public/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="__STATIC__/lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__STATIC__/customer_public/js/Ecalendar.jquery.min.js"></script>
 <script src="__TEMPLATE__/bootstrap/js/bootstrap.js"></script>
 <script src="__TEMPLATE__/icon/iconfont.js"></script>
 <script src="__TEMPLATE__/project/add.js">

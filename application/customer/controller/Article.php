@@ -16,7 +16,7 @@ use think\Session;
 
 class Article extends Base
 {
-    protected $allow = [
+    protected $allow = [   // 定义图片上传的允许类型
         'image/gif',
         'image/png',
         'image/jpg',
@@ -52,15 +52,12 @@ class Article extends Base
     //发布文章
     public function do_release(Request $request)
     {
-        //设置允许上传的图片类型
-
-
         $status = 0;   //设置初始状态值
         $date_now = time();  //获得当前时间戳
         $data = $request->param(true);
         //设置验证规则
         $rule = [
-            'type|类型' => 'egt:1',
+            'type|类型' => 'require',
             'title|标题' => 'require|length:2,20',
             'image|列图' => 'require',
             'brief|简介' => 'require|length:5,20',
@@ -69,7 +66,7 @@ class Article extends Base
         ];
         //设置错误返回信息
         $msg = [
-            'type' => ['egt' => '项目类型必选'],
+            'type' => ['require' => '项目类型必选'],
             'title' => ['require' => '标题不能为空',
                 'length' => '标题长度需为2-20字符'],
             'image' => ['require' => '列图不能为空'],
@@ -85,19 +82,13 @@ class Article extends Base
             return ['status' => $status, 'message' => $result];
         }
         //验证结果为真，继续执行
-        $type = $data['type'];
         //判断是否是项目类型 ，如果是，则判断是否存在项目id
         if ($data['type'] == 1) {
-            if (empty($data['project_id'])) {
+            if ($data['project_id'] == 0) {
                 return ['status' => $status, 'message' => '具体项目不能为空'];
             }
         }
-        $project_id = !empty($data['project_id']) ? $data['project_id'] : "";
-        $title = $data['title'];
         $file = $request->file('image');
-        $brief = $data['brief'];
-        $content = $data['content'];
-        $source = $data['source'];
         $author = Session::get('client_id');
         //如果图片不为空，则保存图片,返回图片保存路径
         //如果图片为空
@@ -110,21 +101,18 @@ class Article extends Base
             }
             $file_path = Upload::file($file, $request->domain(), 'artilce');  //通过验证， 保存图片，返回路径
         }
-        $info = [
-            'type' => $type,
-            'project_id' => $project_id,
-            'title' => $title,
+        unset($data['image']);//删除data里的image字段
+        unset($data['img']);
+        $arr = [
             'lis_img' => $file_path,
-            'brief' => $brief,
-            'content' => $content,
-            'source' => $source,
             'author' => $author,
             'create_time' => $date_now,
             'update_time' => $date_now,
         ];
+        $data = array_merge($data, $arr);  //合并数组
         //执行插入
         $db = new ArticleModel();
-        $re = $db->add_artilce($info);
+        $re = $db->add_artilce($data);
         if ($re) {
             //如果为真，则修改返回成功信息
             $status = 1;
@@ -136,7 +124,6 @@ class Article extends Base
         //返回信息
         return ['status' => $status, 'message' => $result];
     }
-
 
     //用户删除文章，传入文章id ，判断是否当前用户拥有的文章，修改文章状态为3
     public function delete_article(Request $request)
@@ -173,14 +160,16 @@ class Article extends Base
         $db = new ArticleModel();
         //定于接收的数组
         $author = Session::get('client_id');
+        // 获取当前用户所有项目信息
+        $project_info = Message::get_client_project($author);
+        //搜索用户的所有项目信息
         if (isset($data['search'])) {
             //存在 search 字段 则为精确搜索
             //取出时间并且删除该字段
             $time = $data['date1'] ? $data['date1'] : 0;  //如果为真则赋值，否则赋值0
             $time2 = $data['date2'] ? $data['date2'] : time();  //如果为真则赋值，否则赋值当前时间
             unset($data['date1']);
-            unset($data['date2']);
-            //   dump(123);die;
+            unset($data['date2']);  //删除字段中的时间字段
             $data = array_filter($data);  //除去data数组中值为false(空)的的项
             //搜索相关文章
             $article_info = $db->accurate_article($time, $time2, $data, $author);
@@ -191,10 +180,11 @@ class Article extends Base
             // 如果返回值为空，则未查询到与当前用户相关的文章
             //渲染视图
         }
-        return $this->fetch('', ['article_info' => $article_info]);
+        return $this->fetch('', ['article_info' => $article_info,
+            'project' => $project_info]);
     }
 
-    //渲染编辑修改用户的文章
+    //传入文章id ids渲染编辑修改用户的文章
     public function redact_article()
     {
         $data = Request::instance()->param();
@@ -234,6 +224,7 @@ class Article extends Base
         $status = 0;   //设置初始状态值
         $date_now = time();  //获得当前时间戳
         $data = $request->param(true);
+        $file = $request->file('img');
         //设置验证规则
         $rule = [
             'type|类型' => 'egt:1',
@@ -252,7 +243,7 @@ class Article extends Base
             'content' => ['require' => '内容不能为空'],
             'source' => ['require' => '来源不能为空'],
         ];
-        $result = $this->validate($data, $rule, $msg);
+        $result = $this->validate($data, $rule, $msg);  //执行验证
         //验证结果不为真，则返回错误信息
         if ($result !== true) {
             return ['status' => $status, 'message' => $result]; //返回错误信息
@@ -260,33 +251,36 @@ class Article extends Base
         //为真，继续执行
         $db = new ArticleModel();
         $client_id = Session::get('client_id');  //获取当前用户id
-        array_merge($data, ['update_time' => time()]);  //添加更新时间字段
+        $data = array_merge($data, ['update_time' => time()]);  //添加更新时间字段
         //判断是否更换了新图片
         $file = $request->file('image');
         if (empty($file)) {
             //如果为空，则说明没有更换图片，
-            unset($data['image']);
+            unset($data['img']);
+            unset($data['image']);  // 删除图片字段
             //更新数据
             $res = $db->update_article($data);
         } else {
             //不为空，存在新图片，执行上传图片操作，删除旧有图片
             //存在图片，则判断上传图片是否在允许上传的类型$allow中
-            if (!in_array($file->getInfo()['type'], $this->allow)) {
+            if (!in_array($file->getInfo()['type'], $this->allow)) {           //判断图片类型是否可上传
                 $data = ['status' => 0, 'data' => '上传文件格式不正确'];
             }
             $file_path = Upload::file($file, $request->domain(), 'artilce');  //通过验证， 保存图片，返回路径
-            array_merge($data, ['lis_img' => $file_path]);  //合并成数组
+            $data = array_merge($data, ['lis_img' => $file_path]);  //合并成数组
+
+            unset($data['image']);     //删除image 字段
+            unset($data['img']);        //删除img 字段
             //更新数据
             $article_id = (int)$data['article_id'];
             $old_path = $db->get_image_path($article_id);  //获得旧图片的路径
+            $res = "";
             try {
                 $data = array_merge($data, ['status' => 1]);       //拼接字段status =》1 ,将文章设置为未审核状态
                 $res = $db->update_article($data);   //执行更新
-                unlink($old_path);   //删除旧有图片
             } catch (Exception $e) {
-                $result = $e->getMessage();
+                return $result = $e->getMessage();  // 失败返回信息
             }
-
         }
         if ($res) {
             //更新成功，修改返回状态值和返回信息

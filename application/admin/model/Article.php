@@ -17,28 +17,28 @@ class Article extends Model
     protected $updateTime = 'update_time';
 
     //系统删除删除文章，修改状态，可批量
-    public function change_status($article_id,$status)
+    public function change_status($article_id, $status)
     {
         $statue = 4;
         return self::where('article_id', 'in', $article_id)->update(['status' => $status]);
     }
 
     //精确搜索文章
-    public function accurate_article($time1, $time2, $params)
+    public function accurate_article($time1, $time2, $params, $status)
     {
-        return $re = self::where('update_time', '>', $time1)
+        return self::where('update_time', '>', $time1)
             ->where('update_time', '<', $time2)
+            ->where('status', 'in', $status)
             ->where($params)
-            ->where('status', 'in', '1,2')
             ->order('update_time', 'desc')
             ->paginate(15);
-
+        // dump($this->getLastSql());die;
     }
 
     //查询所有状态值为1,2的文章，
     public function select_all_article()
     {
-       return self::where('status', 'in', '1,2')
+        return self::where('status', 'in', '1,2')
             ->order('update_time', 'desc')
             ->paginate(15);
     }

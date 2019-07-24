@@ -19,7 +19,7 @@
                     <option value="5">创业故事</option>
                 </select>
                 <select id="item-type2" class="con-item-r" name="project_id">
-                    <option>请选择相关项目</option>
+                    <option value="">请选择相关项目</option>
                     {volist name="project_info" id="vo"}
                     <option value="{$vo.project_id}">{$vo.name}</option>
                     {/volist}
@@ -62,7 +62,6 @@
             // var formDate = new FormData("#uploadForm");
             var formDate = new FormData(document.getElementById("uploadForm"));
             formDate.append('img', $('#pic_img')[0].files[0]);
-            console.log($('#pic_img')[0].files[0]);
             var type_obj = $("#item-type").val();
             var title_obj = $("#item-title").val();
             var brief_obj = $("#item-brief").val();
@@ -87,6 +86,7 @@
                 success: function (data) {   //返回值状态为1才执行
                     if (data.status == 1) {
                         alert(data.message);
+                        window.location.href="{:url('article/show_self_article')}";
                     } else {
                         alert(data.message);
                     }

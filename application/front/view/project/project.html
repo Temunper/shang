@@ -3,9 +3,9 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>朝天门老火锅加盟费用多少钱</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
+    <title>{$title}</title>
+    <meta name="keywords" content="{$project_info['keywords']}">
+    <meta name="description" content="{$project_info['description']}">
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/zhome.css"/>
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/header.css"/>
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/index3.css"/>
@@ -59,7 +59,9 @@
         <!--引入cdn文件-->
         <div class="item1boxright" id="page">
             <!--非400 start-->
-
+            <img style="margin-top: 3px;" src="__PUB08__/picture/km_slogan.png"/>
+            <!--非400 end-->
+            <p>更新时间：2019-06-06</p>
             <!--非400 end-->
         </div>
     </div>
@@ -67,6 +69,10 @@
 <div id="item2" class="clearfix">
     <div class="item2box container">
         <div class="boxleft boxleft1">
+            <!--引入cdn文件开始-->
+            <img src="http://cdn.hao987.cn/shophtml/{$project_info['yw_name']}/item.html"
+                 alt="{$project_info['name']}"/>
+            <!--引入cdn文件结束-->
             <div class="text">
                 <!--遍历相关文章10条-->
                 <a href="#" target="_blank">
@@ -87,7 +93,7 @@
             <div class="top">
                 <div class="boxlefttop">
                     <div class="lefttitle">当前位置:
-                        <a class='position' href='../index/index.html'>首页</a>&gt;
+                        <a class='position' href="{:url('index/index')}">首页</a>&gt;
                         <a class='position' href='#'>餐饮</a>&gt;
                         <a class='position' href='#'>火锅</a>&gt;
                         <span>朝天门火锅</span></div>
@@ -99,10 +105,9 @@
                         <div class="de02-main01-r">
                             <h3 title="全屋整装">全屋整装</h3>
                             <ul>
-                                <li><em>经营模式：</em>特许,合作,自由连锁</li>
-                                <li><em>品牌源地：</em>浙江</li>
-                                <li><em>经营产品：</em>冰淇淋</li>
-                                <li><em>适合人群：</em>自由创业、在岗投资、毕业生创业、其他</li>
+                                <li><em>经营模式：</em>{$project_info['pattern']}</li>
+                                <li><em>品牌源地：</em>{$project_info['area']}</li>
+                                <li><em>适合人群：</em>{$project_info['crowd']}</li>
                             </ul>
                         </div>
                     </div>
@@ -111,23 +116,23 @@
                         <div class="rightBoxTop">
                             <div class="zsbBox">
                                 <ul>
-                                    <li class="active">品牌简介</li>
-                                    <li class="">项目介绍</li>
-                                    <li class="">合作政策</li>
-                                    <li class="">合作流程</li>
+                                    <li class="active">加盟优势</li>
+                                    <li class="">利润分析</li>
+                                    <li class="">市场前景</li>
+                                    <li class="">企业介绍</li>
                                 </ul>
                                 <dl>
                                     <dd style="display: block;">
-                                        赢家企业致力于新型环保装饰材料应用、环保建材产品研发、生产及市场推广于一体，是挂牌上市企业。2018年隆重推出生态智联整装全新概念品牌。自有工厂占地8万多平，全套德进口专业生产线及生态板材生产线，产品体系包含十大系列1000多个花色单品，是目前全屋整装行业产销规模至大的厂家!
+                                        {$project_info['superiority']}
                                     </dd>
                                     <dd>
-                                        　赢家企业生态智联整装作为一站式生态智联整装服务行家，全方位覆盖家居装修，并采用欧标生态板材，安全环保即装即住，开创全屋快装5.0时代，运用现代科技智能概念打造未来智慧生活，并与百家一线家装品牌，达成战略合作。多渠道化，降低运营成本，让利给客户，真正实现生态智联整装大格局。
+                                        {$project_info['analysis']}
                                     </dd>
                                     <dd>
-                                        简单好学包培训：上手快，一人就搞定。 整店输出易经营：整店输出，一站式开店。 无需铺货免库存：F2C模式，自由退换。 无需店面省人工：模式灵活，无需专业工人。
+                                        {$project_info['prospect']}
                                     </dd>
                                     <dd>
-                                        可开店可代理可联营！多渠销售全网拓客：代理经营专享市场；合作经营直接供货；样板经营无需库存；直销经营针对销售；连横合纵拓展销路；入驻建材城资源共享；七方资源全套共享：共享产品/工厂/智慧/品牌/价格/设计/健康。欢迎咨询详细了解！
+                                        {$project_info['summary']}
                                     </dd>
                                 </dl>
                             </div>
@@ -141,36 +146,30 @@
             <div class="top">
                 <div class="boxleftbox">
                     <div class="lefttitle">当前位置：
-                        <a class='position' href='../index/index.html'>首页</a>&gt;
+                        <a class='position' href="{:url('index/index')}">首页</a>&gt;
                         <a class='position' href='#'>餐饮</a>&gt;
                         <a class='position' href='#'>火锅</a>&gt;
-                        <span>朝天门火锅</span></div>
+                        <span>{$project_info['name']}</span></div>
                     <div class="boxleftcentent">
-                        <!--遍历相关文章-->
+                        <!--遍历相关文章开始-->
+                        {volist name="article_info" id="vo"}
                         <div class="contentlist">
-                            <a href="../detail/detail.html">
+                            <a href="{detail/detail,['article_id'=>$vo['article_id']]}">
                                 <div class="leftimg">
-                                    <img src="__PUB08__/picture/841441.jpg"/></div>
+                                    <img src="{$vo['lis_img']}"/></div>
                                 <div class="rightcontent">
-                                    <div class="title">火锅店如何“长寿”，秘诀在这里!</div>
+                                    <div class="title">{vo['title']}</div>
                                     <div class="text">
-                                        时代瞬息万变，不思变则会被淘汰，而对于火锅店来说，只有顾客说好才是真的好，自我标榜毫无作用。因而食客的反馈意见就成了推动商家进步、发展的重要力量，这就要求商家们学会认真、耐心、诚恳地听取顾客的意见，并作出改变，延长火锅店的寿命!
-                                        一家火锅店如何获取最真实的建议? 1.匿名建议墙
-                                        平日里，我们看过不少的告白墙，情侣们在上面写上自己的爱情宣言，这种方式直白且受人青睐。火锅店也可以采取此类方法，不过要稍加改善，这次写上墙的就不再是情话，而是食客们的建议。
-                                        当然如果没有诱惑力，没人愿意多此一举，想要吸引食客，还得花些小心思，在匿名墙旁放置一些小零食，吸引顾客前来提意见。 2.利用好菜单
-                                        一般顾客进店，第一样呈现在面前的就是菜单，从开始点菜到服务员来收菜单之间还是有一小段时间的，商家完全可以利用好这个时间间隙，在菜单某一处，用轻松幽默的话求取评价。
-                                        这样顾客如果有什么菜没点到，或者某道菜价格设置不合理，都可以提出来，能最便捷的搜集顾客的意见。 3.付款间的询问
-                                        顾客付钱时，商家免不了要唠嗑几句，这时顾客已经完整体验了整个吃饭过程，火锅店哪点儿好，哪点儿需要改进心里都一清二楚，因此，选择这个时机询
+                                        {$vo['content']}
                                     </div>
                                     <div class="textbottom">
-                                        <span>来源：互联网</span>
-                                        <span>小A</span>
-                                        <span>2215浏览</span>
-                                        <span>2019-06-12</span></div>
+                                        <span>{$vo['source']}</span>
+                                        <span>{$vo.author}</span>
+                                        <span>{$vo.update_time}</span></div>
                                 </div>
                             </a>
                         </div>
-
+                        <!--遍历相关文章结束-->
                     </div>
                     <div class="nocontentlist">
                         <div class="listbox">

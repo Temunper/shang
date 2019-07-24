@@ -89,12 +89,10 @@
                 processData: false,
                 contentType: false,
                 cache: false,
-                beforeSend: function () {
-                    console.log("正在进行，请稍候");
-                },
                 success: function (data) {   //返回值状态为1才执行
                     if (data.status == 1) {
                         alert(data.message);
+                        window.location.href="{:url('article/show_self_article')}";
                     } else {
                         alert(data.message);
                     }

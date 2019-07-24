@@ -22,34 +22,23 @@ class Message extends Base
         //dump($data);die;
         $db = new MessageModel();
         $client_id = Session::get('client_id'); //获得当前用户Id
-        $project_id = $db->check_project($client_id);  //获得当前用户所有项目id
+        $project_info = $this->get_client_project($client_id);
+
         //拼接成字符串
-        if (!empty($project_id)) {
-            //通过项目id查询所有项目名，
-            $project_info = $db->check_project_name($project_id); //返回给前端二级联动用
-        }
+
         //如何存在search 字段，则处理页面上端搜索
         if (isset($data['search'])) {
             $time1 = $data['date1'] ? strtotime($data['date1']) : 0;
             $time2 = $data['date2'] ? strtotime($data['date2']) : time();
-            $name = !empty($data['name']) ? trim($data['name']) : "";
-            $phone = !empty($data['phone']) ? trim($data['phone']) : "";
-            $id = !empty($data['project_id']) ? $data['project_id'] : $project_id;
-            $map = [
-                'client' => $name,
-                'phone' => $phone,
-            ];
-            if (empty($name)) {
-                unset($map['client']);
-            }
-            if (empty($phone)) {
-                unset($map['phone']);
-            }
+            unset($data['date1']);
+            unset($data['date2']);   //删除数组中的时间字段
+            $data = array_filter($data);  //删除字段值为空的字段
             //执行搜索，返回搜索信息
-             $message_info = $db->check_exact($time1, $time2, $map, $id);
+            $message_info = $db->check_exact($time1, $time2, $data);
 
         } else {
             //不存在search字段，则返回用户所有留言
+            $project_id = $db->check_project($client_id);
             $message_info = $db->show_client_message($project_id);
         }
         //渲染查看留言视图
@@ -114,5 +103,17 @@ class Message extends Base
         return $db->check_count($project_id);
     }
 
+    //通过用户id 查询用户所有项目信息
+    public static function get_client_project($client_id)
+    {
+        $db = new MessageModel();
+        $project_id = $db->check_project($client_id);  //获得当前用户所有项目id
+        if (!empty($project_id)) {
+            //通过项目id查询所有项目名，
+            return $db->check_project_name($project_id); //返回给前端二级联动用
+        } else {
+            return [];
+        }
+    }
 
 }

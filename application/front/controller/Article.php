@@ -48,7 +48,12 @@ class Article extends Controller
         $this->assign('type', $type_id);
         $this->assign('article_info', $article_info);
         return $this->view->fetch('');
+    }
 
+    //根据项目id 查询项目所有的文章
+    public function get_article($project_id)
+    {
+        return $this->article_model->get_some_article($project_id);
     }
 
 

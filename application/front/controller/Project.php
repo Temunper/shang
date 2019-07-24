@@ -9,6 +9,7 @@
 namespace app\front\controller;
 
 
+use app\front\model\ArticleModel;
 use app\front\model\ProjectModel;
 use think\Controller;
 use think\Request;
@@ -27,7 +28,6 @@ class Project extends Controller
         $code = 202;
         //接收传入的project_id 参数
         $data = Request::instance()->param('project_id');
-
         //根据project_id 查询所有相关信息
         if (empty($data)) {
             return json_encode(['code' => $code, 'msg' => '请选择要进入的项目']);
@@ -41,6 +41,13 @@ class Project extends Controller
         if (empty($project_info)) {
             return json_encode(['code' => 201, 'msg' => '不存在的项目，请检查']);   //查询数据为空，则返回错误信息
         }
+        //查询该项目相关文章
+        $get = new ArticleModel();
+        $article_info = $get->get_some_article($data);   //得到项目id 项目咨询
+        $title = $project_info['name'];
+        dump($article_info);die;
+        $this->assign('title', $title);  //标题
+        $this->assign('article_info',$article_info); //项目相关的项目咨询
         $this->assign('project_info', $project_info);    //返回当前项目的所有信息
         return $this->view->fetch();
 

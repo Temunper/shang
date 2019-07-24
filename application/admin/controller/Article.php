@@ -24,26 +24,28 @@ class Article extends Base
 
     //渲染文章页面，显示所有文章
     //显示用户自己发布的文章 或精确搜索
-    public function show_articles()
+    public function article()
     {
         $data = Request::instance()->param();
         //判断是否存在search 字段，存在则为精确搜索
         if (isset($data['search'])) {
-
-            $time = $data['date1'] ? $data['date1'] : 0;  //如果为真则赋值，否则赋值0
-            $time2 = $data['date2'] ? $data['date2'] : time();  //如果为真则赋值，否则赋值当前时间
+            $time = !empty($data['date1']) ? $data['date1'] : 0;  //如果为真则赋值，否则赋值0
+            $time2 = !empty($data['date2']) ? $data['date2'] : time();  //如果为真则赋值，否则赋值当前时间
+            $status = !empty($data['status']) ? $data['status'] : '1,2';
             unset($data['date1']);
             unset($data['date2']);
-            //   dump(123);die;
+            unset($data['status']);
             $data = array_filter($data);  //除去data数组中值为false(空)的的项
             //搜索相关文章
-            $article_info = $this->article_model->accurate_article($time, $time2, $data);
+            //   dump($data);die;
+            $article_info = $this->article_model->accurate_article($time, $time2, $data,$status);
         } else {
             //查询作者为当前用户的文章
             $article_info = $this->article_model->select_all_article();  //查询当前用户所用文章
             // 如果返回值为空，则未查询到与当前用户相关的文章
             //渲染视图
         }
+        //dump($article_info);die;
         return $this->fetch('', ['article_info' => $article_info]);
     }
 
@@ -68,7 +70,7 @@ class Article extends Base
     }
 
     //系统删除文章，修改文章状态值status=>4
-    public function detele_article()
+    public function delete_article()
     {
         //设置默认返回值，默认更新失败
         $code = 202;  //设置返回状态值，默认失败
