@@ -38,7 +38,7 @@ class Article extends Base
             $data = array_filter($data);  //除去data数组中值为false(空)的的项
             //搜索相关文章
             //   dump($data);die;
-            $article_info = $this->article_model->accurate_article($time, $time2, $data,$status);
+            $article_info = $this->article_model->accurate_article($time, $time2, $data, $status);
         } else {
             //查询作者为当前用户的文章
             $article_info = $this->article_model->select_all_article();  //查询当前用户所用文章
@@ -49,18 +49,25 @@ class Article extends Base
         return $this->fetch('', ['article_info' => $article_info]);
     }
 
-    //审批通过文章，修改状态
+    //审批文章，修改状态  传入id 和状态值
     public function approval_article()
     {
+        $allow = [-1, 2];  //设置允许更改的状态值，驳回或通过
         //设置默认返回值，默认更新失败
         $code = 202;    //设置返回状态值，默认失败
         $results = "更新文章状态失败";   //设置返回信息
         //接收传入的article_id
-        $data = Request::instance()->param('article_id');
-        $article_id = $data ? $data : 0;
+        $data = Request::instance()->param();
+     //   dump($data);die;
+        if (empty($data['article_id'])) {
+            return ['code' => $code, 'msg' => '请选择要审批的文章'];
+        }
+        if (empty($data['status']) || !in_array($data['status'], $allow)) {
+            return ['code' => $code, 'msg' => '审批状态有误，请检查'];
+        }
+
         //执行修改
-        $status = 2; //设置要修改的文章状态值
-        $result = $this->article_model->change_status($article_id, $status);
+        $result = $this->article_model->change_status($data['article_id'], $data['status']);
         if ($result) {
             //执行成功，修改返回的状态值
             $code = 200;
@@ -77,7 +84,8 @@ class Article extends Base
         $results = "删除文章失败"; //设置返回信息
         $status = 4;  //设置要修改的文章状态值
         //接收传入的article_id
-        $data = Request::instance()->param('article_id');
+        $data = Request::instance()->param(['article_id','status']);
+        dump($data);die;
         $article_id = $data ? $data : 0;
         //执行修改
         $result = $this->article_model->change_status($article_id, $status);

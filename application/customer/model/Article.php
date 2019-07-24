@@ -95,7 +95,7 @@ class Article extends Model
     public function getStatusAttr($status)
     {
         //状态：1未审核，2审核通过，3用户删除，4管理员删除
-        $value = [1 => '未审核', 2 => '审核通过', 3 => '用户删除', 4 => '管理员删除'];
+        $value = [-1=>'驳回',1 => '未审核', 2 => '审核通过', 3 => '用户删除', 4 => '管理员删除'];
         return $value[$status];
     }
 

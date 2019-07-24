@@ -174,6 +174,7 @@ class Article extends Base
             $data = array_merge($data, ['author' => $author]);
             $status = !empty($data['status']) ? ($data['status']) : '1,2';  //
             unset($data['status']);  // 删除数组中的状态字段
+
             //搜索相关文章
             $article_info = $db->accurate_article($time, $time2, $data, $status);
         } else {

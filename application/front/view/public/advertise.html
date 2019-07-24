@@ -27,7 +27,7 @@
                     <!--循环出父类名称结束-->
                     <div class="item4boxcontent">
                         <!--广告父类循环-->
-                        {volist name="clas" id="vo"}
+                        {volist name="clas" id="vo" offset="0" length="1"}
                         <div class="contentlist" style="display: block;">
                             <ul>
                                 <!--内容子广告循环-->
@@ -44,6 +44,24 @@
                             </ul>
                         </div>
                         {/volist}
+                        {volist name="clas" id="vo" offset="1" }
+                        <div class="contentlist" style="display: none;">
+                            <ul>
+                                <!--内容子广告循环-->
+                                <!--父类项目-->
+                                {volist name="vo['son']" id="item" }
+                                <li class="row1 col1">
+                                    <a href="#"   target="_blank">
+                                        <img src="{$item['image']}"
+                                             alt="怒火八零"></a>
+                                    <span>{$item['name']}</span>
+                                </li>
+                                {/volist}
+                                <!--内容子广告结束-->
+                            </ul>
+                        </div>
+                        {/volist}
+
                     </div>
                 </div>
             </div>

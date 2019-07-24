@@ -36,7 +36,7 @@ class Message extends Base
             //取出时间字段
             //    dump($data);die;
             $date1 = !empty($data['date1']) ? $data['date1'] : 0;
-            $date2 = !empty($data['date1']) ? $data['date1'] :time();
+            $date2 = !empty($data['date1']) ? $data['date1'] : time();
             //删除字段中的时间字段
             unset($data['date1']);
             unset($data['date2']);
@@ -49,31 +49,30 @@ class Message extends Base
             $message_info = $this->message_model->show_all_message();
         }
         //渲染模板
-       // dump($message_info);die;
+        // dump($message_info);die;
         return $this->view->fetch('', ['message_info' => $message_info]);
     }
 
     //系统删除留言功能
     public function system_delete()
     {
+        $code = 202;
+        $result = "删除失败";
         $data = Request::instance()->param('ids');
+
         //如果$data['ids']为空，则返回错误信息
-        if (empty($data['ids'])) {
+        if (empty($data)) {
             return ['code' => $this->code, 'msg' => '请选择要删除的数据'];
         }
         //不为空，则执行
         $result = $this->message_model->system_do_delete($data);  //执行删除动作
         if ($result) {
             //为真，则执行成功，修改状态值和返回信息
-            $this->code = 200;
-            $this->result = "删除成功";
-        }
-        {
-            //执行失败，修改返回信息
-            $this->result = "删除失败";
+            $code = 200;
+            $result = "删除成功";
         }
         //返回信息
-        return ['code' => $this->code, 'msg' => $this->result];
+        return ['code' => $code, 'msg' => $result];
     }
 
 

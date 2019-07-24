@@ -50,6 +50,7 @@ class Message extends Model
     {
         $status = 4;
         return self::where('message_id', 'in', $data)->update(['status' => $status]);
+
     }
 
     //项目名称获取器

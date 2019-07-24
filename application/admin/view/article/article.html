@@ -142,7 +142,7 @@
                url:"{:url('article/approval_article')}",
                data:{
                    article_id:article_id,
-                   status:1
+                   status:2
                },
                dataType:"json",
                type:"POST",
@@ -150,6 +150,7 @@
                    if (data.code == 200) {        //返回值status 为1时为执行成功
                        $(this).closest('tr').remove();   //执行成功，删除该列
                        alert(data.msg);              //弹出成功信息
+                       window.location.reload();
                    } else {
                        alert(data.msg);            //执行失败，弹出失败信息
                    }
@@ -171,6 +172,7 @@
                     if (data.code == 200) {        //返回值status 为1时为执行成功
                         $(this).closest('tr').remove();   //执行成功，删除该列
                         alert(data.msg);              //弹出成功信息
+                        window.location.reload();
                     } else {
                         alert(data.msg);            //执行失败，弹出失败信息
                     }

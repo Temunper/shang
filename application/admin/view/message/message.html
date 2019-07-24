@@ -32,7 +32,7 @@
     <!-- 头部导航 -->
     {include file="main/head" /}
     <!-- //头部结束 -->
-    <div class="main" >
+    <div class="main" style="background: #f1f1f1">
         <div class="seeMsg-con">
             <div class="seeMsg-con-hd clearfix">
                 <form action="{:url('message/message')}" method="post">
@@ -155,12 +155,12 @@
                     data: {ids: ids},     //提交的数据
                     dataType: 'json',        //提交的格式
                     success: function (data) {
-                        if (data.status == 1) {        //返回值status 为1时为执行成功
+                        if (data.code == 200) {        //返回值status 为1时为执行成功
                             $(this).closest('tr').remove();   //执行成功，删除该列
-                            alert(data.message);              //弹出成功信息
+                            alert(data.msg);              //弹出成功信息
                             window.location.reload();
                         } else {
-                            alert(data.message);            //执行失败，弹出失败信息
+                            alert(data.msg);            //执行失败，弹出失败信息
                         }
                     }
                 });
@@ -195,11 +195,11 @@
                     cache: false,
                     async: false,
                     success: function (data) {
-                        if (data.status == 1) {        //返回值status 为1时为执行成功
-                            alert(data.message);              //弹出成功信息
+                        if (data.code == 200) {        //返回值status 为1时为执行成功
+                            alert(data.msg);              //弹出成功信息
                             window.location.reload();
                         } else {
-                            alert(data.message);            //执行失败，弹出失败信息
+                            alert(data.msg);            //执行失败，弹出失败信息
                         }
                     }
                 });
