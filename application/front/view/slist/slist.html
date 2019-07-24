@@ -131,7 +131,7 @@
     <div class="content_list">
         <ul>
 
-    <!--循环开始-->
+            <!--循环开始-->
             {volist name="ad_position" id="vo"}
             <li>
                 <img src="{vo.image}"/>
@@ -143,7 +143,7 @@
                     <p class="cont_cm">关注量:{$vo.attention}</p>
                 </div>
                 <div class="cont_b">
-                    <a href="../project/project.html">
+                    <a href="{:url('project/project',['project_id'=>$vo.project_id])}">
                         <div class="cont_b_l left">查看详情</div>
                     </a>
                     <a href="#">
@@ -152,7 +152,7 @@
                 </div>
             </li>
             <!--循环结束-->
-{/volist}
+            {/volist}
 
 
         </ul>

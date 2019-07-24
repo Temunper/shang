@@ -18,6 +18,10 @@
     <link href="__TEMPLATE__/index/index.css" rel='stylesheet' type='text/css'/>
     <link href="__TEMPLATE__/project/project.css" rel='stylesheet' type='text/css'/>
     <script src="__TEMPLATE__/js/p.js"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/list.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/Ecalendar.css"/>
 </head>
 <body class="cbp-spmenu-push">
 <!-- 页面开始 -->
@@ -29,12 +33,8 @@
     <!-- 头部导航 -->
     {include file="main/head" /}
     <!-- //头部结束 -->
-    <div class="main">
-        <div class="seeMsg-top">
-            <h3>留言信息</h3>
-            <span>messages</span>
-        </div>
-        <div class="seeMsg-con"  style="margin-left: 240px;padding: 20px;">
+    <div class="main" >
+        <div class="seeMsg-con">
             <div class="seeMsg-con-hd clearfix">
                 <form action="{:url('message/message')}" method="post">
                     <span class="seeMsg-name">时间段</span>

@@ -9,7 +9,7 @@
 namespace app\front\controller;
 
 
-use app\front\model\ArticleModel;
+use app\front\model\Article as ArticleModel;
 use think\Controller;
 use think\Request;
 
@@ -30,7 +30,7 @@ class Article extends Controller
         return $result;
     }
 
-
+    //渲染咨询页
     public function newslist()
     {
         $id = (int)Request::instance()->param('type');    //接收type 参数

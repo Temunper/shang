@@ -158,17 +158,18 @@
                                 <div class="leftimg">
                                     <img src="{$vo['lis_img']}"/></div>
                                 <div class="rightcontent">
-                                    <div class="title">{vo['title']}</div>
+                                    <div class="title">{$vo['title']}</div>
                                     <div class="text">
                                         {$vo['content']}
                                     </div>
                                     <div class="textbottom">
-                                        <span>{$vo['source']}</span>
-                                        <span>{$vo.author}</span>
+                                        <span>来源:{$vo['source']}</span>
+                                        <span>作者:{$vo.author}</span>
                                         <span>{$vo.update_time}</span></div>
                                 </div>
                             </a>
                         </div>
+                        {/volist}
                         <!--遍历相关文章结束-->
                     </div>
                     <div class="nocontentlist">
@@ -252,7 +253,7 @@
                 </div>
                 <!--点击换一批，重新获取数据-->
                 <div class="content">
-                    <!--遍历三个-->
+                    <!--遍历开始-->
                     <div class="contentlist">
                         <a href="#"  data-type="cmsad"  target="_blank">
                             <img src="__PUB08__/picture/683412.jpg" alt="洁希亚国际洗衣"/>
@@ -261,6 +262,7 @@
                                 <span>￥7-15万</span></div>
                         </a>
                     </div>
+                    <!--遍历结束-->
                 </div>
             </div>
             <!-- 右侧块 -->
@@ -271,10 +273,15 @@
                 </ul>
                 <ul class="contentlist">
                     <!--遍历-->
+                    {volist name="article" id="vo" length="10"}
+                    {if $vo.type eq 1}
                     <li>
-                        <a href="#" target="_blank" title="丽笙酒店加盟怎么样 费用多少">丽笙酒店加盟怎么样 费用多少</a>
+                        <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}" target="_blank"
+                           title=" {$vo.title}">
+                            {$vo.title}</a>
                     </li>
-
+                    {/if}
+                    {/volist}
                 </ul>
             </div>
             <div class="hotzhuanti clearfix">
@@ -283,8 +290,15 @@
                     <li class="on ml">最新专题</li>
                 </ul>
                 <ul class="contentlist">
+                    {volist name="article" id="vo" length="10"}
+
                     <li>
-                        <a href="#" target="_blank" title="加盟锅圈食汇有盈利吗">加盟锅圈食汇有盈利吗</a></li>
+                        <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}" target="_blank"
+                           title=" {$vo.title}">
+                            {$vo.title}</a>
+                    </li>
+
+                    {/volist}
                 </ul>
 
 

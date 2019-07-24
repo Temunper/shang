@@ -15,6 +15,7 @@ class Article extends Model
 {
     protected $createTime = 'create_time';
     protected $updateTime = 'update_time';
+    protected $field = true;
 
     //检查用户是否拥有id为$id的文章
     public function check_own($own, $id)
@@ -33,7 +34,7 @@ class Article extends Model
     //更新文章信息
     public function update_article($params)
     {
-        self::update($params);
+        return self::update($params);
     }
 
     //删除文章，修改状态
@@ -44,16 +45,14 @@ class Article extends Model
     }
 
     //精确搜索文章
-    public function accurate_article($time1, $time2, $params, $author)
+    public function accurate_article($time1, $time2, $params, $status)
     {
         return $re = self::where('update_time', '>', $time1)
             ->where('update_time', '<', $time2)
             ->where($params)
-            ->where('author', $author)
-            ->where('status', 'in', '1,2')
+            ->where('status', 'in', $status)
             ->order('update_time', 'desc')
             ->paginate(15);
-
     }
 
 

@@ -8,7 +8,7 @@
 
 namespace app\front\controller;
 
-use app\front\model\ArticleModel;
+use app\front\model\Article as ArticleModel;
 use think\Controller;
 use think\Request;
 

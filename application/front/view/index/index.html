@@ -625,7 +625,7 @@
                                     <span>{$item.create_time}</span></div>
                             </a>
                             {elseif condition="$i>1 && $i<=7" /}
-                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link">
+                            <a href="{:url('detail/detail')}?article_id={$item.article_id}" class="link">
                                 <i class="icon icon-ic-dot-grey fl"></i>
                                 <span class="fl texts">{$item.title}</span>
                                 <span class="fr time">{$item.create_time}</span></a>
@@ -651,7 +651,7 @@
         <span class="fr">
         {volist name = "ad_position" id = "item"}
          {if $item.ad_id eq 1027 && $i<=6}
-      <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}加盟" target="_blank">{$item.name}加盟</a>
+      <a href="{:url('project/project')}?project_id={$item.project_id}" title="{$item.name}加盟" target="_blank">{$item.name}加盟</a>
          {else/}{php}$i--;{/php}
           {/if}
          {/volist}
@@ -663,14 +663,14 @@
             {volist name="clas" id="vo" length="3"}
             <dl>
                 <dt>
-                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <a href="{:url('slist/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
                     <span class="red">
-            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
+            <a target="_blank" title="{$vo.describe}" href="{:url('slist/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
                     {volist name = "ad_position" id = "item" length="3"}
                     {if $item.ad_id eq $k && $i<=5}
-                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                    <a href="{:url('project/project')}?project_id={$item.project_id}" title="{$item.name}"
                        target="_blank">{$item.name}</a>
                     {else/}{php}$i--;{/php}
                     {/if}
@@ -684,14 +684,14 @@
             {volist name="clas" id="vo" offset="3" length="3"}
             <dl>
                 <dt>
-                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <a href="{:url('slist/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
                     <span class="blue">
-            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
+            <a target="_blank" title="{$vo.describe}" href="{:url('slist/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
                     {volist name = "ad_position" id = "item" }
                     {if $item.ad_id eq $k && $i<=5}
-                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                    <a href="{:url('project/project')}?project_id={$item.project_id}" title="{$item.name}"
                        target="_blank">{$item.name}</a>
                     {else/}{php}$i--;{/php}
                     {/if}
@@ -704,14 +704,14 @@
             {volist name="clas" id="vo" offset="6" length="3"}
             <dl>
                 <dt>
-                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <a href="{:url('slist/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
                     <span class="green">
-            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
+            <a target="_blank" title="{$vo.describe}" href="{:url('slist/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
                     {volist name = "ad_position" id = "item" }
                     {if $item.ad_id eq $k && $i<=5}
-                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                    <a href="{:url('project/project')}?project_id={$item.project_id}" title="{$item.name}"
                        target="_blank">{$item.name}</a>
                     {else/}{php}$i--;{/php}
                     {/if}
@@ -724,14 +724,14 @@
             {volist name="clas" id="vo" offset="9" length="3"}
             <dl>
                 <dt>
-                    <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <a href="{:url('slist/slist')}?class_id={$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
                     <span class="orange">
-            <a target="_blank" title="{$vo.describe}" href="{:url('Index/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
+            <a target="_blank" title="{$vo.describe}" href="{:url('slist/slist')}?class_id={$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
                     {volist name = "ad_position" id = "item" }
                     {if $item.ad_id eq $k && $i<=5}
-                    <a href="{:url('Index/project')}?project_id={$item.project_id}" title="{$item.name}"
+                    <a href="{:url('project/project')}?project_id={$item.project_id}" title="{$item.name}"
                        target="_blank">{$item.name}</a>
                     {else/}{php}$i--;{/php}
                     {/if}
@@ -746,17 +746,17 @@
             <ul>
                 <li class="red">
                     {volist name = "ad_position" id = "item"  offset = "0" length="5"}
-                    <a target="_blank" title="$item.name}" href="{:url('Index/project')}?project_id={$item.project_id}" style="color: red">{$item.name}</a>
+                    <a target="_blank" title="$item.name}" href="{:url('project/project')}?project_id={$item.project_id}" style="color: red">{$item.name}</a>
                     {/volist}
                 </li>
                 <li>
                     {volist name = "ad_position" id = "item"  offset = "5" length="5"}
-                    <a target="_blank" title="$item.name}" href="{:url('Index/project')}?project_id={$item.project_id}">{$item.name}</a>
+                    <a target="_blank" title="$item.name}" href="{:url('project/project')}?project_id={$item.project_id}">{$item.name}</a>
                     {/volist}
                 </li>
                 <li class="red">
                     {volist name = "ad_position" id = "item"  offset = "10" length="5"}
-                    <a target="_blank" title="$item.name}" href="{:url('Index/project')}?project_id={$item.project_id}" style="color: red">{$item.name}！</a>
+                    <a target="_blank" title="$item.name}" href="{:url('project/project')}?project_id={$item.project_id}" style="color: red">{$item.name}！</a>
                     {/volist}
                 </li>
             </ul>

@@ -17,6 +17,7 @@ use think\Model;
 class Message extends Model
 {
     protected $ip;
+    protected $field = true;
 
     public function __construct($data = [])
     {

@@ -155,8 +155,7 @@ class Article extends Base
     //显示用户自己发布的文章 或精确搜索
     public function show_self_article()
     {
-        $data = Request::instance()->param();
-
+        $data = Request::instance()->post();
         $db = new ArticleModel();
         //定于接收的数组
         $author = Session::get('client_id');
@@ -164,6 +163,7 @@ class Article extends Base
         $project_info = Message::get_client_project($author);
         //搜索用户的所有项目信息
         if (isset($data['search'])) {
+
             //存在 search 字段 则为精确搜索
             //取出时间并且删除该字段
             $time = $data['date1'] ? $data['date1'] : 0;  //如果为真则赋值，否则赋值0
@@ -171,8 +171,11 @@ class Article extends Base
             unset($data['date1']);
             unset($data['date2']);  //删除字段中的时间字段
             $data = array_filter($data);  //除去data数组中值为false(空)的的项
+            $data = array_merge($data, ['author' => $author]);
+            $status = !empty($data['status']) ? ($data['status']) : '1,2';  //
+            unset($data['status']);  // 删除数组中的状态字段
             //搜索相关文章
-            $article_info = $db->accurate_article($time, $time2, $data, $author);
+            $article_info = $db->accurate_article($time, $time2, $data, $status);
         } else {
             //查询作者为当前用户的文章
 
@@ -227,7 +230,7 @@ class Article extends Base
         $file = $request->file('img');
         //设置验证规则
         $rule = [
-            'type|类型' => 'egt:1',
+            'type|类型' => 'require',
             'title|标题' => 'require|length:2,20',
             'brief|简介' => 'require|length:5,20',
             'content|内容' => 'require',
@@ -235,7 +238,7 @@ class Article extends Base
         ];
         //设置错误返回信息
         $msg = [
-            'type' => ['egt' => '项目类型必选'],
+            'type' => ['require' => '项目类型必选'],
             'title' => ['require' => '标题不能为空',
                 'length' => '标题长度需为2-20字符'],
             'brief' => ['require' => '简介不能为空',
@@ -251,7 +254,7 @@ class Article extends Base
         //为真，继续执行
         $db = new ArticleModel();
         $client_id = Session::get('client_id');  //获取当前用户id
-        $data = array_merge($data, ['update_time' => time()]);  //添加更新时间字段
+        $data = array_merge($data, ['update_time' => time(), 'status' => 1]);  //添加更新时间字段和状态值status=》1
         //判断是否更换了新图片
         $file = $request->file('image');
         if (empty($file)) {
@@ -276,7 +279,6 @@ class Article extends Base
             $old_path = $db->get_image_path($article_id);  //获得旧图片的路径
             $res = "";
             try {
-                $data = array_merge($data, ['status' => 1]);       //拼接字段status =》1 ,将文章设置为未审核状态
                 $res = $db->update_article($data);   //执行更新
             } catch (Exception $e) {
                 return $result = $e->getMessage();  // 失败返回信息
