@@ -34,3 +34,6 @@ $("#update-website").click(function () {
         }
     })
 });
+$("#go-back").click(function () {
+    window.location.href = "/admin/website/website";
+});

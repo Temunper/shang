@@ -1,3 +1,4 @@
+//地区三级联动
 $(function () {
     initProvince("province");
 });
@@ -5,11 +6,12 @@ $("#province").bind('change', function () {
     var proid = $("#province option:selected").val()
     onProvinceChange(proid, "city")
 });
-
 $("#city").bind('change', function () {
     var city = $("#city option:selected").val()
     onCityChange(city, "country")
 });
+
+//分类二级联动
 $(".first-class").bind("change", function () {
     var $son = $(this).find('option:selected').attr('data-son');
     var html = ['<option value=""></option>'];
@@ -24,6 +26,9 @@ $(".first-class").bind("change", function () {
         }
     }
     $('.second-class').html(html);
+});
+$(".submit-b").click(function () {
+   window.location.href = "/admin/project/project";
 });
 
 //提交添加

@@ -23,3 +23,6 @@ $("#add-class").click(function () {
         }
     })
 });
+$("#go-back").click(function () {
+   window.location.href = "/admin/clas/clas";
+});

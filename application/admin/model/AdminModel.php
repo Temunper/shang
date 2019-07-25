@@ -20,10 +20,15 @@ class AdminModel extends Model
 
 //    查询密钥
 
-//用户信息
+//获取密钥
     function get_admin($user)
     {
-        $result = Db::table($this->table)->where(['user' => $user])->find();
+        $result = Db::table($this->table)->field('verify')->where(['user' => $user])->find();
+        return $result;
+    }
+//登陆验证
+    function login($user,$pass){
+        $result = Db::table($this->table)->field('id,name,user,status')->where(['user'=>$user,'pass'=>$pass])->find();
         return $result;
     }
 

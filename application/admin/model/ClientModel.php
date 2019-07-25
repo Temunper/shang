@@ -17,7 +17,7 @@ class ClientModel extends Model
     protected $table = 'client';
 
 //    根据id获取
-    function get_client_by_id($client_id)
+    function get_client_by_id($client_id)//客户id
     {
         $result = Db::table($this->table)
             ->where('client_id', '=', $client_id)

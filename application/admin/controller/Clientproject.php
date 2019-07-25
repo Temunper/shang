@@ -42,12 +42,12 @@ class Clientproject extends Base
         $client = new ClientModel();
         $project = new ProjectModel();
         $params = Request::instance()->param();
-        $client = $client->get_client_by_id($params['client_id']);
-        $project = $project->get_project_by_id($params['project_id']);
-        $bool = $this->clientproject_model->get_cp_by_id($params);
+        $client = $client->get_client_by_id($params['client_id']);         //利用查询判断client_id是否存在
+        $project = $project->get_project_by_id($params['project_id']);     //同理判断project_id
+        $bool = $this->clientproject_model->get_cp_by_id($params);          //判断绑定是否存在
         if ($client && $project) {
             if (!$bool) {
-                $result = $this->clientproject_model->add_cp($params);
+                $result = $this->clientproject_model->add_cp($params);          //不存在重复的绑定则插入
                 $result ? $data = "绑定成功" : $data = "绑定失败";
                 $data = ['code' => 200, 'data' => $data];
                 echo json_encode($data);
@@ -66,8 +66,8 @@ class Clientproject extends Base
     public function unbinding()
     {
         $params = Request::instance()->post();
-        if (true === $result = $this->validate($params, 'Clientproject')) {
-            $result = $this->clientproject_model->del_cp($params);
+        if (true === $result = $this->validate($params, 'Clientproject')) {     //判断project_id和client_id是否存在
+            $result = $this->clientproject_model->del_cp($params);                       //存在则解除绑定
             if ($result) {
                 $data = ['code' => 200, 'data' => "解绑成功"];
                 return json_encode($data);

@@ -41,7 +41,7 @@
                 <div>
                     <div class="col-sm-2  set-position">
                         <h5 class="set-front">主题</h5>
-                        <select name="" id="select-theme" class="form-control1 ">
+                        <select name="" id="select-theme" class=".select2-container--default .select2-container--default " style="width: 180px;">
                             <option value="0"></option>
                             {volist name="theme" id="vo"}
                             <option value="{$vo.theme_id}">{$vo.name}</option>
@@ -50,21 +50,21 @@
                     </div>
                 </div>
                 <div>
-                    <div class="col-sm-2 set-position">
+                    <div class="col-sm-2 set-position" style="margin-left: 300px">
                         <h5>广告位</h5>
-                        <select name="" id="select-ad" class="form-control1 "></select>
+                        <select name="" id="select-ad" class=".select2-container--default .select2-container--default " style="width: 180px;"></select>
                     </div>
                 </div>
                 <div>
                     <div class="col-sm-2 set-position last-one">
                         <h5>项目</h5>
-                        <select name="" id="select-project" class="form-control1 "></select>
+                        <select name="" id="select-project" class=".select2-container--default .select2-container--default"></select>
                     </div>
                 </div>
                 <div>
                     <div class="col-sm-2 set-position last-two">
                         <h5>排序方式</h5>
-                        <select name="" id="select-sort" class="form-control1 ">
+                        <select name="" id="select-sort" class=".select2-container--default .select2-container--default">
                             <option value="0">根据输入顺序</option>
                             <option value="1">根据点击量</option>
                             <option value="2">根据关注量</option>
@@ -76,11 +76,7 @@
         </div>
         <!-- 项目列表 -->
         <div class="tables widget-shadow space-between">
-            <div class="panel-body widget-shadow">{php}$d_project = json_decode($project);$d_ad = json_decode($ad);{/php}
-                <div><h4>广告位项目列表</h4><h5>筛选内容：主题--》{volist name="theme" id="vo"}{if $vo.theme_id == $search.theme_id}{$vo.name}；{/if}{/volist}
-                    广告位--》{$search.ad};
-                    项目--》{$search.project};
-                    顺序--》{switch name="$search.sort"}{case value="1"}点击量{/case}{case value="2"}关注度{/case}{/switch}
+            <div class="panel-body widget-shadow">
                 </h5></div>
                 <table class="table table-striped table-hover ">
                     <thead>
@@ -136,5 +132,6 @@
 <script>
     var project = {$project};
     var ad = {$ad};
+    var search = {$search};
 </script>
 </html>

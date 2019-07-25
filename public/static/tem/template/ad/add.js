@@ -1,13 +1,13 @@
 $("#add-ad").click(function () {
-    var fd = new FormData();
-    var file_obj = document.getElementById('file').files[0];
+    var fd = new FormData();                                                //实例化表单
+    var file_obj = document.getElementById('file').files[0];     //获取文件
 
     fd.append('name', $("#name").val());
     fd.append('theme_id', $("#theme option:selected").val());
     fd.append('file_path', $("#file_path").val());
     fd.append('file',file_obj);
 
-    $.ajax({
+    $.ajax({                            //异步请求
         url: "/admin/ad/add",
         dataType: "json",
         type:"POST",
@@ -20,4 +20,7 @@ $("#add-ad").click(function () {
             alert(data.data);
         }
     })
+});
+$("#go-back").click(function () {
+   window.location.href = "/admin/ad/ad"
 });

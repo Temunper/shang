@@ -60,15 +60,11 @@ class Website extends Base
             $data = ['code' => 202, 'data' => '文件格式只能为jpg和png'];
             return json_encode($data);
         }
-        $d_website = WebsiteModel::getByDomain($request->param('domain'), function ($query) {
+        $d_website = WebsiteModel::getByDomain($request->param('domain'), function ($query) {       //根据域名查询返回对象
             $query->where('status', 1);
         });
-//        if (!preg_match('/^1[34578]\d{9}$/', $request->param('phone'))) {
-//            $data = ['code' => 202, 'data' => '電話號碼格式不正確'];
-//            return json_encode($data);
-//        }
-        $website = WebsiteModel::get($request->param('website_id'));
-        if (!$d_website || $request->param('domain') == $website->domain) {
+        $website = WebsiteModel::get($request->param('website_id'));                                //根据返回id获得对象
+        if (!$d_website || $request->param('domain') == $website->domain) {                         //判断站点是否已经存在
             $website->domain = $request->param('domain');
             $website->theme_id = $request->param('theme_id');
             if ($file_path) $website->logo = $file_path;
@@ -79,8 +75,8 @@ class Website extends Base
             $website->type = $request->param('type');
             $website->keywords = $request->param('keywords');
             $website->description = $request->param('description');
-            $validate = $this->validate($website->toArray(), 'Website');
-            if ($validate === true && $website->isUpdate(true)->save()) {
+            $validate = $this->validate($website->toArray(), 'Website');                            //验证更新信息
+            if ($validate === true && $website->isUpdate(true)->save()) {                            //根据验证结果更新
                 $data = ['code' => 200, 'data' => '更改成功'];
                 return json_encode($data);
             } else {
@@ -108,7 +104,7 @@ class Website extends Base
 //    站点添加
     public function add(Request $request)
     {
-        $file = $request->file('file');
+        $file = $request->file('file');                             //同理于修改方法update()
         if (empty($file))
             $file_path = $request->param('file_path');
         else {
@@ -121,10 +117,6 @@ class Website extends Base
         $website = WebsiteModel::getByDomain($request->param('domain'), function ($query) {
             $query->where('status', 1);
         });
-//        if (!preg_match('/^1[34578]\d{9}$/', $request->param('phone'))) {
-//            $data = ['code' => 202, 'data' => '電話號碼格式不正確'];
-//            return json_encode($data);
-//        }
         $param = special_filter($request->param());
         if (!$website) {
             $website = new WebsiteModel();
@@ -152,40 +144,4 @@ class Website extends Base
             return json_encode($data);
         }
     }
-
-
-//    文件验证
-//    public function check_file($file)
-//    {
-//        $finfo = finfo_open(FILEINFO_MIME_TYPE); // 返回 mime 类型
-//        finfo_file($finfo, $file);
-//        finfo_close($finfo);
-//    }
-//
-//    public function check_file2($file)
-//    {
-//        $file = fopen($file, "rb");
-//        $strFile = fread($file, 4); //只读文件头4字节
-//        fclose($file);
-//        $strInfo = @unpack("C4chars", $strFile);
-//        //dechex(),把十进制转换为十六进制。
-//        $code = dechex($strInfo ['chars1']) .
-//            dechex($strInfo ['chars2']) .
-//            dechex($strInfo ['chars3']) .
-//            dechex($strInfo ['chars4']);
-//        $type = '';
-//        switch ($code) //硬编码值查表
-//        {
-//            case "504b34" :
-//                $type = 'application/zip; charset=binary';
-//                break;
-//            case "89504e47" :
-//                $type = 'image/png; charset=binary';
-//                break;
-//            default :
-//                $type = false;
-//                break;
-//        }
-//        return $type;
-//    }
 }

@@ -60,5 +60,5 @@ $(".delete").click(function () {
 });
 
 $(".theme-add").click(function () {
-   window.open("/admin/theme/plus");
+   window.location.href = "/admin/theme/plus";
 });

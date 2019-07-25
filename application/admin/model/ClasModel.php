@@ -22,16 +22,16 @@ class ClasModel extends Model
             ->where('status', '=', '1')
             ->order('sort')
             ->select();
-        foreach ($result as $key => $value) {
+        foreach ($result as $key => $value) {                                 //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除
             $value['status'] == 1 ? $result[$key]['status'] = '正常' : $result[$key]['status'] = '删除';
         }
         return $result;
     }
 
     //    查询分类
-    function get_class_by_id($class_id)
+    function get_class_by_id($class_id)//分类id
     {
-        $result = Db::table($this->table)
+        $result = Db::table($this->table)                                   //左查询查询分类表，连接父节点
             ->alias('a')
             ->join('class b', 'a.f_class_id = b.class_id', 'left')
             ->where('a.class_id', '=', $class_id)
@@ -41,7 +41,7 @@ class ClasModel extends Model
     }
 
     //    添加分类
-    function add_clas($clas)
+    function add_clas($clas)//分类数组
     {
         $result = Db::table($this->table)
             ->insert($clas);
@@ -49,7 +49,7 @@ class ClasModel extends Model
     }
 
     //    删除分类
-    function del_clas($clas_id, $status)
+    function del_clas($clas_id, $status)//分类id和状态值
     {
         $result = Db::table($this->table)
             ->where('class_id', 'in', $clas_id)
@@ -58,7 +58,7 @@ class ClasModel extends Model
     }
 
     //    更改分类
-    function update_clas($clas)
+    function update_clas($clas)//分类数组
     {
         $result = Db::table($this->table)
             ->where('class_id', '=', $clas['class_id'])

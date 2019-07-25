@@ -1,14 +1,15 @@
 $(".add-clas").click(function () {
-    window.open("/admin/clas/plus");
+    window.location.href = "/admin/clas/plus";
 });
 $(".update-clas").click(function () {
     console.log(123);
-    window.open("/admin/clas/content?class_id=" + $(this).attr("data-class"));
+    window.location.href = "/admin/clas/content?class_id=" + $(this).attr("data-class");
 });
 
 $(".del-clas").click(function () {
-    var class_id = $(".del-clas").attr("data-class");
-    var r = confirm("确定删除分类:" + $(".del-clas").attr("data-name"));
+    var class_id = $(this).attr("data-class");
+
+    var r = confirm("确定删除分类:" + $(this).attr("data-name"));
     var del = $(this);
     if (r === true) {
         $.ajax({

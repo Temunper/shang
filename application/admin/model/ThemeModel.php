@@ -17,7 +17,7 @@ class ThemeModel extends Model
     protected $table = 'theme';
     protected $autoWriteTimestamp = false;
     protected $resultSetType = 'collection';             //使对象可以直接转换为字符串数组
-    protected $type = [
+    protected $type = [                                 //用tp5模型时能替换掉type字段的时间戳
         'time' => 'timestamp:Y-m-d h-i-s',
     ];
     protected $insert = ['time', 'status'];
@@ -29,8 +29,8 @@ class ThemeModel extends Model
         $status ? $c_status = "status = " . $status : $c_status = "status = 1";
         $result = Db::table($this->table)
             ->where($status)
-            ->paginate(1000000)->each(function ($item, $key) {
-                if ($item['status'] == 1) {
+            ->paginate(1000000)->each(function ($item, $key) {      //只有分页方法有each方法
+                if ($item['status'] == 1) {                                   //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除
                     $item['status'] = '正常';
                 } else $item['status'] = '已删除';
                 return $item;
@@ -78,6 +78,6 @@ class ThemeModel extends Model
     public function website()
     {
         return $this->hasMany('WebsiteModel', 'theme_id', 'theme_id', ['theme' => 'theme', 'website' => 'website'], 'right');
-    }
+    }                              //模型名                        //外键担当             //主键担当       别名                  别名              关联方式
 
 }
