@@ -56,7 +56,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {volist name="message_info" id="vo"}
+                {volist name="message_info" id="vo" empty="未查找到相关数据"}
                 <tr v-for="messageList in messageLists">
                     <td><input type="checkbox" class="table-checkbox checkboxone" name="id[]"
                                value="{$vo['message_id']}"></td>
@@ -203,7 +203,6 @@
         });
 
     })
-
 
 </script>
 {/block}

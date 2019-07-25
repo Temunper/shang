@@ -8,7 +8,8 @@
 
 namespace app\customer\common;
 
-use \think\Image;
+use think\Image;
+use think\Request;
 
 class Upload
 {
@@ -61,6 +62,8 @@ class Upload
      */
     public static function file($file, $domain, $pack)
     {
+        $data=Request::instance()->param(true);
+        dump($data);
         $upload_path = ROOT_PATH . 'public' . DS . 'uploads' . DS . $pack;       //上传路径
         //判断文件夹是否存在
         if (!file_exists($upload_path)) {

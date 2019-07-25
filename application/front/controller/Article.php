@@ -35,17 +35,19 @@ class Article extends Controller
     {
         $id = (int)Request::instance()->param('type');    //接收type 参数
         !empty($id) ? $type_id = (int)$id : $type_id = 1; //判断是否传入咨询类型id
-
         if ($type_id > 5 || $type_id < 1) {    //判断type 数值
             $type_id = 1;
         }
-        //如果不存在article_id  则为正常显示所有数据
 
-        $base = new \app\front\controller\Index();
-        $base->base_message();  //引入公共信息
+        $clas = new Clas();
+        $ad_position = new AdPosition();
         $article = new ArticleModel();
-        $article_info = $article->show_article($type_id);
-        $this->assign('type', $type_id);
+        $d_clas = $clas->get_all_clas();    //获取二级分类，用于底部广告位
+        $d_ad_position = $ad_position->get_all_ad_position();        //得到广告位的所有广告
+        $this->assign('ad_position', $d_ad_position);  //返回三个广告类的值
+        $this->assign('clas', $d_clas);    //返回分类
+        $this->get_ten_articles();  //查找5找文章类型的10条最新数据
+        $article_info = $article->show_article($type_id);       //返回当前type类型的文章
         $this->assign('article_info', $article_info);
         return $this->view->fetch('');
     }
@@ -56,5 +58,20 @@ class Article extends Controller
         return $this->article_model->get_some_article($project_id);
     }
 
+
+    public function get_ten_articles()
+    {
+        $db = new ArticleModel();
+        $article_p = $db->get_ten_article(1);
+        $article_b = $db->get_ten_article(2);
+        $article_n = $db->get_ten_article(3);
+        $article_h = $db->get_ten_article(4);
+        $article_s = $db->get_ten_article(5);
+        $this->assign('article_p', $article_p);
+        $this->assign('article_b', $article_b);
+        $this->assign('article_n', $article_n);
+        $this->assign('article_h', $article_h);
+        $this->assign('article_s', $article_s);
+    }
 
 }

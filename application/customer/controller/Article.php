@@ -55,7 +55,8 @@ class Article extends Base
         $status = 0;   //设置初始状态值
         $date_now = time();  //获得当前时间戳
         $data = $request->param(true);
-      //  dump($data);die;
+
+
         //设置验证规则
         $rule = [
             'type|类型' => 'require',
@@ -89,6 +90,7 @@ class Article extends Base
                 return ['status' => $status, 'message' => '具体项目不能为空'];
             }
         }
+
         $file = $request->file('image');
         $author = Session::get('client_id');
         //如果图片不为空，则保存图片,返回图片保存路径

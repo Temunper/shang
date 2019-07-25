@@ -9,10 +9,11 @@
 namespace app\customer\controller;
 
 use app\customer\model\Client as ClientModel;
+use think\Controller;
 use think\Request;
 use think\Session;
 
-class Client extends Base
+class Client extends Controller
 {
     //渲染登录页面
     public function login()
@@ -23,7 +24,7 @@ class Client extends Base
     //验证登录
     public function check_login(Request $request)
     {
-        $this->already_login();//判断用户是否已经登录，防止重复登录
+        $this->already_login();
         $status = 0;            //设置初始返回状态值
         $result = "";           //设置初始返回信息
         $data = $request->param();
@@ -151,6 +152,15 @@ class Client extends Base
             $username .= $chars[mt_rand(0, strlen($chars))];
         }
         return strtoupper(base_convert(time() - 1420070400, 10, 36)) . $username;
+    }
+
+    //防止用户重复登录
+    protected function already_login()
+    {
+        $client_id = Session::get('client_id');
+        if (!empty($client_id)) {
+            $this->error('用户已登录，请勿重复登录', url('index/index'));
+        }
     }
 
 

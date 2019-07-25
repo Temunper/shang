@@ -28,14 +28,20 @@ class Message extends Base
 
         //如何存在search 字段，则处理页面上端搜索
         if (isset($data['search'])) {
-            $time1 = $data['date1'] ? strtotime($data['date1']) : 0;
-            $time2 = $data['date2'] ? strtotime($data['date2']) : time();
+            $time1 = !empty($data['date1']) ? strtotime($data['date1']) : 0;
+            $time2 = !empty($data['date2']) ? strtotime($data['date2']) : time();
+            if ($time1 > $time2) {   //如果输入的时间1大于时间2 则交换两个时间
+                $time3 = $time1;
+                $time1 = $time2;
+                $time2 = $time3;
+                unset($time3);
+            }
             unset($data['date1']);
             unset($data['date2']);   //删除数组中的时间字段
             $data = array_filter($data);  //删除字段值为空的字段
             //执行搜索，返回搜索信息
             $message_info = $db->check_exact($time1, $time2, $data);
-
+        //  dump($message_info);die;
         } else {
             //不存在search字段，则返回用户所有留言
             $project_id = $db->check_project($client_id);
@@ -61,7 +67,7 @@ class Message extends Base
         //  dump($message_info);
         //设置下载文件的title
         $db->cheange_status($data);     //修改留言数据的状态
-        $csv_title = array( '客户名称', '留言时间', '项目名称', '地区', '留言内容', '手机号');
+        $csv_title = array('客户名称', '留言时间', '项目名称', '地区', '留言内容', '手机号');
         $csv = new Csv2();
         $res = $csv->put_csv($message_info, $csv_title);  //执行下载
         if (!$res) {

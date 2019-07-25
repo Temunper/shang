@@ -34,20 +34,9 @@
             <div class="sort_head">行业分类</div>
             <ul class="sort_ul01">
                 <li><a href="javascript:;">不限</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">餐饮</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">环保材料</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">节能设备</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">专利产品</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">产品代理</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">汽车养护</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">环保材料</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">节能设备</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">专利产品</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">产品代理</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">汽车养护</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">汽车养护</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">汽车养护</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:4}">汽车养护</a></li>
+                {volist name="clas" id="vo"}
+                <li><a href="javascript:;" tpl-txt="{max:4}">{$vo.name}</a></li>
+                {/volist}
             </ul>
             <div class="sort_more">
                 更多
@@ -57,13 +46,12 @@
             <div class="sort_head">二级分类</div>
             <ul>
                 <li><a href="javascript:;">不限</a></li>
+                {volist name="clas" id="vo" }
                 <li><a href="javascript:;" tpl-txt="{max:2}">火锅</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">上海</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">广州</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">武汉</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
+                {volist name="vo['son']" id="item" }
+                <li><a href="javascript:;" tpl-txt="{max:2}">{$item.name}</a></li>
+                {/volist}
+                {/volist}
             </ul>
             <div class="sort_more">
                 更多
@@ -87,26 +75,6 @@
             <div class="sort_head">加盟区域</div>
             <ul>
                 <li><a href="javascript:;">不限</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">上海</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">广州</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">武汉</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">上海</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">广州</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">武汉</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">上海</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">广州</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">武汉</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
                 <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
             </ul>
             <div class="sort_more">
@@ -182,8 +150,12 @@
 
     <div class="tail_b">
         <ul>
-            <li><a href="#" tpl-project=""><img src="__PUB08__/images/gmd.jpg"/></a></li>
-
+            <!--循环项目-->
+            {volist name="ad_position" id="vo" length="24"}
+            <li><a href="{:url('project/project',['project_id'=>$vo.project_id])}" tpl-project="">
+                <img src="{$vo.image}"/>
+            </a></li>
+            {/volist}
         </ul>
         <div style="clear:both"></div>
     </div>

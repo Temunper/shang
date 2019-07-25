@@ -75,9 +75,9 @@
             <!--引入cdn文件结束-->
             <div class="text">
                 <!--遍历相关文章10条-->
-                <a href="#" target="_blank">
+                <a href="#" target="_self">
                     <div class="textlist">
-                        <a href="#" target="_blank">
+                        <a href="#" target="_self">
                             <div class="list">
                                 <i>
                                 </i>
@@ -173,10 +173,16 @@
                         <!--遍历相关文章结束-->
                     </div>
                     <div class="nocontentlist">
+                        {volist name="article_info" id="vo" length=10 empty="该项目暂无相关资讯"}
                         <div class="listbox">
-                            <img src="__PUB08__/picture/muyou.png" alt=""/>
-                            <p>该项目暂无品牌资讯！</p>
+                            <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}">
+                                <img src="{$vo.lis_img}" alt="{$vo.title}"/>
+                            </a>
+                            <a href="{:url('index/index')}">
+                            <p>{$vo.content}</p>
+                            </a>
                         </div>
+                        {/volist}
                     </div>
                 </div>
             </div>
@@ -255,7 +261,7 @@
                 <div class="content">
                     <!--遍历开始-->
                     <div class="contentlist">
-                        <a href="#"  data-type="cmsad"  target="_blank">
+                        <a href="#"  data-type="cmsad"  target="_self">
                             <img src="__PUB08__/picture/683412.jpg" alt="洁希亚国际洗衣"/>
                             <div class="text">
                                 <p>洁希亚国际洗衣</p>
@@ -273,14 +279,12 @@
                 </ul>
                 <ul class="contentlist">
                     <!--遍历-->
-                    {volist name="article" id="vo" length="10"}
-                    {if $vo.type eq 1}
+                    {volist name="article_p" id="vo" length="10"}
                     <li>
-                        <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}" target="_blank"
+                        <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}" target="_self"
                            title=" {$vo.title}">
                             {$vo.title}</a>
                     </li>
-                    {/if}
                     {/volist}
                 </ul>
             </div>
@@ -290,14 +294,12 @@
                     <li class="on ml">最新专题</li>
                 </ul>
                 <ul class="contentlist">
-                    {volist name="article" id="vo" length="10"}
-
+                    {volist name="article_n" id="vo" length="10"}
                     <li>
-                        <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}" target="_blank"
+                        <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}" target="_self"
                            title=" {$vo.title}">
                             {$vo.title}</a>
                     </li>
-
                     {/volist}
                 </ul>
 
@@ -315,10 +317,12 @@
                 </div>
                 <ul class="contentlist">
                     <!--遍历10个链接-->
+                    {volist name="article_s" id="vo" length="10"}
                     <li>
-                        <a href="#" target="_blank" title="开烧烤店一年能挣多少">开烧烤店一年能挣多少</a>
-                        <span>2019-05-03</span>
+                        <a href="#" target="_self" title="{vo.title}">{$vo.title}</a>
+                        <span>{$vo.update_time}</span>
                     </li>
+                    {/volist}
                 </ul>
             </div>
         </div>

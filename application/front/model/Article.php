@@ -26,8 +26,7 @@ class Article extends Model
         return self::where('type', $type)
             ->where('status', '=', '2')
             ->order('update_time', 'desc')
-            ->paginate(15);
-
+            ->paginate(10);
     }
 
     //搜索一篇文章，传入文章id
@@ -38,7 +37,16 @@ class Article extends Model
 
     }
 
-    //得到所有的文章
+    //项目type id 返回10条咨询
+    public function get_ten_article($type)
+    {
+     return   $re = self::where('type', $type)->where('status', 2)
+         ->order('update_time','desc')
+            ->limit(10)->select();
+    }
+
+
+//得到所有的文章
     function get_all_article()
     {
         $result = self::where('status', '=', '2')
@@ -48,7 +56,7 @@ class Article extends Model
         return $result;
     }
 
-    //查询某项目下所有相关的项目咨询，传入项目id
+//查询某项目下所有相关的项目咨询，传入项目id
     public function get_some_article($project_id)
     {
         return self::where('status', '=', 2)
@@ -56,21 +64,22 @@ class Article extends Model
             ->where('project_id', $project_id)
             ->order('update_time', 'desc')
             ->paginate(10);
+        // dump($this->getLastSql());die;
     }
 
-    //文章时间修改器
+//文章时间修改器
     public function getCreateTimeAttr($create_time)
     {
         return date('Y-m-d H:i:s', $create_time);
     }
 
-    //文章时间修改器
+//文章时间修改器
     public function getUpdateTimeAttr($update_time)
     {
         return date('Y-m-d', $update_time);
     }
 
-    //文章类型获取器
+//文章类型获取器
     public function getTypeAttr($type)
     {
         //状态：1未审核，2审核通过，3用户删除，4管理员删除
@@ -78,7 +87,7 @@ class Article extends Model
         return $value[$type];
     }
 
-    //作者名称获取器
+//作者名称获取器
     public function getAuthorAttr($author)
     {
         return Db::table('client')->where('client_id', $author)->value('name');

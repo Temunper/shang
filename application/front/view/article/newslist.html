@@ -76,25 +76,20 @@
         <div id="tab" class="clearfix">
             <div class="pub-info">
                 {volist name="article_info" id="vo"}
-                {if $vo.type eq $type}
                 <div class="pub-info-list ">
-                    <a href="../detail/detail.html"><img src="{$vo.lis_img}" class="l"></a>
-                    <a href="{:url('index/detail',['article_id'=>$vo.article_id])}">
+                    <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}"><img src="{$vo.lis_img}" class="l"></a>
+                    <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}">
                         <h3 class="title">{$vo.title}</h3></a>
                     <p>
-                        <span class="words-limit">{$vo.content}</span>
+                        <span class="words-limit">{$vo.brief}</span>
                     </p>
                     <div class="publish-from">来源：{$vo.source} <span class="s1">{$vo.author}</span>
 
                         <span class="s3">
-
-
                                          {$vo.update_time}
-
                                 </span>
                     </div>
                 </div>
-                {/if}
                 {/volist}
 
                 <!--显示页数-->

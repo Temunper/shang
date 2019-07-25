@@ -37,6 +37,12 @@ class Message extends Base
             //    dump($data);die;
             $date1 = !empty($data['date1']) ? $data['date1'] : 0;
             $date2 = !empty($data['date1']) ? $data['date1'] : time();
+            if ($date1 > $date2) {   //如果输入的时间1大于时间2 则交换两个时间
+                $date3 = $date1;
+                $date1 = $date2;
+                $date2 = $date3;
+                unset($date3);
+            }
             //删除字段中的时间字段
             unset($data['date1']);
             unset($data['date2']);

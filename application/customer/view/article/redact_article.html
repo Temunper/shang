@@ -31,7 +31,7 @@
             </div>
             <div class="con-item">
                 <label for="item-input1" class="con-item-l">列表图片</label>
-                <img src="{$article_info['lis_img']}" style="height: 200px;width: 300px">
+                <img src="{$article_info['lis_img']}" style="height: 200px;width: 200px">
             </div>
             <div class="con-item">
                 <label for="item-input1" class="con-item-l">更换列图</label>
@@ -48,7 +48,8 @@
                    <p>{$article_info['content']}</p>
                 </div>
             </div>
-            <div class="con-item">
+
+            <div class="con-item" style="margin-top: 50px">
                 <label for="item-input1" class="con-item-l">来源</label>
                 <input type="text" id="item-source" class="con-item-r" name="source" value="{$article_info['source']}">
             </div>
@@ -103,7 +104,7 @@
 </script>
 
 <!--富文本编辑器-->
-<script type="text/javascript" src="__STATIC__/customer_public/js/wangEditor.js"></script>
+<script type="text/javascript" src="__STATIC__/customer_public/js/wangEditor.min.js"></script>
 <script type="text/javascript">
     var E = window.wangEditor
     var editor = new E('#editor')

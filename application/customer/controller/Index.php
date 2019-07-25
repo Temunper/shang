@@ -9,7 +9,6 @@
 namespace app\customer\controller;
 
 use app\customer\model\IndexModel;
-use think\Request;
 use think\Session;
 
 class Index extends Base
@@ -17,7 +16,7 @@ class Index extends Base
     //渲染客户后台主页
     public function index()
     {
-        $this->is_login();  //判断用户是否登录
+//        $this->is_login();  //判断用户是否登录
         //统计今天总留言
         $client_id = Session::get('client_id');
         $client_info = Session::get('client_info');

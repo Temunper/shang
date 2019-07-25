@@ -16,17 +16,17 @@
             <!-- <z:if condition="${Catalog.Alias!='project_ws'}"> -->
             {volist name="clas" id="vo"}
             <li>
-                <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank" class="link">{$vo.name} /{volist
+                <a href="{:url('slist/slist')}?class_id={$vo.class_id}" target="_blank" class="link">{$vo.name} /{volist
                     name="vo['son']" id="item"
                     length="1"}{$item.name}{/volist}
                     <i class="icon icon-ic-nav-arrow-grey"></i></a>
                 <ul class="ul-submenu clearfix hidden">
                     <li class="li-title">
-                        <a href="{:url('Index/slist')}?class_id={$vo.class_id}" target="_blank"
+                        <a href="{:url('slist/slist')}?class_id={$vo.class_id}" target="_blank"
                            class="link">{$vo.name}</a></li>
                     {volist name="vo['son']" id="item"}
                     <li>
-                        <a href="{:url('Index/slist')}?class_id={$item.class_id}" target="_blank" class="link">{$item.name}</a>
+                        <a href="{:url('slist/slist')}?class_id={$item.class_id}" target="_blank" class="link">{$item.name}</a>
                     </li>
                     <li>
                         {/volist}
@@ -48,7 +48,7 @@
                     <div class="images-inner" style="width: 1760px; height: 194px; left: 0px;">
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1001 && $i<=6}
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" data-id="76730"
+                        <a href="{:url('project/project')}?project_id={$item.project_id}" data-id="76730"
                            data-type="cmsad" target="_blank" class="link">
                             <img src="{$item.image}" class="img"/></a>
                         {else/}{php}$i--;{/php}
@@ -76,19 +76,19 @@
                         <div data-id="pc1_a02_label" data-type="cmsadpos"></div>
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1002 && $i<=6}
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" data-id="54613"
+                        <a href="{:url('project/project')}?project_id={$item.project_id}" data-id="54613"
                            data-type="cmsad" target="_blank" class="link-other">{$item.name}</a>
                         {else/}{php}$i--;{/php}
                         {/if}
                         {/volist}
-                        <a href="{:url('Index/slist')}" target="_blank" class="link-more">MORE</a></div>
+                        <a href="{:url('slist/slist')}" target="_blank" class="link-more">MORE</a></div>
                 </div>
                 <div class="div-body">
                     <div class="div-inner clearfix">
                         <div class="swiper-wrapper">
                             {volist name = "ad_position" id = "item"}
                             {if $item.ad_id eq 1003 && $i<=4}
-                            <a href="{:url('Index/project')}?project_id={$item.project_id}" data-id="80651"
+                            <a href="{:url('project/project')}?project_id={$item.project_id}" data-id="80651"
                                data-type="cmsad" target="_blank" class="link">
                                 <img src="{$item.image}" class="img" alt=""></a>
                             {else/}{php}$i--;{/php}
@@ -114,14 +114,14 @@
                         {else/}{php}$i--;{/php}
                         {/if}
                         {/volist}
-                        <a href="{:url('Index/slist')}" target="_blank" class="link-more">MORE</a>
+                        <a href="{:url('slist/slist')}" target="_blank" class="link-more">MORE</a>
                     </div>
                 </div>
                 <div class="div-body" data-id="pc1_a03" data-type="cmsadpos">
                     <div class="div-inner clearfix">
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1005 && $i<=6}
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" data-id="57182"
+                        <a href="{:url('project/project')}?project_id={$item.project_id}" data-id="57182"
                            data-type="cmsad" target="_blank" class="link">
                             <img src="{$item.image}" class="img" alt=""/></a>
                         {else/}{php}$i--;{/php}
@@ -140,7 +140,7 @@
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1006}
                         <li>
-                            <a href="{:url('Index/project')}?project_id={$item.project_id}">{$item.name}诚邀加盟</a></li>
+                            <a href="{:url('project/project')}?project_id={$item.project_id}">{$item.name}诚邀加盟</a></li>
                         {/if}
                         {/volist}
                     </ul>
@@ -154,7 +154,7 @@
                     <div class="div-inner clearfix">
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1007 && $i<=10}
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}"
+                        <a href="{:url('project/project')}?project_id={$item.project_id}"
                            data-id="29515" data-type="cmsad" target="_blank" class="link link-active">
                             <i class="icon-ic-panel-rank icon-ic-panel-rank-1r"></i>
                             <span class="text-num">{$i}</span>
@@ -176,17 +176,17 @@
                 <div class="div-body" id="zxScroll">
                     <div class="div-inner clearfix">
                         <div class="content-tab" id="zxScrollContent" style="margin-top: -6.96965px;">
-                            {volist name = "article" id = "vo"}
+                            {volist name = "article_p" id = "vo"}
                             {if $vo.type eq 1}
-                            <a href="{:url('Index/detail')}?article_id={$vo.article_id}" class="link">
+                            <a href="{:url('detail/detail')}?article_id={$vo.article_id}" class="link">
                                 <i class="icon icon-ic-dot-red"></i>{$vo.title}</a>
                             {/if}
                             {/volist}
                         </div>
                         <div class="content-tab hidden">
-                            {volist name = "article" id = "vo"}
+                            {volist name = "article_b" id = "vo"}
                             {if $vo.type eq 4 && $i<=10}
-                            <a href="{:url('Index/detail')}?article_id={$vo.article_id}" class="link">
+                            <a href="{:url('detail/detail')}?article_id={$vo.article_id}" class="link">
                                 <i class="icon icon-ic-dot-red"></i>{$vo.title}</a>
                             {else/}{php}$i--;{/php}
                             {/if}
@@ -210,7 +210,7 @@
             <p>
                 {volist name = "ad_position" id = "item"}
                 {if $item.ad_id eq 1008 && $i<=6}
-                <a target="_blank" href="{:url('Index/project')}?project_id={$item.project_id}">{$item.name}</a>|
+                <a target="_blank" href="{:url('project/project')}?project_id={$item.project_id}">{$item.name}</a>|
                 {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
@@ -238,7 +238,7 @@
                         </dd>
                     </dl>
                     <div class="btns">
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
+                        <a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
                         <a href="#" target="_blank" class="active">立即咨询</a></div>
                 </div>
                 {else/}{php}$i--;{/php}
@@ -254,7 +254,7 @@
                     <dd>{item.abbr}</dd>
                 </dl>
                 <div class="btns">
-                    <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
+                    <a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
                     <a href="#" target="_blank" class="active">立即咨询</a></div>
                 {else/}{php}$i--;{/php}
                 {/if}
@@ -263,7 +263,7 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1011 && $i<=4}
                     <li>
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
+                        <a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
                     {else/}{php}$i--;{/php}
@@ -279,7 +279,7 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1009 && $i<=8}
                     <li>
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
+                        <a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
                     {else/}{php}$i--;{/php}
@@ -292,7 +292,7 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1010 && $i<=24}
                     <dl>
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}">
+                        <a href="{:url('project/project')}?project_id={$item.project_id}">
                             <dt>
                                 <img src="{$item.image}" alt=""/></dt>
                             <dd>{$item.name}</dd>
@@ -317,7 +317,7 @@
             <p>
                 {volist name = "ad_position" id = "item"}
                 {if $item.ad_id eq 1014 && $i<=6}
-                <a target="_blank" href="{:url('Index/project')}?project_id={$item.project_id}">{$item.name}</a>|
+                <a target="_blank" href="{:url('project/project')}?project_id={$item.project_id}">{$item.name}</a>|
                 {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
@@ -338,7 +338,7 @@
                         </dd>
                     </dl>
                     <div class="btns">
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
+                        <a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
                         <a href="#" target="_blank" class="active">立即咨询</a>
                     </div>
                 </div>
@@ -355,7 +355,7 @@
                     <dd>{item.abbr}</dd>
                 </dl>
                 <div class="btns">
-                    <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
+                    <a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
                     <a href="#" target="_blank" class="active">立即咨询</a>
                 </div>
                 {else/}{php}$i--;{/php}
@@ -364,7 +364,7 @@
                 <ul>
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1017 && $i<=4}
-                    <li><a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
+                    <li><a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">
                         <img src="{$item.image}" alt=""/></a></li>
                     {else/}{php}$i--;{/php}
                     {/if}
@@ -378,7 +378,7 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1015 && $i<=8}
                     <li>
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
+                        <a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
                     {else/}{php}$i--;{/php}
@@ -392,7 +392,7 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1016 && $i<=24}
                     <dl>
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}">
+                        <a href="{:url('project/project')}?project_id={$item.project_id}">
                             <dt>
                                 <img src="{$item.image}" alt=""/></dt>
                             <dd>{$item.name}</dd>
@@ -418,7 +418,7 @@
             <p>
                 {volist name = "ad_position" id = "item"}
                 {if $item.ad_id eq 1020 && $i<=6}
-                <a target="_blank" href="{:url('Index/project')}?project_id={$item.project_id}">{$item.name}</a>|
+                <a target="_blank" href="{:url('project/project')}?project_id={$item.project_id}">{$item.name}</a>|
                 {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
@@ -439,7 +439,7 @@
                         </dd>
                     </dl>
                     <div class="btns">
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
+                        <a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
                         <a href="#" target="_blank" class="active">立即咨询</a>
                     </div>
                     {else/}{php}$i--;{/php}
@@ -455,7 +455,7 @@
                     <dd>{$item.image}</dd>
                 </dl>
                 <div class="btns">
-                    <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
+                    <a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">查看详情</a>
                     <a href="#" target="_blank" class="active">立即咨询</a>
                 </div>
                 {else/}{php}$i--;{/php}
@@ -464,7 +464,7 @@
                 <ul>
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1023 && $i<=4}
-                    <li><a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
+                    <li><a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">
                         <img src="{$item.image}" alt=""/></a></li>
                     {else/}{php}$i--;{/php}
                     {/if}
@@ -477,7 +477,7 @@
                 <ul>
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1021 && $i<=8}
-                    <li><a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank">
+                    <li><a href="{:url('project/project')}?project_id={$item.project_id}" target="_blank">
                         <img src="{$item.image}" alt=""/></a></li>
                     {else/}{php}$i--;{/php}
                     {/if}
@@ -489,7 +489,7 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1022 && $i<=24}
                     <dl>
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}">
+                        <a href="{:url('project/project')}?project_id={$item.project_id}">
                             <dt>
                                 <img src="{$item.image}" alt=""/></dt>
                             <dd>{$item.name}</dd>
@@ -513,7 +513,7 @@
         <div class="div-title">
             <h1>
                 <img src="__PUB08__/picture/headlines-jmzx.png" alt="">热门资讯</h1>
-            <a href="{:url('Index/newslist')}" target="_blank" class="link-more">
+            <a href="{:url('article/newslist')}" target="_blank" class="link-more">
                 <i>
                 </i>查看更多</a>
         </div>
@@ -523,115 +523,98 @@
                     <li class="link-active" style="box-shadow: none; top: 0px;">
                         <h2>项目资讯</h2>
                         <div class="div-item">
-                            {volist name = "article" id = "item"}
-                            {if $item.type eq 1}
-                            {if $i==1}
-                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link-topic">
+                            {volist name ="article_p" id = "item" length="1"}
+                            <a href="{:url('detail/detail')}?article_id={$item.article_id}" class="link-topic">
                                 <div class="div-img">
                                     <img src="{$item.lis_img}" class="img" alt=""></div>
                                 <div class="div-text">{$item.title}
                                     <span>{$item.create_time}</span></div>
                             </a>
-                            {elseif condition="$i>1 && $i<=7" /}
-                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link">
+                            {/volist}
+                            {volist name="article_p" id="item" offset="1" length="3"}
+                            <a href="{:url('detail/detail')}?article_id={$item.article_id}" class="link">
                                 <i class="icon icon-ic-dot-grey fl"></i>
                                 <span class="fl texts">{$item.title}</span>
                                 <span class="fr time">{$item.create_time}</span></a>
-                            {else/}{php}$i--;{/php}
-                            {/if}
-                            {/if}
+
                             {/volist}
                         </div>
                     </li>
                     <li class="" style="box-shadow: none; top: 0px;">
                         <h2>创业资讯</h2>
                         <div class="div-item">
-                            {volist name = "article" id = "item"}
-                            {if $item.type eq 2}
-                            {if $i==1}
-                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link-topic">
+                            {volist name ="article_b" id = "item" length="1"}
+                            <a href="{:url('detail/detail')}?article_id={$item.article_id}" class="link-topic">
                                 <div class="div-img">
                                     <img src="{$item.lis_img}" class="img" alt=""></div>
                                 <div class="div-text">{$item.title}
                                     <span>{$item.create_time}</span></div>
                             </a>
-                            {elseif condition="$i>1 && $i<=7" /}
-                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link">
+                            {/volist}
+                            {volist name="article_b" id="item" offset="1" length="3"}
+                            <a href="{:url('detail/detail')}?article_id={$item.article_id}" class="link">
                                 <i class="icon icon-ic-dot-grey fl"></i>
                                 <span class="fl texts">{$item.title}</span>
                                 <span class="fr time">{$item.create_time}</span></a>
-                            {else/}{php}$i--;{/php}
-                            {/if}
-                            {/if}
+
                             {/volist}
                         </div>
                     </li>
                     <li>
                         <h2>新闻资讯</h2>
                         <div class="div-item">
-                            {volist name = "article" id = "item"}
-                            {if $item.type eq 3}
-                            {if $i==1}
-                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link-topic">
+                            {volist name ="article_n" id = "item" length="1"}
+                            <a href="{:url('detail/detail')}?article_id={$item.article_id}" class="link-topic">
                                 <div class="div-img">
                                     <img src="{$item.lis_img}" class="img" alt=""></div>
                                 <div class="div-text">{$item.title}
                                     <span>{$item.create_time}</span></div>
                             </a>
-                            {elseif condition="$i>1 && $i<=7" /}
-                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link">
+                            {/volist}
+                            {volist name="article_n" id="item" offset="1" length="3"}
+                            <a href="{:url('detail/detail')}?article_id={$item.article_id}" class="link">
                                 <i class="icon icon-ic-dot-grey fl"></i>
                                 <span class="fl texts">{$item.title}</span>
                                 <span class="fr time">{$item.create_time}</span></a>
-                            {else/}{php}$i--;{/php}
-                            {/if}
-                            {/if}
+
                             {/volist}
                         </div>
                     </li>
                     <li>
                         <h2>热门专题</h2>
                         <div class="div-item">
-                            {volist name = "article" id = "item"}
-                            {if $item.type eq 4}
-                            {if $i==1}
-                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link-topic">
+                            {volist name ="article_h" id = "item" length="1"}
+                            <a href="{:url('detail/detail')}?article_id={$item.article_id}" class="link-topic">
                                 <div class="div-img">
                                     <img src="{$item.lis_img}" class="img" alt=""></div>
                                 <div class="div-text">{$item.title}
                                     <span>{$item.create_time}</span></div>
                             </a>
-                            {elseif condition="$i>1 && $i<=7" /}
-                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link">
+                            {/volist}
+                            {volist name="article_h" id="item" offset="1" length="3"}
+                            <a href="{:url('detail/detail')}?article_id={$item.article_id}" class="link">
                                 <i class="icon icon-ic-dot-grey fl"></i>
                                 <span class="fl texts">{$item.title}</span>
                                 <span class="fr time">{$item.create_time}</span></a>
-                            {else/}{php}$i--;{/php}
-                            {/if}
-                            {/if}
                             {/volist}
                         </div>
                     </li>
                     <li>
                         <h2>创业故事</h2>
                         <div class="div-item">
-                            {volist name = "article" id = "item"}
-                            {if $item.type eq 5}
-                            {if $i==1}
-                            <a href="{:url('Index/detail')}?article_id={$item.article_id}" class="link-topic">
+                            {volist name ="article_s" id = "item" length="1"}
+                            <a href="{:url('detail/detail')}?article_id={$item.article_id}" class="link-topic">
                                 <div class="div-img">
                                     <img src="{$item.lis_img}" class="img" alt=""></div>
                                 <div class="div-text">{$item.title}
                                     <span>{$item.create_time}</span></div>
                             </a>
-                            {elseif condition="$i>1 && $i<=7" /}
+                            {/volist}
+                            {volist name="article_s" id="item" offset="1" length="3"}
                             <a href="{:url('detail/detail')}?article_id={$item.article_id}" class="link">
                                 <i class="icon icon-ic-dot-grey fl"></i>
                                 <span class="fl texts">{$item.title}</span>
                                 <span class="fr time">{$item.create_time}</span></a>
-                            {else/}{php}$i--;{/php}
-                            {/if}
-                            {/if}
                             {/volist}
                         </div>
                     </li>
@@ -764,6 +747,5 @@
         <!--热门推荐结束-->
     </div>
 </div>
-
 {/block}
 

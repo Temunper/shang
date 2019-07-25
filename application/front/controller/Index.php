@@ -9,7 +9,6 @@
 namespace app\front\controller;
 
 
-use app\front\model\Article as ArticleModel;
 use think\Controller;
 
 class Index extends Controller
@@ -24,20 +23,17 @@ class Index extends Controller
     //项目库
 
 
-
-
     //返回网页公用信息
     public function base_message()
     {
         $clas = new Clas();
         $ad_position = new AdPosition();
-        $article = new ArticleModel();
+        $article = new Article();
+        $article->get_ten_articles();
         $d_clas = $clas->get_all_clas();
         $d_ad_position = $ad_position->get_all_ad_position();        //得到广告位的所有广告
-        $d_article = $article->get_all_article();
-        $this->assign('article', $d_article);
 
-      //  dump($d_article);die;
+
         $this->assign('ad_position', $d_ad_position);  //返回三个广告类的值
         $this->assign('clas', $d_clas);    //返回分类
     }

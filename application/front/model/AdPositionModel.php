@@ -26,7 +26,7 @@ class AdPositionModel extends Model
 //            ->field('ap.name as name,ap.project_id,ap.image as image,c.class_id,c.name as class_name')
             ->where('ap.status','=','1')
             ->order('sort')
-            ->select();
+            ->paginate(24);
         return $result;
     }
 }

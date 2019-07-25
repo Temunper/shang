@@ -52,13 +52,13 @@ class Message extends Model
     public function check_exact($time1, $time2, $data)
     {
 
-        return $re = self::where('status', 'in', [1, 2])
-            ->where('time', '>=', $time1)
-            ->where('time', '<=', $time2)
+        return self::where('status', 'in', [1, 2])
+            ->where('time', '>', $time1)
+            ->where('time', '<', $time2)
             ->where($data)
             ->order('time', 'desc')
             ->paginate(15);
-        //    return dump($this->getLastSql());
+       //  dump($this->getLastSql());die;
     }
 
 //项目名称获取器

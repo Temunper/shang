@@ -24,12 +24,19 @@ class Detail extends Controller
         //返回头部，搜索栏和尾栏数据
         $article_model = new ArticleModel();
         $article_id = Request::instance()->param('article_id');
-
         if (empty($article_id)) {
             return ['code' => $code, 'msg' => '请选择要查看的文章'];
         }
-        $base = new Index();
-        $base->base_message();  //引入公共信息部分
+        $clas = new Clas();
+        $ad_position = new AdPosition();
+        $article = new ArticleModel();
+        $d_clas = $clas->get_all_clas();    //获取二级分类，用于底部广告位
+        $d_ad_position = $ad_position->get_all_ad_position();        //得到广告位的所有广告
+        $this->assign('ad_position', $d_ad_position);  //返回三个广告类的值
+        $this->assign('clas', $d_clas);    //返回分类
+        $a =new Article();
+        $a->get_ten_articles();
+
         $one_article = $article_model->show_one_article($article_id);   //获得当前文章id信息
         // dump($d_article);die;
         $this->assign('one_article', $one_article);  //返回当前文章id 所有信息

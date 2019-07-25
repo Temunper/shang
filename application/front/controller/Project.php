@@ -28,28 +28,32 @@ class Project extends Controller
         $code = 202;
         //接收传入的project_id 参数
         $data = Request::instance()->param('project_id');
-       /* dump($data);die;*/
+        /* dump($data);die;*/
         //根据project_id 查询所有相关信息
         if (empty($data)) {
             return json_encode(['code' => $code, 'msg' => '请选择要进入的项目']);
         }
 
-        $base = new Index();
-        $base->base_message();  //引入网页公共信息
         // 查询项目的所有相关信息
         $db = new ProjectModel();
         $project_info = $db->get_project_info($data);
         if (empty($project_info)) {
             return json_encode(['code' => 201, 'msg' => '不存在的项目，请检查']);   //查询数据为空，则返回错误信息
         }
+
         //查询该项目相关文章
         $get = new ArticleModel();
         $article_info = $get->get_some_article($data);   //得到项目id 最新的10条项目咨询
         $title = $project_info['name'];
-       // dump($article_info);die;
+        // dump($article_info);die;
         $this->assign('title', $title);  //标题
-        $this->assign('article_info',$article_info); //项目相关的项目咨询
+        $this->assign('article_info', $article_info); //项目相关的项目咨询
         $this->assign('project_info', $project_info);    //返回当前项目的所有信息
+
+      //  dump($article_info);die;
+        //引入网页基本信息
+        $base = new Index();
+        $base->base_message();
         return $this->view->fetch();
 
     }
