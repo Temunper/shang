@@ -116,7 +116,7 @@ class Message extends Model
     {
         $re = self::all(function ($query) use ($data) {
             $query
-                ->field('message_id,client,time,project_id,ip,content,phone')
+                ->field('client,time,project_id,ip,content,phone')
                 ->where('message_id', 'in', $data);
         });
         //dump($this->getLastSql());exit;

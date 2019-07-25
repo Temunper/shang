@@ -61,7 +61,7 @@ class Message extends Base
         //  dump($message_info);
         //设置下载文件的title
         $db->cheange_status($data);     //修改留言数据的状态
-        $csv_title = array('留言ID', '客户名称', '留言时间', '项目名称', '地区', '留言内容', '手机号');
+        $csv_title = array( '客户名称', '留言时间', '项目名称', '地区', '留言内容', '手机号');
         $csv = new Csv2();
         $res = $csv->put_csv($message_info, $csv_title);  //执行下载
         if (!$res) {

@@ -55,6 +55,7 @@ class Article extends Base
         $status = 0;   //设置初始状态值
         $date_now = time();  //获得当前时间戳
         $data = $request->param(true);
+      //  dump($data);die;
         //设置验证规则
         $rule = [
             'type|类型' => 'require',

@@ -43,9 +43,10 @@
                 <input type="text" id="item-brief" class="con-item-r" name="brief" value="{$article_info['brief']}">
             </div>
             <div class="con-item">
-                <label for="item-input1" class="con-item-l">内容</label>
-                <textarea style="height: 200px;width: 300px;border-color: #DCDFE6" name="content"
-                          id="item-content">{$article_info['content']}</textarea>
+                <label class="con-item-l">内容</label>
+                <div id="editor" style="height: 300px;width: 800px;margin-left: 120px">
+                   <p>{$article_info['content']}</p>
+                </div>
             </div>
             <div class="con-item">
                 <label for="item-input1" class="con-item-l">来源</label>
@@ -68,7 +69,6 @@
             // var formDate = new FormData("#uploadForm");
 
             var formDate = new FormData(document.getElementById("uploadForm"));
-            formDate.append('img', $('#pic_img')[0].files[0]);
             var type_obj = $("#item-type").val();
             var pro_obj = $("#item-project").val();
             var title_obj = $("#item-title").val();
@@ -79,7 +79,7 @@
             formDate.append('title', title_obj);
             formDate.append('project_id', pro_obj);
             formDate.append('brief', brief_obj);
-            formDate.append('content', content_obj);
+            formDate.append('content', editor.txt.html());
             formDate.append('source', source_obj);
             $.ajax({
                 type: "POST",
@@ -101,6 +101,15 @@
         })
     })
 </script>
-<!--项目类型二级联动-->
 
+<!--富文本编辑器-->
+<script type="text/javascript" src="__STATIC__/customer_public/js/wangEditor.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
+    editor.customConfig.showLinkImg = false;
+    editor.create()
+</script>
 {/block}

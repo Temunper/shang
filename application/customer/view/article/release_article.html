@@ -38,11 +38,12 @@
                 <input type="text" id="item-brief" class="con-item-r" name="brief"/>
             </div>
             <div class="con-item">
-                <label for="item-input1" class="con-item-l">内容</label>
-                <textarea style="height: 200px;width: 300px;border-color: #DCDFE6" name="content"
-                          id="item-content"></textarea>
+                <label class="con-item-l">内容</label>
+                <div id="editor" style="height: 300px;width: 800px;margin-left: 120px">
+                </div>
             </div>
-            <div class="con-item">
+
+            <div class="con-item" style="margin-top: 50px">
                 <label for="item-input1" class="con-item-l">来源</label>
                 <input type="text" id="item-source" class="con-item-r" name="source"/>
             </div>
@@ -61,7 +62,7 @@
         $("#publish").on('click', function (event) {
             // var formDate = new FormData("#uploadForm");
             var formDate = new FormData(document.getElementById("uploadForm"));
-            formDate.append('img', $('#pic_img')[0].files[0]);
+        //    alert(editor.txt.html());
             var type_obj = $("#item-type").val();
             var title_obj = $("#item-title").val();
             var brief_obj = $("#item-brief").val();
@@ -70,7 +71,7 @@
             formDate.append('type', type_obj);
             formDate.append('title', title_obj);
             formDate.append('brief', brief_obj);
-            formDate.append('content', content_obj);
+            formDate.append('content', editor.txt.html());
             formDate.append('source', source_obj);
             $.ajax({
                 type: "POST",
@@ -86,7 +87,7 @@
                 success: function (data) {   //返回值状态为1才执行
                     if (data.status == 1) {
                         alert(data.message);
-                        window.location.href="{:url('article/show_self_article')}";
+                        window.location.href = "{:url('article/show_self_article')}";
                     } else {
                         alert(data.message);
                     }
@@ -95,6 +96,14 @@
         })
     })
 </script>
-<!--项目类型二级联动-->
-
+<!--富文本编辑器-->
+<script type="text/javascript" src="__STATIC__/customer_public/js/wangEditor.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#editor');
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
+    editor.customConfig.showLinkImg = false;
+    editor.create()
+</script>
 {/block}
