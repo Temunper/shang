@@ -32,6 +32,6 @@ class ProjectModel extends Model
     {
        return  Db::table('project')->where('project_id', $project_id)
             ->where('status', 1)->find();
-
     }
+
 }
