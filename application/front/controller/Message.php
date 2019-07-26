@@ -77,7 +77,6 @@ class Message extends Controller
     //记录提交留言信息
     public function record_number()
     {
-
         $code = 202;
         $result = "";
         //1、获取表单信息，
@@ -126,12 +125,9 @@ class Message extends Controller
 
         //2、验证当前项目id留言下是否存在当前表单中的手机号
         $re = $this->model->check_exist_phone($project_id, $phone);
-
         if (empty($re)) {
             //如果为空，则没有记录，则判断进入留言此时
             return $this->check_number($ip);  //判断今日留言是否超过5此
-
-
         }
         //3、如果存在，则计算上次留言时间是否已经过了3个月
         //不为空，存在记录，则判断记录中的时间戳+上三个月的时间戳是否大于当前时间戳
