@@ -13,3 +13,7 @@ $(".add-theme").click(function () {
        }
    })
 });
+
+$(".go-back").click(function () {
+    window.location.href = "/admin/theme/theme";
+});

@@ -1,10 +1,9 @@
 $(".del-ad").click(function () {
-   var ad_id = $(this).attr("data-ad");
-   console.log(ad_id);
-   var r = confirm("是否删广告位？");
+   var ad_id = $(this).attr("data-ad");                 //获取要删除的ad_id
+   var r = confirm("是否删广告位？");                  //警示框
    var del = $(this);
    if (r === true){
-       $.ajax({
+       $.ajax({                                         //ajax删除
            url:"/admin/ad/update_status",
            data:{
                ad_id:ad_id
@@ -14,7 +13,7 @@ $(".del-ad").click(function () {
            success:function (data) {
                data = JSON.parse(data);
                if (data.code === 200){
-                   del.parent().parent().html("");
+                   del.parent().parent().html("");      //删掉相关数据的dom元素
                }
                alert(data.data);
            }
@@ -22,9 +21,8 @@ $(".del-ad").click(function () {
    }
 });
 $(".add-ad").click(function () {
-    window.open("/admin/ad/plus");
+    window.location.href = "/admin/ad/plus";
 });
 $(".update-ad").click(function () {
-    console.log(123);
-    window.open("/admin/ad/content?ad_id=" + $(this).attr("data-ad"));
+    window.location.href = "/admin/ad/content?ad_id=" + $(this).attr("data-ad");
 });

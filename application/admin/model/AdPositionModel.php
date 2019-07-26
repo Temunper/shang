@@ -19,13 +19,14 @@ class AdPositionModel extends Model
     protected $insert = ['status'];
 
 //   返回页面
-    function get_all_adp($status, $name, $sort, $ad_id , $project_id)
+    function get_all_adp($status, $name, $sort, $ad_id, $project_id)
     {
+        if (is_array($ad_id)) $ad_id = implode(',', $ad_id);        //若ad_id为数组则拼接成字符串
         $status ? $d_status = 'status = ' . $status : $d_status = "status = 1";
         $name ? $d_name = 'name = ' . $name : $d_name = null;
-        $ad_id ? $d_ad = 'ad_id in (' . $ad_id .')': $d_ad = null;
+        $ad_id ? $d_ad = 'ad_id in (' . $ad_id . ')' : $d_ad = null;
         $project_id ? $project = 'project_id = ' . $project_id : $project = null;
-        switch ($sort) {
+        switch ($sort) {                                    //选择排列顺序方式
             case 1:
                 $order = 'click_num';
                 $down = 'desc';
@@ -44,11 +45,11 @@ class AdPositionModel extends Model
             ->where($d_name)
             ->where($d_ad)
             ->where($project)
-            ->order($order,$down)
-            ->paginate(10)->each(function ($item,$key){
-                if ($item['status'] == 1){
+            ->order($order, $down)
+            ->paginate(10)->each(function ($item, $key) {
+                if ($item['status'] == 1) {                                                   //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除
                     $item['status'] = '正常';
-                }else $item['status'] = '已删除';
+                } else $item['status'] = '已删除';
                 return $item;
             });
         return $result;

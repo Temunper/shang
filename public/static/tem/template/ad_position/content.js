@@ -77,7 +77,7 @@ $(function () {
         },
         data: d_project,
     });
-    $("#project").select2('val', $("#project").attr("data-project"));
+    $("#project").select2('val', $("#project").attr("data-project"));   //渲染下拉框
     for (i = 0; i < ad.length; i++) {
         if (ad[i].ad_id == $("#ad").attr("data-ad")) {
             $("#theme").val(ad[i].theme_id).trigger("change", data = {
@@ -86,4 +86,7 @@ $(function () {
             })
         }
     }
+});
+$("#go-back").click(function () {
+    window.location.href = "/admin/ad_position/ad_position";
 });

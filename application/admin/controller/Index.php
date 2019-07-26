@@ -16,11 +16,12 @@ class Index extends Base
 
     public function index()
     {
-        return $this->fetch('index/index');
+        return $this->fetch('index/index');         //首页
     }
 
     public function index2()
     {
+        echo md5("9I8UaEKpy8Sg". "@8aj8E");
         return $this->fetch('index/index2');
     }
 

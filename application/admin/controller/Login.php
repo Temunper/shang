@@ -39,17 +39,18 @@ class Login extends Controller
     {
 
         $params = Request::instance()->post();
-        $captcha = new Captcha();
-        if (!$captcha->check($params['code'])) {
+        $captcha = new Captcha();     //实例化验证码对象
+        if (!$captcha->check($params['code'])) {        //判断验证码是否正确
             $this->error('验证码错误');
         }
-        $result = $this->admin_model->get_admin($params['user']);
-
+        $result = $this->admin_model->get_admin($params['user']);           //获取密钥
         if (!empty($result)) {
-            if (md5($params['pass'] . $result['verify']) == $result['pass']) {
+            $result = $this->admin_model->login($params['user'], md5($params['pass'] . $result['verify']));          //根据密钥和用户名账号查询
+            if ($result) {
                 if ($result['status'] == 1) {
+                    //数据保存到session对象中
                     Session::set('admin', ['admin_name' => $result['name'], 'admin_user' => $result['user'], 'admin_id' => $result['id']]);
-
+                    //重定向到首页
                     $this->redirect('Index/index');
                 } else {
                     $this->error('账户已删除');
@@ -66,7 +67,7 @@ class Login extends Controller
     public function admin_logout()
     {
         session_start();
-        Session::destroy();
-        $this->redirect('Login/login');
+        Session::destroy();                 //销毁session对象所有数据
+        $this->redirect('Login/login');//重定向到登陆页
     }
 }

@@ -22,7 +22,11 @@ $("#update-ad").click(function () {
         }
     })
 });
-$(function () {
+$(function () {                     //渲染
     var theme_id = $("#theme").attr("data-theme");
     $("#theme").val(theme_id);
+});
+
+$("#go-back").click(function () {
+    window.location.href = "/admin/ad/ad"
 });

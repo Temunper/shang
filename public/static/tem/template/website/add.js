@@ -11,8 +11,8 @@ $("#add-website").click(function () {
     fd.append('company_name', $("#company_name").val());
     fd.append('company_abbr', $("#company_abbr").val());
     fd.append('phone', $("#phone").val());
-    fd.append('keywords',$("#keywords").val());
-    fd.append('description',$("#description").val());
+    fd.append('keywords', $("#keywords").val());
+    fd.append('description', $("#description").val());
 
     $.ajax({
         url: "/admin/website/add",
@@ -27,4 +27,7 @@ $("#add-website").click(function () {
             alert(data.data);
         }
     })
+});
+$("#go-back").click(function () {
+    window.location.href = "/admin/website/website";
 });

@@ -17,9 +17,9 @@ class ClientprojectModel extends Model
     protected $table = 'client_project';
 
 //查询
-    function get_cp_by_id($cp)
+    function get_cp_by_id($cp)  //数组，客户id和项目id
     {
-        $result = Db::table($this->table)
+        $result = Db::table($this->table)                       //根据两个id条件查询
             ->where('client_id', '=', $cp['client_id'])
             ->where('project_id', '=', $cp['project_id'])
             ->find();
@@ -37,7 +37,7 @@ class ClientprojectModel extends Model
 //    查询所有未绑定的项目
     function get_pro_no_bind()
     {
-        $result = Db::table('view_pro')
+        $result = Db::table('view_pro')   //视图
             ->where('client_id is null')
             ->field('project_id,name')
             ->select();

@@ -36,10 +36,10 @@ class WebsiteModel extends Model
             ->where($where)
             ->where($w_status)
             ->paginate(20)->each(function ($item, $key) {
-                if ($item['status'] == 1) {
+                if ($item['status'] == 1) {                           //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除
                     $item['status'] = '正常';
                 } else $item['status'] = '已删除';
-                if ($item['type'] == 2) $item['type'] = 'WAP';
+                if ($item['type'] == 2) $item['type'] = 'WAP';            //将返回信息遍历，更改type信息 ，1-》pc，2-》wap
                 else $item['type'] = 'PC';
                 return $item;
             });

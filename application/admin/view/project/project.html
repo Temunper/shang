@@ -57,18 +57,27 @@
                 </label>
                 &nbsp;
                 &nbsp;
+                <label>绑定：
+                    <select name="" class="btn btn-toolbar btn-sm project-btn binding-client">
+                        <option value="0">======</option>
+                        <option value="1">已绑定</option>
+                        <option value="2">未绑定</option>
+                    </select>
+                </label>
+                &nbsp;
+                &nbsp;
                 <!--</div>-->
                 <!--<div class="panel-info widget-shadow space-between" style="height: 50px">-->
-                <div style="width: 266px;margin-left: 437px;margin-top:-32px"><label>项目名：</label><input type="text"
+                <div style="width: 266px;margin-left: 591px;margin-top: -32px;"><label>项目名：</label><input type="text"
                                                                                                         class="form-control search-content search-project-content"><i
                         class="icon-ic-search-arrow-white"></i>
                 </div>
-                <div style="width: 266px;margin-left: 737px;margin-top:-35px"><label>客户名：</label><input type="text"
+                <div style="width: 266px;margin-left: 868px;margin-top: -35px;"><label>客户名：</label><input type="text"
                                                                                                         class="form-control search-content search-client-content"><i
                         class="icon-ic-search-arrow-white"></i>
                 </div>
                 <input type="button" class="btn btn-primary btn-sm project-search" value="确定"
-                       style="margin-left: 1100px;margin-top:-45px">
+                       style="margin-left: 1168px;margin-top: -54px;">
             </div>
             <!-- 项目分类结束 -->
             <!-- 项目列表 -->
@@ -79,6 +88,7 @@
                         分类：{$default_class.f_class_name}>>{$default_class.class_name}
                         {else /}分类>>{$default_class.f_class_name}
                         {/if}
+                        绑定：{if $search.bind eq 1}已绑定{else if $search.bind eq 2}未绑定{/if}
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目搜索：{$search.project_name}
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户搜索：{$search.client_name}
                     </h5></div>
@@ -94,7 +104,6 @@
                             <th>公司名</th>
                             <th>投资金额</th>
                             <th>相关客服</th>
-                            <th>客户样式</th>
                             <th>状态</th>
                             <th>操作</th>
                         </tr>
@@ -111,11 +120,12 @@
                             <td>{$vo.company_name}</td>
                             <td>{$vo.money}</td>
                             <td>{$vo.kf_name}</td>
-                            <td>{$vo.kf_type}</td>
                             <td>{$vo.status}</td>
                             <td>
                                 <input type="button" value="详情" class="btn btn-info btn-sm project-content">
                                 <input type="button" value="删除" class="btn btn-danger btn-sm project-del">
+                                {if $vo.client_name neq null}<input type="button" value="重生密码"
+                                                                class="btn btn-primary btn-sm new-pass" data-client="{$vo.client_name}" data-id="{$vo.client_id}">{/if}
                             </td>
                         </tr>
                         {/volist}

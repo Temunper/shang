@@ -70,3 +70,6 @@ $(function () {
         data: d_project,
     })
 });
+$("#go-back").click(function () {
+    window.location.href = "/admin/ad_position/ad_position";
+});

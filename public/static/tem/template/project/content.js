@@ -1,3 +1,4 @@
+// 页面渲染
 $(function () {
     initProvince("d_province");
     var clas = $(".class-data").attr("data-all-class");
@@ -16,6 +17,7 @@ $(function () {
             }
         }
     }
+    // console.log(f_class_id);return false;
     $(".d_first-class").val(parseInt(f_class_id)).trigger('change');
     $(".d_second-class").val(parseInt(class_id));
     $("#d_province").val(parseInt(area.province)).trigger('change');
@@ -120,7 +122,9 @@ $("#binding-btn").click(function () {
     }
 });
 
-
+$(".d-submit-b").click(function () {
+    window.location.href = "/admin/project/project";
+});
 
 
 

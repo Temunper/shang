@@ -72,11 +72,11 @@
                         {volist name="vo['son']" id="item" }
                         <tr>
                             <th></th>
-                            <td class="data-clas" data-clas="{$vo.class_id}">{$vo.sort}.{$vo.name}</td>
-                            <td>{$vo.describe}</td>
-                            <td><a href="{$vo.image}" target="_blank">{$vo.image}</a></td>
-                            <td>{$vo.pinyin}</td>
-                            <td>{$vo.status}</td>
+                            <td class="data-clas" data-clas="{$item.class_id}">{$item.sort}.{$item.name}</td>
+                            <td>{$item.describe}</td>
+                            <td><a href="{$item.image}" target="_blank">{$item.image}</a></td>
+                            <td>{$item.pinyin}</td>
+                            <td>{$item.status}</td>
                             <td>
                                 <input type="button" value="修改" class="btn btn-primary btn-sm update-clas" data-class="{$item.class_id}">
                                 <input type="button" value="删除" class="btn btn-danger btn-sm del-clas">

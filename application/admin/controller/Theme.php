@@ -47,10 +47,10 @@ class Theme extends Base
     public function add()
     {
         $request = Request::instance()->param();
-        $request = special_filter($request);
+        $request = special_filter($request);                //过滤主题名
         $theme = new ThemeModel();
-        if ($request['name']) {
-            $theme = $theme->where('name', '=', $request['name'])->where('status = 1')->select()->toArray();
+        if ($request['name']) {                     //判断主题名是否为空
+            $theme = $theme->where('name', '=', $request['name'])->where('status = 1')->select()->toArray();        //判断主题是否存在
         } else {
             $data = ['code' => 202, 'data' => '主题名不为空'];
             return json_encode($data);
@@ -74,7 +74,7 @@ class Theme extends Base
 //    修改主题名
     public function update()
     {
-        $request = Request::instance()->param();
+        $request = Request::instance()->param();        //同理于添加方法
         $d_theme = ThemeModel::all();
         $theme = ThemeModel::get($request['theme_id']);
         if ($theme) {
