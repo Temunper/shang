@@ -28,10 +28,11 @@ class MessageModel
     }
 
     //查找当前项目ip下是存在当前手机号的记录
-    public function check_exist_phone($project, $phone)
+    public function check_exist_phone($project_id, $phone)
     {
-        return Db::table('message_log')->where('project_id', $project)
+     return    Db::table('message_log')->where('project_id', $project_id)
             ->where('phone', $phone)->find();
+
     }
 
     //查询当前ip在表中当天出现的次数
