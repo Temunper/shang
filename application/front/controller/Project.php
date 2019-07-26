@@ -9,10 +9,13 @@
 namespace app\front\controller;
 
 
+use app\admin\common\CUrl;
 use app\front\model\Article as ArticleModel;
 use app\front\model\ProjectModel;
+use think\Route;
 use think\Controller;
 use think\Request;
+
 
 class Project extends Controller
 {
@@ -45,6 +48,12 @@ class Project extends Controller
         $get = new ArticleModel();
         $article_info = $get->get_some_article($data);   //得到项目id 最新的10条项目咨询
         $title = $project_info['name'];
+
+        $cdn = "http://cdn.hao987.cn/shophtml/" . $project_info['yw_name'] . "/item.html";
+        $cdn = CUrl::curl($cdn);
+
+        $project_info = array_merge(['cdn' => $cdn], $project_info);
+
         // dump($article_info);die;
         $this->assign('title', $title);  //标题
         $this->assign('article_info', $article_info); //项目相关的项目咨询

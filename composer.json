@@ -21,7 +21,8 @@
     "php": ">=5.4.0",
     "topthink/framework": "5.0.*",
     "topthink/think-captcha": "1.*",
-    "overtrue/pinyin": "~4.0"
+    "overtrue/pinyin": "~4.0",
+    "ext-curl": "*"
   },
   "autoload": {
     "psr-4": {

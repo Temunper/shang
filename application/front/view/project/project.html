@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>{$title}</title>
@@ -59,7 +58,14 @@
         <!--引入cdn文件-->
         <div class="item1boxright" id="page">
             <!--非400 start-->
-            <img style="margin-top: 3px;" src="__PUB08__/picture/km_slogan.png"/>
+            <script>
+                $(".item1boxright").load("{$project_info.cdn}");
+            // var xhr = new XMLHttpRequest();
+            //
+            // xhr.open('GET', '{$project_info.cdn}', true); //访问baidu.com
+            //
+            // xhr.send();
+            </script>
             <!--非400 end-->
             <p>更新时间：2019-06-06</p>
             <!--非400 end-->
@@ -70,8 +76,9 @@
     <div class="item2box container">
         <div class="boxleft boxleft1">
             <!--引入cdn文件开始-->
-            <img src="http://cdn.hao987.cn/shophtml/{$project_info['yw_name']}/item.html"
-                 alt="{$project_info['name']}"/>
+
+            {$project_info.cdn}
+
             <!--引入cdn文件结束-->
             <div class="text">
                 <!--遍历相关文章10条-->
@@ -697,6 +704,4 @@ function custFeedback() {
 }
 </script>
 <script>
-    var spath = "http://cdn.hao987.cn/shophtml/" + "{$project_info['yw_name'] }" + "/item.html";
-    $("#page").load(spath);
 </script>

@@ -94,6 +94,14 @@ class Clas extends Controller
                 $tree[] = &$temp[$son_id];               //数组引用没有父级的条目的地址。
             }
         }
+        array_multisort(array_column($tree, 'sort'), SORT_ASC, $tree);    //对一级分类进行排序
+        foreach ($tree as $key => $item) {
+            if ($item['son'] != null) {
+                array_multisort(array_column($item['son'], 'sort'), SORT_ASC, $item['son']);   //对二级分类进行排序
+                unset($tree[$key]['son']);
+                $tree[$key]['son'] = $item['son'];
+            }
+        }
         return $tree;
     }
 

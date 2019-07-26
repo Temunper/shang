@@ -16205,22 +16205,6 @@ function getPlace(area) {
     var d_city = parseInt(area.substring(3, 6));
     var d_country = parseInt(area.substring(6, 10));
 
-    // for (i = 0; i < province.length; i++) {
-    //     if (d_province === province[i].ProID) {
-    //         d_province = province[i].name;
-    //     }
-    // }
-    //
-    // for (i = 0; i < city.length; i++) {
-    //     if (d_city === city[i]['CityID']) {
-    //         d_city = city[i]['name'];
-    //     }
-    // }
-    // for (i = 0; i < district.length; i++) {
-    //     if (d_country === district[i]['Id']) {
-    //         d_country = district[i]['DisName'];
-    //     }
-    // }
     area = {
         province: d_province,
         city: d_city,

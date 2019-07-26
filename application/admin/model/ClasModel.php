@@ -20,7 +20,6 @@ class ClasModel extends Model
     {
         $result = Db::table($this->table)
             ->where('status', '=', '1')
-            ->order('sort')
             ->select();
         foreach ($result as $key => $value) {                                 //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除
             $value['status'] == 1 ? $result[$key]['status'] = '正常' : $result[$key]['status'] = '删除';

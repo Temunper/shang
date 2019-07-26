@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/index3.css"/>
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/zhome.css">
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/header.css">
+    <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
 
     <script src="__PUB08__/js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="__PUB08__/js/jquery.placeholder.min.js"></script>
@@ -33,9 +34,10 @@
         <div class="sort_item">
             <div class="sort_head">行业分类</div>
             <ul class="sort_ul01">
-                <li><a href="javascript:;">不限</a></li>
+                <li><a href="javascript:;" class="f-class" data-f_class="">不限</a></li>
                 {volist name="clas" id="vo"}
-                <li><a href="javascript:;" tpl-txt="{max:4}">{$vo.name}</a></li>
+                <li><a href="javascript:;" data-f_class="{$vo.class_id}" tpl-txt="{max:4}"
+                       class="f-class">{$vo.name}</a></li>
                 {/volist}
             </ul>
             <div class="sort_more">
@@ -44,13 +46,15 @@
         </div>
         <div class="sort_item">
             <div class="sort_head">二级分类</div>
-            <ul>
-                <li><a href="javascript:;">不限</a></li>
-                {volist name="clas" id="vo" }
-                <li><a href="javascript:;" tpl-txt="{max:2}">火锅</a></li>
-                {volist name="vo['son']" id="item" }
-                <li><a href="javascript:;" tpl-txt="{max:2}">{$item.name}</a></li>
+            <ul class="sort_ul01">
+                <li><a href="javascript:;" class="son-class" data-s_class="{$default_class.f_class_id}">不限</a></li>
+                {volist name="clas" id="vo" $key="sort"}
+                {if $vo.class_id == $default_class.f_class_id}
+                {volist name="vo['son']" id="item"}
+                <li><a href="javascript:;" data-s_class="{$item.class_id}" tpl-txt="{max:2}" class="son-class">{$item.name}</a>
+                </li>
                 {/volist}
+                {/if}
                 {/volist}
             </ul>
             <div class="sort_more">
@@ -60,12 +64,12 @@
         <div class="sort_item">
             <div class="sort_head">投资金额</div>
             <ul>
-                <li><a href="javascript:;">不限</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">1万元以下</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">1~10万元</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">10~20万元</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">20~50万元</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">50~100万元</a></li>
+                <li><a href="javascript:;" data-money='' class="money">不限</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-money='1' class="money">1万元以下</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-money='2' class="money">1~10万元</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-money='3' class="money">10~20万元</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-money='4' class="money">20~50万元</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-money='5' class="money">50~100万元</a></li>
             </ul>
             <div class="sort_more">
                 更多
@@ -74,8 +78,15 @@
         <div class="sort_item">
             <div class="sort_head">加盟区域</div>
             <ul>
-                <li><a href="javascript:;">不限</a></li>
-                <li><a href="javascript:;" tpl-txt="{max:2}">北京</a></li>
+                <li><a href="javascript:;" data-area="" class="area">不限</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-area="1010000000" class="area">北京</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-area="1090000000" class="area">上海</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-area="1190000000" class="area">广东</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-area="1060000000" class="area">辽宁</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-area="1110000000" class="area">浙江</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-area="1030000000" class="area">河北</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-area="1040000000" class="area">山西</a></li>
+                <li><a href="javascript:;" tpl-txt="{max:2}" data-area="1070000000" class="area">吉林</a></li>
             </ul>
             <div class="sort_more">
                 更多
@@ -87,11 +98,15 @@
     <!--内页主题开始-->
     <div class="crumb">
 
-        <a href="#">首页</a>
+        <a href="http://youhua.cn/front">首页</a>
+        {if $default_class.f_class_id neq null}
         <span>></span>
-        <a href="#">首页</a>
+        <a href="#" class="f-class" data-f_class="{$default_class.f_class_id}">{$default_class.f_class_name}</a>
+        {/if}
+        {if $default_class.class_id neq null}
         <span>></span>
-        <a href="#">首页</a>
+        <a href="#" class="son-class" data-s_class="{$default_class.class_id}">{$default_class.class_name}</a>
+        {/if}
     </div>
     <!--内页主题结束-->
 
@@ -105,8 +120,8 @@
                 <img src="{vo.image}"/>
                 <div class="cont_t"><a href="#">{$vo.name}</a><img src="__PUB08__/images/cont_b_01.png"/></div>
                 <div class="cont_c">
-                    <p>品牌行业：环保机械</p>
-                    <p>所属地区：山东省</p>
+                    <p>品牌行业：{$vo.class_name}</p>
+                    <p>所属地区：{$vo.area}</p>
                     <p class="cont_cm">热门关注：<img src="__PUB08__/images/cont_b_02.png"/></p>
                     <p class="cont_cm">关注量:{$vo.attention}</p>
                 </div>
@@ -130,14 +145,7 @@
 
     <!--留言板-->
     <div class="page">
-        <a href="####">首页</a>
-        <a href="####">上一页</a>
-        <a href="####">1</a>
-        <a href="####">2</a>
-        <a href="####">3</a>
-        <a href="####">4</a>
-        <a href="####">下一页</a>
-        <a href="####">尾页</a>
+        {$ad_position->render()}
     </div>
 
     <!--猜你喜欢开始-->
@@ -151,7 +159,7 @@
     <div class="tail_b">
         <ul>
             <!--循环项目-->
-            {volist name="ad_position" id="vo" length="24"}
+            {volist name="adp" id="vo" length="24"}
             <li><a href="{:url('project/project',['project_id'=>$vo.project_id])}" tpl-project="">
                 <img src="{$vo.image}"/>
             </a></li>
@@ -168,3 +176,33 @@
 
 <!-- 这是底部开始 -->
 {include file="public/footer"}
+
+<script src="__PUB08__/js/jquery-1.11.3.min.js"></script>
+<script src="__PUB08__/js/main.js"></script>
+<script>
+    var search = {$search};
+    var class_id = search.class_id;
+    var area = search.area;
+    var money = search.money;
+    $(".f-class").click(function () {
+        class_id = $(this).attr("data-f_class");
+        getAdp();
+    });
+    $(".son-class").click(function () {
+        class_id = $(this).attr("data-s_class");
+        getAdp();
+    });
+    $(".money").click(function () {
+        money = $(this).attr("data-money");
+        getAdp();
+    });
+    $(".area").click(function () {
+        area = $(this).attr("data-area");
+        getAdp();
+    });
+
+    function getAdp() {
+        window.location.href = "/front/slist/slist?class_id=" + class_id + "&area=" + area + "&money=" + money;
+    }
+
+</script>

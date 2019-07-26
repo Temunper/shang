@@ -34,28 +34,31 @@ class ProjectModel extends Model
         $class_id ? $where = 'class_id in(' . $class_id . ')' : $where = null;
         $client_name ? $client = "client_name like '%" . $client_name . "%'" : $client = null;
         $result = Db::table("view_pro")
-            ->where($where)
-            ->where($and)
-            ->where($client)
-            ->where($bind)
-            ->where($c_status)
-            ->order('project_id', 'desc')
-            ->field('*', 'time')
+        ->where($where)
+        ->where($and)
+        ->where($client)
+        ->where($bind)
+        ->where($c_status)
+        ->order('project_id', 'desc')
+        ->field('*', 'time')
             ->paginate(10)->each(function ($item, $key) {
                 if ($item['status'] == 1) {
                     $item['status'] = '正常';
                 } else $item['status'] = '已删除';                      //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除
                 switch ($item['money']) {                            //将返回信息遍历，更改money信息 ，1-》1-10，2-》10-20，3-》20-50，4-》50-100
                     case 1:
-                        $item['money'] = "1-10万";
+                        $item['money'] = "1万以下";
                         break;
                     case 2:
-                        $item['money'] = "10-20万";
+                        $item['money'] = "1-10万";
                         break;
                     case 3:
-                        $item['money'] = "20-50万";
+                        $item['money'] = "10-20万";
                         break;
                     case 4:
+                        $item['money'] = "20-50万";
+                        break;
+                    case 5:
                         $item['money'] = "50-100万";
                         break;
                 }
