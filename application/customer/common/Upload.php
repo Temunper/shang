@@ -8,7 +8,6 @@
 
 namespace app\customer\common;
 
-use think\Image;
 use think\Request;
 
 class Upload
@@ -63,23 +62,20 @@ class Upload
     public static function file($file, $domain, $pack)
     {
         $data=Request::instance()->param(true);
-        dump($data);
+      //  dump($data);
         $upload_path = ROOT_PATH . 'public' . DS . 'uploads' . DS . $pack;       //上传路径
-        //判断文件夹是否存在
-        if (!file_exists($upload_path)) {
-            mkdir($upload_path, true);
-        }
+
         $photo_path = null;          //真实路径
         $local = ROOT_PATH . 'public';
         $info = null;
         if (!file_exists($upload_path)) {                 //如果目录不存在，则生成目录
             mkdir($upload_path, true);
         }
+     //  dump($file);die;
         if (!empty($file)) {                          //文件不为空则将文件输出到uploads
             $info = $file->move($upload_path);
             if ($info) {
                 $photo_path = $info->getRealPath();      //真实地址
-
 //            http://local.study.cn/uploads/20190406/a1e131b66e45458b6bf50b69b5707d2b.png   //服务器地址
 //            C:\dev\php_study\tp5\public\uploads\20190406  //本地地址
 

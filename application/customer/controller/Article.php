@@ -102,7 +102,7 @@ class Article extends Base
             if (!in_array($file->getInfo()['type'], $this->allow)) {
                 $data = ['code' => 202, 'data' => '上传文件格式不正确'];
             }
-            $file_path = Upload::file($file, $request->domain(), 'artilce');  //通过验证， 保存图片，返回路径
+            $file_path = Upload::file($file, $request->domain(), 'article');  //通过验证， 保存图片，返回路径
         }
         unset($data['image']);//删除data里的image字段
         unset($data['img']);
@@ -295,4 +295,18 @@ class Article extends Base
         }
         return ['status' => $status, 'message' => $result]; //返回信息
     }
+
+    //上传富文本框传来的图片
+    public function edtior_upload()
+    {
+        $file = $this->request->file('file');  //获取上传文件
+        $data['url'] = Upload::file($file, $this->request->domain(), 'article');  //获取返回路径
+        if (!empty($data['url'])) {
+            $data['error'] = 0;
+        } else {
+            $data['error'] = 1;
+        }
+        return json_encode($data);
+    }
+
 }
