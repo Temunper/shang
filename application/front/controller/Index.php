@@ -51,46 +51,7 @@ class Index extends Base
         $info = Request::instance()->param();
     }
 
-
-//    设置分类
-//    function set_class($d_clas, $d_ad_position, $class_num)
-//    {
-//        $class_data = array();
-//        foreach ($d_clas as $value) {
-//            foreach ($class_num as $num) {
-//                if ($value['class_id'] == $num) {                            //类别号
-//                    if (!empty($value['son'])) {
-//                        foreach ($value['son'] as $item) {
-//                            foreach ($d_ad_position as $data) {
-//                                if ($data['class_id'] == $value['class_id'] || $data['class_id'] == $item['class_id']) {
-//                                    $cl = ['f_class_id' => $value['class_id'], 'class_name' => $value['name']];
-////                                    $cl['ad_p'] = $data;
-//                                    $cl = array_merge($cl, $data);
-//                                    $class_data[] = $cl;
-//                                }
-//                            }
-//                        }
-//                    } else {
-//                        foreach ($d_ad_position as $data) {
-//                            if ($data['class_id'] == $value['class_id']) {
-//                                $cl = ['f_class_id' => $value['class_id'], 'class_name' => $value['name']];
-////                                $cl['ad_p'] = $data;
-//                                $cl = array_merge($cl, $data);
-//                                $class_data[] = $cl;
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        $data = array();
-//        foreach ($class_num as $key => $num) {
-//            foreach ($class_data as $value) {
-//                if ($value['f_class_id'] == $num) {
-//                    $data[$key][] = $value;
-//                }
-//            }
-//        }
-//        return $data;
-//    }
+    public function test(){
+        return $this->fetch("/test");
+    }
 }

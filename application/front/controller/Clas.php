@@ -71,6 +71,10 @@ class Clas extends Controller
         if (empty($result['f_class_id'])) {                         //没有父级id，说明自己就是一级分类
             $result = ['f_class_id' => $result['class_id'],
                 'f_class_name' => $result['class_name'],
+//                'f_keywords'=>$result['f_keywords'],
+//                'f_description'=>$result['f_describe'],
+//                'keywords'=>'',
+//                'description'=>'',
                 'class_id' => '',
                 'class_name' => ''
             ];
