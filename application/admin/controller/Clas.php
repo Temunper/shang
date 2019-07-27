@@ -136,6 +136,7 @@ class Clas extends Controller
         $clas->f_class_id = $request->param('f_class_id');
         $clas->sort = $request->param('sort');
         $clas->name = $request->param('name');
+        $clas->keywords = $request->param('keywords');
         $clas->describe = $request->param('describe');
         $clas->image = $file_path;
         $clas->pinyin = implode('', $pinyin->convert($request->param('name'),PINYIN_KEEP_ENGLISH));       //生成拼音
@@ -205,6 +206,7 @@ class Clas extends Controller
         $clas = ClasModel::get($request->param('class_id'));
         $clas->sort = $request->param('sort');
         $clas->name = $request->param('name');
+        $clas->keywords = $request->param('keywords');
         $clas->describe = $request->param('describe');
         if ($file_path) $clas->image = $file_path;
         $pinyin = implode('', $pinyin->convert($request->param('name'),PINYIN_KEEP_ENGLISH));   //生成拼音

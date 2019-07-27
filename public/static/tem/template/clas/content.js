@@ -8,6 +8,7 @@ $("#update-class").click(function () {
     fd.append('f_class_id', $("#f_class_id option:selected").val());
     fd.append('file_path', $("#file_path").val());
     fd.append('file',file_obj);
+    fd.append('keywords',$("#keywords").val());
 
     $.ajax({
         url: "/admin/clas/update",
