@@ -18,14 +18,17 @@ class Base extends Controller
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
-
+        $this->get_path();
     }
 
-    public function select_money()
+    public function get_path()
     {
-        $params = $this->request->param();
-        isset($params['s_money']) ? $s_money = $params['s_money'] : $s_money = '';
-        $this->assign('s_money', $s_money);
-
+        $da = Request::instance()->param();
+     //   dump($da);die;
+        if (empty($da)) {
+            $cate_id = 1;
+        }
     }
+
+
 }

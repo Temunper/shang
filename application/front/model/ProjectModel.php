@@ -35,5 +35,11 @@ class ProjectModel extends Model
 
     }
 
+    public function getMoneyAttr($money)
+    {
+        $real_money = [1 => "", 2 => "1-10万", 3 => "1-20万", 4 => "20-50万", 5 => "20-50万"];
+        return $real_money[$money];
+    }
+
 
 }

@@ -31,30 +31,45 @@
         <div class="nav-ctn">
             <div id='nav' class="bfff">
                 <ul class="nav clearfix">
+
                     <li class="item1">
-                        <a href="/"><span class="hdsy"></span>回到首页 </a>
+                        <a href="/"><span class="hdsy"></span>回到首页</a>
                     </li>
 
 
-                    <li class="active">
+                    <li
+                            {if condition="$type_id eq 1"}
+                            class="active"
+                            {/if}>
                         <a href="/newslist/1"><span class="xwzx"></span>项目资讯 </a>
                     </li>
 
 
-                    <li class="">
+                    <li  {if condition="$type_id eq 2"}
+                         class="active"
+                         {/if}
+                    >
                         <a href="/newslist/2"><span class="rmzt"></span>创业咨询 </a>
                     </li>
 
 
-                    <li class="">
+                    <li
+                            {if condition="$type_id eq 3"}
+                            class="active"
+                            {/if}>
                         <a href="/newslist/3"><span class="cyzs"></span>新闻咨询 </a>
                     </li>
 
 
-                    <li class="">
+                    <li
+                            {if condition="$type_id eq 4"}
+                            class="active"
+                            {/if}>
                         <a href="/newslist/4"><span class="cygs"></span>热门咨询 </a>
                     </li>
-                    <li class="">
+                    <li {if condition="$type_id eq 5"}
+                        class="active"
+                        {/if}>
                         <a href="/newslist/5"><span class="cygs"></span>创业故事 </a>
                     </li>
 

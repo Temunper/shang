@@ -2,8 +2,7 @@
     <div class="page-inner">
         <div class="div-left">
             <a href="/" class="link">首页</a>
-            <a href="#" class="link" rel="sidebar">收藏</a>
-            <a href="#" class="link">创业指南</a></div>
+            <a href="/newslist/1" class="link">创业指南</a></div>
         <div class="div-right">
             <a href="#" class="link link-wechat">微信
                 <div class="div-popup-wechat none" style="display:none;">
@@ -16,7 +15,19 @@
             </a>
             <a href="#" class="link">找项目</a>
             <a href="#" class="link link-nav"></a>
-                <!--  <i class="icon icon-ic-menu-nav"></i>网站导航</a>-->
+            <!--  <i class="icon icon-ic-menu-nav"></i>网站导航</a>-->
         </div>
     </div>
 </div>
+
+<script>
+    function AddFavorite(sURL, sTitle)
+    {
+        try{window.addFavorite(sURL, sTitle);}
+        catch (e)
+        {
+            try{window.sidebar.addPanel(sTitle, sURL, "");}
+            catch (e){alert("加入收藏失败，请使用Ctrl+D进行添加");}
+        }
+    }
+</script>

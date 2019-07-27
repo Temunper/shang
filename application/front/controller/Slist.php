@@ -64,6 +64,7 @@ class Slist extends Controller
             $ad_position = $adp_model->select_like_name($class_id, $name);
             // dump($ad_position);die;
         }
+
         $this->assign('title', $title);
         $this->assign('search', json_encode($search));
         $this->assign('default_class', $default_class);

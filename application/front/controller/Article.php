@@ -38,7 +38,13 @@ class Article extends Controller
         if ($type_id > 5 || $type_id < 1) {    //判断type 数值
             $type_id = 1;
         }
-
+    $type=[
+        1=>'项目资讯',
+        2=>'创业资讯',
+        3=>'新闻资讯',
+        4=>'热门专题',
+        5=>'创业故事',
+    ];
         $clas = new Clas();
         $ad_position = new AdPosition();
         $article = new ArticleModel();
@@ -49,6 +55,8 @@ class Article extends Controller
         $this->get_ten_articles();  //查找5找文章类型的10条最新数据
         $article_info = $article->show_article($type_id);       //返回当前type类型的文章
         $this->assign('type_id', $type_id);
+        $title=['title'=>$type[$type_id],'keywords'=>"",'description'=>""];
+        $this->assign('title',$title);
         $this->assign('article_info', $article_info);
         return $this->view->fetch('');
     }

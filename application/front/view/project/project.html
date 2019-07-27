@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>{$title}</title>
-    <meta name="keywords" content="{$project_info['keywords']}">
-    <meta name="description" content="{$project_info['description']}">
+    <title>{$title['title']}</title>
+    <meta name="keywords" content="{$title['keywords']}">
+    <meta name="description" content="{$title['description']}">
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/zhome.css"/>
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/header.css"/>
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/index3.css"/>
@@ -30,7 +30,20 @@
             <div class="text fr">
                 <div class="title">{$project_info['name']}</div>
                 <p>{$project_info['company_name']}</p>
-                <span>￥{$project_info['money']}万</span></div>
+                <span>￥
+                    {if $project_info['money'] eq 1}
+                    投资金额
+                    {elseif $project_info['money'] eq 2}
+                    1-10万
+                     {elseif $project_info['money'] eq 3}
+                  1-20万
+                     {elseif $project_info['money'] eq 4}
+                    20-50万
+                     {elseif $project_info['money'] eq 5}
+                    20-50万
+                    {/if}
+
+                </span></div>
         </div>
         <div class="item1boxmiddle fl">
             <a href="#">
@@ -554,7 +567,7 @@ function quickmsgsubmit3() {
     $("#imgBtnUp").on('click', function () {
         $.ajax({
             type: "post",
-            url: "{:url('message/record_number',['project_id'=>$project_info.project_id])}",
+            url: "{:url('/message/',['project_id'=>$project_info.project_id])}",
             dataType: "json",
             data: $("#msgform").serialize(),
             success: function (data) {
@@ -588,47 +601,6 @@ $(function () {
             $("#Free_phone_text").focus().select();
             return false;
         }
-
-        /*        /!*检查验证码*!/
-                if ($('#Free_code__input').val() === '') {
-                    $("#Free_code__wrap_left").show();
-                    alert('请输入验证码');
-                    return;
-                }*/
-        /*检查验证码*/
-        var mobilephone = $("#Free_phone_text").val();
-        $.ajax({
-            //                           type: "get",
-            type: "post",
-            //                           async: false,
-            //                           url: prefix+"jm/msgsubmit?ProjectID=" + ProjectID + "&URL=" + window.location
-            //                                .href + "&URLTitle=" + document.title + "&Tel=" + mobilephone +
-            //                                "&MessageSource=XQ005-002"+ "&Code=" + $('#Free_code__input').val(),
-            //
-            url: prefix + "cms/jm/messageinsert",
-            data: {
-                ProjectID: ProjectID,
-                URL: window.location.href,
-                URLTitle: document.title,
-                Tel: mobilephone,
-                MessageSource: 'XQ005-002',
-                Code: $('#Free_code__input').val()
-            },
-            dataType: "json",
-            //数据类型为jsonp
-            //                           jsonp: "jsonpCallback", //服务端用于接收callback调用的function名的参数
-            //                           jsonpCallback: "jsonpCallback",
-            success: function (data) {
-                if (data.msg == '验证码不能为空且必须是数字') {
-                    $("#Free_code__wrap_left").show();
-                }
-                alert(data.msg);
-
-            },
-            error: function () {
-                alert('fail1');
-            }
-        });
     });
 
 });

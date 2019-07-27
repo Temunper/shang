@@ -21,7 +21,7 @@ class Article extends Model
     public function check_own($own, $id)
     {
         $data = ['article_id' => $id, 'author' => $own];
-        return self::where($data)->find()->toArray();
+        return self::where($data)->find();
 
     }
 
@@ -95,7 +95,7 @@ class Article extends Model
     public function getStatusAttr($status)
     {
         //状态：1未审核，2审核通过，3用户删除，4管理员删除
-        $value = [-1=>'驳回',1 => '未审核', 2 => '审核通过', 3 => '用户删除', 4 => '管理员删除'];
+        $value = [-1 => '驳回', 1 => '未审核', 2 => '审核通过', 3 => '用户删除', 4 => '管理员删除'];
         return $value[$status];
     }
 
@@ -111,8 +111,8 @@ class Article extends Model
     //通过id 查询所拥有的项目
     public function check_project($client_id)
     {
-        return $re = Db::table('client_project')->field('project_id')
-            ->where('client_id', $client_id)->select();
+        return $re = Db::table('client_project')
+            ->where('client_id', $client_id)->column('project_id');
 
         //dump($this->getLastSql());die;
     }
@@ -121,6 +121,7 @@ class Article extends Model
     public function select_project($id)
     {
         return Db::table('project')->field('project_id,name')->where('project_id', 'in', $id)->select();
+
 
     }
 

@@ -81,7 +81,6 @@ class Message extends Controller
         $result = "";
         //1、获取表单信息，
 
-
         $info = Request::instance()->only(['project_id', 'phone', 'client', 'content']);
         //验证手机号
         if (strlen($info['phone']) != 11) {
@@ -97,8 +96,8 @@ class Message extends Controller
         $time_now = time(); //获取当前时间戳
         $data = ['project_id' => $info['project_id'], 'phone' => $info['phone'], 'ip' => $ip, 'time' => $time_now];//拼接用的ip和当前时间
         //2、写入message_log表单
-        $info = array_merge($info, ['ip' => $ip, 'time' => $time_now]);//拼接用的ip和当前时间
-        $verify = $this->verify($info);   //先行验证是否可以录入，如果
+        $info = array_merge($info, ['ip' => $ip, 'time' => $time_now, 'status' => 1]);//拼接用的ip和当前时间
+        $verify = $this->verify($info);   //先行验证是否可以录入
         //dump($verify);die;
         if (!$verify) {
             //返回为false ，不允许录入，则返回录入成功，不执行录入

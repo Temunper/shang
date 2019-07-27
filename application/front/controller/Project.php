@@ -12,7 +12,6 @@ namespace app\front\controller;
 use app\admin\common\CUrl;
 use app\front\model\Article as ArticleModel;
 use app\front\model\ProjectModel;
-use think\Route;
 use think\Controller;
 use think\Request;
 
@@ -53,13 +52,13 @@ class Project extends Controller
         $cdn = CUrl::curl($cdn);
 
         $project_info = array_merge(['cdn' => $cdn], $project_info);
-
+        $title = ['title' => $project_info['name'], 'keywords' => $project_info['keywords'], 'description' => $project_info['description']];
         // dump($article_info);die;
         $this->assign('title', $title);  //标题
         $this->assign('article_info', $article_info); //项目相关的项目咨询
         $this->assign('project_info', $project_info);    //返回当前项目的所有信息
 
-      //  dump($article_info);die;
+        //  dump($article_info);die;
         //引入网页基本信息
         $base = new Index();
         $base->base_message();

@@ -65,6 +65,8 @@ class Article extends Base
             'brief|简介' => 'require|length:5,20',
             'content|内容' => 'require',
             'source|来源' => 'require',
+            'keywords|关键词' => 'require |length:8,40',
+            'description|描述' => 'require|length:40,160',
         ];
         //设置错误返回信息
         $msg = [
@@ -76,6 +78,10 @@ class Article extends Base
                 'length' => '简介需为5-20字符'],
             'content' => ['require' => '内容不能为空'],
             'source' => ['require' => '来源不能为空'],
+            'keywords' => ['require' => '关键词不能为空',
+                'length' => '关键词长度需为8-40个字符'],
+            'description' => ['require' => '描述不能为空',
+                'length' => '描述长度需为40-160个字符'],
         ];
         //执行验证
         $result = $this->validate($data, $rule, $msg);
@@ -90,7 +96,6 @@ class Article extends Base
                 return ['status' => $status, 'message' => '具体项目不能为空'];
             }
         }
-
         $file = $request->file('image');
         $author = Session::get('client_id');
         //如果图片不为空，则保存图片,返回图片保存路径
@@ -195,7 +200,8 @@ class Article extends Base
     public function redact_article()
     {
         $data = Request::instance()->param();
-        $article_id = $data['ids'] ? (int)$data['ids'] : "";   //获取文章id
+
+        $article_id = $data[0]?$data[0] : "";   //获取文章id
         $db = new ArticleModel();  //创建模型实例
         if (empty($article_id)) {
             return ['status' => 0, 'message' => '请选择要编辑的文章'];
@@ -203,19 +209,14 @@ class Article extends Base
         $client_id = Session::get('client_id');  //获取当前用户id
         $project_id = $db->check_project($client_id);  //获取当前用户所有项目id
 
-        $project_info = []; //定义接收返回信息的数组
         if (empty($project_id)) {
             $project_info['project_id'] = "暂无项目";   //如果不存在项目id，则显示暂无项目
         } else {
-            $str = "";
-            for ($i = 0; $i < count($project_id); $i++) {                 //将返回的数组转换成字符串，例如 1,2，
-                $str .= $project_id[$i]['project_id'] . ',';
-            }
-            $str = rtrim($str, ',');   //取出右边的, 号
-            $project_info = $db->select_project($str);   //得到所有项目信息
+            $project_id = implode(',', $project_id);  //将数组转换成以逗号分隔的字符串
+            $project_info = $db->select_project($project_id);   //得到所有项目信息
         }
 
-        $type_id = $db->get_type($client_id, $article_id);
+        $type_id = $db->get_type($client_id, $article_id);   //得到当前文章类型
         $article_info = $db->check_own($client_id, $article_id);      //查询当前文章id的所有信息
         //渲染视图
         return $this->view->fetch('', [

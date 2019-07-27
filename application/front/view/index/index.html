@@ -16,17 +16,17 @@
             <!-- <z:if condition="${Catalog.Alias!='project_ws'}"> -->
             {volist name="clas" id="vo"}
             <li>
-                <a href="slist/{$vo.class_id}" target="_blank" class="link">{$vo.name} /{volist
+                <a href="slist/{$vo.class_id}" target="_self" class="link">{$vo.name} /{volist
                     name="vo['son']" id="item"
                     length="1"}{$item.name}{/volist}
                     <i class="icon icon-ic-nav-arrow-grey"></i></a>
                 <ul class="ul-submenu clearfix hidden">
                     <li class="li-title">
-                        <a href="slist/{$vo.class_id}" target="_blank"
+                        <a href="slist/{$vo.class_id}" target="_self"
                            class="link">{$vo.name}</a></li>
                     {volist name="vo['son']" id="item"}
                     <li>
-                        <a href="slist/{$item.class_id}" target="_blank" class="link">{$item.name}</a>
+                        <a href="slist/{$item.class_id}" target="_self" class="link">{$item.name}</a>
                     </li>
                     <li>
                         {/volist}
@@ -48,8 +48,8 @@
                     <div class="images-inner" style="width: 1760px; height: 194px; left: 0px;">
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1001 && $i<=6}
-                        <a href="project/{$item.project_id}" data-id="76730"
-                           data-type="cmsad" target="_blank" class="link">
+                        <a href="project{$item.project_id}" data-id="76730"
+                           data-type="cmsad" target="_self" class="link">
                             <img src="{$item.image}" class="img"/></a>
                         {else/}{php}$i--;{/php}
                         {/if}
@@ -69,7 +69,7 @@
             <div class="div-zhome-panel">
                 <div class="div-title">
                     <div class="div-inner clearfix">
-                        <a href="#" target="_blank" class="link-title icon-bg-block-1">
+                        <a href="#" target="_self" class="link-title icon-bg-block-1">
                             <i>
                             </i>
                         </a>
@@ -77,11 +77,11 @@
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1002 && $i<=6}
                         <a href="project/{$item.project_id}" data-id="54613"
-                           data-type="cmsad" target="_blank" class="link-other">{$item.name}</a>
+                           data-type="cmsad" target="_self" class="link-other">{$item.name}</a>
                         {else/}{php}$i--;{/php}
                         {/if}
                         {/volist}
-                        <a href="slist" target="_blank" class="link-more">MORE</a></div>
+                        <a href="slist" target="_self" class="link-more">MORE</a></div>
                 </div>
                 <div class="div-body">
                     <div class="div-inner clearfix">
@@ -89,7 +89,7 @@
                             {volist name = "ad_position" id = "item"}
                             {if $item.ad_id eq 1003 && $i<=4}
                             <a href="project/{$item.project_id}" data-id="80651"
-                               data-type="cmsad" target="_blank" class="link">
+                               data-type="cmsad" target="_self" class="link">
                                 <img src="{$item.image}" class="img" alt=""></a>
                             {else/}{php}$i--;{/php}
                             {/if}
@@ -102,19 +102,19 @@
             <div class="div-zhome-panel">
                 <div class="div-title">
                     <div class="div-inner clearfix">
-                        <a href="#" target="_blank" class="link-title icon-bg-block-2">
+                        <a href="#" target="_self" class="link-title icon-bg-block-2">
                             <i>
                             </i>
                         </a>
                         <div data-id="pc1_a03_label" data-type="cmsadpos"></div>
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1004 && $i<=6}
-                        <a href="project/{$item.project_id}"  data-type="cmsad" target="_blank"
+                        <a href="project/{$item.project_id}"  data-type="cmsad" target="_self"
                            class="link-other">{$item.name}</a>
                         {else/}{php}$i--;{/php}
                         {/if}
                         {/volist}
-                        <a href="slist" target="_blank" class="link-more">MORE</a>
+                        <a href="slist" target="_self" class="link-more">MORE</a>
                     </div>
                 </div>
                 <div class="div-body" data-id="pc1_a03" data-type="cmsadpos">
@@ -122,7 +122,7 @@
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1005 && $i<=6}
                         <a href="project/{$item.project_id}" 
-                           data-type="cmsad" target="_blank" class="link">
+                           data-type="cmsad" target="_self" class="link">
                             <img src="{$item.image}" class="img" alt=""/></a>
                         {else/}{php}$i--;{/php}
                         {/if}
@@ -155,7 +155,7 @@
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1007 && $i<=10}
                         <a href="project/{$item.project_id}"
-                           data-id="29515" data-type="cmsad" target="_blank" class="link link-active">
+                           data-id="29515" data-type="cmsad" target="_self" class="link link-active">
                             <i class="icon-ic-panel-rank icon-ic-panel-rank-1r"></i>
                             <span class="text-num">{$i}</span>
                             <span class="text-name">{$item.name}</span>
@@ -208,7 +208,7 @@
             <p>
                 {volist name = "ad_position" id = "item"}
                 {if $item.ad_id eq 1008 && $i<=6}
-                <a target="_blank" href="project/{$item.project_id}">{$item.name}</a>|
+                <a target="_self" href="project/{$item.project_id}">{$item.name}</a>|
                 {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
@@ -236,8 +236,8 @@
                         </dd>
                     </dl>
                     <div class="btns">
-                        <a href="project/{$item.project_id}" target="_blank">查看详情</a>
-                        <a href="#" target="_blank" class="active">立即咨询</a></div>
+                        <a href="project/{$item.project_id}" target="_self">查看详情</a>
+                        <a href="#" target="_self" class="active">立即咨询</a></div>
                 </div>
                 {else/}{php}$i--;{/php}
                 {/if}
@@ -252,8 +252,8 @@
                     <dd>{item.abbr}</dd>
                 </dl>
                 <div class="btns">
-                    <a href="project/{$item.project_id}" target="_blank">查看详情</a>
-                    <a href="#" target="_blank" class="active">立即咨询</a></div>
+                    <a href="project/{$item.project_id}" target="_self">查看详情</a>
+                    <a href="#" target="_self" class="active">立即咨询</a></div>
                 {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
@@ -261,7 +261,7 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1011 && $i<=4}
                     <li>
-                        <a href="project/{$item.project_id}" target="_blank">
+                        <a href="project/{$item.project_id}" target="_self">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
                     {else/}{php}$i--;{/php}
@@ -277,7 +277,7 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1009 && $i<=8}
                     <li>
-                        <a href="project/{$item.project_id}" target="_blank">
+                        <a href="project/{$item.project_id}" target="_self">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
                     {else/}{php}$i--;{/php}
@@ -315,7 +315,7 @@
             <p>
                 {volist name = "ad_position" id = "item"}
                 {if $item.ad_id eq 1014 && $i<=6}
-                <a target="_blank" href="project/{$item.project_id}">{$item.name}</a>|
+                <a target="_self" href="project/{$item.project_id}">{$item.name}</a>|
                 {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
@@ -336,8 +336,8 @@
                         </dd>
                     </dl>
                     <div class="btns">
-                        <a href="project/{$item.project_id}" target="_blank">查看详情</a>
-                        <a href="#" target="_blank" class="active">立即咨询</a>
+                        <a href="project/{$item.project_id}" target="_self">查看详情</a>
+                        <a href="#" target="_self" class="active">立即咨询</a>
                     </div>
                 </div>
                 {else/}{php}$i--;{/php}
@@ -353,8 +353,8 @@
                     <dd>{item.abbr}</dd>
                 </dl>
                 <div class="btns">
-                    <a href="project/{$item.project_id}" target="_blank">查看详情</a>
-                    <a href="#" target="_blank" class="active">立即咨询</a>
+                    <a href="project/{$item.project_id}" target="_self">查看详情</a>
+                    <a href="#" target="_self" class="active">立即咨询</a>
                 </div>
                 {else/}{php}$i--;{/php}
                 {/if}
@@ -362,7 +362,7 @@
                 <ul>
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1017 && $i<=4}
-                    <li><a href="project/{$item.project_id}" target="_blank">
+                    <li><a href="project/{$item.project_id}" target="_self">
                         <img src="{$item.image}" alt=""/></a></li>
                     {else/}{php}$i--;{/php}
                     {/if}
@@ -376,7 +376,7 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1015 && $i<=8}
                     <li>
-                        <a href="project/{$item.project_id}" target="_blank">
+                        <a href="project/{$item.project_id}" target="_self">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
                     {else/}{php}$i--;{/php}
@@ -416,7 +416,7 @@
             <p>
                 {volist name = "ad_position" id = "item"}
                 {if $item.ad_id eq 1020 && $i<=6}
-                <a target="_blank" href="project/{$item.project_id}">{$item.name}</a>|
+                <a target="_self" href="project/{$item.project_id}">{$item.name}</a>|
                 {else/}{php}$i--;{/php}
                 {/if}
                 {/volist}
@@ -437,8 +437,8 @@
                         </dd>
                     </dl>
                     <div class="btns">
-                        <a href="project/{$item.project_id}" target="_blank">查看详情</a>
-                        <a href="#" target="_blank" class="active">立即咨询</a>
+                        <a href="project/{$item.project_id}" target="_self">查看详情</a>
+                        <a href="#" target="_self" class="active">立即咨询</a>
                     </div>
                     {else/}{php}$i--;{/php}
                     {/if}
@@ -453,8 +453,8 @@
                     <dd>{$item.image}</dd>
                 </dl>
                 <div class="btns">
-                    <a href="project/{$item.project_id}" target="_blank">查看详情</a>
-                    <a href="#" target="_blank" class="active">立即咨询</a>
+                    <a href="project/{$item.project_id}" target="_self">查看详情</a>
+                    <a href="#" target="_self" class="active">立即咨询</a>
                 </div>
                 {else/}{php}$i--;{/php}
                 {/if}
@@ -462,7 +462,7 @@
                 <ul>
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1023 && $i<=4}
-                    <li><a href="project/{$item.project_id}" target="_blank">
+                    <li><a href="project/{$item.project_id}" target="_self">
                         <img src="{$item.image}" alt=""/></a></li>
                     {else/}{php}$i--;{/php}
                     {/if}
@@ -475,7 +475,7 @@
                 <ul>
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1021 && $i<=8}
-                    <li><a href="project/{$item.project_id}" target="_blank">
+                    <li><a href="project/{$item.project_id}" target="_self">
                         <img src="{$item.image}" alt=""/></a></li>
                     {else/}{php}$i--;{/php}
                     {/if}
@@ -511,7 +511,7 @@
         <div class="div-title">
             <h1>
                 <img src="__PUB08__/picture/headlines-jmzx.png" alt="">热门资讯</h1>
-            <a href="newslist" target="_blank" class="link-more">
+            <a href="newslist" target="_self" class="link-more">
                 <i>
                 </i>查看更多</a>
         </div>
@@ -632,7 +632,7 @@
         <span class="fr">
         {volist name = "ad_position" id = "item"}
          {if $item.ad_id eq 1027 && $i<=6}
-      <a href="project/{$item.project_id}" title="{$item.name}加盟" target="_blank">{$item.name}加盟</a>
+      <a href="project/{$item.project_id}" title="{$item.name}加盟" target="_self">{$item.name}加盟</a>
          {else/}{php}$i--;{/php}
           {/if}
          {/volist}
@@ -644,15 +644,15 @@
             {volist name="clas" id="vo" length="3"}
             <dl>
                 <dt>
-                    <a href="slist/{$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <a href="slist/{$vo.class_id}" target="_self" title="{$vo.name}">{$vo.name}</a>
                     <span class="red">
-            <a target="_blank" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
+            <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
                     {volist name = "ad_position" id = "item" length="3"}
                     {if $item.ad_id eq $k && $i<=5}
                     <a href="project/{$item.project_id}" title="{$item.name}"
-                       target="_blank">{$item.name}</a>
+                       target="_self">{$item.name}</a>
                     {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
@@ -665,15 +665,15 @@
             {volist name="clas" id="vo" offset="3" length="3"}
             <dl>
                 <dt>
-                    <a href="slist/{$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <a href="slist/{$vo.class_id}" target="_self" title="{$vo.name}">{$vo.name}</a>
                     <span class="blue">
-            <a target="_blank" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
+            <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
                     {volist name = "ad_position" id = "item" }
                     {if $item.ad_id eq $k && $i<=5}
                     <a href="project/{$item.project_id}" title="{$item.name}"
-                       target="_blank">{$item.name}</a>
+                       target="_self">{$item.name}</a>
                     {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
@@ -685,15 +685,15 @@
             {volist name="clas" id="vo" offset="6" length="3"}
             <dl>
                 <dt>
-                    <a href="slist/{$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <a href="slist/{$vo.class_id}" target="_self" title="{$vo.name}">{$vo.name}</a>
                     <span class="green">
-            <a target="_blank" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
+            <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
                     {volist name = "ad_position" id = "item" }
                     {if $item.ad_id eq $k && $i<=5}
                     <a href="project/{$item.project_id}" title="{$item.name}"
-                       target="_blank">{$item.name}</a>
+                       target="_self">{$item.name}</a>
                     {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
@@ -705,15 +705,15 @@
             {volist name="clas" id="vo" offset="9" length="3"}
             <dl>
                 <dt>
-                    <a href="slist/{$vo.class_id}" target="_blank" title="{$vo.name}">{$vo.name}</a>
+                    <a href="slist/{$vo.class_id}" target="_self" title="{$vo.name}">{$vo.name}</a>
                     <span class="orange">
-            <a target="_blank" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
+            <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
                     {volist name = "ad_position" id = "item" }
                     {if $item.ad_id eq $k && $i<=5}
                     <a href="project/{$item.project_id}" title="{$item.name}"
-                       target="_blank">{$item.name}</a>
+                       target="_self">{$item.name}</a>
                     {else/}{php}$i--;{/php}
                     {/if}
                     {/volist}
@@ -727,17 +727,17 @@
             <ul>
                 <li class="red">
                     {volist name = "ad_position" id = "item"  offset = "0" length="5"}
-                    <a target="_blank" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}</a>
+                    <a target="_self" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}</a>
                     {/volist}
                 </li>
                 <li>
                     {volist name = "ad_position" id = "item"  offset = "5" length="5"}
-                    <a target="_blank" title="$item.name}" href="project/{$item.project_id}">{$item.name}</a>
+                    <a target="_self" title="$item.name}" href="project/{$item.project_id}">{$item.name}</a>
                     {/volist}
                 </li>
                 <li class="red">
                     {volist name = "ad_position" id = "item"  offset = "10" length="5"}
-                    <a target="_blank" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}！</a>
+                    <a target="_self" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}！</a>
                     {/volist}
                 </li>
             </ul>

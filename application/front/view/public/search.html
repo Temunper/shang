@@ -65,7 +65,7 @@
     $(".s_money").on('click', function () {
 
         s_money = $(this).attr('data-money');
-        window.location.href = "/front/slist/slist/money/" + s_money;
+        window.location.href = "/slist/f/f/" + s_money;
     });
 
     $("#search").on('click', function () {
@@ -76,12 +76,11 @@
             alert('请输入要查询的项目名');
             return;
         }
-         if (clas ==""){
-             window.location.href = "/front/slist/slist/pro_name/"+pro_name;
-         }else {
-             window.location.href = "/front/slist/slist/class_id/" + clas+"/pro_name/"+pro_name;
-         }
-
+        if (clas == "") {
+            window.location.href = "/slist/f/f/f/" + pro_name;
+        } else {
+            window.location.href =  "/slist/"+clas+"/f/f/" + s_money;
+        }
     })
 
 
