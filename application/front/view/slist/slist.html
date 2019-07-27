@@ -34,7 +34,13 @@
         <div class="sort_item">
             <div class="sort_head">行业分类</div>
             <ul class="sort_ul01">
+
+                {if $default_class.f_class_id neq null}
                 <li><a href="javascript:;" class="f-class" data-f_class="">不限</a></li>
+                {else /} <li class="on"><a href="javascript:;" class="f-class" data-f_class="">不限</a></li>
+                {/if}
+
+
                 {volist name="clas" id="vo"}
                 <li><a href="javascript:;" data-f_class="{$vo.class_id}" tpl-txt="{max:4}"
                        class="f-class">{$vo.name}</a></li>
@@ -47,7 +53,12 @@
         <div class="sort_item">
             <div class="sort_head">二级分类</div>
             <ul class="sort_ul01">
-                <li><a href="javascript:;" class="son-class" data-s_class="{$default_class.f_class_id}">不限</a></li>
+
+                {if $default_class.class_id neq null}
+                <li><a href="javascript:;" class="f-class" data-s_class="">不限</a></li>
+                {else /} <li class="on"><a href="javascript:;" class="son-class" data-s_class="">不限</a></li>
+                {/if}
+
                 {volist name="clas" id="vo" $key="sort"}
                 {if $vo.class_id == $default_class.f_class_id}
                 {volist name="vo['son']" id="item"}
@@ -64,7 +75,11 @@
         <div class="sort_item">
             <div class="sort_head">投资金额</div>
             <ul>
+                {if $search.money neq null}
                 <li><a href="javascript:;" data-money='' class="money">不限</a></li>
+                {else /} <li><a href="javascript:;" data-money='' class="money">不限</a></li>
+                {/if}
+
                 <li><a href="javascript:;" tpl-txt="{max:2}" data-money='1' class="money">1万元以下</a></li>
                 <li><a href="javascript:;" tpl-txt="{max:2}" data-money='2' class="money">1~10万元</a></li>
                 <li><a href="javascript:;" tpl-txt="{max:2}" data-money='3' class="money">10~20万元</a></li>
@@ -78,7 +93,12 @@
         <div class="sort_item">
             <div class="sort_head">加盟区域</div>
             <ul>
+
+                {if $search.area neq null}
                 <li><a href="javascript:;" data-area="" class="area">不限</a></li>
+                {else /}<li><a href="javascript:;" data-area="" class="area">不限</a></li>
+                {/if}
+
                 <li><a href="javascript:;" tpl-txt="{max:2}" data-area="1010000000" class="area">北京</a></li>
                 <li><a href="javascript:;" tpl-txt="{max:2}" data-area="1090000000" class="area">上海</a></li>
                 <li><a href="javascript:;" tpl-txt="{max:2}" data-area="1190000000" class="area">广东</a></li>
@@ -97,7 +117,6 @@
 
     <!--内页主题开始-->
     <div class="crumb">
-
         <a href="http://youhua.cn/front">首页</a>
         {if $default_class.f_class_id neq null}
         <span>></span>
@@ -126,7 +145,7 @@
                     <p class="cont_cm">关注量:{$vo.attention}</p>
                 </div>
                 <div class="cont_b">
-                    <a href="{:url('project/project',['project_id'=>$vo.project_id])}">
+                    <a href="/project/{$vo.project_id}">
                         <div class="cont_b_l left">查看详情</div>
                     </a>
                     <a href="#">
@@ -152,7 +171,6 @@
     <div class="tail_t">
         <img src="__PUB08__/images/tail_01.png"/>
         <h3>猜你喜欢</h3>
-        <a href="#">更多推荐项目，点击查看>></a>
     </div>
 
 
@@ -160,7 +178,7 @@
         <ul>
             <!--循环项目-->
             {volist name="adp" id="vo" length="24"}
-            <li><a href="{:url('project/project',['project_id'=>$vo.project_id])}" tpl-project="">
+            <li><a href="/project/{$vo.project_id}" tpl-project="">
                 <img src="{$vo.image}"/>
             </a></li>
             {/volist}
@@ -202,7 +220,25 @@
     });
 
     function getAdp() {
-        window.location.href = "/front/slist/slist?class_id=" + class_id + "&area=" + area + "&money=" + money;
+        if (class_id == '') {
+            if (area != '' && money != '')
+                window.location.href = "/slist/f/" + area + "/" + money;
+            else if (area === '' && money != '')
+                window.location.href = "/slist/f/f/" + money;
+            else if (area != '' && money == '')
+                window.location.href = "/slist/f/" + area;
+            else
+                window.location.href = "/slist/"
+        } else {
+            if (area != '' && money != '')
+                window.location.href = "/slist/" + class_id + "/" + area + "/" + money;
+            else if (area == '' && money != '')
+                window.location.href = "/slist/" + class_id + "/f/" + money;
+            else if (area != '' && money == '')
+                window.location.href = "/slist/" + class_id + "/" + area;
+            else
+                window.location.href = "/slist/" + class_id;
+        }
     }
 
 </script>

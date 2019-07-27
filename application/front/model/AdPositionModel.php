@@ -34,6 +34,9 @@ class AdPositionModel extends Model
 //    分类广告位
     function get_project_by_class($money, $class_id, $area)
     {
+//        dump($area);
+//        dump($class_id);
+//        dump($money);
         $c_status = "status = 1";         //其他条件
         if ($area != null) $area2 = (int)$area + 10000000;
         $area ? $and = "area between " . $area . " and " . $area2 : $and = null;
@@ -45,11 +48,12 @@ class AdPositionModel extends Model
             ->where($p_money)
             ->where($c_status)
             ->where("ad_id = 1041")
-            ->order('sort','desc')
+            ->order('sort', 'desc')
             ->paginate(24)->each(function ($item, $key) {
                 $item['area'] = Area::getProvince($item['area']);
                 return $item;
             });
+//        dump($this->getLastSql());
         return $result;
     }
 }
