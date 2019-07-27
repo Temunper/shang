@@ -1,6 +1,6 @@
 <div class="back" style="background-color: #fff; min-width: 1200px;">
     <div class="container clearfix lxmargtopnone">
-        <a class="logo-lib fl" href="index.html">
+        <a class="logo-lib fl" href="/">
             <img src="__PUB08__/picture/logo_top3.png" alt="08商机网"></a>
         <div id="titleselect">
             <div class="inputbox">
@@ -21,7 +21,7 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1026}
                     <div class="selectlist clearfix">
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank" data-id="8724"
+                        <a href="/project/{$item.project_id}" target="_blank" data-id="8724"
                            data-type="cmsad">
                             <p>{$item.name}</p>
                             <span>{$item.attention}</span></a>
@@ -36,25 +36,24 @@
                 <s style="height: 0;display: block;clear: both;"></s>
                 <div class="selecttext">
                     <span class="text">投资金额：</span>
-                    <a href="javascript:;" data-money='' class="s_money">不限</a></li>
-                    <a href="javascript:;" tpl-txt="{max:2}" data-money='1' class="s_money">1万元以下</a>
-                    <a href="javascript:;" tpl-txt="{max:2}" data-money='2' class="s_money">1~10万元</a>
-                    <a href="javascript:;" tpl-txt="{max:2}" data-money='3' class="s_money">10~20万元</a>
-                    <a href="javascript:;" tpl-txt="{max:2}" data-money='4' class="s_money">20~50万元</a>
-                    <a href="javascript:;" tpl-txt="{max:2}" data-money='5' class="s_money">50~100万元</a>
+                    <a href="/slist/f/f/1" tpl-txt="{max:2}" data-money='1' class="s_money">1万元以下</a>
+                    <a href="/slist/f/f/2" tpl-txt="{max:2}" data-money='2' class="s_money">1~10万元</a>
+                    <a href="/slist/f/f/3" tpl-txt="{max:2}" data-money='3' class="s_money">10~20万元</a>
+                    <a href="/slist/f/f/4" tpl-txt="{max:2}" data-money='4' class="s_money">20~50万元</a>
+                    <a href="/slist/f/f/5" tpl-txt="{max:2}" data-money='5' class="s_money">50~100万元</a>
                 </div>
                 <div class="titleselectbox"></div>
             </div>
         </div>
         <ul class="header_right fl">
             <li class="header_right_li fl">
-                <a data-pointkey="XQ001-004" href="{:url('slist/slist')}" target="_self" class="lookfor">
+                <a data-pointkey="XQ001-004" href="/slist" target="_self" class="lookfor">
                     <i>
                         <img src="__PUB08__/picture/project library.png" alt=""></i>
                     <span>项目库</span></a>
             </li>
             <li class="fl">
-                <a data-pointkey="XQ001-005" href="{:url('article/newslist')}" target="_self" class="ranking">
+                <a data-pointkey="XQ001-005" href="/newslist" target="_self" class="ranking">
                     <i>
                         <img src="__PUB08__/picture/consultation.png" alt=""></i>
                     <span>资讯</span></a>

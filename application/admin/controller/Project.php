@@ -10,6 +10,7 @@ namespace app\admin\controller;
 
 
 use app\admin\common\Account;
+use app\admin\model\AdPositionModel;
 use app\admin\model\ClientModel;
 use app\admin\model\ProjectModel;
 use think\Db;
@@ -51,7 +52,7 @@ class Project extends Base
                 $class_id = implode(',', $class_id);                                                            //将数组转为字符串，并用‘,’隔开
             }
         }
-        $search = ['project_name' => $project_name, 'client_name' => $client_name,'bind'=>$bind_code];                                     //将查询的条件返回到模板
+        $search = ['project_name' => $project_name, 'client_name' => $client_name, 'bind' => $bind_code];                                     //将查询的条件返回到模板
         $d_project = $this->project_model->get_project_by_class($status, $class_id, $project_name, $client_name, $bind_code);  //查询project数据
         $this->assign('search', $search);
         $this->assign('default_class', $default_class);
@@ -108,18 +109,20 @@ class Project extends Base
     public function update_status()
     {
         $params = Request::instance()->post();
+
         $result = $this->project_model->update_status($params['project_id']);       //根据返回的project_id将status置为2删除
         if ($result) {
-            $data = ['code' => 200, 'data' => "更改成功"];
+            $data = ['code' => 200, 'data' => "删除成功"];
             return json_encode($data);
         } else {
-            $data = ['code' => 202, 'data' => "更改失败"];
+            $data = ['code' => 202, 'data' => "删除失败"];
             return json_encode($data);
         }
     }
 
-    //更改项目内容
-    public function update()
+//更改项目内容
+    public
+    function update()
     {
 
         $params = Request::instance()->param();
@@ -141,13 +144,15 @@ class Project extends Base
     }
 
 //    根据id获取project
-    public function get_project_by_id($project_id)
+    public
+    function get_project_by_id($project_id)
     {
         return $this->project_model->get_project_by_id($project_id);
     }
 
-    //    项目详情
-    public function content()
+//    项目详情
+    public
+    function content()
     {
         $cl = new Clas();
         $params = Request::instance()->get();
@@ -161,7 +166,8 @@ class Project extends Base
     }
 
 //    添加项目页
-    public function plus()
+    public
+    function plus()
     {
         $cl = new Clas();
         $d_class = $cl->get_all_clas();

@@ -25,7 +25,13 @@ class Slist extends Controller
         isset($params['money']) ? $money = $params['money'] : $money = '';
         isset($params['area']) ? $area = $params['area'] : $area = '';   //获取地区
         isset($params['pro_name']) ? $name = $params['pro_name'] : $name = "";    //获取用户查询的用户名，模糊查询
+
+        $class_id != 'f' ?: $class_id = '';
+        $money != 'f' ?: $money = '';
+        $area != 'f' ?: $area = '';
+
         $default_class = $cl->get_class_by_id($class_id);   //通过父类id得到一级分类
+
         $c = [];
         foreach ($d_class as $item) {                                  //当分类id是一级分类时遍历出所有树叶
             if ($item['class_id'] == $class_id && $item['son'] != null) {

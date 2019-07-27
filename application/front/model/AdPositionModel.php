@@ -34,9 +34,6 @@ class AdPositionModel extends Model
 //    分类广告位
     function get_project_by_class($money, $class_id, $area)
     {
-//        dump($area);
-//        dump($class_id);
-//        dump($money);
         $c_status = "status = 1";         //其他条件
         if ($area != null) $area2 = (int)$area + 10000000;
         $area ? $and = "area between " . $area . " and " . $area2 : $and = null;

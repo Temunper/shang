@@ -44,7 +44,7 @@ $(".project-content").each(function (index) {
 $(".project-del").each(function (index) {
     $(this).click(function () {
         var del = $(this);
-        var r = confirm("确定删除" + data_project[index].name + "?");
+        var r = confirm("确定删除项目：‘" + data_project[index].name + "’?\n"+"和项目有关的所有广告都将删除");
         if (r === true) {
             $.ajax({
                 url: "/admin/project/update_status",

@@ -34,13 +34,13 @@ class ProjectModel extends Model
         $class_id ? $where = 'class_id in(' . $class_id . ')' : $where = null;
         $client_name ? $client = "client_name like '%" . $client_name . "%'" : $client = null;
         $result = Db::table("view_pro")
-        ->where($where)
-        ->where($and)
-        ->where($client)
-        ->where($bind)
-        ->where($c_status)
-        ->order('project_id', 'desc')
-        ->field('*', 'time')
+            ->where($where)
+            ->where($and)
+            ->where($client)
+            ->where($bind)
+            ->where($c_status)
+            ->order('project_id', 'desc')
+            ->field('*', 'time')
             ->paginate(10)->each(function ($item, $key) {
                 if ($item['status'] == 1) {
                     $item['status'] = '正常';
@@ -86,8 +86,15 @@ class ProjectModel extends Model
     //    删除
     function update_status($project_id)//project_id值
     {
-        $result = $this->where('project_id', 'in', $project_id)->update(['status' => '2']);
-        return $result;
+        try {
+            Db::startTrans();
+            Db::table($this->table)->where('project_id', 'in', $project_id)->update(['status' => '2']);
+            Db::table('ad_position')->where('project_id', 'in', $project_id)->update(['status' => '2']);
+            Db::commit();
+            return true;
+        }catch (Exception $exception){
+            return false;
+        }
     }
 
     //更改项目内容

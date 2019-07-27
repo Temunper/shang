@@ -18,7 +18,7 @@ class AdPosition extends Validate
         ['project_id', 'require'],
         ['name', 'require'],
         ['image', 'require'],
-        ['sort', 'require'],
+        ['sort', 'require|integer'],
     ];
 
 }

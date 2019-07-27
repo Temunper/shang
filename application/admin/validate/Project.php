@@ -20,7 +20,7 @@ class Project extends Validate
         ['crowd', 'require'],
         ['area', 'require'],
         ['client_phone', 'require|checkPhone','客户号码不为空|手机号码格式不正确'],
-        ['400', 'require'],
+        ['400', 'require|integer'],
         ['company_name', 'require'],
         ['company_addr', 'require'],
         ['superiority', 'require'],
