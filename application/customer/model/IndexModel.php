@@ -26,8 +26,12 @@ class IndexModel extends Model
         $time_old = strtotime(date('Ymd'));  //当天零点的时间戳
         $time_new = time(); // 当前时间的时间戳
         //通过项目id 查找留言总数
-        $re = Db::query('select count(*) from message where project_id in (?) 
-                               and time between ? and ?', [$project_id, $time_old, $time_new]);
-        return $re;
+        /*     $re = Db::query('select count(*) from message where project_id in (?)
+                                    and time between ? and ?', [$project_id, $time_old, $time_new]);*/
+        return Db::table('message')->where('time', '>', $time_old)
+            ->where('time', '<', $time_new)
+            ->where('project_id', 'in', $project_id)
+            ->count();
+
     }
 }

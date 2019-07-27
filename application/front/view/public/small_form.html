@@ -46,7 +46,7 @@
                         <span>
                           <b class="star">*</b>姓名</span>
                             <div class="item-right">
-                                <input type="text" class="v-ipt" value="" Name="Name" id="Name1">
+                                <input type="text" class="v-ipt" value="" Name="client" id="Name1">
                                 <label for="man">
                                     <input type="radio" id="man1" Name="radiobutton" style="border: none"
                                            checked="checked" value="0">先生</label>
@@ -59,17 +59,10 @@
                         <span>
                           <b class="star">*</b>电话</span>
                             <div class="item-right">
-                                <input type="text" value="" Name="Tel" id="Tel1" maxlength="11"></div>
+                                <input type="text" value="" Name="phone" id="Tel1" maxlength="11"></div>
                             <div style="clear: both"></div>
                         </div>
                         <div class="item item-code__wrap item-code__wrap--small">
-                        <span>
-                          <b class="star">*</b>验证码</span>
-                            <div class="item-right">
-                                <input type="text" value="" class="ctrl_code_input" name="Code"
-                                       id="Code_small" placeholder="请输入验证码">
-                                <i class="item-code__btn ctrl_code_btn" data-telinput="Tel1" data-type="4">点击获取</i>
-                            </div>
                             <div style="clear: both"></div>
                         </div>
                         <div class="item">
@@ -95,29 +88,13 @@
                             <div style="clear: both"></div>
                         </div>
                         <div class="item">
-                            <span>合作地区</span>
-                            <div class="item-right">
-                                <select Name="msgProvince1" id="msgProvince1" size="1" class="mselect "
-                                        onchange="showSmalla(this.value)">
-                                    <option selected="selected" value="0">省/市</option>
-                                </select>
-                                <select id="msgCity1" size="1" class="mselect1" Name="msgCity1"
-                                        onchange="showXiana(this.value)">
-                                    <option selected="selected" value="0">地/州</option>
-                                </select>
-                                <select id="msgXian1" size="1" class="mselect2" Name="msgXian1"
-                                        onchange="resetAddressa()">
-                                    <option selected="selected" value="0">区/县</option>
-                                </select>
-                                <div class="box-address">
-                                    <input type="text" value="" Name="Address" id="Address1"></div>
-                            </div>
+
                             <div style="clear: both"></div>
                         </div>
                         <div class="item">
                             <span>留言</span>
                             <div class="item-right">
-                                            <textarea Name="Message" id="Message" class="Message1" cols="30"
+                                            <textarea Name="content" id="Message" class="Message1" cols="30"
                                                       rows="10"></textarea>
                             </div>
                             <div style="clear: both"></div>
@@ -183,29 +160,29 @@
         </div>
         <!-- 咨询表单 end -->
         <script type="text/javascript">$(function () {
-            initProvince("msgProvince1");
+            /*     initProvince("msgProvince1");*/
             $("#ProjectID1").val($("#form_contact_us_ProjectID").val());
             $("#PageURL1").val(window.location.href);
             $("#PageURLTitle1").val(document.title);
         });
 
-        function showSmalla(value) {
-            onProvinceChange(value, 'msgCity1', 'msgXian1', resetAddressa);
-        }
+        // function showSmalla(value) {
+        //     onProvinceChange(value, 'msgCity1', 'msgXian1', resetAddressa);
+        // }
 
         function showXiana(value) {
             onCityChange(value, 'msgXian1', resetAddressa);
         }
 
-        function resetAddressa() {
-            var p = document.getElementById("msgProvince1");
-            var c = document.getElementById("msgCity1");
-            var d = document.getElementById("msgXian1");
-            var text = p.options[p.selectedIndex].text;
-            text += $(c).val() == 0 ? '' : c.options[c.selectedIndex].text;
-            text += $(d).val() == 0 ? '' : d.options[d.selectedIndex].text;
-            $("#Address1").val(text);
-        }
+        /*   function resetAddressa() {
+                       var p = document.getElementById("msgProvince1");
+                       var c = document.getElementById("msgCity1");
+                       var d = document.getElementById("msgXian1");
+                       var text = p.options[p.selectedIndex].text;
+                       text += $(c).val() == 0 ? '' : c.options[c.selectedIndex].text;
+                       text += $(d).val() == 0 ? '' : d.options[d.selectedIndex].text;
+                       $("#Address1").val(text);
+                   }*/
 
         $.fn.serializeObject = function () {
             var o = {};
@@ -252,54 +229,22 @@
                 return;
             }
             /*检查验证码*/
-            $("#imgBtnUp1").val("正在提交...");
-            var data = $("#msgform1").serializeObject();
-            var im = document.getElementById("InvestMoney1");
-            data.InvestMoney = im.options[im.selectedIndex].text;
-            data.Gender = data.radiobutton == 0 ? '男' : '女';
-            data.NoCheck = data.yixiang_small == 1 ? '1' : '2';
-            var queryString = "";
-            //                    for(var key in data) {
-            //                         if(queryString.length > 0) {
-            //                              queryString += "&";
-            //                         }
-            //                         queryString = queryString + key + "=" + encodeURIComponent(data[key]);
-            //                    }
-            // console.log(data)
-
-            $.ajax({
-                url: prefix + "cms/jm/messageinsert",
-                type: "post",
-
-                //                       async: false,
-                //                       url: prefix + "jm/msgsubmit?" + queryString + "&MessageSource=XQ005-001",
-                dataType: "json",
-                //数据类型为jsonp
-                //                       jsonp: "jsonpCallback", //服务端用于接收callback调用的function名的参数
-                //                       jsonpCallback: "jsonpCallback",
-                data: data,
-                success: function (data) {
-                    if (data.msg == '验证码不能为空且必须是数字') {
-                        $(".item-code__wrap--small").show();
+            $("#imgBtnUp1").on('click', function () {
+                $.ajax({
+                    type: "post",
+                    url: "{:url('message/record_number',['project_id'=>$project_info.project_id])}",
+                    dataType: "json",
+                    data: $("#msgform").serialize(),
+                    success: function (data) {
+                        if (data.code == 200) {
+                            alert(data.msg)
+                        } else {
+                            alert(data.msg)
+                        }
                     }
-                    ;
-                    alert(data.msg);
-                    $("#imgBtnUp1").val("提交留言");
-                },
-                error: function () {
-                    alert('fail2');
-                }
+                });
             });
-
-            $.ajax({
-                url: "/guestbook.html",
-                type: "GET",
-                data: "action=post&" + $("#guestbookfield").val(),
-                dataType: "text"
-            });
-        }
-
-        $(function () {
+/*        $(function () {
             var ProjectID = $("#form_contact_us_ProjectID").val();
             var arr = "540567,640944,540660,640883,540544,641525,544974,540573,540488,540463".split(",");
             if ($.inArray(ProjectID, arr) > -1) { //禁用以上项目的留言功能
@@ -308,8 +253,7 @@
             var Catalog = $("#form400").val();
             if (Catalog == "Y") {
                 $(".nav-400, .form-400").removeClass("dn")
-            }
-            ;
+            };
 
             //提交电话号码
             $("#Free_phone_btn_1").click(function () {
@@ -320,22 +264,19 @@
                     return false;
                 }
 
-                /*检查验证码*/
+                /!*检查验证码*!/
                 if ($('#Free_code__input_1').val() === '') {
                     alert('请输入验证码');
                     $("#small_yzmbox").show();
 
                     return false;
                 }
-                /*检查验证码*/
+                /!*检查验证码*!/
                 var mobilephone = $("#Free_phone_text_1").val();
                 $.ajax({
                     url: prefix + "cms/jm/messageinsert",
                     type: "post",
-                    //                          async: false,
-                    //                          url: prefix + "jm/msgsubmit?ProjectID=" + ProjectID + "&URL=" + window.location
-                    //                               .href + "&URLTitle=" + document.title + "&Tel=" + mobilephone +
-                    //                               "&MessageSource=XQ005-002"+ "&Code=" + $('#Free_phone_text_1').val(),
+                                       "&MessageSource=XQ005-002"+ "&Code=" + $('#Free_phone_text_1').val(),
                     dataType: "json",
                     //数据类型为jsonp
                     data: {
@@ -359,7 +300,7 @@
                     }
                 });
             });
-            /* //提交电话号码2 （详情页左立即联系我）
+            /!* //提交电话号码2 （详情页左立即联系我）
               $("#Free_phone_btn1").click(function() {
                    var reTel = /^1[3|4|5|7|8|9]\d{9}$/;
                    if(reTel.test($("#Free_phone_text1").val()) === false) {
@@ -385,10 +326,10 @@
                         }
                    });
 
-              }); */
+              }); *!/
 
 
-        });
+        });*/
 
         //客户留言统计
         function custFeedback() {
@@ -403,7 +344,7 @@
                     }
                 }
                 return flag;
-            }
+            };
             var isPc = IsPC() ? "PC" : "H5";
             var getCata = function () {
                 var reg = new RegExp("https?://.+\.com/([^/]+)/([^/]+)/([^/]+)(/[^/]+)*\.shtml", "i");
@@ -419,7 +360,7 @@
                     }
                 }
                 return "";
-            }
+            };
             var catalog = getCata();
             $.ajax({
                 type: "get",
@@ -430,6 +371,7 @@
                 error: function () {
                 }
             });
-        }</script>
+        }
+        </script>
         <!--小表单 end--></div>
 </div>

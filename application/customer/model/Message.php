@@ -44,8 +44,10 @@ class Message extends Model
     public function show_client_message($data)
     {
         //显示留言数据
-        return $re = self::order('time', 'desc')->where('status', 'in', '1,2')
+         $re = self::order('time', 'desc')->where('status', 'in', '1,2')
+            ->where('project_id','in',$data)
             ->paginate(15);
+        dump($this->getLastSql());die;
     }
 
     //精确搜索

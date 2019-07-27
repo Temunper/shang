@@ -45,6 +45,7 @@ class Message extends Base
         } else {
             //不存在search字段，则返回用户所有留言
             $project_id = $db->check_project($client_id);
+            $project_id=implode(',',$project_id);  //将数组用逗号分隔成字符串
             $message_info = $db->show_client_message($project_id);
         }
         //渲染查看留言视图

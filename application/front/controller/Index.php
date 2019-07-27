@@ -8,15 +8,18 @@
 
 namespace app\front\controller;
 
+use think\Request;
 
-use think\Controller;
-
-class Index extends Controller
+class Index extends Base
 {
 //    首页
     public function index()
     {
         $this->base_message();          //引入网页公共信息
+        $params = Request::instance()->param();
+        isset($params['money']) ? $money = $params['money'] : $money = '';  //导航栏下金额
+        isset($params['class_id']) ? $class_id = $params['class_id'] : $class_id = '';  //父类选择
+        $searchs = ['money' => $money, 'class_id' => $class_id];
         return $this->view->fetch();
     }
 
@@ -38,6 +41,15 @@ class Index extends Controller
         $this->assign('clas', $d_clas);    //返回分类
     }
 
+
+    //收藏
+    public function fav()
+    {
+        if (Request::instance()->isAjax()) {      //判断是否是ajax请求
+            return ['code' => 202, 'msg' => "请求类型错误"];
+        }
+        $info = Request::instance()->param();
+    }
 
 
 //    设置分类

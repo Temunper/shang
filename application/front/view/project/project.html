@@ -161,7 +161,7 @@
                         <!--遍历相关文章开始-->
                         {volist name="article_info" id="vo"}
                         <div class="contentlist">
-                            <a href="{detail/detail,['article_id'=>$vo['article_id']]}">
+                            <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}">
                                 <div class="leftimg">
                                     <img src="{$vo['lis_img']}"/></div>
                                 <div class="rightcontent">
@@ -186,7 +186,7 @@
                                 <img src="{$vo.lis_img}" alt="{$vo.title}"/>
                             </a>
                             <a href="{:url('index/index')}">
-                            <p>{$vo.content}</p>
+                                <p>{$vo.content}</p>
                             </a>
                         </div>
                         {/volist}
@@ -320,7 +320,7 @@
                         </i>创业知识
                     </div>
                     <div class="titleright">
-                        <a href="#">更多</a></div>
+                        <a href="{:url('article/newslist',['type'=>5])}">更多</a></div>
                 </div>
                 <ul class="contentlist">
                     <!--遍历10个链接-->
@@ -481,29 +481,28 @@
 <script src='__PUB08__/js/chat.js' type='text/javascript' charset='utf-8'></script>
 <!--留言表单js-->
 <script type="text/javascript">$(function () {
-    initProvince("msgProvince");
     $("#ProjectID").val($("#form_contact_us_ProjectID").val());
     $("#PageURL").val(window.location.href);
     $("#PageURLTitle").val(document.title);
 });
 
-function showSmall(value) {
+/*function showSmall(value) {
     onProvinceChange(value, 'msgCity', 'msgXian', resetAddress);
-}
+}*/
 
 function showXian(value) {
     onCityChange(value, 'msgXian', resetAddress);
 }
 
-function resetAddress() {
-    var p = document.getElementById("msgProvince");
-    var c = document.getElementById("msgCity");
-    var d = document.getElementById("msgXian");
-    var text = p.options[p.selectedIndex].text;
-    text += $(c).val() == 0 ? '' : c.options[c.selectedIndex].text;
-    text += $(d).val() == 0 ? '' : d.options[d.selectedIndex].text;
-    $("#Address").val(text);
-}
+// function resetAddress() {
+//    var p = document.getElementById("msgProvince");
+//     var c = document.getElementById("msgCity");
+//     var d = document.getElementById("msgXian");
+//    var text = p.options[p.selectedIndex].text;
+//     text += $(c).val() == 0 ? '' : c.options[c.selectedIndex].text;
+//     text += $(d).val() == 0 ? '' : d.options[d.selectedIndex].text;
+//     $("#Address").val(text);
+// }
 
 $.fn.serializeObject = function () {
     var o = {};
@@ -543,58 +542,34 @@ function quickmsgsubmit3() {
         return false;
     }
 
-    /*检查验证码*/
-    if ($('#Code_big').val() === '') {
+    /*    /!*检查验证码*!/
+        if ($('#Code_big').val() === '') {
 
-        alert('请输入验证码!');
-        $("#big_yzmbox").show();
-        return false;
-    }
+            alert('请输入验证码!');
+            $("#big_yzmbox").show();
+            return false;
+        }*/
     /*检查验证码*/
-    $("#imgBtnUp").val("正在提交...");
-    var data = $("#msgform").serializeObject();
-    var im = document.getElementById("InvestMoney");
-    data.InvestMoney = im.options[im.selectedIndex].text;
-    data.Gender = data.radiobutton == 0 ? '男' : '女';
-    data.NoCheck = data.yixiang == 1 ? '1' : '2';
-    var queryString = "";
-    //                for(var key in data) {
-    //                     if(queryString.length > 0) {
-    //                          queryString += "&";
-    //                     }
-    //                     queryString = queryString + key + "=" + encodeURIComponent(data[key]);
-    //                }
-    $.ajax({
-        type: "post",
-        url: prefix + "cms/jm/messageinsert",
-        dataType: "json",
-        //数据类型为jsonp
-        //                        async: false,
-        //                        url: prefix + "jm/msgsubmit?" + queryString + "&MessageSource=XQ005-001",
-        //                        dataType: "jsonp", //数据类型为jsonp
-        //                        jsonp: "jsonpCallback", //服务端用于接收callback调用的function名的参数
-        //                        jsonpCallback: "jsonpCallback",
-        data: data,
-        success: function (data) {
-            if (data.msg == '验证码不能为空且必须是数字') {
-                $("#big_yzmbox").show();
+    /*大留言板*/
+    $("#imgBtnUp").on('click', function () {
+        $.ajax({
+            type: "post",
+            url: "{:url('message/record_number',['project_id'=>$project_info.project_id])}",
+            dataType: "json",
+            data: $("#msgform").serialize(),
+            success: function (data) {
+                if (data.code == 200) {
+                    alert(data.msg)
+                } else {
+                    alert(data.msg)
+                }
             }
-            ;
-            alert(data.msg);
-            $("#imgBtnUp").val("提交留言");
-        },
-        error: function () {
-            alert('提交失败');
-        }
+        });
     });
-    $.ajax({
-        url: "/guestbook.html",
-        type: "GET",
-        data: "action=post&" + $("#guestbookfield").val(),
-        dataType: "text"
-    });
+
 }
 
+/*验证小留言*/
 $(function () {
     var ProjectID = $("#form_contact_us_ProjectID").val();
     var arr = "540567,640944,540660,640883,540544,641525,544974,540573,540488,540463".split(",");
@@ -614,12 +589,12 @@ $(function () {
             return false;
         }
 
-        /*检查验证码*/
-        if ($('#Free_code__input').val() === '') {
-            $("#Free_code__wrap_left").show();
-            alert('请输入验证码');
-            return;
-        }
+        /*        /!*检查验证码*!/
+                if ($('#Free_code__input').val() === '') {
+                    $("#Free_code__wrap_left").show();
+                    alert('请输入验证码');
+                    return;
+                }*/
         /*检查验证码*/
         var mobilephone = $("#Free_phone_text").val();
         $.ajax({

@@ -56,4 +56,27 @@ class AdPositionModel extends Model
 //        dump($this->getLastSql());
         return $result;
     }
+
+    //模糊查询
+    public function select_like_name($class_id, $name)
+    {
+        if (!empty($class_id)) {
+            $clas = ['class_id' => $class_id];
+        } else {
+            $clas = null;
+        }
+        $c_status = 1;
+        $result = Db::table('view_adp')
+            ->where('status', $c_status)
+            ->where($clas)
+            ->where('name', ['like', $name . '%'], ['like', '%' . $name])
+            ->order('sort', 'desc')
+            ->paginate(24)->each(function ($item, $key) {
+                $item['area'] = Area::getProvince($item['area']);
+                return $item;
+            });
+        return $result;
+    }
+
+
 }

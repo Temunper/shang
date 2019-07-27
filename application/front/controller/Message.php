@@ -80,6 +80,8 @@ class Message extends Controller
         $code = 202;
         $result = "";
         //1、获取表单信息，
+
+
         $info = Request::instance()->only(['project_id', 'phone', 'client', 'content']);
         //验证手机号
         if (strlen($info['phone']) != 11) {

@@ -35,15 +35,12 @@
                 </div>
 
                 <form id="msgform" class="fl">
-                    <input type="hidden" value="" name="ProjectID" id="ProjectID">
-                    <input type="hidden" value="" name="URL" id="PageURL">
-                    <input type="hidden" value="" name="URLTitle" id="PageURLTitle">
                     <div class="quick_liuyan_con">
                         <div class="item">
                   <span>
                     <b class="star">*</b>姓名</span>
                             <div class="item-right">
-                                <input type="text" class="v-ipt" value="" name="Name" id="Name">
+                                <input type="text" class="v-ipt" value="" name="client" id="Name">
                                 <label for="man">
                                     <input type="radio" id="man" name="radiobutton" style="border: none"
                                            checked="checked" value="0">先生</label>
@@ -56,16 +53,10 @@
                   <span>
                     <b class="star">*</b>电话</span>
                             <div class="item-right">
-                                <input type="text" value="" name="Tel" id="Tel" maxlength="11"></div>
+                                <input type="text" value="" name="phone" id="Tel" maxlength="11"></div>
                             <div style="clear: both"></div>
                         </div>
                         <div class="item item-code__wrap item-code__wrap--big" id="big_yzmbox">
-                  <span>
-                    <b class="star">*</b>验证码</span>
-                            <div class="item-right">
-                                <input class="ctrl_code_input" type="text" value="" name="Code" id="Code_big"
-                                       placeholder="请输入验证码">
-                                <i class="item-code__btn ctrl_code_btn" data-telinput="Tel" data-type="2">点击获取</i></div>
                             <div style="clear: both"></div>
                         </div>
                         <div class="item">
@@ -91,28 +82,17 @@
                             <div style="clear: both"></div>
                         </div>
                         <div class="item">
-                            <span>合作地区</span>
-                            <div class="item-right">
+                            <div class="item-right" style="display: none;">
                                 <select name="msgProvince" id="msgProvince" size="1" class="mselect"
-                                        onchange="showSmall(this.value)">
-                                    <option selected="selected" value="0">省/市</option>
+                                        >
                                 </select>
-                                <select id="msgCity" size="1" class="mselect" name="msgCity"
-                                        onchange="showXian(this.value)">
-                                    <option selected="selected" value="0">地/州</option>
-                                </select>
-                                <select id="msgXian" size="1" class="mselect" name="msgXian" onchange="resetAddress()">
-                                    <option selected="selected" value="0">区/县</option>
-                                </select>
-                                <div class="box-address">
-                                    <input type="text" value="" name="Address" id="Address"></div>
                             </div>
                             <div style="clear: both"></div>
                         </div>
                         <div class="item">
                             <span>留言</span>
                             <div class="item-right">
-                                <textarea name="Message" id="Message" class="Message" cols="30" rows="10"></textarea>
+                                <textarea name="content" id="Message" class="Message" cols="30" rows="10"  ></textarea>
                             </div>
                             <div style="clear: both"></div>
                         </div>
