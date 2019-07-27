@@ -1,6 +1,6 @@
 <div class="back" style="background-color: #fff; min-width: 1200px;">
     <div class="container clearfix lxmargtopnone">
-        <a class="logo-lib fl" href="index.html">
+        <a class="logo-lib fl" href="/">
             <img src="__PUB08__/picture/logo_top3.png" alt="08商机网"></a>
         <div id="titleselect">
             <div class="inputbox">
@@ -12,8 +12,9 @@
                 <div class="selectboxdown1">
                     <input type="hidden" name="CatalogInnerCode" id="searchCatalogInnerCode" value=""/>
                     <ul>
+                        <li>所有行业</li>
                         {volist name="clas" id="vo"}
-                        <li data-id="{$vo.class_id}">{$vo.name}</li>
+                        <li>{$vo.name}</li>
                         {/volist}
                     </ul>
                 </div>
@@ -21,7 +22,7 @@
                     {volist name = "ad_position" id = "item"}
                     {if $item.ad_id eq 1026}
                     <div class="selectlist clearfix">
-                        <a href="{:url('Index/project')}?project_id={$item.project_id}" target="_blank" data-id="8724"
+                        <a href="/project/{$item.project_id}" target="_blank"
                            data-type="cmsad">
                             <p>{$item.name}</p>
                             <span>{$item.attention}</span></a>
@@ -36,24 +37,24 @@
                 <s style="height: 0;display: block;clear: both;"></s>
                 <div class="selecttext">
                     <span class="text">投资金额：</span>
-                    <a href="#" class="link">3-5万</a>
-                    <a href="#" class="link">5-10万</a>
-                    <a href="#" class="link">10-20万</a>
-                    <a href="#" class="link">20-50万</a>
-                    <a href="#" class="link">50-100万</a>
-                    <a href="#" class="link">100万以上</a></div>
+                    <a href="/slist/f/f/1" class="link">1万以下</a>
+                    <a href="/slist/f/f/2" class="link">5-10万</a>
+                    <a href="/slist/f/f/3" class="link">10-20万</a>
+                    <a href="/slist/f/f/4" class="link">20-50万</a>
+                    <a href="/slist/f/f/5" class="link">50-100万</a>
+                    <a href="#" class="link"></a></div>
                 <div class="titleselectbox"></div>
             </div>
         </div>
         <ul class="header_right fl">
             <li class="header_right_li fl">
-                <a data-pointkey="XQ001-004" href="{:url('slist/slist')}" target="_self" class="lookfor">
+                <a data-pointkey="XQ001-004" href="/slist" target="_self" class="lookfor">
                     <i>
                         <img src="__PUB08__/picture/project library.png" alt=""></i>
                     <span>项目库</span></a>
             </li>
             <li class="fl">
-                <a data-pointkey="XQ001-005" href="{:url('article/newslist')}" target="_self" class="ranking">
+                <a data-pointkey="XQ001-005" href="/newslist" target="_self" class="ranking">
                     <i>
                         <img src="__PUB08__/picture/consultation.png" alt=""></i>
                     <span>资讯</span></a>

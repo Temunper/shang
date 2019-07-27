@@ -187,7 +187,7 @@ $('.quick_m a').click(function(){
 
 
 $(".sort ul").each(function(){
-	$(this).children('li').eq(0).addClass('on');
+	// $(this).children('li').eq(0).addClass('on');
 	if( $(this).children('li').length < 11 ){
 		$(this).siblings(".sort_more").hide();
 	}

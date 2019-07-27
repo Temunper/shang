@@ -17,5 +17,11 @@ return [
         ':id'   => ['user/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['user/hello', ['method' => 'post']],
     ],
-
+    '/$' => 'front/index/index',
+    'front$'=>'front/index/index',
+    'slist/[:class_id]/[:area]/[:money]$'=>'front/slist/slist',
+    'newslist/[:type]$'=>'front/article/newslist',
+    'article/[:article_id]$'=>'front/detail/detail',
+    'project/[:project_id]$'=>'front/project/project'
 ];
+//class_id=1002&area=&money=

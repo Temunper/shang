@@ -32,30 +32,30 @@
             <div id='nav' class="bfff">
                 <ul class="nav clearfix">
                     <li class="item1">
-                        <a href="{:url('index/index')}"><span class="hdsy"></span>回到首页 </a>
+                        <a href="/"><span class="hdsy"></span>回到首页 </a>
                     </li>
 
 
                     <li class="active">
-                        <a href="{:url('article/newslist',['type'=>1])}"><span class="xwzx"></span>项目资讯 </a>
+                        <a href="/newslist/1"><span class="xwzx"></span>项目资讯 </a>
                     </li>
 
 
                     <li class="">
-                        <a href="{:url('article/newslist',['type'=>2])}"><span class="rmzt"></span>创业咨询 </a>
+                        <a href="/newslist/2"><span class="rmzt"></span>创业咨询 </a>
                     </li>
 
 
                     <li class="">
-                        <a href="{:url('article/newslist',['type'=>3])}"><span class="cyzs"></span>新闻咨询 </a>
+                        <a href="/newslist/3"><span class="cyzs"></span>新闻咨询 </a>
                     </li>
 
 
                     <li class="">
-                        <a href="{:url('article/newslist',['type'=>4])}"><span class="cygs"></span>热门咨询 </a>
+                        <a href="/newslist/4"><span class="cygs"></span>热门咨询 </a>
                     </li>
                     <li class="">
-                        <a href="{:url('article/newslist',['type'=>5])}"><span class="cygs"></span>创业故事 </a>
+                        <a href="/newslist/5"><span class="cygs"></span>创业故事 </a>
                     </li>
 
                 </ul>
@@ -77,8 +77,8 @@
             <div class="pub-info">
                 {volist name="article_info" id="vo"}
                 <div class="pub-info-list ">
-                    <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}"><img src="{$vo.lis_img}" class="l"></a>
-                    <a href="{:url('detail/detail',['article_id'=>$vo.article_id])}">
+                    <a href="/article/{$vo.article_id}"><img src="{$vo.lis_img}" class="l"></a>
+                    <a href="/article/{$vo.article_id}">
                         <h3 class="title">{$vo.title}</h3></a>
                     <p>
                         <span class="words-limit">{$vo.brief}</span>

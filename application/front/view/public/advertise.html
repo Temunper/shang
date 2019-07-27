@@ -10,7 +10,7 @@
                             {volist name = "clas" id = "item"}
                             {if $item.f_class_id eq 0}
                             <li class="on">
-                                <a href="#">{$item.name}</a>
+                                <a href="/slist/{$item.class_id}">{$item.name}</a>
                                 <i>
                                 </i>
                             </li>
@@ -21,7 +21,7 @@
                             <i>
                             </i>
                             <p>
-                                <a href="#" target="_blank">查看更多</a></p>
+                                <a href="/slist" target="_blank">查看更多</a></p>
                         </div>
                     </div>
                     <!--循环出父类名称结束-->
@@ -34,7 +34,7 @@
                              <!--父类项目-->
                                 {volist name="vo['son']" id="item" }
                                 <li class="row1 col1">
-                                    <a href="#"   target="_blank">
+                                    <a href=""   target="_blank">
                                         <img src="{$item['image']}"
                                              alt="怒火八零"></a>
                                     <span>{$item['name']}</span>
