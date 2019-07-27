@@ -48,7 +48,7 @@
                     <div class="images-inner" style="width: 1760px; height: 194px; left: 0px;">
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1001 && $i<=6}
-                        <a href="project{$item.project_id}" data-id="76730"
+                        <a href="project/{$item.project_id}" data-id="76730"
                            data-type="cmsad" target="_blank" class="link">
                             <img src="{$item.image}" class="img"/></a>
                         {else/}{php}$i--;{/php}

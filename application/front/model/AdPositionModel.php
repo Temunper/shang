@@ -44,13 +44,12 @@ class AdPositionModel extends Model
             ->where($and)
             ->where($p_money)
             ->where($c_status)
-            ->where("ad_id = 1041")
             ->order('sort', 'desc')
             ->paginate(24)->each(function ($item, $key) {
                 $item['area'] = Area::getProvince($item['area']);
                 return $item;
             });
-//        dump($this->getLastSql());
+//        dump($this->getLastSql());die;
         return $result;
     }
 
