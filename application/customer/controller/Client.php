@@ -24,7 +24,7 @@ class Client extends Controller
     //验证登录
     public function check_login(Request $request)
     {
-        $this->already_login();
+        $this->already_login();//判断用户是否已经登录，防止重复登录
         $status = 0;            //设置初始返回状态值
         $result = "";           //设置初始返回信息
         $data = $request->param();
@@ -78,6 +78,7 @@ class Client extends Controller
         return ['status' => $status, 'message' => $result,];
     }
 
+
 //注销
     public function logout()
     {
@@ -85,17 +86,17 @@ class Client extends Controller
         Session::delete('client_info');
         $this->redirect('client/login');  //重定向到登录页
     }
-
 //渲染修改密码页
     public function show_change_pass()
     {
+        $this->is_login();
         //渲染修改页面
         return $this->view->fetch('', ['info' => $info = Session::get('client_info')]);
     }
-
 //修改密码
     public function change_pass(Request $request)
     {
+        $this->is_login();
         $status = 0;
         //通过session 获取当前用户密码和秘钥
         $info = Session::get('client_info');
@@ -143,8 +144,7 @@ class Client extends Controller
     }
 
 //随机生成用户账号
-    private
-    function get_user_number()
+    private function get_user_number()
     {
         $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         $username = "";
@@ -154,14 +154,20 @@ class Client extends Controller
         return strtoupper(base_convert(time() - 1420070400, 10, 36)) . $username;
     }
 
-    //防止用户重复登录
     protected function already_login()
     {
-        $client_id = Session::get('client_id');
+        $client_id=  Session::get('client_id');
         if (!empty($client_id)) {
             $this->error('用户已登录，请勿重复登录', url('index/index'));
         }
     }
 
+    protected function is_login()
+    {
+        $client_id=  Session::get('client_id');
+        if (empty($client_id)) {
+            $this->error('用户未登录，无权访问', url('client/login'));
+        }
+    }
 
 }

@@ -48,7 +48,7 @@
                     <div class="images-inner" style="width: 1760px; height: 194px; left: 0px;">
                         {volist name = "ad_position" id = "item"}
                         {if $item.ad_id eq 1001 && $i<=6}
-                        <a href="project{$item.project_id}" data-id="76730"
+                        <a href="project/{$item.project_id}" data-id="76730"
                            data-type="cmsad" target="_self" class="link">
                             <img src="{$item.image}" class="img"/></a>
                         {else/}{php}$i--;{/php}
@@ -640,6 +640,7 @@
     </div>
     <div class="bd">
         <div class="cyxmT-box clearfix">
+            <!--循环开始-->
             {php}$k=1028;{/php}
             {volist name="clas" id="vo" length="3"}
             <dl>
@@ -661,7 +662,7 @@
             </dl>
             {php}$k++;{/php}
             {/volist}
-
+            <!--循环结束1-->
             {volist name="clas" id="vo" offset="3" length="3"}
             <dl>
                 <dt>
@@ -722,21 +723,22 @@
             {php}$k++;{/php}
             {/volist}
         </div>
+        <!-- 创业项目推荐结束 -->
         <!--热门推荐开始-->
      <div class="cyxmT-link">
             <ul>
                 <li class="red">
-                    {volist name = "ad_position" id = "item"  offset = "0" length="5"}
+                    {volist name = "ad_position" id = "item"  offset = "0" length="6"}
                     <a target="_self" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}</a>
                     {/volist}
                 </li>
                 <li>
-                    {volist name = "ad_position" id = "item"  offset = "5" length="5"}
+                    {volist name = "ad_position" id = "item"  offset = "6" length="6"}
                     <a target="_self" title="$item.name}" href="project/{$item.project_id}">{$item.name}</a>
                     {/volist}
                 </li>
                 <li class="red">
-                    {volist name = "ad_position" id = "item"  offset = "10" length="5"}
+                    {volist name = "ad_position" id = "item"  offset = "12" length="6"}
                     <a target="_self" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}！</a>
                     {/volist}
                 </li>

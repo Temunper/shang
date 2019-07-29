@@ -67,14 +67,13 @@ class AdPositionModel extends Model
         $result = Db::table('view_adp')
             ->where('status', '=',1)
             ->where($clas)
-            ->where('name', ['like', $name . '%'], ['like', '%' . $name])
-            ->where('class_name', ['like', $name . '%'], ['like', '%' . $name])
+            ->where('name','like','%'.$name.'%')
             ->order('sort', 'desc')
             ->paginate(24)->each(function ($item, $key) {
                 $item['area'] = Area::getProvince($item['area']);
                 return $item;
             });
-      //dump($this->getLastSql());die;
+     // dump($this->getLastSql());die;
        return $result;
     }
 

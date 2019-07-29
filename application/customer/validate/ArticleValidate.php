@@ -7,29 +7,21 @@
  */
 
 namespace app\customer\validate;
-class ArticleValidate extends BaseValidate
+use think\Validate;
+
+class ArticleValidate extends  Validate
 {
-    protected $rule = [
-        'type | 项目类型' => 'require ',
-        'project_id|项目id' => 'require',
-        'title|标题' => 'require|length:2,25',
-        'lis_img|列表图片' => 'require|image',
-        'brief|简介' => 'require',
+    protected       $rule = [
+        'type|类型' => 'require',
+        'title|标题' => 'require|length:2,20',
+        'image|列图' => 'require',
+        'brief|简介' => 'require|length:5,20',
         'content|内容' => 'require',
         'source|来源' => 'require',
+        'keywords|关键词' => 'require|length:8,40',
+        'description|描述' => 'require|length:20,160',
     ];
 
-    protected $msg = [
-        'type.require' => '项目类型必须',
-        'project_id.require' => '项目名称必须',
-        'title.require' => '标题名称必须',
-        'title.length' => '标题长度为2-25',
-        'lis_img.require' => '列表图片必须',
-        'lis_img.image' => '必须是图片类型',
-        'brief.require' => '简介必须',
-        'content.require' => '内容必须',
-        'source.require' => '来源必须',
-    ];
 
 
 

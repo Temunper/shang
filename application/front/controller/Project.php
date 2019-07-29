@@ -44,6 +44,7 @@ class Project extends Base
         //查询该项目相关文章
         $get = new ArticleModel();
         $article_info = $get->get_some_article($data);   //得到项目id 最新的10条项目咨询
+        dump($article_info);die;
         $title = $project_info['name'];
         $cdn = "http://cdn.hao987.cn/shophtml/" . $project_info['yw_name'] . "/item.html";
         $cdn = CUrl::curl($cdn);   //渲染cdn链接

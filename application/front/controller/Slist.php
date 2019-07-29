@@ -39,7 +39,7 @@ class Slist extends Controller
             $title = ['title' => $title->name . "项目大全", 'keywords' => $title->keywords, 'description' => $title->describe];   //返回网页的title等数据
         else
             $title = ['title' => "项目大全", 'keywords' => '', 'description' => ''];
-        $search = ['money' => $money, 'area' => $area, 'class_id' => $class_id];                                        //返回搜索数据
+        $search = ['money' => $money, 'area' => $area, 'class_id' => $class_id];           //返回搜索数据
         foreach ($d_class as $item) {                                  //当分类id是一级分类时遍历出所有树叶
             if ($item['class_id'] == $class_id && $item['son'] != null) {
                 foreach ($item['son'] as $value) {
@@ -64,7 +64,7 @@ class Slist extends Controller
             $ad_position = $adp_model->select_like_name($class_id, $name);  //模糊查询
             // dump($ad_position);die;
         }
-
+       // dump($ad_position);die;
         $this->assign('title', $title);       //标题，keywords description
         $this->assign('search', json_encode($search));
         $this->assign('pro_name', $params['pro_name']);

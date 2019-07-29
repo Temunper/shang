@@ -51,8 +51,8 @@
                 <input type="text" id="item-keywords" class="con-item-r" name="keywords" style="width: 800px">
             </div>
             <div class="con-item" style="margin-top: 50px">
-                <label for="item-describe" class="con-item-l">describe</label>
-                <input type="text" id="item-describe" class="con-item-r" name="description" style="width: 800px">
+                <label for="item-description" class="con-item-l">description</label>
+                <input type="text" id="item-description" class="con-item-r" name="description" style="width: 800px">
             </div>
             <div class="login-btn">
                 <button id="publish" type="button">发布</button>
@@ -75,11 +75,15 @@
             var brief_obj = $("#item-brief").val();
             var content_obj = $("#item-content").val();
             var source_obj = $("#item-source").val();
+            var keywords_obj = $("#item-keywords").val();
+            var description_obj = $("#item-description").val();
             formDate.append('type', type_obj);
             formDate.append('title', title_obj);
             formDate.append('brief', brief_obj);
             formDate.append('content', editor.txt.html());
             formDate.append('source', source_obj);
+            formDate.append('keywords', keywords_obj);
+            formDate.append('description', description_obj);
             $.ajax({
                 type: "POST",
                 url: "{:url('article/do_release')}",

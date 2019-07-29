@@ -60,10 +60,9 @@ class Article extends Model
     public function select_self_article($author)
     {
         return self::order('update_time', 'desc')
-            ->where('status', 'in', '1,2')
+            ->where('status', 'in', '-1,1,2')
             ->where('author', $author)
             ->paginate(15);
-
     }
 
     //文章时间修改器

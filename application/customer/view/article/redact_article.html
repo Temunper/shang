@@ -30,7 +30,7 @@
                 <input type="text" id="item-title" class="con-item-r" name="title" value="{$article_info['title']}">
             </div>
             <div class="con-item">
-                <label  class="con-item-l">列表图片</label>
+                <label class="con-item-l">列表图片</label>
                 <img src="{$article_info['lis_img']}" style="height: 200px;width: 200px">
             </div>
             <div class="con-item">
@@ -55,11 +55,13 @@
             </div>
             <div class="con-item" style="margin-top: 50px;">
                 <label for="item-keywords" class="con-item-l">keywords</label>
-                <input type="text" id="item-keywords" class="con-item-r" name="keywords" style="width: 800px" value="{$article_info['keywords'] |default=''}" >
+                <input type="text" id="item-keywords" class="con-item-r" name="keywords" style="width: 800px"
+                       value="{$article_info['keywords'] |default=''}">
             </div>
             <div class="con-item" style="margin-top: 50px">
                 <label for="item-describe" class="con-item-l">describe</label>
-                <input type="text" id="item-describe" class="con-item-r" name="description" style="width: 800px" value="{$article_info['description'] |default=''}">
+                <input type="text" id="item-describe" class="con-item-r" name="description" style="width: 800px"
+                       value="{$article_info['description'] |default=''}">
             </div>
             <div class="login-btn">
                 <input type="hidden" value="{$article_info['article_id']}" id="hide" name="article_id">
@@ -101,7 +103,7 @@
                 success: function (data) {   //返回值状态为1才执行
                     if (data.status == 1) {
                         alert(data.message);
-                        window.location.href="{:url('article/show_self_article')}";
+                        window.location.href = "{:url('article/show_self_article')}";
                     } else {
                         alert(data.message);
                     }

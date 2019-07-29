@@ -22,31 +22,34 @@ class Article extends Base
         'image/jpg',
         'image/jpeg'
     ];
+    protected $model = null;
+
+    function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $this->model = new ArticleModel();
+    }
 
     //渲染客户端新增文章页面
     public function release_article()
     {
 
-        $db = new ArticleModel();
+
         //查询当前用户所拥有的项目id，查询所有项目名称
         $project_info = "";
 
         $clinet_id = Session::get('client_id');
 
-        $project_id = $db->check_project($clinet_id);  //获取当前用户所有项目id
-        $project_info = []; //定义一个数组接收返回数据
+        $project_id = $this->model->check_project($clinet_id);  //获取当前用户所有项目id
         if (empty($project_id)) {
             $project_info['project_id'] = "暂无项目";
         } else {
-            $str = "";
-            for ($i = 0; $i < count($project_id); $i++) {
-                $str .= $project_id[$i]['project_id'] . ',';
-            }
-            $str = rtrim($str, ',');
-            $project_info = $db->select_project($str);   //得到所有项目信息
-        }
+                $project_info=implode(',',$project_id   );
 
-        return $this->fetch('', ['project_info' => $project_info]);
+            $project_info = $this->model->select_project($project_info);   //得到所有项目信息
+        }
+        $this->assign('project_info', $project_info);
+        return $this->fetch('');
     }
 
     //发布文章
@@ -56,35 +59,9 @@ class Article extends Base
         $date_now = time();  //获得当前时间戳
         $data = $request->param(true);
 
-
-        //设置验证规则
-        $rule = [
-            'type|类型' => 'require',
-            'title|标题' => 'require|length:2,20',
-            'image|列图' => 'require',
-            'brief|简介' => 'require|length:5,20',
-            'content|内容' => 'require',
-            'source|来源' => 'require',
-            'keywords|关键词' => 'require |length:8,40',
-            'description|描述' => 'require|length:40,160',
-        ];
-        //设置错误返回信息
-        $msg = [
-            'type' => ['require' => '项目类型必选'],
-            'title' => ['require' => '标题不能为空',
-                'length' => '标题长度需为2-20字符'],
-            'image' => ['require' => '列图不能为空'],
-            'brief' => ['require' => '简介不能为空',
-                'length' => '简介需为5-20字符'],
-            'content' => ['require' => '内容不能为空'],
-            'source' => ['require' => '来源不能为空'],
-            'keywords' => ['require' => '关键词不能为空',
-                'length' => '关键词长度需为8-40个字符'],
-            'description' => ['require' => '描述不能为空',
-                'length' => '描述长度需为40-160个字符'],
-        ];
         //执行验证
-        $result = $this->validate($data, $rule, $msg);
+        $validate = 'app\customer\validate\ArticleValidate';
+        $result = $this->validate($data, $validate);
         //验证结果不为真，则返回错误信息
         if ($result !== true) {
             return ['status' => $status, 'message' => $result];
@@ -119,8 +96,7 @@ class Article extends Base
         ];
         $data = array_merge($data, $arr);  //合并数组
         //执行插入
-        $db = new ArticleModel();
-        $re = $db->add_artilce($data);
+        $re = $this->model->add_artilce($data);
         if ($re) {
             //如果为真，则修改返回成功信息
             $status = 1;
@@ -146,9 +122,8 @@ class Article extends Base
 
         //验证文章是否是当前用户所拥有的
         $own = Session::get('client_id');
-        $db = new ArticleModel();
         //为真，通过验证，则修改文章状态为3
-        $change = $db->change_status($article_id);
+        $change = $this->model->change_status($article_id);
         if ($change) {
             //删除成功，修改状态值和返回信息
             $status = 1;
@@ -164,7 +139,6 @@ class Article extends Base
     public function show_self_article()
     {
         $data = Request::instance()->post();
-        $db = new ArticleModel();
         //定于接收的数组
         $author = Session::get('client_id');
         // 获取当前用户所有项目信息
@@ -182,13 +156,11 @@ class Article extends Base
             $data = array_merge($data, ['author' => $author]);
             $status = !empty($data['status']) ? ($data['status']) : '1,2';  //
             unset($data['status']);  // 删除数组中的状态字段
-
-            //搜索相关文章
-            $article_info = $db->accurate_article($time, $time2, $data, $status);
+            $article_info = $this->model->accurate_article($time, $time2, $data, $status);            //搜索相关文章
         } else {
             //查询作者为当前用户的文章
 
-            $article_info = $db->select_self_article($author);  //查询当前用户所用文章
+            $article_info = $this->model->select_self_article($author);  //查询当前用户所用文章
             // 如果返回值为空，则未查询到与当前用户相关的文章
             //渲染视图
         }
@@ -200,24 +172,22 @@ class Article extends Base
     public function redact_article()
     {
         $data = Request::instance()->param();
-
         $article_id = $data[0] ? $data[0] : "";   //获取文章id
-        $db = new ArticleModel();  //创建模型实例
         if (empty($article_id)) {
             return ['status' => 0, 'message' => '请选择要编辑的文章'];
         }
         $client_id = Session::get('client_id');  //获取当前用户id
-        $project_id = $db->check_project($client_id);  //获取当前用户所有项目id
+        $project_id = $this->model->check_project($client_id);  //获取当前用户所有项目id
 
         if (empty($project_id)) {
             $project_info['project_id'] = "暂无项目";   //如果不存在项目id，则显示暂无项目
         } else {
             $project_id = implode(',', $project_id);  //将数组转换成以逗号分隔的字符串
-            $project_info = $db->select_project($project_id);   //得到所有项目信息
+            $project_info = $this->model->select_project($project_id);   //得到所有项目信息
         }
 
-        $type_id = $db->get_type($client_id, $article_id);   //得到当前文章类型
-        $article_info = $db->check_own($client_id, $article_id);      //查询当前文章id的所有信息
+        $type_id = $this->model->get_type($client_id, $article_id);   //得到当前文章类型
+        $article_info = $this->model->check_own($client_id, $article_id);      //查询当前文章id的所有信息
 
         $this->view->assign('article_info', $article_info);  //当前要编辑的文章内容
         $this->view->assign('project_info', $project_info);  //用户所有的项目信息
@@ -233,31 +203,22 @@ class Article extends Base
         $date_now = time();  //获得当前时间戳
         $data = $request->param(true);
         $file = $request->file('img');
-        //设置验证规则
+        //执行验证
         $rule = [
             'type|类型' => 'require',
             'title|标题' => 'require|length:2,20',
             'brief|简介' => 'require|length:5,20',
             'content|内容' => 'require',
             'source|来源' => 'require',
+            'keywords|关键词' => 'require |length:8,40',
+            'description|描述' => 'require|length:20,160',
         ];
-        //设置错误返回信息
-        $msg = [
-            'type' => ['require' => '项目类型必选'],
-            'title' => ['require' => '标题不能为空',
-                'length' => '标题长度需为2-20字符'],
-            'brief' => ['require' => '简介不能为空',
-                'length' => '简介需为5-20字符'],
-            'content' => ['require' => '内容不能为空'],
-            'source' => ['require' => '来源不能为空'],
-        ];
-        $result = $this->validate($data, $rule, $msg);  //执行验证
+        $result = $this->validate($data, $rule);
         //验证结果不为真，则返回错误信息
         if ($result !== true) {
             return ['status' => $status, 'message' => $result]; //返回错误信息
         }
         //为真，继续执行
-        $db = new ArticleModel();
         $client_id = Session::get('client_id');  //获取当前用户id
         $data = array_merge($data, ['update_time' => time(), 'status' => 1]);  //添加更新时间字段和状态值status=》1
         //判断是否更换了新图片
@@ -267,7 +228,7 @@ class Article extends Base
             unset($data['img']);
             unset($data['image']);  // 删除图片字段
             //更新数据
-            $res = $db->update_article($data);
+            $res = $this->model->update_article($data);
         } else {
             //不为空，存在新图片，执行上传图片操作，删除旧有图片
             //存在图片，则判断上传图片是否在允许上传的类型$allow中
@@ -281,10 +242,10 @@ class Article extends Base
             unset($data['img']);        //删除img 字段
             //更新数据
             $article_id = (int)$data['article_id'];
-            $old_path = $db->get_image_path($article_id);  //获得旧图片的路径
+            $old_path = $this->model->get_image_path($article_id);  //获得旧图片的路径
             $res = "";
             try {
-                $res = $db->update_article($data);   //执行更新
+                $res = $this->model->update_article($data);   //执行更新
             } catch (Exception $e) {
                 return $result = $e->getMessage();  // 失败返回信息
             }

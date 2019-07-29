@@ -29,7 +29,7 @@
             {volist name="article_b" id="bus" length="10"}
 
             <li>
-                <a href="/article/{$vo.article_id}" target="_blank"
+                <a href="/article/{$vo.article_id}" target="_self"
                    title="{$bus.title}">
                     <i></i>{$bus.brief }</a>
             </li>
@@ -46,7 +46,7 @@
             {volist name="article_n" id="vo" length="10"}
 
             <li>
-                <a href="/article/{$vo.article_id}" target="_blank"
+                <a href="/article/{$vo.article_id}" target="_self"
                    title="{$vo.title}">
                     <i></i>{$vo.title}</a>
             </li>
@@ -63,7 +63,7 @@
             {volist name="article_h" id="vo" length="10"}
 
             <li>
-                <a href="/article/{$vo.article_id}" target="_blank"
+                <a href="/article/{$vo.article_id}" target="_self"
                    title="{$vo.title}"><i></i>{$vo.title}</a>
             </li>
 
@@ -79,7 +79,7 @@
             {volist name="article_s" id="vo" length="10"}
 
             <li>
-                <a href="/article/{$vo.article_id}" target="_blank"
+                <a href="/article/{$vo.article_id}" target="_self"
                    title="{$vo.title}"><i></i>{$vo.title}</a>
             </li>
             {/volist}
