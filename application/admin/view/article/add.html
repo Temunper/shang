@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="__TEMPLATE__/css/style.css" rel='stylesheet' type='text/css'/>
+    <link href='__TEMPLATE__/css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
+    <script src="__TEMPLATE__/js/jquery-1.11.1.min.js"></script>
+    <script src="__TEMPLATE__/js/modernizr.custom.js"></script>
+    <script src="__TEMPLATE__/js/Chart.js"></script>
+    <script src="__TEMPLATE__/js/metisMenu.min.js"></script>
+    <script src="__TEMPLATE__/js/custom.js"></script>
+    <link href="__TEMPLATE__/css/custom.css" rel="stylesheet">
+    <script src="__TEMPLATE__/js/pie-chart.js" type="text/javascript"></script>
+    <link href="__TEMPLATE__/index/index.css" rel='stylesheet' type='text/css'/>
+    <script src="__TEMPLATE__/icon/iconfont.js"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/list.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/Ecalendar.css"/>
+</head>
+<body class="cbp-spmenu-push">
+<!-- 页面开始 -->
+<div class="main-content">
+    <!--左导航栏-->
+    {include file="main/left" /}
+    <!--左导航栏-->
+
+    <!-- 头部导航 -->
+    {include file="main/head" /}
+    <!-- //头部结束 -->
+    <!-- 主要内容-->
+    <div class="main">
+        <div class="addItem-top">
+            <h3>发布文章</h3>
+        </div>
+        <div class="addItem-con">
+            <form action="{:url('article/do_release')}" method="post" enctype="multipart/form-data" id="uploadForm">
+                <div class="con-item">
+                    <label for="item-input3" class="con-item-l">文章类型</label>
+                    <select id="item-type" class="con-item-r" name="type">
+                        <option value="">请选择文章类型</option>
+                        <option value="1">项目资讯</option>
+                        <option value="2">创业资讯</option>
+                        <option value="3">新闻资讯</option>
+                        <option value="4">热门专题</option>
+                        <option value="5">创业故事</option>
+                    </select>
+                    <select id="item-type2" class="con-item-r" name="project_id">
+                        <option value="">请选择相关项目</option>
+                        {volist name="project_info" id="vo"}
+                        <option value="{$vo.project_id}">{$vo.name}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="con-item">
+                    <label for="item-title" class="con-item-l">标题</label>
+                    <input type="text" id="item-title" class="con-item-r" name="title"/>
+                </div>
+                <div class="con-item">
+                    <label for="pic_img" class="con-item-l">列表图片</label>
+                    <input type="file" id="pic_img" name='image'/>
+                </div>
+                <div class="con-item">
+                    <label for="item-brief" class="con-item-l">简介</label>
+                    <input type="text" id="item-brief" class="con-item-r" name="brief"/>
+                </div>
+                <div class="con-item">
+                    <label class="con-item-l">内容</label>
+                    <div id="editor" style="height: 300px;width: 800px;margin-left: 120px">
+                    </div>
+                </div>
+                <div class="con-item" style="margin-top: 50px">
+                    <label for="item-source" class="con-item-l">来源</label>
+                    <input type="text" id="item-source" class="con-item-r" name="source"/>
+                </div>
+                <div class="con-item" style="margin-top: 50px;">
+                    <label for="item-keywords" class="con-item-l">keywords</label>
+                    <input type="text" id="item-keywords" class="con-item-r" name="keywords" style="width: 800px">
+                </div>
+                <div class="con-item" style="margin-top: 50px">
+                    <label for="item-describe" class="con-item-l">describe</label>
+                    <input type="text" id="item-describe" class="con-item-r" name="description" style="width: 800px">
+                </div>
+                <div class="login-btn">
+                    <button id="publish" type="button">发布</button>
+                    <button id="go-back" type="button">返回</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- 主要内容结束 -->
+</div>
+
+
+</body>
+<script src="__TEMPLATE__/bootstrap/js/bootstrap.js"></script>
+<script>
+    $("#go-back").click(function () {
+        window.location.href = "/admin/article/article";
+    })
+    $(function () {
+        $("#publish").on('click', function (event) {
+            // var formDate = new FormData("#uploadForm");
+            var formDate = new FormData(document.getElementById("uploadForm"));
+            //    alert(editor.txt.html());
+            var type_obj = $("#item-type").val();
+            var title_obj = $("#item-title").val();
+            var brief_obj = $("#item-brief").val();
+            var content_obj = $("#item-content").val();
+            var source_obj = $("#item-source").val();
+            formDate.append('type', type_obj);
+            formDate.append('title', title_obj);
+            formDate.append('brief', brief_obj);
+            formDate.append('content', editor.txt.html());
+            formDate.append('source', source_obj);
+            formDate.append('keywords',$("#item-keywords").val());
+            formDate.append('description',$("#item-describe").val());
+            $.ajax({
+                type: "POST",
+                url: "{:url('article/do_release')}",
+                data: formDate,
+                async: false,
+                processData: false,
+                contentType: false,
+                cache: false,
+                beforeSend: function () {
+                    console.log("正在进行，请稍候");
+                },
+                success: function (data) {   //返回值状态为1才执行
+                    if (data.status == 1) {
+                        alert(data.message);
+                        window.location.href = "{:url('article/article')}";
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            })
+        })
+    })
+</script>
+<!--富文本编辑器-->
+<script type="text/javascript" src="__STATIC__/customer_public/js/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.customConfig.uploadImgShowBase64 = true;
+    editor.customConfig.uploadImgServer = "{:url('edtior_upload')}";  // 上传图片到服务器
+    editor.customConfig.uploadImgMaxLength = 1;  // 限制一次最多上传 5 张图片
+    editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;      // 限制上传最大3M
+    editor.customConfig.uploadFileName = 'file';// 自定义文件名
+    editor.customConfig.uploadImgTimeout = 5000;
+    editor.customConfig.uploadImgHooks = {
+        before: function (xhr, editor, files) {
+            // 图片上传之前触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
+
+            // 如果返回的结果是 {prevent: true, msg: 'xxxx'} 则表示用户放弃上传
+            // return {
+            //     prevent: true,
+            //     msg: '放弃上传'
+            // }
+            // alert("前奏");
+        },
+        success: function (xhr, editor, result) {
+            // 图片上传并返回结果，图片插入成功之后触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+            // var url = result.data.url;
+            // alert(JSON.stringify(url));
+            // editor.txt.append(url);
+            // alert("成功");
+        },
+        fail: function (xhr, editor, result) {
+            // 图片上传并返回结果，但图片插入错误时触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+            alert("失败");
+        },
+        error: function (xhr, editor) {
+            // 图片上传出错时触发
+            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+            // alert("错误");
+        },
+        // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
+        // （但是，服务器端返回的必须是一个 JSON 格式字符串！！！否则会报错）
+        customInsert: function (insertImg, result, editor) {
+            // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+            // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+            // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+            /* var url = result['data'];
+             alert(url);
+             insertImg(url);*/
+            // result 必须是一个 JSON 格式字符串！！！否则报错
+            //console.log(result);
+            insertImg(result.url);
+        }
+    };
+
+    editor.create(); //创建文本框
+    var content = editor.txt.html();
+</script>
+</html>

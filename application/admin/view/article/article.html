@@ -17,9 +17,10 @@
     <script src="__TEMPLATE__/js/pie-chart.js" type="text/javascript"></script>
     <link href="__TEMPLATE__/index/index.css" rel='stylesheet' type='text/css'/>
     <link href="__TEMPLATE__/project/project.css" rel='stylesheet' type='text/css'/>
+    <link href="__TEMPLATE__/article/article.css" rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/base.css"/>
     <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/index.css"/>
-    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/list.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/list.css"/>
     <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/Ecalendar.css"/>
 </head>
 <body class="cbp-spmenu-push">
@@ -32,9 +33,9 @@
     <!-- 头部导航 -->
     {include file="main/head" /}
     <!-- //头部结束 -->
-    <div class="main" >
+    <div class="main">
 
-        <div class="seeMsg-con"  >
+        <div class="seeMsg-con">
             <div class="seeMsg-con-bd">
                 <div class="seeMsg-con-hd clearfix">
                     <form action="{:url('article/article')}" method="post">
@@ -100,14 +101,18 @@
                                    value="{$vo.article_id}">
                         </td>
                         <td>{$vo.type}</td>
-                        <td>{$vo.title}</td>
+                        <td class="show-article" data-article="{$vo.article_id}"><a href="#">{$vo.title}</a></td>
                         <td>{$vo.brief}</td>
                         <td>{$vo.update_time}</td>
                         <td>{$vo.source}</td>
                         <td>{$vo.status}</td>
                         <td class="tableOpe">
-                            <button class="operate delr accept" type="button" id="redact" data-id="{$vo.article_id}">通过</button>
-                            <button class="operate delr reject" type="button" id="reject" data-id="{$vo.article_id}">驳回</button>
+                            <button class="operate delr accept" type="button" id="redact" data-id="{$vo.article_id}">
+                                通过
+                            </button>
+                            <button class="operate delr reject" type="button" id="reject" data-id="{$vo.article_id}">
+                                驳回
+                            </button>
                             <button class="operate del delete" id="del" data-id="{$vo.article_id}">删除</button>
                         </td>
                     </tr>
@@ -115,11 +120,21 @@
                     </tbody>
                 </table>
             </div>
-
+            <input type="button" name="" id="add-article" class="seeMsg-export-btn" value="文章添加">
         </div>
         <div align="center">
             {$article_info->render()}
         </div>
+        <!-- 弹窗查看文章 -->
+        <div id="article-content">
+
+            <h3 align="center" class="article_title"></h3>
+            <input type="button" class="close-article btn btn-primary" value="×"
+                   style="margin-top: -26px;position: fixed;margin-left: 1060px;">
+            <div class="article-give"></div>
+        </div>
+
+        <!-- 弹窗结束 -->
     </div>
 
     <!-- 主要内容-->
@@ -136,69 +151,99 @@
 
 </html>
 <script type="text/javascript">
-        $(".accept").click(function () {
-           var article_id = $(this).attr("data-id");
-           $.ajax({
-               url:"{:url('article/approval_article')}",
-               data:{
-                   article_id:article_id,
-                   status:2
-               },
-               dataType:"json",
-               type:"POST",
-               success:function (data) {
-                   if (data.code == 200) {        //返回值status 为1时为执行成功
-                       $(this).closest('tr').remove();   //执行成功，删除该列
-                       alert(data.msg);              //弹出成功信息
-                       window.location.reload();
-                   } else {
-                       alert(data.msg);            //执行失败，弹出失败信息
-                   }
-               }
-           })
-        });
+    $(".show-article").click(function () {                           //显示文章内容
+        var article_id = $(this).attr("data-article");
+        $.ajax({
+            url: "/admin/article/get",
+            data: {
+                article_id: article_id
+            },
+            dataType: 'json',
+            type: 'POST',
+            success: function (data) {
+                if (data.code == 200) {
+                    $(".article_title").text(data.title);
+                    $(".article-give").html(data.content);
+                    $("#article-content").css("visibility", 'visible');
+                    $(".seeMsg-con").css("filter", "blur(2px)").css("pointer-events", "none");
+                } else alert("文章不存在");
+            }
+        })
+    })
+    $(".close-article").click(function () {
+        $("#article-content").css("visibility", 'hidden');
+        $(".seeMsg-con").css("filter", "blur(0px)").css("pointer-events", "all");
+    })
 
-        $(".reject").click(function () {
-            var article_id = $(this).attr("data-id");
-            $.ajax({
-                url:"{:url('article/approval_article')}",
-                data:{
-                    article_id:article_id,
-                    status:-1
-                },
-                dataType:"json",
-                type:"POST",
-                success:function (data) {
-                    if (data.code == 200) {        //返回值status 为1时为执行成功
-                        $(this).closest('tr').remove();   //执行成功，删除该列
-                        alert(data.msg);              //弹出成功信息
-                        window.location.reload();
-                    } else {
-                        alert(data.msg);            //执行失败，弹出失败信息
-                    }
-                }
-            })
-        });
 
-        $(".delete").click(function () {
-            var article_id = $(this).attr("data-id");
-            $.ajax({
-                url:"{:url('article/delete_article')}",
-                data:{
-                    article_id:article_id
-                },
-                dataType:"json",
-                type:"POST",
-                success:function (data) {
-                    if (data.code == 200) {        //返回值status 为1时为执行成功
-                        $(this).closest('tr').remove();   //执行成功，删除该列
-                        alert(data.msg);              //弹出成功信息
-                    } else {
-                        alert(data.msg);            //执行失败，弹出失败信息
-                    }
+    $("#add-article").click(function () {
+        window.location.href = "/admin/article/plus"
+    })
+
+
+    $(".accept").click(function () {
+        var article_id = $(this).attr("data-id");
+        $.ajax({
+            url: "{:url('article/approval_article')}",
+            data: {
+                article_id: article_id,
+                status: 2
+            },
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                if (data.code == 200) {        //返回值status 为1时为执行成功
+                    $(this).closest('tr').remove();   //执行成功，删除该列
+                    alert(data.msg);              //弹出成功信息
+                    window.location.reload();
+                } else {
+                    alert(data.msg);            //执行失败，弹出失败信息
                 }
-            })
-        });
+            }
+        })
+    });
+
+    $(".reject").click(function () {
+        var article_id = $(this).attr("data-id");
+        $.ajax({
+            url: "{:url('article/approval_article')}",
+            data: {
+                article_id: article_id,
+                status: -1
+            },
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                if (data.code == 200) {        //返回值status 为1时为执行成功
+                    $(this).closest('tr').remove();   //执行成功，删除该列
+                    alert(data.msg);              //弹出成功信息
+                    window.location.reload();
+                } else {
+                    alert(data.msg);            //执行失败，弹出失败信息
+                }
+            }
+        })
+    });
+
+    $(".delete").click(function () {
+        var article_id = $(this).attr("data-id");
+        $.ajax({
+            url: "{:url('article/delete_article')}",
+            data: {
+                article_id: article_id
+            },
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                if (data.code == 200) {        //返回值status 为1时为执行成功
+                    $(this).closest('tr').remove();   //执行成功，删除该列
+                    alert(data.msg);              //弹出成功信息
+                } else {
+                    alert(data.msg);            //执行失败，弹出失败信息
+                }
+            }
+        })
+    });
 
     $(function () {
         $("#ECalendar_date1").ECalendar({

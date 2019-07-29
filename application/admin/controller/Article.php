@@ -9,8 +9,11 @@
 namespace app\admin\controller;
 
 
+use app\admin\common\Upload;
 use app\admin\model\Article as ArticleModel;
+use app\admin\model\ProjectModel;
 use think\Request;
+use think\Session;
 
 class Article extends Base
 {
@@ -22,6 +25,17 @@ class Article extends Base
         $this->article_model = new ArticleModel();     //构造函数保存模型实例
     }
 
+    public function plus()
+    {
+        $db = new ArticleModel();
+        //查询当前用户所拥有的项目id，查询所有项目名称
+        $project_info = "";
+
+        $project_info = ProjectModel::all();   //得到所有项目
+
+        $this->assign('project_info', $project_info);
+        return $this->fetch('article/add');
+    }
     //渲染文章页面，显示所有文章
     //显示用户自己发布的文章 或精确搜索
     public function article()
@@ -45,8 +59,9 @@ class Article extends Base
             // 如果返回值为空，则未查询到与当前用户相关的文章
             //渲染视图
         }
-        //dump($article_info);die;
-        return $this->fetch('', ['article_info' => $article_info]);
+        $this->assign('article_info', $article_info);
+        return $this->fetch('');
+
     }
 
     //审批文章，修改状态  传入id 和状态值
@@ -58,7 +73,7 @@ class Article extends Base
         $results = "更新文章状态失败";   //设置返回信息
         //接收传入的article_id
         $data = Request::instance()->param();
-     //   dump($data);die;
+        //   dump($data);die;
         if (empty($data['article_id'])) {
             return ['code' => $code, 'msg' => '请选择要审批的文章'];
         }
@@ -84,8 +99,9 @@ class Article extends Base
         $results = "删除文章失败"; //设置返回信息
         $status = 4;  //设置要修改的文章状态值
         //接收传入的article_id
-        $data = Request::instance()->param(['article_id','status']);
-        dump($data);die;
+        $data = Request::instance()->param(['article_id', 'status']);
+        dump($data);
+        die;
         $article_id = $data ? $data : 0;
         //执行修改
         $result = $this->article_model->change_status($article_id, $status);
@@ -97,5 +113,68 @@ class Article extends Base
         return ['code' => $code, 'msg' => $results];
     }
 
+    public function do_release(Request $request)
+    {
+        $status = 0;   //设置初始状态值
+        $date_now = time();  //获得当前时间戳
+        $data = $request->param(true);
+
+        //执行验证
+        $result = $this->validate($data, 'Article');
+        //验证结果不为真，则返回错误信息
+        if ($result !== true) {
+            return ['status' => $status, 'message' => $result];
+        }
+        //验证结果为真，继续执行
+        //判断是否是项目类型 ，如果是，则判断是否存在项目id
+        if ($data['type'] == 1) {
+            if ($data['project_id'] == 0) {
+                return ['status' => $status, 'message' => '具体项目不能为空'];
+            }
+        }
+        $file = $request->file('image');
+        //如果图片不为空，则保存图片,返回图片保存路径
+        //如果图片为空
+        if (!$file)
+            $file_path = $request->param('file_path');
+        else {
+            //存在图片，则判断上传图片是否在允许上传的类型$allow中
+            $file_path = Upload::file($file, $request->domain(), 'article');  //通过验证， 保存图片，返回路径
+        }
+        unset($data['image']);//删除data里的image字段
+        unset($data['img']);
+        $arr = [
+            'lis_img' => $file_path,
+            'author' => 0,
+            'create_time' => $date_now,
+            'update_time' => $date_now,
+        ];
+        $data = array_merge($data, $arr);  //合并数组
+        //执行插入
+        $db = new ArticleModel();
+        $re = $db->add_artilce($data);
+        if ($re) {
+            //如果为真，则修改返回成功信息
+            $status = 1;
+            $result = "发布成功";
+        } else {
+            //为假，返回失败信息
+            $result = "发布失败";
+        }
+        //返回信息
+        return ['status' => $status, 'message' => $result];
+    }
+
+    public function get()
+    {
+        $request = Request::instance()->param();
+        $article = ArticleModel::get($request['article_id']);
+        if ($article) {
+            $data = ['code' => 200, 'content' => $article->content, 'title' => $article->title];
+            return $data;
+        } else {
+            return ['code' => 202];
+        }
+    }
 
 }

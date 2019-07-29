@@ -82,6 +82,10 @@ class Article extends Model
         $value = [1 => '项目资讯', 2 => '创业资讯', 3 => '新闻资讯', 4 => '热门专题', 5 => '创业故事'];
         return $value[$type];
     }
+    public function add_artilce($params)
+    {
+        return self::insert($params);
 
+    }
 
 }
