@@ -14,16 +14,16 @@ use think\Validate;
 class Website extends Validate
 {
     protected $rule = [
-         ['domain','require'],
+        ['domain|域名','require|length:1,255'],
         ['theme_id','require'],
-        ['filing_number','require'],
-        ['logo','require'],
-        ['company_name','require'],
-        ['company_addr','require'],
-        ['phone','require|checkPhone','客户号码不为空|手机号码格式不正确'],
+        ['filing_number|备案号','require|length:1,50'],
+        ['logo','require|length:1,255'],
+        ['company_name|公司名','require|length:1,100'],
+        ['company_addr|公司简称','require|length:1,255'],
+        ['phone|手机号码','require|checkPhone','客户号码不为空|手机号码格式不正确'],
         ['type','require'],
-        ['keywords','require'],
-        ['description','require'],
+        ['keywords|关键词','require|length:1,255'],
+        ['description|描述','require|length:1,500'],
     ];
     public function checkPhone($value)
     {

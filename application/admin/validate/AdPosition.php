@@ -16,8 +16,8 @@ class AdPosition extends Validate
     protected $rule = [
         ['ad_id', 'require'],
         ['project_id', 'require'],
-        ['name', 'require'],
-        ['image', 'require'],
+        ['name|广告位项目名', 'require|length:1,255'],
+        ['image', 'require|length:1,255'],
         ['sort', 'require|integer'],
     ];
 

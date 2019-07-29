@@ -13,10 +13,10 @@ use think\Validate;
 
 class Ad extends Validate
 {
-protected $rule = [
-    ['name','require'],
-    ['theme_id','require'],
-    ['image','require'],
-];
+    protected $rule = [
+        ['name|广告位名', 'require|length:2,50'],
+        ['theme_id', 'require'],
+        ['image', 'require|length:1,255'],
+    ];
 
 }
