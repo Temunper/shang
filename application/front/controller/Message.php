@@ -80,7 +80,6 @@ class Message extends Controller
         $code = 202;
         $result = "";
         //1、获取表单信息，
-
         $info = Request::instance()->only(['project_id', 'phone', 'client', 'content']);
         //验证手机号
         if (strlen($info['phone']) != 11) {
@@ -97,15 +96,14 @@ class Message extends Controller
         $data = ['project_id' => $info['project_id'], 'phone' => $info['phone'], 'ip' => $ip, 'time' => $time_now];//拼接用的ip和当前时间
         //2、写入message_log表单
         $info = array_merge($info, ['ip' => $ip, 'time' => $time_now, 'status' => 1]);//拼接用的ip和当前时间
-        $verify = $this->verify($info);   //先行验证是否可以录入
+        $this->model->insert_message_log($data);   //记录着一次的留言 到message_log
+        $verify = $this->verify($info);   //然后验证是否可以录入
         //dump($verify);die;
         if (!$verify) {
             //返回为false ，不允许录入，则返回录入成功，不执行录入
             return ['code' => 200, 'msg' => '留言录入成功'];
         }
         //如果$res 为真，则允许录入留言到message
-
-        $this->model->insert_message_log($data);   //记录着一次的留言 到message_log
         $result = $this->model->insert_message($info); //录入留言到message
         if ($result) {
             $code = 200;
@@ -127,8 +125,8 @@ class Message extends Controller
         //2、验证当前项目id留言下是否存在当前表单中的手机号
         $re = $this->model->check_exist_phone($project_id, $phone);
         if (empty($re)) {
-            //如果为空，则没有记录，则判断进入留言此时
-            return $this->check_number($ip);  //判断今日留言是否超过5此
+            //如果为空，则没有记录，则判断进入后续判断
+            return $this->check_number($ip);  //判断今日留言是否超过5此 ，超过5此返回false
         }
         //3、如果存在，则计算上次留言时间是否已经过了3个月
         //不为空，存在记录，则判断记录中的时间戳+上三个月的时间戳是否大于当前时间戳
@@ -138,11 +136,10 @@ class Message extends Controller
             return false;
         }
         //通过判断，则已过三个月
-        //4、如果没有过三个月，直接返回成功，但不执行写入操作
-        //5、如果已经过了三个月，则检查当天当前ip在所有项目中的留言次数，也就是有多少条记录的ip 是当前ip,如果超过5条 ，则返回成功，但不执行
-        //通过验证。返回true，允许录入留言
+
         //6、如果ip的记录数量不超过5条，则执行插入message
         return $this->check_number($ip);  //判断今日留言是否超过5此
+        //通过验证。返回true，允许录入留言
     }
 
 

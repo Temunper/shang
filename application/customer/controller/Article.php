@@ -201,7 +201,7 @@ class Article extends Base
     {
         $data = Request::instance()->param();
 
-        $article_id = $data[0]?$data[0] : "";   //获取文章id
+        $article_id = $data[0] ? $data[0] : "";   //获取文章id
         $db = new ArticleModel();  //创建模型实例
         if (empty($article_id)) {
             return ['status' => 0, 'message' => '请选择要编辑的文章'];
@@ -218,12 +218,12 @@ class Article extends Base
 
         $type_id = $db->get_type($client_id, $article_id);   //得到当前文章类型
         $article_info = $db->check_own($client_id, $article_id);      //查询当前文章id的所有信息
+
+        $this->view->assign('article_info', $article_info);  //当前要编辑的文章内容
+        $this->view->assign('project_info', $project_info);  //用户所有的项目信息
+        $this->view->assign('type_id', $type_id);         //当前文章原始信息 [类型]
         //渲染视图
-        return $this->view->fetch('', [
-            'article_info' => $article_info,   //当前文章通过获取器获得的信息
-            'project_info' => $project_info,  //当前用户拥有的项目信息
-            'type_id' => $type_id,    //当前文章原始信息 [类型]
-        ]);
+        return $this->view->fetch('');
     }
 
     //执行用户编辑文章操作

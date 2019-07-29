@@ -19,7 +19,7 @@ return [
     ],
     '/$' => 'front/index/index',
     'front$'=>'front/index/index',
-    'slist/[:class_id]/[:area]/[:money]$'=>'front/slist/slist',
+    'slist/[:class_id]/[:area]/[:money]/[:pro_name]$'=>'front/slist/slist',
     'newslist/[:type]$'=>'front/article/newslist',
     'article/[:article_id]$'=>'front/detail/detail',
     'project/[:project_id]$'=>'front/project/project',

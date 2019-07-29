@@ -27,10 +27,10 @@ class MessageModel
         return Db::table('message_log')->insert($params);
     }
 
-    //查找当前项目ip下是存在当前手机号的记录
+    //查找当前项目ip留言下是存在当前手机号的记录
     public function check_exist_phone($project, $phone)
     {
-        return Db::table('message_log')->where('project_id', $project)
+        return Db::table('message')->where('project_id', $project)
             ->where('phone', $phone)->find();
     }
 
@@ -39,7 +39,7 @@ class MessageModel
     {
         $time1 = strtotime(date('Y-m-d'));//今日凌晨时间
         $time2 = time(); //现在的时间
-        return Db::table('message_log')->where('ip', $ip)
+        return Db::table('message')->where('ip', $ip)
             ->where('time', '>', $time1)
             ->where('time', '<', $time2)
             ->count();

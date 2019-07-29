@@ -8,9 +8,8 @@
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/index3.css"/>
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/zhome.css">
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/header.css">
-    <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
-
     <script src="__PUB08__/js/jquery-1.11.3.min.js"></script>
+    <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <script type="text/javascript" src="__PUB08__/js/jquery.placeholder.min.js"></script>
     <script type="text/javascript" src="__PUB08__/js/jquery.cookie.min.js"></script>
     <script type="text/javascript" src="__PUB08__/js/imgfix.js"></script>
@@ -156,15 +155,13 @@
             </li>
             <!--循环结束-->
             {/volist}
-
-
         </ul>
         <div style="clear:both"></div>
     </div>
     <!--内页项目列表结束-->
 
-    <!--留言板-->
-    <div class="page">
+    <!--分页-->
+    <div align="center">
         {$ad_position->render()}
     </div>
 
@@ -196,7 +193,7 @@
 <!-- 这是底部开始 -->
 {include file="public/footer"}
 
-<script src="__PUB08__/js/jquery-1.11.3.min.js"></script>
+
 <script src="__PUB08__/js/main.js"></script>
 <script>
     var search = {$search};

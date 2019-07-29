@@ -30,15 +30,17 @@ class ProjectModel extends Model
     //通过项目id  查询项目的所有信息
     public function get_project_info($project_id)
     {
-        return Db::table('project')->where('project_id', $project_id)
+        return Db::table('view_pro')->where('project_id', $project_id)
             ->where('status', 1)->find();
-
     }
 
-    public function getMoneyAttr($money)
+    //通过class_id 查找类名
+    public function get_class_name_m($class_id)
     {
-        $real_money = [1 => "", 2 => "1-10万", 3 => "1-20万", 4 => "20-50万", 5 => "20-50万"];
-        return $real_money[$money];
+
+     return Db::table('class')->field('class_id,name,f_class_id')->where('class_id',$class_id)->find();
+
+
     }
 
 

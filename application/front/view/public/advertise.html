@@ -21,7 +21,7 @@
                             <i>
                             </i>
                             <p>
-                                <a href="/slist" target="_blank">查看更多</a></p>
+                                <a href="/slist" target="_self">查看更多</a></p>
                         </div>
                     </div>
                     <!--循环出父类名称结束-->
@@ -31,14 +31,16 @@
                         <div class="contentlist" style="display: block;">
                             <ul>
                                 <!--内容子广告循环-->
-                             <!--父类项目-->
-                                {volist name="vo['son']" id="item" }
+                                <!--父类项目-->
+                                {volist name="ad_position" id="pro" length="24"}
+                                {if condition="$pro['sort'] eq $vo['sort'] && $vo['f_class_id'] eq 0"}
                                 <li class="row1 col1">
-                                    <a href=""   target="_blank">
+                                    <a href="" target="_self">
                                         <img src="{$item['image']}"
                                              alt="{$item['image']}"></a>
-                                    <span>{$item['name']}</span>
+                                    <span>{$pro['name']}</span>
                                 </li>
+                                {/if}
                                 {/volist}
                                 <!--内容子广告结束-->
                             </ul>
@@ -49,13 +51,15 @@
                             <ul>
                                 <!--内容子广告循环-->
                                 <!--父类项目-->
-                                {volist name="vo['son']" id="item" }
+                                {volist name="ad_position" id="pro" length="24" }
+                                {if condition="$pro['sort'] eq $vo['sort'] && $vo['f_class_id'] eq 0"}
                                 <li class="row1 col1">
-                                    <a href="#"   target="_blank">
-                                        <img src="{$item['image']}"
-                                             alt="{$item['image']}"></a>
-                                    <span>{$item['name']}</span>
+                                    <a href="/project/{$pro['project_id']}" target="_self">
+                                        <img src="{$pro['image']}"
+                                             alt="{$pro['name']}"></a>
+                                    <span>{$pro['name']}</span>
                                 </li>
+                                {/if}
                                 {/volist}
                                 <!--内容子广告结束-->
                             </ul>

@@ -1,377 +1,304 @@
-<div class="bottom">
-    <div id="item3box" class="item3box">
-        <div class="item3boxtitle">
-            <img src="__PUB08__/picture/img02.png"/></div>
-        <!--小表单 start-->
-        <!-- 咨询表单 begin -->
-        <div id="_msg1" class="user_mesg " style="background: #FFFFFF;">
-            <div id="quick_liuyan1">
-                <div class="title">
-                    <strong>留言咨询
-                        <em>(24小时内获得企业的快速回复)</em></strong>
-                    <span>(
+<!--小表单 start-->
+<!-- 咨询表单 begin -->
+<div id="_msg1" class="user_mesg " style="background: #FFFFFF;">
+    <div id="quick_liuyan1">
+        <div class="title">
+            <strong>留言咨询
+                <em>(24小时内获得企业的快速回复)</em></strong>
+            <span>(
                       <b class="star1">*</b>为必填选项)</span></div>
-                <div id="quick_liuyan_ad1" class="quick_liuyan_ad_default">
-                    <div class="form-left-top">
-                        <img src="__PUB08__/picture/form-left-img.png" alt="">
-                        <p>我们立即与您沟通</p>
-                    </div>
-                    <div class="Free_phone_bottom">
-                        <input type="text" id="Free_phone_text_1" maxlength="11" class="Free_phone_text"
-                               value="请输入手机号码" onfocus="if(this.value == '请输入手机号码') this.value = ''"
-                               onblur="if(this.value =='') this.value = '请输入手机号码'">
-                        <div class="Free_code__wrap Free_code__wrap--small" id="small_yzmbox">
-                            <input type="text" id="Free_code__input_1"
-                                   class="Free_phone_text ctrl_code_input" placeholder="请输入验证码"/>
-                            <i class="Free_code__btn ctrl_code_btn" data-telinput="Free_phone_text_1"
-                               data-type="3">点击获取</i></div>
-                        <a data-pointkey="XQ005-002">
-                            <input type="button" id="Free_phone_btn_1" class="Free_phone_btn" value="免费电话"></a>
-                        <p>
-                            <span>温馨提示:</span>
-                            <br>1.此次通话将不会产生任何费用, 请放心使用。
-                            <br>2.本站为资讯展示网站，本网页信息来源互联网，本平台不保证信息的真实性，请用户自行与商家联系核对真实性。此次留言将面向网站内所有页面项目产生留言。
-                        </p></div>
-                    <div class="Free_phonenumbertext">
-                        <div class="text"></div>
-                    </div>
-                </div>
-
-                <form id="msgform1" class="fl">
-                    <input type="hidden" value="" Name="ProjectID" id="ProjectID1">
-                    <input type="hidden" value="" Name="URL" id="PageURL1">
-                    <input type="hidden" value="" Name="URLTitle" id="PageURLTitle1">
-                    <div class="quick_liuyan_con">
-                        <div class="item">
-                        <span>
-                          <b class="star">*</b>姓名</span>
-                            <div class="item-right">
-                                <input type="text" class="v-ipt" value="" Name="client" id="Name1">
-                                <label for="man">
-                                    <input type="radio" id="man1" Name="radiobutton" style="border: none"
-                                           checked="checked" value="0">先生</label>
-                                <label for="woman">
-                                    <input type="radio" id="woman1" Name="radiobutton" style="border: none"
-                                           value="1">女士</label></div>
-                            <div style="clear: both"></div>
-                        </div>
-                        <div class="item">
-                        <span>
-                          <b class="star">*</b>电话</span>
-                            <div class="item-right">
-                                <input type="text" value="" Name="phone" id="Tel1" maxlength="11"></div>
-                            <div style="clear: both"></div>
-                        </div>
-                        <div class="item item-code__wrap item-code__wrap--small">
-                            <div style="clear: both"></div>
-                        </div>
-                        <div class="item">
-                            <span>投资金额</span>
-                            <div class="item-right">
-                                <select id="InvestMoney1" class="c-money" Name="InvestMoney">
-                                    <option value="0" selected="selected">请选择投资金额</option>
-                                    <option value="1">1万以下</option>
-                                    <option value="2">1-5万</option>
-                                    <option value="3">5-10万</option>
-                                    <option value="4">10-20万</option>
-                                    <option value="5">20-50万</option>
-                                    <option value="6">50-100万</option>
-                                    <option value="7">100万以上</option>
-                                </select>
-                            </div>
-                            <div style="clear: both"></div>
-                        </div>
-                        <div class="item">
-                            <span>QQ/Email</span>
-                            <div class="item-right">
-                                <input type="text" value="" Name="Email" id="Email"></div>
-                            <div style="clear: both"></div>
-                        </div>
-                        <div class="item">
-
-                            <div style="clear: both"></div>
-                        </div>
-                        <div class="item">
-                            <span>留言</span>
-                            <div class="item-right">
-                                            <textarea Name="content" id="Message" class="Message1" cols="30"
-                                                      rows="10"></textarea>
-                            </div>
-                            <div style="clear: both"></div>
-                        </div>
-                        <div class="item item_checkbox">
-                            <!-- <span></span>
-                            <div class="item-right">
-                            <input type="checkbox" id="checkbox1" value="11" checked="checked" /><span>我同意成为快马会员，并遵守快马<a href="#">商机网会员条款</a></span></div> -->
-                            <ul class="new_agree" style="margin-left: 74px;">
-                                <li>
-                                    <input type="radio" id="yixiang" name="yixiang_small"
-                                           style="border: none" value="1">意向品牌查看(我已同意成为快马会员,并遵守
-                                    <a href="#">快马商机网会员条款</a>)
-                                </li>
-                                <li>
-                                    <input type="radio" id="tonglei" name="yixiang_small"
-                                           style="border: none" value="2" checked="checked">同类品牌商查看(我已同意成为快马会员,并遵守
-                                    <a href="#">快马商机网会员条款</a>)
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="item">
-                            <a data-pointkey="XQ005-001">
-                                <input type="button" class="btn-mesSubmit" id="imgBtnUp1"
-                                       onclick="return quickmsgsubmit1();" value="提交留言"></a>
-                        </div>
-                    </div>
-                </form>
-                <div class="form-right fl">
-                    <h3>您可以根据下列意向,
-                        <span>快捷留言</span></h3>
-                    <ul id="quickMessage" class="quickMessage1">
-                        <li>
-                            <a data-pointkey="XQ006-001">
-                                <p>想要合作,请尽快联系.</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a data-pointkey="XQ006-002">
-                                <p>合作流程怎样的?</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a data-pointkey="XQ006-003">
-                                <p>合作费是多少钱?</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a data-pointkey="XQ006-004">
-                                <p>有哪些扶持政策?</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a data-pointkey="XQ006-005">
-                                <p>能实地考察吗?</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <i>
-                    </i>
-                </div>
+        <div id="quick_liuyan_ad1" class="quick_liuyan_ad_default">
+            <div class="form-left-top">
+                <img src="__PUB08__/picture/form-left-img.png" alt="">
+                <p>我们立即与您沟通</p>
+            </div>
+            <div class="Free_phone_bottom">
+                <input type="text" id="Free_phone_text_1" maxlength="11" class="Free_phone_text"
+                       value="请输入手机号码" onfocus="if(this.value == '请输入手机号码') this.value = ''"
+                       onblur="if(this.value =='') this.value = '请输入手机号码'">
+                <div class="Free_code__wrap Free_code__wrap--small" id="small_yzmbox">
+                    <input type="text" id="Free_code__input_1"
+                           class="Free_phone_text ctrl_code_input" placeholder="请输入验证码"/>
+                    <i class="Free_code__btn ctrl_code_btn" data-telinput="Free_phone_text_1"
+                       data-type="3">点击获取</i></div>
+                <a data-pointkey="XQ005-002">
+                    <input type="button" id="Free_phone_btn_1" class="Free_phone_btn" value="免费电话"></a>
+                <p>
+                    <span>温馨提示:</span>
+                    <br>1.此次通话将不会产生任何费用, 请放心使用。
+                    <br>2.本站为资讯展示网站，本网页信息来源互联网，本平台不保证信息的真实性，请用户自行与商家联系核对真实性。此次留言将面向网站内所有页面项目产生留言。
+                </p></div>
+            <div class="Free_phonenumbertext">
+                <div class="text"></div>
             </div>
         </div>
-        <!-- 咨询表单 end -->
-        <script type="text/javascript">$(function () {
-            /*     initProvince("msgProvince1");*/
-            $("#ProjectID1").val($("#form_contact_us_ProjectID").val());
-            $("#PageURL1").val(window.location.href);
-            $("#PageURLTitle1").val(document.title);
+
+        <form id="msgform1" class="fl">
+            <div class="quick_liuyan_con">
+                <div class="item">
+                        <span>
+                          <b class="star">*</b>姓名</span>
+                    <div class="item-right">
+                        <input type="text" class="v-ipt" value="" Name="client" id="Name1">
+                        <label for="man">
+                            <input type="radio" id="man1" Name="radiobutton" style="border: none"
+                                   checked="checked" value="0">先生</label>
+                        <label for="woman">
+                            <input type="radio" id="woman1" Name="radiobutton" style="border: none"
+                                   value="1">女士</label></div>
+                    <div style="clear: both"></div>
+                </div>
+                <div class="item">
+                        <span>
+                          <b class="star">*</b>电话</span>
+                    <div class="item-right">
+                        <input type="text" value="" Name="phone" id="Tel1" maxlength="11"></div>
+                    <div style="clear: both"></div>
+                </div>
+                <div class="item item-code__wrap item-code__wrap--small">
+                    <div style="clear: both"></div>
+                </div>
+                <div class="item">
+                    <span>投资金额</span>
+                    <div class="item-right">
+                        <select id="InvestMoney1" class="c-money" Name="InvestMoney">
+                            <option value="0" selected="selected">请选择投资金额</option>
+                            <option value="1">1万以下</option>
+                            <option value="2">1-5万</option>
+                            <option value="3">5-10万</option>
+                            <option value="4">10-20万</option>
+                            <option value="5">20-50万</option>
+                            <option value="6">50-100万</option>
+                            <option value="7">100万以上</option>
+                        </select>
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
+                <div class="item">
+                    <span>QQ/Email</span>
+                    <div class="item-right">
+                        <input type="text" value="" Name="Email" id="Email"></div>
+                    <div style="clear: both"></div>
+                </div>
+                <div class="item">
+
+                    <div style="clear: both"></div>
+                </div>
+                <div class="item">
+                    <span>留言</span>
+                    <div class="item-right">
+                                            <textarea Name="content" id="Message" class="Message1" cols="30"
+                                                      rows="10"></textarea>
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
+                <div class="item item_checkbox">
+                    <ul class="new_agree" style="margin-left: 74px;">
+                        <li>
+                            <input type="radio" id="yixiang" name="yixiang_small"
+                                   style="border: none" value="1">意向品牌查看(我已同意成为快马会员,并遵守
+                            <a href="#">快马商机网会员条款</a>)
+                        </li>
+                        <li>
+                            <input type="radio" id="tonglei" name="yixiang_small"
+                                   style="border: none" value="2" checked="checked">同类品牌商查看(我已同意成为快马会员,并遵守
+                            <a href="#">快马商机网会员条款</a>)
+                        </li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <a data-pointkey="XQ005-001">
+                        <input type="button" class="btn-mesSubmit" id="imgBtnUp1"
+                               onclick="return quickmsgsubmit2();" value="提交留言"></a>
+                </div>
+            </div>
+        </form>
+        <div class="form-right fl">
+            <h3>您可以根据下列意向,
+                <span>快捷留言</span></h3>
+            <ul id="quickMessage" class="quickMessage1">
+                <li>
+                    <a data-pointkey="XQ006-001">
+                        <p>想要合作,请尽快联系.</p>
+                    </a>
+                </li>
+                <li>
+                    <a data-pointkey="XQ006-002">
+                        <p>合作流程怎样的?</p>
+                    </a>
+                </li>
+                <li>
+                    <a data-pointkey="XQ006-003">
+                        <p>合作费是多少钱?</p>
+                    </a>
+                </li>
+                <li>
+                    <a data-pointkey="XQ006-004">
+                        <p>有哪些扶持政策?</p>
+                    </a>
+                </li>
+                <li>
+                    <a data-pointkey="XQ006-005">
+                        <p>能实地考察吗?</p>
+                    </a>
+                </li>
+            </ul>
+            <i>
+            </i>
+        </div>
+    </div>
+</div>
+<!-- 咨询表单 end -->
+<script type="text/javascript">
+    function quickmsgsubmit2() {
+
+        var reName = /^[a-zA-Z\u4e00-\u9fa5\uF900-\uFA2D ]{1,20}$/;
+        if (reName.test($("#Name1").val()) === false) {
+            alert("请输入正确的姓名！");
+            $("#Name1").focus().select();
+            return false;
+        }
+        //支持手机号码，3-4位区号，7-8位直播号码，1－4位分机号
+        var reTel = /^1[3|4|5|7|8|9]\d{9}$/;
+        if (reTel.test($("#Tel1").val()) === false) {
+            alert("请输入正确的电话号码！");
+            $("#Tel1").focus().select();
+            return false;
+        }
+
+        /*提交小表单*/
+        $("#imgBtnUp1").val("正在提交...");
+        var a = {$project_info['project_id']};
+            $.ajax({
+                type: "post",
+                url: "/front/message/record_number?project_id=" + a,
+                dataType: "json",
+                data: $("#msgform1").serialize(),
+                success: function (data) {
+                    if (data.code == 200) {
+                        alert(data.msg);
+                        $("#imgBtnUp1").val("提交留言");
+                    } else {
+                        alert(data.msg);
+                    }
+                }
         });
 
-        // function showSmalla(value) {
-        //     onProvinceChange(value, 'msgCity1', 'msgXian1', resetAddressa);
-        // }
-
-        function showXiana(value) {
-            onCityChange(value, 'msgXian1', resetAddressa);
-        }
-
-        /*   function resetAddressa() {
-                       var p = document.getElementById("msgProvince1");
-                       var c = document.getElementById("msgCity1");
-                       var d = document.getElementById("msgXian1");
-                       var text = p.options[p.selectedIndex].text;
-                       text += $(c).val() == 0 ? '' : c.options[c.selectedIndex].text;
-                       text += $(d).val() == 0 ? '' : d.options[d.selectedIndex].text;
-                       $("#Address1").val(text);
-                   }*/
-
-        $.fn.serializeObject = function () {
-            var o = {};
-            var a = this.serializeArray();
-            $.each(a,
-                function () {
-                    if (o[this.name]) {
-                        if (!o[this.name].push) {
-                            o[this.name] = [o[this.name]];
-                        }
-                        o[this.name].push(this.value || '');
-                    } else {
-                        o[this.name] = this.value || '';
-                    }
-                });
-            return o;
-        };
-
-        function quickmsgsubmit1() {
-            //判断是否选中
-            if ($('#msgform1 #checkbox1').prop('checked') === false) {
-                alert("请选择我同意将我的联系方式推荐给商家！");
-                return false;
-            }
-            //是否含有中文（也包含日文和韩文）
-            var reName = /^[a-zA-Z\u4e00-\u9fa5\uF900-\uFA2D ]{1,20}$/;
-            if (reName.test($("#Name1").val()) === false) {
-                alert("请输入正确的姓名！");
-                $("#Name1").focus().select();
-                return false;
-            }
-            //支持手机号码，3-4位区号，7-8位直播号码，1－4位分机号
+        //提交电话号码
+  /*      $("#Free_phone_btn_1").click(function () {
             var reTel = /^1[3|4|5|7|8|9]\d{9}$/;
-            if (reTel.test($("#Tel1").val()) === false) {
+            if (reTel.test($("#Free_phone_text_1").val()) === false) {
                 alert("请输入正确的电话号码！");
-                $("#Tel1").focus().select();
+                $("#Free_phone_text_1").focus().select();
                 return false;
             }
 
-            /*检查验证码*/
-            if ($('#Code_small').val() === '') {
-                $(".item-code__wrap--small").show();
+            /!*  /!*检查验证码*!/!*!/
+            if ($('#Free_code__input_1').val() === '') {
                 alert('请输入验证码');
-                return;
+                $("#small_yzmbox").show();
+
+                return false;
             }
-            /*检查验证码*/
-            $("#imgBtnUp1").on('click', function () {
-                $.ajax({
-                    type: "post",
-                    url: "{:url('message/record_number',['project_id'=>$project_info.project_id])}",
-                    dataType: "json",
-                    data: $("#msgform").serialize(),
-                    success: function (data) {
-                        if (data.code == 200) {
-                            alert(data.msg)
-                        } else {
-                            alert(data.msg)
-                        }
-                    }
-                });
-            });
-/*        $(function () {
-            var ProjectID = $("#form_contact_us_ProjectID").val();
-            var arr = "540567,640944,540660,640883,540544,641525,544974,540573,540488,540463".split(",");
-            if ($.inArray(ProjectID, arr) > -1) { //禁用以上项目的留言功能
-                $("#msgform1").find("input,button,textarea,select").attr("disabled", true);
-            }
-            var Catalog = $("#form400").val();
-            if (Catalog == "Y") {
-                $(".nav-400, .form-400").removeClass("dn")
-            };
-
-            //提交电话号码
-            $("#Free_phone_btn_1").click(function () {
-                var reTel = /^1[3|4|5|7|8|9]\d{9}$/;
-                if (reTel.test($("#Free_phone_text_1").val()) === false) {
-                    alert("请输入正确的电话号码！");
-                    $("#Free_phone_text_1").focus().select();
-                    return false;
-                }
-
-                /!*检查验证码*!/
-                if ($('#Free_code__input_1').val() === '') {
-                    alert('请输入验证码');
-                    $("#small_yzmbox").show();
-
-                    return false;
-                }
-                /!*检查验证码*!/
-                var mobilephone = $("#Free_phone_text_1").val();
-                $.ajax({
-                    url: prefix + "cms/jm/messageinsert",
-                    type: "post",
-                                       "&MessageSource=XQ005-002"+ "&Code=" + $('#Free_phone_text_1').val(),
-                    dataType: "json",
-                    //数据类型为jsonp
-                    data: {
-                        ProjectID: ProjectID,
-                        URL: window.location.href,
-                        URLTitle: document.title,
-                        Tel: mobilephone,
-                        MessageSource: 'XQ005-002',
-                        Code: $('#Free_phone_text_1').val()
-                    },
-                    //                          jsonp: "jsonpCallback", //服务端用于接收callback调用的function名的参数
-                    //                          jsonpCallback: "jsonpCallback",
-                    success: function (data) {
-                        if (data.msg == '验证码不能为空且必须是数字') {
-                            $("#small_yzmbox").show();
-                        }
-                        alert(data.msg);
-                    },
-                    error: function () {
-                        alert('fail3');
-                    }
-                });
-            });
-            /!* //提交电话号码2 （详情页左立即联系我）
-              $("#Free_phone_btn1").click(function() {
-                   var reTel = /^1[3|4|5|7|8|9]\d{9}$/;
-                   if(reTel.test($("#Free_phone_text1").val()) === false) {
-                        alert("请输入正确的电话号码！");
-                        $("#Free_phone_text1").focus().select();
-                        return false;
-                   }
-                   var mobilephone = $("#Free_phone_text1").val();
-                   $.ajax({
-                        type: "get",
-                        async: false,
-                        url: prefix + "jm/msgsubmit?ProjectID=" + ProjectID + "&URL=" + window.location
-                             .href + "&URLTitle=" + document.title + "&Tel=" + mobilephone +
-                             "&MessageSource=XQ003-003",
-                        dataType: "jsonp", //数据类型为jsonp
-                        jsonp: "jsonpCallback", //服务端用于接收callback调用的function名的参数
-                        jsonpCallback: "jsonpCallback",
-                        success: function(data) {
-                             alert("呼叫成功,请等候来电");
-                        },
-                        error: function() {
-                             alert('fail4');
-                        }
-                   });
-
-              }); *!/
-
-
-        });*/
-
-        //客户留言统计
-        function custFeedback() {
-            var IsPC = function () {
-                var userAgentInfo = navigator.userAgent;
-                var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
-                var flag = true;
-                for (var v = 0; v < Agents.length; v++) {
-                    if (userAgentInfo.indexOf(Agents[v]) > 0) {
-                        flag = false;
-                        break;
-                    }
-                }
-                return flag;
-            };
-            var isPc = IsPC() ? "PC" : "H5";
-            var getCata = function () {
-                var reg = new RegExp("https?://.+\.com/([^/]+)/([^/]+)/([^/]+)(/[^/]+)*\.shtml", "i");
-                var reg2 = new RegExp("https?://.+\.com/([^/]+)/([^/]+)/", "i");
-                var r = window.location.href.match(reg);
-                if (r != null) {
-                    var catalog = RegExp.$1 + "_" + RegExp.$2;
-                    return catalog;
-                } else {
-                    r = window.location.href.match(reg2);
-                    if (r != null) {
-                        return RegExp.$1 + "_" + RegExp.$2;
-                    }
-                }
-                return "";
-            };
-            var catalog = getCata();
+            /!*       /!*检查验证码*!/!*!/
+  /!*          var mobilephone = $("#Free_phone_text_1").val();
             $.ajax({
-                type: "get",
-                async: true,
-                url: "/api/stat/Cust/Feedback?" + "&source=" + isPc + "&catalog=" + catalog,
-                success: function () {
+                url: prefix + "cms/jm/messageinsert",
+                type: "post",
+                "&MessageSource=XQ005-002"+"&Code=" + $('#Free_phone_text_1').val(),
+                dataType: "json",
+                //数据类型为jsonp
+                data: {
+                    ProjectID: ProjectID,
+                    URL: window.location.href,
+                    URLTitle: document.title,
+                    Tel: mobilephone,
+                    MessageSource: 'XQ005-002',
+                    Code: $('#Free_phone_text_1').val()
+                },
+                                         // jsonp: "jsonpCallback", //服务端用于接收callback调用的function名的参数
+                //                          jsonpCallback: "jsonpCallback",
+                success: function (data) {
+                    if (data.msg == '验证码不能为空且必须是数字') {
+                        $("#small_yzmbox").show();
+                    }
+                    alert(data.msg);
                 },
                 error: function () {
+                    alert('fail3');
+                }
+            });*!/
+        });*/
+        /*  /!* /
+          /提交电话号码2 （详情页左立即联系我）*/
+      /*  $("#Free_phone_btn1").click(function () {
+            var reTel = /^1[3|4|5|7|8|9]\d{9}$/;
+            if (reTel.test($("#Free_phone_text1").val()) === false) {
+                alert("请输入正确的电话号码！");
+                $("#Free_phone_text1").focus().select();
+                return false;
+            }
+            var mobilephone = $("#Free_phone_text1").val();
+            $.ajax({
+                type: "get",
+                async: false,
+                url: prefix + "jm/msgsubmit?ProjectID=" + ProjectID + "&URL=" + window.location
+                        .href + "&URLTitle=" + document.title + "&Tel=" + mobilephone +
+                    "&MessageSource=XQ003-003",
+                dataType: "jsonp", //数据类型为jsonp
+                jsonp: "jsonpCallback", //服务端用于接收callback调用的function名的参数
+                jsonpCallback: "jsonpCallback",
+                success: function (data) {
+                    alert("呼叫成功,请等候来电");
+                },
+                error: function () {
+                    alert('fail4');
                 }
             });
-        }
-        </script>
-        <!--小表单 end--></div>
-</div>
+
+        });*/
+    }
+
+    //客户留言统计
+    /*      function custFeedback() {
+              var IsPC = function () {
+                  var userAgentInfo = navigator.userAgent;
+                  var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
+                  var flag = true;
+                  for (var v = 0; v < Agents.length; v++) {
+                      if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                          flag = false;
+                          break;
+                      }
+                  }
+                  return flag;
+              };
+              var isPc = IsPC() ? "PC" : "H5";
+              var getCata = function () {
+                  var reg = new RegExp("https?://.+\.com/([^/]+)/([^/]+)/([^/]+)(/[^/]+)*\.shtml", "i");
+                  var reg2 = new RegExp("https?://.+\.com/([^/]+)/([^/]+)/", "i");
+                  var r = window.location.href.match(reg);
+                  if (r != null) {
+                      var catalog = RegExp.$1 + "_" + RegExp.$2;
+                      return catalog;
+                  } else {
+                      r = window.location.href.match(reg2);
+                      if (r != null) {
+                          return RegExp.$1 + "_" + RegExp.$2;
+                      }
+                  }
+                  return "";
+              };
+              var catalog = getCata();
+              $.ajax({
+                  type: "get",
+                  async: true,
+                  url: "/api/stat/Cust/Feedback?" + "&source=" + isPc + "&catalog=" + catalog,
+                  success: function () {
+                  },
+                  error: function () {
+                  }
+              });
+          }*/
+</script>
+<!--小表单 end-->

@@ -22,13 +22,15 @@ class AdPositionModel extends Model
     {
         $result = Db::table($this->table)
             ->alias('ap')
-//            ->join('project p','p.project_id = ap.project_id','left')
+  //         ->join('project p','p.project_id = ap.project_id','left')
 //            ->join('class c','c.class_id = p.class_id','left')
 //            ->field('ap.name as name,ap.project_id,ap.image as image,c.class_id,c.name as class_name')
             ->where('ap.status', '=', '1')
             ->order('sort')
             ->paginate(24);
-        return $result;
+       // dump($this->getLastSql());die;
+      return $result;
+
     }
 
 //    分类广告位
@@ -61,17 +63,19 @@ class AdPositionModel extends Model
         } else {
             $clas = null;
         }
-        $c_status = 1;
+
         $result = Db::table('view_adp')
-            ->where('status', $c_status)
+            ->where('status', '=',1)
             ->where($clas)
             ->where('name', ['like', $name . '%'], ['like', '%' . $name])
+            ->where('class_name', ['like', $name . '%'], ['like', '%' . $name])
             ->order('sort', 'desc')
             ->paginate(24)->each(function ($item, $key) {
                 $item['area'] = Area::getProvince($item['area']);
                 return $item;
             });
-        return $result;
+      //dump($this->getLastSql());die;
+       return $result;
     }
 
 

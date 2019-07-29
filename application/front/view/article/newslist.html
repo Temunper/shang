@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="__PUB08__/css/km_new_infolist.css">
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/zhome.css">
     <script src="__PUB08__/js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/lib/bootstrap/css/bootstrap.min.css"/>
     <script type="text/javascript" src="__PUB08__/js/jquery.placeholder.min.js"></script>
     <script type="text/javascript" src="__PUB08__/js/jquery.cookie.min.js"></script>
     <script type="text/javascript" src="__PUB08__/js/imgfix.js"></script>
@@ -31,7 +32,6 @@
         <div class="nav-ctn">
             <div id='nav' class="bfff">
                 <ul class="nav clearfix">
-
                     <li class="item1">
                         <a href="/"><span class="hdsy"></span>回到首页</a>
                     </li>
@@ -108,10 +108,8 @@
                 {/volist}
 
                 <!--显示页数-->
-                <div class="pagenav clearfix">
-                    <a href="#" class="link link-prev link-disabled">上一页</a><a href="#" class="link link-cur">1</a><a
-                        href="#" class="link">2</a><a href="#" class="link">3</a><span class="link-text">....</span><a
-                        href="#" class="link link-next">下一页</a>
+                <div align="center">
+                  {$page}
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@ img{border:none;}
 body{font-family:"Microsoft YaHei", "STHeiti", "Heiti SC", "SimHei", "SimSun", Arial, sans-serif; background:rgb(245,247,249) !important;}
 /*/////////////*/
 .container {
-    width: 1200px;
+    width: 1200px ;
     margin: 0 auto;
     margin-top: 15px;
 }

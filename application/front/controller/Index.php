@@ -34,22 +34,15 @@ class Index extends Base
         $article = new Article();
         $article->get_ten_articles();
         $d_clas = $clas->get_all_clas();
+       // $o_clas=$clas->get_one_clas(18);
+       // dump($o_clas);die;
         $d_ad_position = $ad_position->get_all_ad_position();        //得到广告位的所有广告
-
-
+      //dump($d_clas);die;
         $this->assign('ad_position', $d_ad_position);  //返回三个广告类的值
         $this->assign('clas', $d_clas);    //返回分类
     }
 
 
-    //收藏
-    public function fav()
-    {
-        if (Request::instance()->isAjax()) {      //判断是否是ajax请求
-            return ['code' => 202, 'msg' => "请求类型错误"];
-        }
-        $info = Request::instance()->param();
-    }
 
     public function test(){
         return $this->fetch("/test");

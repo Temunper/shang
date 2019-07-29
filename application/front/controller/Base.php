@@ -18,17 +18,9 @@ class Base extends Controller
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
-        $this->get_path();
+
     }
 
-    public function get_path()
-    {
-        $da = Request::instance()->param();
-     //   dump($da);die;
-        if (empty($da)) {
-            $cate_id = 1;
-        }
-    }
 
 
 }

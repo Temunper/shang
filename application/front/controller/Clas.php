@@ -64,6 +64,13 @@ class Clas extends Controller
         return $result;
     }
 
+    public function get_one_clas($project_id)
+    {
+        $result = $this->clas_model->get_one_clas($project_id);
+       // $result = $this->set_tree($result);                 //将二级分类生成树型结构
+        return $result;
+    }
+
 //    查询分类
     public function get_class_by_id($class_id)
     {

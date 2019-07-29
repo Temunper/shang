@@ -12,18 +12,18 @@ namespace app\front\controller;
 use app\admin\common\CUrl;
 use app\front\model\Article as ArticleModel;
 use app\front\model\ProjectModel;
-use think\Controller;
 use think\Request;
 
 
-class Project extends Controller
+class Project extends Base
 {
-//  根据类型获得项目
-    /*   public function get_project_by_class()
-       {
-           $result = $this->project_model->get_project_with_class();
-           return $result;
-       }*/
+    protected $model = null;
+
+    function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $this->model = new ProjectModel();
+    }
 
     public function project()
     {
@@ -37,24 +37,29 @@ class Project extends Controller
         }
 
         // 查询项目的所有相关信息
-        $db = new ProjectModel();
-        $project_info = $db->get_project_info($data);
+        $project_info = $this->model->get_project_info($data);
         if (empty($project_info)) {
             return json_encode(['code' => 201, 'msg' => '不存在的项目，请检查']);   //查询数据为空，则返回错误信息
         }
-
         //查询该项目相关文章
         $get = new ArticleModel();
         $article_info = $get->get_some_article($data);   //得到项目id 最新的10条项目咨询
         $title = $project_info['name'];
-
         $cdn = "http://cdn.hao987.cn/shophtml/" . $project_info['yw_name'] . "/item.html";
-        $cdn = CUrl::curl($cdn);
-
+        $cdn = CUrl::curl($cdn);   //渲染cdn链接
         $project_info = array_merge(['cdn' => $cdn], $project_info);
         $title = ['title' => $project_info['name'], 'keywords' => $project_info['keywords'], 'description' => $project_info['description']];
-        // dump($article_info);die;
+        $re = $this->get_class_name($project_info['class_id']);
+        $place[] = $re;
+
+        if ($re['f_class_id'] != 0) {
+            $res = $this->get_class_name($re['f_class_id']);
+            $place[1]=$place[0];
+            $place[0]  = $res;
+        }
+   //dump($place);die;
         $this->assign('title', $title);  //标题
+        $this->assign('place',$place); //当前位置
         $this->assign('article_info', $article_info); //项目相关的项目咨询
         $this->assign('project_info', $project_info);    //返回当前项目的所有信息
 
@@ -64,6 +69,11 @@ class Project extends Controller
         $base->base_message();
         return $this->view->fetch();
 
+    }
+
+    public function get_class_name($class_id)
+    {
+        return $this->model->get_class_name_m($class_id);
     }
 
 

@@ -58,6 +58,8 @@ class Article extends Controller
         $title=['title'=>$type[$type_id],'keywords'=>"",'description'=>""];
         $this->assign('title',$title);
         $this->assign('article_info', $article_info);
+        $page= $article_info->render();
+        $this->assign('page',$page);
         return $this->view->fetch('');
     }
 
