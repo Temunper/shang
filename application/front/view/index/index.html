@@ -650,8 +650,8 @@
             <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position" id = "item" length="3"}
-                    {if $item.ad_id eq $k && $i<=5}
+                    {volist name = "ad_position" id = "item" length="20"}
+                    {if $item.ad_id eq $k && $i<=20}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
                     {else/}{php}$i--;{/php}
@@ -672,7 +672,7 @@
                 </dt>
                 <dd>
                     {volist name = "ad_position" id = "item" }
-                    {if $item.ad_id eq $k && $i<=5}
+                    {if $item.ad_id eq $k && $i<=20}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
                     {else/}{php}$i--;{/php}
@@ -692,7 +692,7 @@
                 </dt>
                 <dd>
                     {volist name = "ad_position" id = "item" }
-                    {if $item.ad_id eq $k && $i<=5}
+                    {if $item.ad_id eq $k && $i<=20}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
                     {else/}{php}$i--;{/php}
@@ -712,7 +712,7 @@
                 </dt>
                 <dd>
                     {volist name = "ad_position" id = "item" }
-                    {if $item.ad_id eq $k && $i<=5}
+                    {if $item.ad_id eq $k && $i<=20}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
                     {else/}{php}$i--;{/php}
