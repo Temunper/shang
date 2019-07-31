@@ -19,6 +19,7 @@ $("#update-ad").click(function () {
         success: function (data) {
             data = JSON.parse(data);
             alert(data.data);
+            window.location.reload();
         }
     })
 });

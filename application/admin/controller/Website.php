@@ -136,7 +136,7 @@ class Website extends Base
                 $data = ['code' => 200, 'data' => '添加成功'];
                 return json_encode($data);
             } else {
-                $data = ['code' => 202, 'data' => '添加失败'];
+                $data = ['code' => 202, 'data' => '添加失败，'.$validate];
                 return json_encode($data);
             }
         } else {
