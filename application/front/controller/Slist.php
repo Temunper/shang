@@ -22,6 +22,7 @@ class Slist extends Controller
         $cl = new Clas();                                            //实例化分类对象
         $d_class = $cl->get_all_clas();
         $params = Request::instance()->param();
+     //   dump($params);die;
         isset($params['class_id']) ? $class_id = $params['class_id'] : $class_id = '';
         isset($params['money']) ? $money = $params['money'] : $money = '';
         isset($params['area']) ? $area = $params['area'] : $area = '';   //获取地区
@@ -55,16 +56,15 @@ class Slist extends Controller
             $query->where("status", 1)->orderRaw('rand()')->limit(24);
         });
 
+
         if (empty($name)) {
             $ad_position = $adp_model->get_project_by_class($money, $class_id, $area);  //如果name 为空，则不是搜索，
         } else {
-
             //name 存在，则为用户搜索
-
             $ad_position = $adp_model->select_like_name($class_id, $name);  //模糊查询
             // dump($ad_position);die;
         }
-       // dump($ad_position);die;
+        // dump($ad_position);die;
         $this->assign('title', $title);       //标题，keywords description
         $this->assign('search', json_encode($search));
         $this->assign('pro_name', $params['pro_name']);

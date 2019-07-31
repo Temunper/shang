@@ -34,24 +34,28 @@ class Message extends Base
         if (isset($data['search'])) {
             //存在search ，执行搜索事件
             //取出时间字段
-
             $date1 = !empty($data['date1']) ? strtotime($data['date1']) : 0;
-            $date2 = !empty($data['date1']) ? strtotime($data['date1']) : time();
+            $date2 = !empty($data['date2']) ? strtotime($data['date2']) : time();
             if ($date1 > $date2) {   //如果输入的时间1大于时间2 则交换两个时间
                 $date3 = $date1;
                 $date1 = $date2;
                 $date2 = $date3;
                 unset($date3);
             }
-            if (!empty($data['project_id'])) {
 
-                $re = stripos($data['project_id'], ':');
-                $data['project_id'] = substr($data['project_id'], 0, $re);
-            }
             //删除字段中的时间字段
             unset($data['date1']);
             unset($data['date2']);
+
+            if (!empty($data['project_id'])) {
+                $re = stripos($data['project_id'], ':');
+                $data['project_id'] = substr($data['project_id'], 0, $re);  //截取数字
+            }
+
             $data = array_filter($data);  //删去data数组中值为false的的项，清除值为空的搜索字段
+            /*  dump($date1);echo "<br />";
+              dump($date2);echo "<br />";
+              dump($data);die;*/
             //执行搜索
             $message_info = $this->message_model->search_message($date1, $date2, $data);
         } else {

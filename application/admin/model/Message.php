@@ -36,13 +36,13 @@ class Message extends Model
     //精确搜索
     public function search_message($time1, $time2, $data)
     {
-        return self::where('status', 'in', '1,2')
+      return   self::where('status', 'in', '1,2')
             ->where('time', '>', $time1)
             ->where('time', '<', $time2)
             ->where($data)
             ->order('time', 'desc')
             ->paginate(15);
-
+       // dump($this->getLastSql());die;
     }
 
     //系统删除功能

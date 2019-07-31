@@ -58,10 +58,10 @@
                         <ul class="seeMsg-name" id="autoBox">
                         </ul>
                     </div>
-                    <button class="seeMsg-search" name="search" >搜索</button>
+                    <button class="seeMsg-search" name="search">搜索</button>
                 </form>
                 <div class="Special_button">
-                    <button class="seeMsg-export-btn" id="btn" type="button" >批量删除</button>
+                    <button class="seeMsg-export-btn" id="btn" type="button">批量删除</button>
                 </div>
             </div>
             <div class="seeMsg-con-bd">
@@ -218,6 +218,26 @@
 <!--项目关键字搜索-->
 <script type="text/javascript">
 
+    //判断字符串是否全是中文
+    function isChn(str) {
+        var reg = /^[\u4E00-\u9FA5]+$/;
+        if (!reg.test(str)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //去掉字符串中任意位置的空格
+    function Trim(str, is_global) {
+        var result;
+        result = str.replace(/(^\s+)|(\s+$)/g, "");
+        if (is_global.toLowerCase() == "g") {
+            result = result.replace(/\s/g, "");
+        }
+        return result;
+    }
+
     $(function () {
 
         $.ajaxSetup({cache: false}); //不缓存
@@ -231,9 +251,12 @@
             $("#autoBox").html(""); //先清空补全提示框原有内容
 
             if ($("#stuSearch").val().length > 0) // 如果输入框不为空
-
             {
-
+                var a = $("#stuSearch").val();
+               var b= isChn(a);
+                if (b === false){
+                    return false
+                }
                 $.ajax({ //后台调用php文件进行查询
 
                     type: "post",
@@ -251,7 +274,7 @@
                         for (i = 0; i < data.length; i++) //将结果添加到提示框中
 
                         {
-                            $("#autoBox").append("<li>" + data[i]['project_id']+":"+data[i]['name'] + "</li>");
+                            $("#autoBox").append("<li>" + data[i]['project_id'] + ":" + data[i]['name'] + "</li>");
                         }
 
                         $("#autoBox li").on("click", function () { //为这些新增的li绑定单击事件，单击后将其值赋到输入框中
