@@ -96,4 +96,20 @@ class AdPositionModel extends Model
             ->column('name');
     }
 
+    //随机获得9个广告位
+    public function get_rand_project()
+    {
+        $result = Db::table($this->table)
+            ->alias('ap')
+            ->join('project p', 'p.project_id = ap.project_id', 'left')
+//            ->join('class c','c.class_id = p.class_id','left')
+            ->field('ap.*,p.money')
+            ->where('ap.status', '=', '1')
+            ->order('ap.sort')
+            ->orderRaw('rand()')
+            ->limit(9)
+            ->select();
+        return $result;
+    }
+
 }

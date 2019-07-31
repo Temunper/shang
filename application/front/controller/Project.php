@@ -39,7 +39,7 @@ class Project extends Base
 
         //3.根据project_id 查询所有相关信息
         $project_info = $this->model->get_project_info($data);
-      //  dump($project_info);die;
+        //  dump($project_info);die;
         if (empty($project_info)) {
             echo "不存在的项目，请检查";
             return;
@@ -67,8 +67,11 @@ class Project extends Base
             $place[1] = $place[0];
             $place[0] = $res;
         }
+        $ad_p = new AdPosition();
+        $mt_position = $ad_p->get_rand();
 
         //9.声明变量
+        $this->assign('mt_position', $mt_position);
         $this->assign('title', $title);  //标题
         $this->assign('place', $place); //当前位置
         $this->assign('article_info', $article_info); //项目相关的项目咨询

@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/tt_detial.css"/>
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/message.css"/>
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/library.css"/>
+
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/jquery-ui.min.css">
     <script src="__PUB08__/js/jquery-1.11.3.min.js"></script>
     <script src="__PUB08__/js/jquery-ui.js"></script>
@@ -296,7 +297,7 @@
                 <!--点击换一批，重新获取数据-->
                 <!--遍历开始-->
                 <div class="content">
-                    {volist name="ad_position" id="vo" length="3" offset="0" }
+                    {volist name="mt_position" id="vo" length="3" offset="0" }
                     <div class="contentlist">
                         <a href="/project/{$vo['project_id']}"  data-type="cmsad"  target="_self">
                             <img src="{$vo['image']}" alt="{$vo['name']}"/>
@@ -321,7 +322,7 @@
                     {/volist}
                 </div>
                 <div class="content">
-                    {volist name="ad_position" id="vo" length="3"  offset="3"}
+                    {volist name="mt_position" id="vo" length="3" offset="3"}
                     <div class="contentlist">
                         <a href="/project/{$vo['project_id']}"  data-type="cmsad"  target="_self">
                             <img src="{$vo['image']}" alt="{$vo['name']}"/>
@@ -346,7 +347,7 @@
                     {/volist}
                 </div>
                 <div class="content">
-                    {volist name="ad_position" id="vo" length="3" offset="15" }
+                    {volist name="mt_position" id="vo" length="3" offset="6"}
                     <div class="contentlist">
                         <a href="/project/{$vo['project_id']}"  data-type="cmsad"  target="_self">
                             <img src="{$vo['image']}" alt="{$vo['name']}"/>

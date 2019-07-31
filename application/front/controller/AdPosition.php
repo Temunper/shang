@@ -39,7 +39,13 @@ class AdPosition extends Controller
     //导航栏搜索框ajax模糊搜索
     public function ajax_select($param)
     {
-       return $this->ad_position_model->ajax_select_like($param);
+        return $this->ad_position_model->ajax_select_like($param);
+    }
+
+    //随机获得9个广告位用于project页面
+    public function get_rand()
+    {
+        return $this->ad_position_model->get_rand_project();
     }
 
 }
