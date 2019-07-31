@@ -80,12 +80,12 @@ class Article extends Model
     }
 
 //文章类型获取器
-    public function getTypeAttr($type)
+   /* public function getTypeAttr($type)
     {
         //状态：1未审核，2审核通过，3用户删除，4管理员删除
         $value = [1 => '项目资讯', 2 => '创业资讯', 3 => '新闻资讯', 4 => '热门专题', 5 => '创业故事'];
         return $value[$type];
-    }
+    }*/
 
 //作者名称获取器
     public function getAuthorAttr($author)

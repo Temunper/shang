@@ -14,6 +14,7 @@ use think\Db;
 class MessageModel
 {
     protected $table = 'message';
+    protected $field = true;
 
     //新增客户留言
     public function new_message($param)

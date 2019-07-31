@@ -22,15 +22,14 @@ class AdPositionModel extends Model
     {
         $result = Db::table($this->table)
             ->alias('ap')
-  //         ->join('project p','p.project_id = ap.project_id','left')
+                   ->join('project p','p.project_id = ap.project_id','left')
 //            ->join('class c','c.class_id = p.class_id','left')
-//            ->field('ap.name as name,ap.project_id,ap.image as image,c.class_id,c.name as class_name')
+            ->field('ap.*,p.money')
             ->where('ap.status', '=', '1')
-            ->order('sort')
+            ->order('ap.sort')
             ->paginate(24);
-       // dump($this->getLastSql());die;
-      return $result;
-
+        // dump($this->getLastSql());die;
+        return $result;
     }
 
 //    分类广告位
@@ -65,17 +64,21 @@ class AdPositionModel extends Model
         }
 
         $result = Db::table('view_adp')
-            ->where('status', '=',1)
+            ->where('status', '=', 1)
             ->where($clas)
-            ->where('name','like','%'.$name.'%')
+            ->where('name', 'like', '%' . $name . '%')
             ->order('sort', 'desc')
             ->paginate(24)->each(function ($item, $key) {
                 $item['area'] = Area::getProvince($item['area']);
                 return $item;
             });
-     // dump($this->getLastSql());die;
-       return $result;
+        // dump($this->getLastSql());die;
+        return $result;
     }
 
-
+    //项目关注度+1
+    public function add_attention($project_id)
+    {
+        Db::table($this->table)->where('project_id', $project_id)->setInc('attention');
+    }
 }

@@ -25,13 +25,14 @@ class Article extends Model
     //精确搜索文章
     public function accurate_article($time1, $time2, $params, $status)
     {
-        return self::where('update_time', '>', $time1)
+
+       return  self::where('update_time', '>', $time1)
             ->where('update_time', '<', $time2)
             ->where('status', 'in', $status)
             ->where($params)
             ->order('update_time', 'desc')
             ->paginate(15);
-        // dump($this->getLastSql());die;
+       // dump($this->getLastSql());die;
     }
 
     //查询所有状态值为1,2的文章，

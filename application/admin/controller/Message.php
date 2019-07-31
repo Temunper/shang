@@ -30,14 +30,13 @@ class Message extends Base
         //获取留言信息，按照时间倒序
         //设置返回状态值
         $data = Request::instance()->param();  //提交按钮button 命名为search  如果提交中存在search 则为搜索留言事件，否则正常输出所有信息
-
         // dump($data);die;
         if (isset($data['search'])) {
             //存在search ，执行搜索事件
             //取出时间字段
-            //    dump($data);die;
-            $date1 = !empty($data['date1']) ? $data['date1'] : 0;
-            $date2 = !empty($data['date1']) ? $data['date1'] : time();
+
+            $date1 = !empty($data['date1']) ? strtotime($data['date1']) : 0;
+            $date2 = !empty($data['date1']) ? strtotime($data['date1']) : time();
             if ($date1 > $date2) {   //如果输入的时间1大于时间2 则交换两个时间
                 $date3 = $date1;
                 $date1 = $date2;

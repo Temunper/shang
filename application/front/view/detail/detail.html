@@ -37,33 +37,33 @@
                     </li>
 
 
-                    <li {if condition="$type_id eq '项目资讯'"}
+                    <li {if $type eq  1}
                     class="active"
                     {/if} >
                         <a href="/newslist/1"><span class="xwzx"></span>项目资讯 </a>
                     </li>
 
 
-                    <li {if condition="$type_id eq '创业咨询'"}
+                    <li {if $type eq 2 }
                         class="active"
                         {/if}>
                         <a href="/newslist/2"><span class="rmzt"></span>创业咨询 </a>
                     </li>
 
 
-                    <li {if condition="$type_id eq '新闻咨询'"}
+                    <li {if $type eq 3}
                         class="active"
                         {/if}>
                         <a href="/newslist/3"><span class="cyzs"></span>新闻咨询 </a>
                     </li>
 
 
-                    <li {if condition="$type_id eq '热门咨询'"}
+                    <li {if $type eq 4}
                         class="active"
                         {/if} >
                         <a href="/newslist/4"><span class="cygs"></span>热门咨询 </a>
                     </li>
-                    <li {if condition="$type_id eq '创业故事'"}
+                    <li {if $type eq 5}
                         class="active"
                         {/if}>
                         <a href="/newslist/5"><span class="cygs"></span>创业故事 </a>
@@ -88,16 +88,29 @@
             <div class="detail-ctn">
                 <div class="position">
                     <span>当前位置：</span>
-                    <a class='position' href="{:url('index/index')}">首页</a> &gt; <a class='position' href="{:url('article/newslist')}">新闻资讯</a>
+                    <a class='position' href="/">首页</a> &gt;
+                    <a class='position' href="/newslist/{$type}">
+                   {if $type eq 1}
+                        项目资讯
+                        {elseif $type eq 2}
+                        创业咨询
+                        {elseif $type eq 3}
+                        新闻咨询
+                        {elseif $type eq 4}
+                        热门咨询
+                        {elseif $type eq 5}
+                        创业故事
+                        {/if}
+                    </a>
                 </div>
                 <div class="title">{$one_article.title}</div>
                 <div class="publish clearfix">
                     <ul class="publish-time l">
                         <li class="l"> 更新时间：<span>
-								{$one_article.create_time}
+								{$one_article.update_time}
                         </span></li>
-                        <li class="l"> {$one_article.author}</li>  <!--作者-->
-                        <li class="l"> {$one_article.source}</li>  <!--来源-->
+                        <li class="l">作者:{$one_article.author}</li>  <!--作者-->
+                        <li class="l">来源:{$one_article.source}</li>  <!--来源-->
                     </ul>
                 </div>
                 <div class="artical">

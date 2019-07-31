@@ -23,6 +23,7 @@ class Article extends Base
         'image/jpeg'
     ];
     protected $model = null;
+
     function __construct(Request $request = null)
     {
         parent::__construct($request);
@@ -42,19 +43,20 @@ class Article extends Base
         if (isset($data['search'])) {
             //存在 search 字段 则为精确搜索
             //取出时间并且删除该字段
-            $time = $data['date1'] ? $data['date1'] : 0;  //如果为真则赋值，否则赋值0
-            $time2 = $data['date2'] ? $data['date2'] : time();  //如果为真则赋值，否则赋值当前时间
+            $time = $data['date1'] ? strtotime($data['date1']) : 0;  //如果为真则赋值，否则赋值0
+            $time2 = $data['date2'] ? strtotime($data['date2']) : time();  //如果为真则赋值，否则赋值当前时间
             //判断$time 是否小于$time2
             if ($time > $time2) {   //如果$time 大于$time2  则交换时间未知
                 $time3 = $time;
                 $time = $time2;
                 $time2 = $time3;
             }
+            unset($time3);
             unset($data['date1']);
             unset($data['date2']);  //删除字段中的时间字段
             $data = array_filter($data);  //除去data数组中值为false(空)的的项
             $data = array_merge($data, ['author' => $author]);
-            $status = !empty($data['status']) ? ($data['status']) : '1,2';  //
+            $status = !empty($data['status']) ? ($data['status']) : '-1,1,2';  //
             unset($data['status']);  // 删除数组中的状态字段
             $article_info = $this->model->accurate_article($time, $time2, $data, $status);            //搜索相关文章
         } else {
@@ -64,9 +66,9 @@ class Article extends Base
 
         }
         //定义数据为空时返回的信息
-        $empty ="<span style='color: red'>暂未有相关文章</span>";
+        $empty = "<span style='color: red'>暂未有相关文章</span>";
         //声明变量
-        $this->assign('empty',$empty);
+        $this->assign('empty', $empty);
         $this->assign('article_info', $article_info);
         $this->assign('project', $project_info);
         //渲染视图

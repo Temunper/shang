@@ -38,11 +38,10 @@ class Detail extends Controller
         $a->get_ten_articles();    //得到5种咨询的10篇文章
 
         $one_article = $article_model->show_one_article($article_id);   //获得当前文章id信息
-        $type_id = $one_article['type'];
-      //  dump($one_article);die;
+        $type = $one_article['type'];
         $title = ['title' => $one_article['title'], 'keywords' => $one_article['keywords'], 'description' => $one_article['description']];
         // dump($d_article);die;
-        $this->assign('type_id', $type_id);
+        $this->assign('type', $type);
         $this->assign('title', $title);
         $this->assign('one_article', $one_article);  //返回当前文章id 所有信息
         return $this->view->fetch('');

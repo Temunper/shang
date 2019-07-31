@@ -15,7 +15,7 @@ class ArticleValidate extends  Validate
         'type|类型' => 'require',
         'title|标题' => 'require|length:2,20',
         'image|列图' => 'require',
-        'brief|简介' => 'require|length:5,20',
+        'brief|简介' => 'require|length:10,40',
         'content|内容' => 'require',
         'source|来源' => 'require',
         'keywords|关键词' => 'require|length:8,40',

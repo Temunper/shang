@@ -5,11 +5,10 @@
     <title>08商机网</title>
     <link rel="stylesheet" href="__PUB08__/css/list-common.css"/>
     <link rel="stylesheet" href="__PUB08__/css/list.css"/>
-    <link rel="stylesheet" type="text/css" href="__PUB08__/css/index3.css"/>
+    <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/zhome.css">
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/header.css">
     <script src="__PUB08__/js/jquery-1.11.3.min.js"></script>
-    <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <script type="text/javascript" src="__PUB08__/js/jquery.placeholder.min.js"></script>
     <script type="text/javascript" src="__PUB08__/js/jquery.cookie.min.js"></script>
     <script type="text/javascript" src="__PUB08__/js/imgfix.js"></script>
@@ -117,7 +116,7 @@
 
     <!--内页主题开始-->
     <div class="crumb">
-        <a href="http://youhua.cn/front">首页</a>
+        <a href="/">首页</a>
         {if $default_class.f_class_id neq null}
         <span>></span>
         <a href="#" class="f-class" data-f_class="{$default_class.f_class_id}">{$default_class.f_class_name}</a>
@@ -132,7 +131,6 @@
     <!--内页项目列表开始-->
     <div class="content_list">
         <ul>
-
             <!--循环开始-->
             {volist name="ad_position" id="vo"}
             <li>

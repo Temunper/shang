@@ -81,23 +81,29 @@ class Message extends Controller
         $result = "";
         //1、获取表单信息，
         $info = Request::instance()->only(['project_id', 'phone', 'client', 'content']);
-        //验证手机号
+        $ip = Request::instance()->ip();  //获取当前用户ip
+        $time_now = time(); //获取当前时间戳
+
+        //2.验证手机号
         if (strlen($info['phone']) != 11) {
             return ['code' => $code, 'msg' => '请输入合法的手机号'];
         }
         $db = new ProjectModel();
-
-        $res = $db->get_project_info($info['project_id']);        //验证是否存在的project_id
+        //3.验证是否存在的project_id
+        $res = $db->get_project_info($info['project_id']);
         if (empty($res)) {
             return ['code' => $code, 'msg' => '不存在的项目'];
         }
-        $ip = Request::instance()->ip();  //获取当前用户ip
-        $time_now = time(); //获取当前时间戳
+
         $data = ['project_id' => $info['project_id'], 'phone' => $info['phone'], 'ip' => $ip, 'time' => $time_now];//拼接用的ip和当前时间
-        //2、写入message_log表单
+        //4、写入message_log表单
         $info = array_merge($info, ['ip' => $ip, 'time' => $time_now, 'status' => 1]);//拼接用的ip和当前时间
         $this->model->insert_message_log($data);   //记录着一次的留言 到message_log
-        $verify = $this->verify($info);   //然后验证是否可以录入
+        //增加一个关注度
+        $add = new AdPosition();
+        $add->add_attention($info['project_id']);
+        //验证是否可以录入,即验证30天内是否留言过，当天留言次数是否超过5此
+        $verify = $this->verify($info);
         //dump($verify);die;
         if (!$verify) {
             //返回为false ，不允许录入，则返回录入成功，不执行录入
@@ -109,7 +115,7 @@ class Message extends Controller
             $code = 200;
             $result = "留言录入成功";
         } else {
-            $result = "留言录入失败，请检查";
+            $result = "留言录入失败，请稍后";
         }
         return ['code' => $code, 'msg' => $result];
     }

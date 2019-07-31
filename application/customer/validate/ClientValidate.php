@@ -14,7 +14,7 @@ use think\Validate;
 class ClientValidate extends Validate
 {
     protected $rule = [
-        'user|用户名' => 'require',
+        'user|用户名' => 'require|chsAlphaNum',
         'pass|密码' => 'require',
         'verify|验证码' => 'require|captcha',
     ];

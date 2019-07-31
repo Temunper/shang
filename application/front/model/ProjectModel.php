@@ -30,17 +30,25 @@ class ProjectModel extends Model
     //通过项目id  查询项目的所有信息
     public function get_project_info($project_id)
     {
-        return Db::table('view_pro')->where('project_id', $project_id)
-            ->where('status', 1)->find();
+        return Db::table($this->table)
+            ->alias('p')
+            ->join('ad_position ad','p.project_id = ad.project_id','left')
+            ->field('p.*,ad.image')
+            ->where('p.project_id', $project_id)
+            ->where('p.status', 1)->find();
     }
 
     //通过class_id 查找类名
     public function get_class_name_m($class_id)
     {
+        return Db::table('class')->field('class_id,name,f_class_id')->where('class_id', $class_id)->find();
 
-     return Db::table('class')->field('class_id,name,f_class_id')->where('class_id',$class_id)->find();
+    }
 
-
+    //客户点击项目页时，点击量+1
+    public function add_click_num($project_id)
+    {
+        Db::table('ad_position')->where('project_id', $project_id)->setInc('click_num');
     }
 
 

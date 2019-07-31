@@ -17,16 +17,23 @@ class AdPosition extends Controller
 {
     protected $ad_position_model = null;
 
-  public function __construct(Request $request = null)
-  {
-      $this->ad_position_model = new AdPositionModel();
-      parent::__construct($request);
-  }
+    public function __construct(Request $request = null)
+    {
+        $this->ad_position_model = new AdPositionModel();
+        parent::__construct($request);
+    }
 
 //    得到所有广告位的广告
-    public function get_all_ad_position(){
+    public function get_all_ad_position()
+    {
         $result = $this->ad_position_model->get_all_ap_position();
         return $result;
+    }
+
+    //广告位的关注度+1
+    public function add_attention($project_id)
+    {
+        $this->ad_position_model->add_attention($project_id);
     }
 
 }

@@ -42,15 +42,14 @@ class Article extends Base
         $data = Request::instance()->param();
         //判断是否存在search 字段，存在则为精确搜索
         if (isset($data['search'])) {
-            $time = !empty($data['date1']) ? $data['date1'] : 0;  //如果为真则赋值，否则赋值0
-            $time2 = !empty($data['date2']) ? $data['date2'] : time();  //如果为真则赋值，否则赋值当前时间
+            $time = !empty($data['date1']) ? strtotime($data['date1']) : 0;  //如果为真则赋值，否则赋值0
+            $time2 = !empty($data['date2']) ? strtotime($data['date2']) : time();  //如果为真则赋值，否则赋值当前时间
             $status = !empty($data['status']) ? $data['status'] : '1,2';
             unset($data['date1']);
             unset($data['date2']);
             unset($data['status']);
             $data = array_filter($data);  //除去data数组中值为false(空)的的项
             //搜索相关文章
-            //   dump($data);die;
             $article_info = $this->article_model->accurate_article($time, $time2, $data, $status);
         } else {
             //查询作者为当前用户的文章
@@ -99,8 +98,6 @@ class Article extends Base
         $status = 4;  //设置要修改的文章状态值
         //接收传入的article_id
         $data = Request::instance()->param(['article_id', 'status']);
-        dump($data);
-        die;
         $article_id = $data ? $data : 0;
         //执行修改
         $result = $this->article_model->change_status($article_id, $status);
@@ -175,6 +172,6 @@ class Article extends Base
             return ['code' => 202];
         }
     }
-    
+
 
 }
