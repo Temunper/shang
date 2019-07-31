@@ -55,8 +55,18 @@ class Article extends Controller
         $this->get_ten_articles();  //查找5找文章类型的10条最新数据
         $article_info = $article->show_article($type_id);       //返回当前type类型的文章
         $this->assign('type_id', $type_id);
-        $title=['title'=>$type[$type_id],'keywords'=>"",'description'=>""];       //标题关键字与描述
+        $title=['title'=>"",'keywords'=>"",'description'=>""];       //标题关键字与描述
+
+        $empty = [
+            'title' => '最新创业资讯-08商机网',
+            'keywords' => '最新创业资讯, 行业动态新闻, 创业指南, 加盟市场分析',
+            'description' => '发布最新热门创业资讯、行业动态趋势、加盟市场分析等主题资讯，帮助创业者了解最新创业动态，掌握最新创业商机'
+        ];
+
+
         $this->assign('title',$title);
+
+        $this->assign('empty', $empty);
         $this->assign('article_info', $article_info);
         $page= $article_info->render();
         $this->assign('page',$page);

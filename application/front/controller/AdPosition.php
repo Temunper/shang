@@ -36,4 +36,10 @@ class AdPosition extends Controller
         $this->ad_position_model->add_attention($project_id);
     }
 
+    //导航栏搜索框ajax模糊搜索
+    public function ajax_select($param)
+    {
+       return $this->ad_position_model->ajax_select_like($param);
+    }
+
 }

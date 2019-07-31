@@ -84,8 +84,9 @@ class Slist extends Controller
             $data['class_id'] != 'f' ?: $data['class_id'] = "";
         }
 
-        $ad_model = new AdPositionModel();
-        $ad_model->ajax_select_like($data);
+        $ad_model = new AdPosition();
+        $result = $ad_model->ajax_select($data);
 
+        return $result;
     }
 }

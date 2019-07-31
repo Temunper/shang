@@ -86,9 +86,14 @@ class AdPositionModel extends Model
     //ajax 同步显示模糊搜索项目名
     public function ajax_select_like($params)
     {
-        /*Db::table('view_adp')->where('status','=',1)
+        $name = $params['pro_name'];
+        return Db::table('view_adp')
+            ->distinct(true)
+            ->where('status', '=', 1)
             ->where($params['class_id'])
-            ->where()*/
+            ->where('name', 'like', '%' . $name . '%')
+            ->order('sort', 'desc')
+            ->column('name');
     }
 
 }
