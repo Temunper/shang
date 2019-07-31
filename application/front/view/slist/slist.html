@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{$title['title']}项目推荐_热门项目行业分类-08商机网</title>
-    <meta name="keywords" content="{$title['keywords']}">
-    <meta name="description" content="{$title['description']}">
-    <link rel="shutcut icon" href="__PUB08__/images/icon.jpg" type="image/x-icon">
+    <title>08商机网</title>
+    <title>{$title['title'] |default=$empty['title']}</title>
+    <meta name="keywords" content="{$title['keywords'] |default=$empty['keywords']}">
+    <meta name="description" content="{$title['description'] |default=$empty['description']}">
     <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" href="__PUB08__/css/list-common.css"/>
     <link rel="stylesheet" href="__PUB08__/css/list.css"/>

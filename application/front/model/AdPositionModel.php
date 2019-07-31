@@ -22,7 +22,7 @@ class AdPositionModel extends Model
     {
         $result = Db::table($this->table)
             ->alias('ap')
-                   ->join('project p','p.project_id = ap.project_id','left')
+            ->join('project p', 'p.project_id = ap.project_id', 'left')
 //            ->join('class c','c.class_id = p.class_id','left')
             ->field('ap.*,p.money')
             ->where('ap.status', '=', '1')
@@ -81,4 +81,14 @@ class AdPositionModel extends Model
     {
         Db::table($this->table)->where('project_id', $project_id)->setInc('attention');
     }
+
+
+    //ajax 同步显示模糊搜索项目名
+    public function ajax_select_like($params)
+    {
+        /*Db::table('view_adp')->where('status','=',1)
+            ->where($params['class_id'])
+            ->where()*/
+    }
+
 }

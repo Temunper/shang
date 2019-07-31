@@ -22,7 +22,7 @@ class Slist extends Controller
         $cl = new Clas();                                            //实例化分类对象
         $d_class = $cl->get_all_clas();
         $params = Request::instance()->param();
-     //   dump($params);die;
+        //   dump($params);die;
         isset($params['class_id']) ? $class_id = $params['class_id'] : $class_id = '';
         isset($params['money']) ? $money = $params['money'] : $money = '';
         isset($params['area']) ? $area = $params['area'] : $area = '';   //获取地区
@@ -73,5 +73,19 @@ class Slist extends Controller
         $this->assign('ad_position', $ad_position);
         $this->assign('adp', $adp);
         return $this->view->fetch();
+    }
+
+    public function ajax_select()
+    {
+        //1.获取上传信息
+        $data = Request::instance()->only('class_id,pro_name');
+        //2.判断class_id
+        if (!empty($data['class_id'])) {
+            $data['class_id'] != 'f' ?: $data['class_id'] = "";
+        }
+
+        $ad_model = new AdPositionModel();
+        $ad_model->ajax_select_like($data);
+
     }
 }

@@ -78,7 +78,8 @@
                     <td>{$vo.update_time}</td>
                     <td>{$vo.status}</td>
                     <td class="tableOpe">
-                        <button class="operate delr" type="button" id="redact" data-id="{$vo.article_id}">编辑</button><button class="operate del" id="del" data-id="{$vo.article_id}">删除</button>
+                        <button class="operate delr" type="button" id="redact" data-id="{$vo.article_id}">编辑</button>
+                        <button class="operate del" id="del" data-id="{$vo.article_id}">删除</button>
                     </td>
                 </tr>
                 {/volist}
@@ -94,7 +95,8 @@
 {/block}
 <!-- 内容结束 -->
 {block name="script"}
-<script type="text/javascript">
+
+<script>
     $(function () {
         $("#ECalendar_date1").ECalendar({
             type: "time",   //模式，time: 带时间选择; date: 不带时间选择;
@@ -116,7 +118,7 @@
             callback: function (v, e) {
             } //回调函数
         });
-        // 全选
+// 全选
         $(".selectAll").on('click', function () {
             if ($(".selectAll").prop("checked")) {
                 $(".checkboxone").prop("checked", "checked");
@@ -125,10 +127,10 @@
                 $(".checkboxone").removeAttr("checked");
             }
         });
-        //删除单条记录
+//删除单条记录
         $(".operate.del").on('click', function () {
             if (confirm("确定要删除该文章吗")) {
-                //确定要删除，获取当前列的data-id
+//确定要删除，获取当前列的data-id
                 var ids = $(this).attr('data-id');
                 $.ajax({
                     type: "POST",                   //设置提交方式为POST
@@ -148,7 +150,7 @@
             }
         });
 
-        //批量删除
+//批量删除
         $("#btn").on('click', function () {
 
             var msg_id = $('[name="id[]"]:checked').map(function () {
@@ -166,8 +168,8 @@
                     ids = ids.substring(0, ids.length - 1);
                 }
 
-                // alert(ids);
-                //取出被选中的主键
+// alert(ids);
+//取出被选中的主键
                 $.ajax({
                     type: "POST",                   //设置提交方式为POST
                     url: "{:url('article/delete_article')}", //设置URL
@@ -187,11 +189,11 @@
             }
         });
 
-        //点击编辑操作
+//点击编辑操作
         $(".operate.delr").on('click', function () {
             var ids = $(this).attr('data-id');  //获得当前行的项目id
-            //跳转到编辑文章页面
-            //  window.open("redact_article/ids/" + ids);
+//跳转到编辑文章页面
+//  window.open("redact_article/ids/" + ids);
             window.location.href = "redact_article?article_id=" + ids;
         })
     })

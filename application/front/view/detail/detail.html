@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{$title['title'] | default='文章详情'}</title>
-    <meta name="keywords" content="{$title['keywords'] |default='暂无关键词'}">
-    <meta name="description" content="{$title['description'] |default='暂无描述'}">
-    <link rel="shutcut icon" href="__PUB08__/images/icon.jpg" type="image/x-icon">
+    <title>{$title['title'] |default=$empty['title']}</title>
+    <meta name="keywords" content="{$title['keywords'] |default=$empty['keywords']}">
+    <meta name="description" content="{$title['description'] |default=$empty['description']}">
     <link rel="stylesheet" href="__PUB08__/css/zhome.css">
     <link rel="stylesheet" href="__PUB08__/css/info-head-foot.css">
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/header.css">

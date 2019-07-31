@@ -23,5 +23,6 @@ return [
     'newslist/[:type]$'=>'front/article/newslist',
     'article/[:article_id]$'=>'front/detail/detail',
     'project/[:project_id]$'=>'front/project/project',
+    'select/[:class_id]/[:pro_name]$'=>'front/slist/ajax_select',
 ];
 //class_id=1002&area=&money=

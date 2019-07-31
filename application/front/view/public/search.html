@@ -30,9 +30,13 @@
                     {/volist}
 
                 </div>
-                <input type="text" name="selectinput" id="selectinput" class="selectinput" value="{$pro_name |default=''}"
-                       placeholder="请输入项目名称"/>
-                <img src="__PUB08__/picture/icon-sousuo26x26.png" alt="" class="btn-submit" id="search"/>
+                <div class="ui-widget">
+                    <input type="text" name="selectinput" id="selectinput" class="selectinput"
+                           value="{$pro_name |default=''}"
+                           placeholder="请输入项目名称" onkeyup="catch_keyword(this.value)">
+                    <img src="__PUB08__/picture/icon-sousuo26x26.png" alt="" class="btn-submit" id="search"
+                    >
+                </div>
                 <s style="height: 0;display: block;clear: both;"></s>
                 <div class="selecttext">
                     <span class="text">投资金额：</span>
@@ -62,3 +66,68 @@
     </div>
 </div>
 {load href="__PUB08__/js/search.js"}
+<script>
+    var availableTags = [];//数据源
+
+    //先初始化自动补全功能
+    $("#selectinput").autocomplete({
+        source: availableTags //数据源
+    });
+
+    //去掉字符串中任意位置的空格
+    function Trim(str, is_global) {
+        var result;
+        result = str.replace(/(^\s+)|(\s+$)/g, "");
+        if (is_global.toLowerCase() == "g") {
+            result = result.replace(/\s/g, "");
+        }
+        return result;
+    }
+
+    //判断字符串是否全是中文
+    function isChn(str) {
+        var reg = /^[\u4E00-\u9FA5]+$/;
+        if (!reg.test(str)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    //捕捉键入的关键字
+    function catch_keyword(word = null) {
+        if (isChn(Trim(word, 'g'))) {
+            get_source(word);
+            $("#selectinput").autocomplete({
+                source: availableTags //数据源
+            });
+        }
+    }
+
+
+    //请求后端获取数据源
+    function get_source(word = null) {
+
+        clas = $("#searchCatalogInnerCode").val();
+        if (clas === "") {
+            url = "select/f/" + word;
+        } else {
+            url = "select/" + clas + "/" + word;
+        }
+
+        a = url.toString();
+
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: false,//改为同步
+            dataType: 'json',
+            success: function (response) {
+                console.log('1');
+                availableTags = response;
+            }
+        });
+    }
+</script>

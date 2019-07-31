@@ -79,7 +79,7 @@ class Upload
 //            http://local.study.cn/uploads/20190406/a1e131b66e45458b6bf50b69b5707d2b.png   //服务器地址
 //            C:\dev\php_study\tp5\public\uploads\20190406  //本地地址
 
-                $photo_path = str_replace($local, $domain, $photo_path);
+                $photo_path = str_replace($local, '', $photo_path);
                 $photo_path = str_replace('\\', '/', $photo_path);
             }
         }

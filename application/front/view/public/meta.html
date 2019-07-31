@@ -2,17 +2,21 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>{$title['title'] | default='08商机网'}</title>
-    <link rel="shutcut icon" href="__PUB08__/images/icon.jpg" type="image/x-icon">
-    <meta name="keywords" content="{$title['keywords'] |default='暂无关键词'}">
-    <meta name="description" content="{$title['description'] |default='暂无描述'}">
+    <title>{$title['title'] |default=$empty['title']}</title>
+    <meta name="keywords" content="{$title['keywords'] |default=$empty['keywords']}">
+    <meta name="description" content="{$title['description'] |default=$empty['description']}">
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/normalize.min.css"> 
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/zhome.css"> 
     <link rel="stylesheet" type="text/css" href="__PUB08__/css/header.css">
     <!-- 这里是hsh的css -->
+
     <link rel="stylesheet" href="__PUB08__/css/hshmain.css"/>   
     <!-- 这里是hsh的css -->
+    <link rel="stylesheet" type="text/css" href="__PUB08__/css/jquery-ui.min.css">
+
     <script src="__PUB08__/js/jquery-1.11.3.min.js"></script>
+    <script src="__PUB08__/js/jquery-ui.js"></script>
+    <link rel="stylesheet" href="__PUB08__/css/style.css"/>
     <!-- <script type="text/javascript" src="__PUB08__/js/mfjq2015.min.js"></script> -->
     <script type="text/javascript" src="__PUB08__/js/jquery.placeholder.min.js"></script> 
     <script type="text/javascript" src="__PUB08__/js/jquery.cookie.min.js"></script> 
@@ -21,6 +25,6 @@
     <script type="text/javascript" src="__PUB08__/js/index.js"></script> 
     <script type="text/javascript" src="__PUB08__/js/zbody-header1.js"></script> 
     <script type="text/javascript" src="__PUB08__/js/zbody-nav1.js"></script>
-    <script src="__PUB08__/js/common.js" type="text/javascript" charset="utf-8"></script> 
+    <script src="__PUB08__/js/common.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
