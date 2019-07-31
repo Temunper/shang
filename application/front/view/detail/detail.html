@@ -37,25 +37,35 @@
                     </li>
 
 
-                    <li class="active">
+                    <li {if condition="$type_id eq '项目资讯'"}
+                    class="active"
+                    {/if} >
                         <a href="/newslist/1"><span class="xwzx"></span>项目资讯 </a>
                     </li>
 
 
-                    <li class="">
+                    <li {if condition="$type_id eq '创业咨询'"}
+                        class="active"
+                        {/if}>
                         <a href="/newslist/2"><span class="rmzt"></span>创业咨询 </a>
                     </li>
 
 
-                    <li class="">
+                    <li {if condition="$type_id eq '新闻咨询'"}
+                        class="active"
+                        {/if}>
                         <a href="/newslist/3"><span class="cyzs"></span>新闻咨询 </a>
                     </li>
 
 
-                    <li class="">
+                    <li {if condition="$type_id eq '热门咨询'"}
+                        class="active"
+                        {/if} >
                         <a href="/newslist/4"><span class="cygs"></span>热门咨询 </a>
                     </li>
-                    <li class="">
+                    <li {if condition="$type_id eq '创业故事'"}
+                        class="active"
+                        {/if}>
                         <a href="/newslist/5"><span class="cygs"></span>创业故事 </a>
                     </li>
 

@@ -48,7 +48,7 @@
                     <button class="seeMsg-search" name="search">搜索</button>
                 </form>
                 <div class="Special_button">
-                    <button class="seeMsg-export-btn" id="btn" type="button" style="margin-right: 115px">批量删除</button>
+                    <button class="seeMsg-export-btn" id="btn" type="button" style="margin-right: 88px">批量删除</button>
                 </div>
             </div>
             <table class="table" cellspacing="0" cellpadding="0">
@@ -68,7 +68,7 @@
                 </thead>
 
                 <tbody>
-                {volist name="article_info" id="vo"}
+                {volist name="article_info" id="vo" empty="$empty"}
                 <tr v-for="messageList in messageLists">
                     <td><input type="checkbox" class="table-checkbox checkboxone" name="id[]" value="{$vo.article_id}">
                     </td>
@@ -192,7 +192,7 @@
             var ids = $(this).attr('data-id');  //获得当前行的项目id
             //跳转到编辑文章页面
             //  window.open("redact_article/ids/" + ids);
-            window.location.href = "redact_article/" + ids;
+            window.location.href = "redact_article?article_id=" + ids;
         })
     })
 </script>

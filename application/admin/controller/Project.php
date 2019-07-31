@@ -10,7 +10,6 @@ namespace app\admin\controller;
 
 
 use app\admin\common\Account;
-use app\admin\model\AdPositionModel;
 use app\admin\model\ClientModel;
 use app\admin\model\ProjectModel;
 use think\Db;
@@ -121,8 +120,7 @@ class Project extends Base
     }
 
 //更改项目内容
-    public
-    function update()
+    public function update()
     {
 
         $params = Request::instance()->param();
@@ -144,15 +142,13 @@ class Project extends Base
     }
 
 //    根据id获取project
-    public
-    function get_project_by_id($project_id)
+    public function get_project_by_id($project_id)
     {
         return $this->project_model->get_project_by_id($project_id);
     }
 
 //    项目详情
-    public
-    function content()
+    public function content()
     {
         $cl = new Clas();
         $params = Request::instance()->get();
@@ -166,13 +162,25 @@ class Project extends Base
     }
 
 //    添加项目页
-    public
-    function plus()
+    public function plus()
     {
         $cl = new Clas();
         $d_class = $cl->get_all_clas();
         $this->assign("class", $d_class);                       //赋值所需的分类信息到模板
         return $this->fetch('project/add');
+    }
+
+    //获得所有项目id和名称
+    public function getAllProject()
+    {
+        return $this->project_model->get_all_project();
+    }
+
+
+    //根据名称查询所有相似的项目名称和id
+    public function select_like_project($key)
+    {
+        return $this->project_model->like_project($key);
     }
 
 }

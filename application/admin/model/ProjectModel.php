@@ -92,7 +92,7 @@ class ProjectModel extends Model
             Db::table('ad_position')->where('project_id', 'in', $project_id)->update(['status' => '2']);
             Db::commit();
             return true;
-        }catch (Exception $exception){
+        } catch (Exception $exception) {
             return false;
         }
     }
@@ -114,6 +114,21 @@ class ProjectModel extends Model
             ->where('project_id', '=', $project_id)
             ->find();
         return $result;
+    }
+
+    //获得所有项目id和项目名
+    public function get_all_project()
+    {
+        return Db::table($this->table)->field('project_id,name')->select();
+
+    }
+
+    public function like_project($key)
+    {
+
+        return Db::table($this->table)->where('name', 'like', '%' . $key . '%')
+            ->field('project_id,name')->select();
+
     }
 
 

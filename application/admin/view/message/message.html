@@ -19,7 +19,7 @@
     <link href="__TEMPLATE__/project/project.css" rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/base.css"/>
     <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/index.css"/>
-    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/list.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/list.css"/>
     <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/Ecalendar.css"/>
 </head>
 <body class="cbp-spmenu-push">
@@ -38,11 +38,13 @@
                 <form action="{:url('message/message')}" method="post">
                     <span class="seeMsg-name">时间段</span>
                     <div class="calendarWarp">
-                        <input type="text" name="date1" class='ECalendar' id="ECalendar_date1" value="" placeholder="开始日期"/>
+                        <input type="text" name="date1" class='ECalendar' id="ECalendar_date1" value=""
+                               placeholder="开始日期"/>
                     </div>
                     ~
                     <div class="calendarWarp">
-                        <input type="text" name="date2" class='ECalendar' id="ECalendar_date2" value="" placeholder="结束日期"/>
+                        <input type="text" name="date2" class='ECalendar' id="ECalendar_date2" value=""
+                               placeholder="结束日期"/>
                     </div>
                     <!-- <input  type="date" value="2019-05-26"> ~
                     <input  type="date" value="2019-06-26"> -->
@@ -50,10 +52,16 @@
                     <input type="text" name="client">
                     <span class="seeMsg-name">手机号</span>
                     <input type="text" name="phone">
-                    <button class="seeMsg-search" name="search">搜索</button>
+                    <div class="search_pro">
+                        <span class="seeMsg-name">项目</span>
+                        <input type="text" name="project_id" placeholder="请输入项目名" id="stuSearch">
+                        <ul class="seeMsg-name" id="autoBox">
+                        </ul>
+                    </div>
+                    <button class="seeMsg-search" name="search" >搜索</button>
                 </form>
                 <div class="Special_button">
-                    <button class="seeMsg-export-btn" id="btn" type="button">批量删除</button>
+                    <button class="seeMsg-export-btn" id="btn" type="button" >批量删除</button>
                 </div>
             </div>
             <div class="seeMsg-con-bd">
@@ -205,5 +213,61 @@
                 });
             }
         });
+    })
+</script>
+<!--项目关键字搜索-->
+<script type="text/javascript">
+
+    $(function () {
+
+        $.ajaxSetup({cache: false}); //不缓存
+
+        //以下代码用于显示检索提示框
+
+        $("#autoBox").hide(); //初始化时隐藏补全提示框
+
+        $("#stuSearch").keyup(function () { //输入框中的keyup事件激活以下查询行为
+
+            $("#autoBox").html(""); //先清空补全提示框原有内容
+
+            if ($("#stuSearch").val().length > 0) // 如果输入框不为空
+
+            {
+
+                $.ajax({ //后台调用php文件进行查询
+
+                    type: "post",
+
+                    url: "{:url('message/keyword_select')}",
+
+                    dataType: "json",
+
+                    data: {key: $("#stuSearch").val()},
+
+                    success: function (data) {
+
+                        $("#autoBox").show();// 显示补全提示框
+
+                        for (i = 0; i < data.length; i++) //将结果添加到提示框中
+
+                        {
+                            $("#autoBox").append("<li>" + data[i]['project_id']+":"+data[i]['name'] + "</li>");
+                        }
+
+                        $("#autoBox li").on("click", function () { //为这些新增的li绑定单击事件，单击后将其值赋到输入框中
+
+                            $("#stuSearch").val($(this).text());
+                        })
+
+                        $("#autoBox").append("<li style='text-align:right'>关闭</li>");//在提示框的最后添加一个li用来关闭
+
+                        $("#autoBox li:last").on("click", function () { // 添加单击事件，单击后隐藏提示框
+
+                            $("#autoBox").hide();
+                        })
+                    }
+                });
+            }
+        })
     })
 </script>

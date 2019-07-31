@@ -35,7 +35,7 @@ class Index extends Base
         $article->get_ten_articles();
         $d_clas = $clas->get_all_clas();
        // $o_clas=$clas->get_one_clas(18);
-       // dump($o_clas);die;
+        //       // dump($o_clas);die;
         $d_ad_position = $ad_position->get_all_ad_position();        //得到广告位的所有广告
       //dump($d_clas);die;
         $this->assign('ad_position', $d_ad_position);  //返回三个广告类的值

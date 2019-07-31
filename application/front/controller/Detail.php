@@ -35,12 +35,14 @@ class Detail extends Controller
         $this->assign('ad_position', $d_ad_position);  //返回三个广告类的值
         $this->assign('clas', $d_clas);    //返回分类
         $a = new Article();
-        $a->get_ten_articles();
+        $a->get_ten_articles();    //得到5种咨询的10篇文章
 
         $one_article = $article_model->show_one_article($article_id);   //获得当前文章id信息
-       //dump($one_article);die;
+        $type_id = $one_article['type'];
+      //  dump($one_article);die;
         $title = ['title' => $one_article['title'], 'keywords' => $one_article['keywords'], 'description' => $one_article['description']];
         // dump($d_article);die;
+        $this->assign('type_id', $type_id);
         $this->assign('title', $title);
         $this->assign('one_article', $one_article);  //返回当前文章id 所有信息
         return $this->view->fetch('');

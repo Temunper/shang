@@ -40,9 +40,9 @@ class Article extends Model
     //项目type id 返回10条咨询
     public function get_ten_article($type)
     {
-     return   $re = self::where('type', $type)->where('status', 2)
-         ->order('update_time','desc')
-            ->limit(10)->select();
+        return self::where('type', $type)->where('status', 2)
+            ->order('update_time', 'desc')
+            ->limit(10)->column('article_id,type,title,lis_img,brief,update_time');
     }
 
 

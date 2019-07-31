@@ -59,8 +59,8 @@
                        value="{$article_info['keywords'] |default=''}">
             </div>
             <div class="con-item" style="margin-top: 50px">
-                <label for="item-describe" class="con-item-l">describe</label>
-                <input type="text" id="item-describe" class="con-item-r" name="description" style="width: 800px"
+                <label for="item-description" class="con-item-l">description</label>
+                <input type="text" id="item-description" class="con-item-r" name="description" style="width: 800px"
                        value="{$article_info['description'] |default=''}">
             </div>
             <div class="login-btn">
@@ -80,18 +80,21 @@
             // var formDate = new FormData("#uploadForm");
 
             var formDate = new FormData(document.getElementById("uploadForm"));
+
             var type_obj = $("#item-type").val();
-            var pro_obj = $("#item-project").val();
             var title_obj = $("#item-title").val();
             var brief_obj = $("#item-brief").val();
             var content_obj = $("#item-content").val();
             var source_obj = $("#item-source").val();
+            var keywords_obj = $("#item-keywords").val();
+            var description_obj = $("#item-description").val();
             formDate.append('type', type_obj);
             formDate.append('title', title_obj);
-            formDate.append('project_id', pro_obj);
             formDate.append('brief', brief_obj);
             formDate.append('content', editor.txt.html());
             formDate.append('source', source_obj);
+            formDate.append('keywords', keywords_obj);
+            formDate.append('description', description_obj);
             $.ajax({
                 type: "POST",
                 url: "{:url('article/change_self_article')}",

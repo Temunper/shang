@@ -28,46 +28,52 @@ class Project extends Base
     public function project()
     {
         $code = 202;
-        //接收传入的project_id 参数
+        //1.获取项目id参数project_id
         $data = Request::instance()->param('project_id');
-        /* dump($data);die;*/
-        //根据project_id 查询所有相关信息
+
+        //2.判断当前项目id是否存在
         if (empty($data)) {
             return json_encode(['code' => $code, 'msg' => '请选择要进入的项目']);
         }
 
-        // 查询项目的所有相关信息
+        //3.根据project_id 查询所有相关信息
         $project_info = $this->model->get_project_info($data);
         if (empty($project_info)) {
             return json_encode(['code' => 201, 'msg' => '不存在的项目，请检查']);   //查询数据为空，则返回错误信息
         }
-        //查询该项目相关文章
+
+        //4.查询该项目相关文章
         $get = new ArticleModel();
         $article_info = $get->get_some_article($data);   //得到项目id 最新的10条项目咨询
-        dump($article_info);die;
-        $title = $project_info['name'];
+       // dump($article_info);die;
+        //5.设置cdn文件路径并创建cdn对象
         $cdn = "http://cdn.hao987.cn/shophtml/" . $project_info['yw_name'] . "/item.html";
         $cdn = CUrl::curl($cdn);   //渲染cdn链接
+
+        //6.将cdn链接拼接到项目信息数组
         $project_info = array_merge(['cdn' => $cdn], $project_info);
+        //7.设置网站头部信息，
         $title = ['title' => $project_info['name'], 'keywords' => $project_info['keywords'], 'description' => $project_info['description']];
+
+        //8.查找当前项目父类和二级类名称和id
         $re = $this->get_class_name($project_info['class_id']);
         $place[] = $re;
-
         if ($re['f_class_id'] != 0) {
             $res = $this->get_class_name($re['f_class_id']);
             $place[1]=$place[0];
             $place[0]  = $res;
         }
-   //dump($place);die;
+
+        //9.声明变量
         $this->assign('title', $title);  //标题
         $this->assign('place',$place); //当前位置
         $this->assign('article_info', $article_info); //项目相关的项目咨询
         $this->assign('project_info', $project_info);    //返回当前项目的所有信息
 
-        //  dump($article_info);die;
-        //引入网页基本信息
+        //10.引入网页基本信息，用于头部和底部模块
         $base = new Index();
         $base->base_message();
+        //11.渲染模板
         return $this->view->fetch();
 
     }

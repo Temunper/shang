@@ -55,7 +55,7 @@ class Article extends Controller
         $this->get_ten_articles();  //查找5找文章类型的10条最新数据
         $article_info = $article->show_article($type_id);       //返回当前type类型的文章
         $this->assign('type_id', $type_id);
-        $title=['title'=>$type[$type_id],'keywords'=>"",'description'=>""];
+        $title=['title'=>$type[$type_id],'keywords'=>"",'description'=>""];       //标题关键字与描述
         $this->assign('title',$title);
         $this->assign('article_info', $article_info);
         $page= $article_info->render();

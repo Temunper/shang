@@ -31,6 +31,7 @@ class Message extends Base
         //设置返回状态值
         $data = Request::instance()->param();  //提交按钮button 命名为search  如果提交中存在search 则为搜索留言事件，否则正常输出所有信息
 
+        // dump($data);die;
         if (isset($data['search'])) {
             //存在search ，执行搜索事件
             //取出时间字段
@@ -43,6 +44,11 @@ class Message extends Base
                 $date2 = $date3;
                 unset($date3);
             }
+            if (!empty($data['project_id'])) {
+
+                $re = stripos($data['project_id'], ':');
+                $data['project_id'] = substr($data['project_id'], 0, $re);
+            }
             //删除字段中的时间字段
             unset($data['date1']);
             unset($data['date2']);
@@ -54,9 +60,15 @@ class Message extends Base
             //显示所有留言，按照时间的排序
             $message_info = $this->message_model->show_all_message();
         }
-        //渲染模板
-        // dump($message_info);die;
-        return $this->view->fetch('', ['message_info' => $message_info]);
+
+        //获取所有项目id和项目名
+        $db = new Project();
+        $project_info = $db->getAllProject();
+        //声明变量
+        $this->assign('project_info', $project_info);
+        $this->assign('message_info', $message_info);
+
+        return $this->view->fetch();
     }
 
     //系统删除留言功能
@@ -79,6 +91,16 @@ class Message extends Base
         }
         //返回信息
         return ['code' => $code, 'msg' => $result];
+    }
+
+    //关键字搜索
+    public function keyword_select()
+    {
+        $data = Request::instance()->param();
+        $db = new Project();
+        $re = $db->select_like_project($data['key']);
+        //   dump($re);die;
+        echo json_encode($re);
     }
 
 

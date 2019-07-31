@@ -18,9 +18,11 @@ class Base extends Controller
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
-
     }
 
-
+    public function getAtrContent($content)
+    {
+        mb_substr(strip_tags($content), 0, 50);
+    }
 
 }

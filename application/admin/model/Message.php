@@ -42,6 +42,7 @@ class Message extends Model
             ->where($data)
             ->order('time', 'desc')
             ->paginate(15);
+
     }
 
     //系统删除功能

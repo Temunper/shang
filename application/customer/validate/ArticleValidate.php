@@ -11,7 +11,7 @@ use think\Validate;
 
 class ArticleValidate extends  Validate
 {
-    protected       $rule = [
+    protected   $rule = [
         'type|类型' => 'require',
         'title|标题' => 'require|length:2,20',
         'image|列图' => 'require',

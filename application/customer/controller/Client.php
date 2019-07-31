@@ -30,20 +30,21 @@ class Client extends Controller
         $data = $request->param();
         //简单验证
         //验证规则
-        $rule = [
-            'user|用户名' => 'require',
-            'pass|密码' => 'require',
-            'verify|验证码' => 'require|captcha',
-        ];
-        //自定义错误信息
-        $msg = [
-            'user' => ['require' => '用户名不能为空，请检查'],
-            'pass' => ['require' => '密码不能为空，请检查'],
-            'verify' => ['require' => '验证码不能为空，请检查',
-                'captcha' => '验证码错误'],
-        ];
+        /*    $rule = [
+                'user|用户名' => 'require',
+                'pass|密码' => 'require',
+                'verify|验证码' => 'require|captcha',
+            ];
+            //自定义错误信息
+            $msg = [
+                'user' => ['require' => '用户名不能为空，请检查'],
+                'pass' => ['require' => '密码不能为空，请检查'],
+                'verify' => ['require' => '验证码不能为空，请检查',
+                    'captcha' => '验证码错误'],
+            ];*/
         //验证信息
-        $result = $this->validate($data, $rule, $msg);
+        $validate = 'app\customer\validate\ClientValidate';
+        $result = $this->validate($data, $validate);
         if ($result === true) {  //全等于true 则验证通过
             $user = $data['user'];
             $pass = $data['pass'];
@@ -86,6 +87,7 @@ class Client extends Controller
         Session::delete('client_info');
         $this->redirect('client/login');  //重定向到登录页
     }
+
 //渲染修改密码页
     public function show_change_pass()
     {
@@ -93,6 +95,7 @@ class Client extends Controller
         //渲染修改页面
         return $this->view->fetch('', ['info' => $info = Session::get('client_info')]);
     }
+
 //修改密码
     public function change_pass(Request $request)
     {
@@ -143,29 +146,30 @@ class Client extends Controller
 
     }
 
-//随机生成用户账号
-    private function get_user_number()
-    {
-        $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $username = "";
-        for ($i = 0; $i < 6; $i++) {
-            $username .= $chars[mt_rand(0, strlen($chars))];
-        }
-        return strtoupper(base_convert(time() - 1420070400, 10, 36)) . $username;
-    }
+    /*
+    //随机生成用户账号
+        private function get_user_number()
+        {
+            $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            $username = "";
+            for ($i = 0; $i < 6; $i++) {
+                $username .= $chars[mt_rand(0, strlen($chars))];
+            }
+            return strtoupper(base_convert(time() - 1420070400, 10, 36)) . $username;
+        }*/
 
     protected function already_login()
     {
-        $client_id=  Session::get('client_id');
-        if (!empty($client_id)) {
+
+        if (Session::has('client_id')) {
             $this->error('用户已登录，请勿重复登录', url('index/index'));
         }
     }
 
     protected function is_login()
     {
-        $client_id=  Session::get('client_id');
-        if (empty($client_id)) {
+
+        if (!Session::has('client_id')) {
             $this->error('用户未登录，无权访问', url('client/login'));
         }
     }
