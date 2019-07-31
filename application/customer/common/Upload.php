@@ -63,7 +63,7 @@ class Upload
     {
         $data=Request::instance()->param(true);
       //  dump($data);
-        $upload_path = ROOT_PATH . 'public' . DS . 'uploads' . DS . $pack;       //上传路径
+        $upload_path = ROOT_PATH . 'public' . DS . 'upload' . DS . $pack;       //上传路径
 
         $photo_path = null;          //真实路径
         $local = ROOT_PATH . 'public';

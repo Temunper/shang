@@ -108,7 +108,7 @@ class Article extends Base
         }
         return ['code' => $code, 'msg' => $results];
     }
-
+    //后台管理发布文章
     public function do_release(Request $request)
     {
         $status = 0;   //设置初始状态值
@@ -161,6 +161,7 @@ class Article extends Base
         return ['status' => $status, 'message' => $result];
     }
 
+    //查看文章内容详情，传入文章id
     public function get()
     {
         $request = Request::instance()->param();

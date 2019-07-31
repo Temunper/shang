@@ -106,12 +106,14 @@
                         <td>{$vo.source}</td>
                         <td>{$vo.status}</td>
                         <td class="tableOpe">
-                            <button class="operate delr accept" type="button" id="redact" data-id="{$vo.article_id}">
+                            {neq name="$vo.status" value="审核通过"}
+                            <button class="btn btn-primary accept" type="button" id="redact" data-id="{$vo.article_id}">
                                 通过
                             </button>
-                            <button class="operate delr reject" type="button" id="reject" data-id="{$vo.article_id}">
+                            <button class="btn btn-primary reject" type="button" id="reject" data-id="{$vo.article_id}">
                                 驳回
                             </button>
+                            {/neq}
                             <button class="operate del delete" id="del" data-id="{$vo.article_id}">删除</button>
                         </td>
                     </tr>
