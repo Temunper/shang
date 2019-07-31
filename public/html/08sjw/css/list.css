@@ -251,11 +251,12 @@
 	overflow: hidden;
 	margin: 25px 0px 8px 0px;
 	vertical-align: bottom;
+	padding-top: 8px;
 	
 }
 .tail_t img{
 	float: left;
-	margin:21px 10px 0px 19px;
+	margin:4px 10px 0px 19px;
 }
 .tail_t h3{
 	font-size: 16px;
