@@ -39,7 +39,7 @@ class Slist extends Controller
         if ($title)
             $title = ['title' => $title->name . "项目大全", 'keywords' => $title->keywords, 'description' => $title->describe];   //返回网页的title等数据
         else
-            $title = ['title' => "项目大全", 'keywords' => '', 'description' => ''];
+            $title = ['title' => "创业项目推荐_热门项目行业分类-08商机网", 'keywords' => '创业优质项目,热门项目,什么项目赚钱', 'description' => '汇聚特色餐饮项目，集成墙，全铝家居，轻钢别墅，制砂机，垃圾处理器，中空模板等热门行业项目，帮助创业者提供各行业创业商机！'];
         $search = ['money' => $money, 'area' => $area, 'class_id' => $class_id];           //返回搜索数据
         foreach ($d_class as $item) {                                  //当分类id是一级分类时遍历出所有树叶
             if ($item['class_id'] == $class_id && $item['son'] != null) {

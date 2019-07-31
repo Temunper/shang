@@ -20,6 +20,8 @@ class Index extends Base
         isset($params['money']) ? $money = $params['money'] : $money = '';  //导航栏下金额
         isset($params['class_id']) ? $class_id = $params['class_id'] : $class_id = '';  //父类选择
         $searchs = ['money' => $money, 'class_id' => $class_id];
+        $title = ['title' => "08商机网-创业找商机的好选择", 'keywords' => '08商机网,创业加盟网,加盟项目,连锁项目,创业资讯', 'description' => '08商机网是国内认可的优质加盟项目发布平台，汇聚众多创业项目和创业资讯，为创业者提供优质项目选择。找商机，上08商机网！'];
+        $this->assign('title',$title);
         return $this->view->fetch();
     }
 
