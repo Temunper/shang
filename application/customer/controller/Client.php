@@ -22,26 +22,13 @@ class Client extends Controller
     }
 
     //验证登录
-    public function check_login(Request $request)
+    public function check_login()
     {
         $this->already_login();//判断用户是否已经登录，防止重复登录
         $status = 0;            //设置初始返回状态值
         $result = "";           //设置初始返回信息
-        $data = $request->param();
-        //简单验证
-        //验证规则
-        /*    $rule = [
-                'user|用户名' => 'require',
-                'pass|密码' => 'require',
-                'verify|验证码' => 'require|captcha',
-            ];
-            //自定义错误信息
-            $msg = [
-                'user' => ['require' => '用户名不能为空，请检查'],
-                'pass' => ['require' => '密码不能为空，请检查'],
-                'verify' => ['require' => '验证码不能为空，请检查',
-                    'captcha' => '验证码错误'],
-            ];*/
+        $data = Request::instance()->param();
+
         //验证信息
         $validate = 'app\customer\validate\ClientValidate';
         $result = $this->validate($data, $validate);
@@ -91,20 +78,26 @@ class Client extends Controller
 //渲染修改密码页
     public function show_change_pass()
     {
+        //1.判断是否已经登录
         $this->is_login();
-        //渲染修改页面
-        return $this->view->fetch('', ['info' => $info = Session::get('client_info')]);
+
+        //2.声明变量
+        $this->assign('info', $info = Session::get('client_info'));
+
+        //3.渲染修改页面
+        return $this->view->fetch();
     }
 
 //修改密码
-    public function change_pass(Request $request)
+    public function change_pass()
     {
         $this->is_login();
         $status = 0;
+        $result = "";
         //通过session 获取当前用户密码和秘钥
         $info = Session::get('client_info');
         //获取提交的数据
-        $data = $request->post();
+        $data = Request::instance()->post();
 
         //验证规则
         $rule = [
@@ -124,26 +117,28 @@ class Client extends Controller
             return ['status' => $status, 'message' => $result];
         }
         //通过验证。
-        //
         $old_pass = md5($data['pass'] . $info['verify']);
         //与session中的用户密码验证
         if ($old_pass != $info['pass']) {
             //原密码错误，返回错误信息
             return ['status' => $status, 'message' => '原密码错误'];
         }
-        $db = new ClientModel();
         $new = md5($data['new_pass'] . $info['verify']);
+
+        //新密码与原密码计较是否相同
+        if ($info['pass'] == $new) {
+            return ['status' => $status, 'message' => '新密码与原密码相同，请检查'];
+        }
+
+        $db = new ClientModel();
         $result = $db->save(['pass' => $new], ['client_id' => $info['client_id']]);
         if ($result) {
             $status = 1;
             $result = "更新成功,请重新登录";
-        }
-        {
+        } else {
             $result = "更新失败";
         }
-        $this->logout();
         return ['status' => $status, 'message' => $result];
-
     }
 
     /*

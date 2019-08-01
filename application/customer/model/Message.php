@@ -28,7 +28,7 @@ class Message extends Model
     //查询客户拥有的项目id
     public function check_project($client_id)
     {
-        return Db::table('client_project')->where('client_id', $client_id)->column('project_id');;
+        return Db::table('client_project')->where('client_id', $client_id)->column('project_id');
     }
 
     public function check_project_name($data)

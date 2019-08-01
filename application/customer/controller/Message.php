@@ -26,12 +26,10 @@ class Message extends Base
     //客户查看自己的留言
     public function see_msg()
     {
-
         //1.获取搜索栏信息
         $data = Request::instance()->post();
         $client_id = Session::get('client_id'); //获得当前用户Id
         $project_info = $this->get_client_project($client_id);  //通过用户id 查询用户所有项目信息
-
 
         //2. 判断是否存在search 字段
         //如果存在search 字段，则处理页面上端搜索
@@ -53,7 +51,7 @@ class Message extends Base
         } else {
             //不存在search字段，则返回用户所有留言
             $project_id = $this->model->check_project($client_id);
-            $project_id = implode(',', $project_id);  //将数组用逗号分隔成字符串
+            $project_id = implode(',', $project_id);    //将数组用逗号分隔成字符串
             $message_info = $this->model->show_client_message($project_id);
         }
 

@@ -39,7 +39,8 @@
                 dataType: 'json',
                 success: function (data) {   //返回值状态为1才执行
                     if (data.status == 1) {
-                        alert(data.mssage);
+                        alert(data.message);
+                        window.location.href="{:url('client/logout')}";
                     } else {
                         alert(data.message);
                     }

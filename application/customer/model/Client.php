@@ -13,6 +13,8 @@ use think\Model;
 
 class Client extends Model
 {
+    protected $table = 'client';
+
     //通过账号查询秘钥
     public function get_verify($user)
     {
@@ -22,6 +24,5 @@ class Client extends Model
     public function check_login($map)
     {
         return Db::table('client')->where('user=? and pass=?', [$map['user'], $map['pass']])->find();
-
     }
 }
