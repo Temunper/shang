@@ -50,7 +50,13 @@
 .flow-input{
     margin-left: 90px;
     margin-top: -28px;
-
+}
+.set-float-inline{
+    margin-top: 10px;
+    float: left;
+}
+.set-far-from{
+    margin-top: 29px;
 }
 
 
