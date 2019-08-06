@@ -240,6 +240,11 @@ var city = [{
     "ProID": 3,
     "CitySort": 14
 }, {
+    "CityID": 15,
+    "name": "朔楊市",
+    "ProID": 4,
+    "CitySort": 15
+},{
     "CityID": 16,
     "name": "朔州市",
     "ProID": 4,
