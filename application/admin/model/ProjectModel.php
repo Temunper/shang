@@ -22,25 +22,63 @@ class ProjectModel extends Model
         if ($bind_code) {                                       //是否绑定
             switch ($bind_code) {
                 case 1 :
-                    $bind = "client_id is not null";
+                    $bind = "client.client_id is not null";
                     break;
                 case 2 :
-                    $bind = "client_id is null";
+                    $bind = "client.client_id is null";
                     break;
             }
         } else $bind = null;
         $status ? $c_status = "status = " . $status : $c_status = "status = 1";         //其他条件
+
         $project_name ? $and = "name like '%" . $project_name . "%'" : $and = null;
         $class_id ? $where = 'class_id in(' . $class_id . ')' : $where = null;
         $client_name ? $client = "client_name like '%" . $client_name . "%'" : $client = null;
-        $result = Db::table("view_pro")
+
+     /*   dump($where);echo "<br>";
+        dump($and);echo "<br>";
+        dump($client);echo "<br>";
+        dump($bind);echo "<br>";
+        die;*/
+
+        $result = Db::table("project")
+            ->field([
+                'project . project_id AS project_id',
+                'project . yw_name AS yw_name',
+                'project . name AS name',
+                'project . abbr AS abbr',
+                'project . pattern AS pattern',
+                'project . crowd AS crowd',
+                'project . area AS area',
+                'project . client_phone AS client_phone',
+                'project . num_400 AS num_400',
+                'project . company_name AS company_name',
+                'project . company_addr AS company_addr',
+                'project . superiority AS superiority',
+                'project . analysis AS analysis',
+                'project . prospect AS prospect',
+                'project . summary AS summary',
+                'project . contact AS contact',
+                'project . class_id AS class_id',
+                'project . money AS money',
+                'project . keywords AS keywords',
+                'project . description AS description',
+                'project . kf_id AS kf_id',
+                'project . kf_type AS kf_type',
+                'project . status AS status',
+                'client . client_id AS client_id',
+                'client . name AS client_name',
+                'admin . name AS kf_name '])
+            ->join('client_project', 'project.project_id=client_project.project_id', 'LEFT')
+            ->join('client', 'client_project.client_id=client.client_id', 'LEFT')
+            ->join('admin', 'project.kf_id=admin.id')
             ->where($where)
             ->where($and)
             ->where($client)
             ->where($bind)
-            ->where($c_status)
-            ->order('project_id', 'desc')
-            ->field('*', 'time')
+            ->where('project.'.$c_status)
+            ->order('project.project_id', 'desc')
+
             ->paginate(10)->each(function ($item, $key) {
                 if ($item['status'] == 1) {
                     $item['status'] = '正常';

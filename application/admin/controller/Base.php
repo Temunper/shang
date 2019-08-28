@@ -20,9 +20,9 @@ class Base extends Controller
         //未登录跳转回登陆页面；
        $admin_name = Session::get('admin');
 //        print_r($user_name. '11');die;
-        if (empty($admin_name)) {
-            $this->error("请登陆！", 'Login/login');
-        }
+//        if (empty($admin_name)) {
+//            $this->error("请登陆！", 'Login/login');
+//        }
     }
     //    文件上传
 

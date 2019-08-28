@@ -69,10 +69,13 @@
                             <option value="1">未审核</option>
                         </select>
 
-                        <button class="seeMsg-search" name="search" style="float: right;margin-top: 5px;margin-right: 16px">搜索</button>
+                        <button class="seeMsg-search" name="search"
+                                style="float: right;margin-top: 5px;margin-right: 16px">搜索
+                        </button>
                     </form>
                     <div class="Special_button">
-                        <button class="seeMsg-export-btn" id="btn" type="button" STYLE="margin-right: 1350px;margin-bottom: 5px">批量删除
+                        <button class="seeMsg-export-btn" id="btn" type="button"
+                                STYLE="margin-right: 1350px;margin-bottom: 5px">批量删除
                         </button>
                     </div>
                 </div>
@@ -100,20 +103,19 @@
                                    value="{$vo.article_id}">
                         </td>
                         <td>{$vo.type}</td>
-                        <td class="show-article" data-article="{$vo.article_id}"><a href="#">{$vo.title}</a></td>
+                        <td>{$vo.title}</td>
                         <td>{$vo.brief}</td>
                         <td>{$vo.update_time}</td>
                         <td>{$vo.source}</td>
-                        <td>{$vo.status}</td>
+                        {if $vo.status neq "审核通过"}
+                        <td  style="color: #F56C6C">{$vo.status}</td>
+                        {else /}
+                        <td >{$vo.status}</td>
+                        {/if}
                         <td class="tableOpe">
-                            {neq name="$vo.status" value="审核通过"}
-                            <button class="btn btn-primary accept" type="button" id="redact" data-id="{$vo.article_id}">
-                                通过
-                            </button>
-                            <button class="btn btn-primary reject" type="button" id="reject" data-id="{$vo.article_id}">
-                                驳回
-                            </button>
-                            {/neq}
+                            <a href="/admin/article/view/{$vo.article_id}">
+                            <button class="btn btn-primary view" id="view" data-id="{$vo.article_id}">详情</button>
+                            </a>
                             <button class="operate del delete" id="del" data-id="{$vo.article_id}">删除</button>
                         </td>
                     </tr>
@@ -126,16 +128,7 @@
         <div align="center">
             {$article_info->render()}
         </div>
-        <!-- 弹窗查看文章 -->
-        <div id="article-content">
 
-            <h3 align="center" class="article_title"></h3>
-            <input type="button" class="close-article btn btn-primary" value="×"
-                   style="margin-top: -26px;position: fixed;margin-left: 1060px;">
-            <div class="article-give"></div>
-        </div>
-
-        <!-- 弹窗结束 -->
     </div>
 
     <!-- 主要内容-->
@@ -152,29 +145,6 @@
 
 </html>
 <script type="text/javascript">
-    $(".show-article").click(function () {                           //显示文章内容
-        var article_id = $(this).attr("data-article");
-        $.ajax({
-            url: "/admin/article/get",
-            data: {
-                article_id: article_id
-            },
-            dataType: 'json',
-            type: 'POST',
-            success: function (data) {
-                if (data.code == 200) {
-                    $(".article_title").text(data.title);
-                    $(".article-give").html(data.content);
-                    $("#article-content").css("visibility", 'visible');
-                    $(".seeMsg-con").css("filter", "blur(2px)").css("pointer-events", "none");
-                } else alert("文章不存在");
-            }
-        })
-    })
-    $(".close-article").click(function () {
-        $("#article-content").css("visibility", 'hidden');
-        $(".seeMsg-con").css("filter", "blur(0px)").css("pointer-events", "all");
-    })
 
 
     $("#add-article").click(function () {
@@ -204,27 +174,6 @@
         })
     });
 
-    $(".reject").click(function () {
-        var article_id = $(this).attr("data-id");
-        $.ajax({
-            url: "{:url('article/approval_article')}",
-            data: {
-                article_id: article_id,
-                status: -1
-            },
-            dataType: "json",
-            type: "POST",
-            success: function (data) {
-                if (data.code == 200) {        //返回值status 为1时为执行成功
-                    $(this).closest('tr').remove();   //执行成功，删除该列
-                    alert(data.msg);              //弹出成功信息
-                    window.location.reload();
-                } else {
-                    alert(data.msg);            //执行失败，弹出失败信息
-                }
-            }
-        })
-    });
 
     $(".delete").click(function () {
         var article_id = $(this).attr("data-id");
@@ -245,6 +194,8 @@
             }
         })
     });
+
+
 
     $(function () {
         $("#ECalendar_date1").ECalendar({

@@ -58,7 +58,7 @@ class Article extends Base
             //渲染视图
         }
         $this->assign('article_info', $article_info);
-        return $this->fetch('');
+        return $this->fetch();
 
     }
 
@@ -84,7 +84,11 @@ class Article extends Base
         if ($result) {
             //执行成功，修改返回的状态值
             $code = 200;
-            $results = "修改成功";
+            if ($data['status'] == 2) {
+                $results = "审核成功";
+            } else {
+                $results ="驳回文章成功";
+            }
         }
         return ['code' => $code, 'msg' => $results];
     }
@@ -108,6 +112,7 @@ class Article extends Base
         }
         return ['code' => $code, 'msg' => $results];
     }
+
     //后台管理发布文章
     public function do_release(Request $request)
     {
@@ -162,16 +167,14 @@ class Article extends Base
     }
 
     //查看文章内容详情，传入文章id
-    public function get()
+    public function view()
     {
+
         $request = Request::instance()->param();
-        $article = ArticleModel::get($request['article_id']);
-        if ($article) {
-            $data = ['code' => 200, 'content' => $article->content, 'title' => $article->title];
-            return $data;
-        } else {
-            return ['code' => 202];
-        }
+
+        $article = ArticleModel::get($request);
+        $this->assign('article', $article);
+        return $this->fetch();
     }
 
 

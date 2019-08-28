@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <link href="__TEMPLATE__/bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="__TEMPLATE__/css/style.css" rel='stylesheet' type='text/css'/>
+    <link href='__TEMPLATE__/css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
+    <script src="__TEMPLATE__/js/jquery-1.11.1.min.js"></script>
+    <script src="__TEMPLATE__/js/modernizr.custom.js"></script>
+    <script src="__TEMPLATE__/js/Chart.js"></script>
+    <script src="__TEMPLATE__/js/metisMenu.min.js"></script>
+    <script src="__TEMPLATE__/js/custom.js"></script>
+    <link href="__TEMPLATE__/css/custom.css" rel="stylesheet">
+    <script src="__TEMPLATE__/js/pie-chart.js" type="text/javascript"></script>
+    <link href="__TEMPLATE__/index/index.css" rel='stylesheet' type='text/css'/>
+    <script src="__TEMPLATE__/icon/iconfont.js"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/list.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/customer_public/css/Ecalendar.css"/>
+</head>
+<body class="cbp-spmenu-push">
+<!-- 页面开始 -->
+<div class="main-content">
+    <!--左导航栏-->
+    {include file="main/left" /}
+    <!--左导航栏-->
+
+    <!-- 头部导航 -->
+    {include file="main/head" /}
+    <!-- //头部结束 -->
+    <!-- 主要内容-->
+    <div class="main">
+        <div class="addItem-top">
+            <h3>文章详情：{$article['title']}</h3>
+        </div>
+        <div class="addItem-con">
+            <form action="{:url('article/do_release')}" method="post" enctype="multipart/form-data" id="uploadForm">
+                <div class="con-item">
+                    <label for="item-input3" class="con-item-l">文章类型</label>
+                    <input type="text" id="item-type" class="con-item-r" name="title" value="{$article['type']}"
+                           readonly>
+                </div>
+                <div class="con-item">
+                    <label for="item-title" class="con-item-l">标题</label>
+                    <input type="text" id="item-title" class="con-item-r" name="title" value="{$article['title']}"
+                           readonly>
+                </div>
+                <div class="con-item">
+                    <label for="pic_img" class="con-item-l">列表图片</label>
+                    <img src="{$article['type']}" alt="">
+                </div>
+                <div class="con-item">
+                    <label for="item-brief" class="con-item-l">简介</label>
+                    <input type="text" id="item-brief" class="con-item-r" name="brief" value="{$article['brief']}"
+                           readonly>
+                </div>
+                <div class="con-item">
+                    <label class="con-item-l">内容</label>
+                    <div id="editor" style="height: 300px;width: 800px;margin-left: 120px" readonly>
+                        {$article['content']}
+                    </div>
+                </div>
+                <div class="con-item" style="margin-top: 50px">
+                    <label for="item-source" class="con-item-l">来源</label>
+                    <input type="text" id="item-source" class="con-item-r" name="source" value="{$article['source']}"
+                           readonly>
+                </div>
+                <div class="con-item" style="margin-top: 50px;">
+                    <label for="item-keywords" class="con-item-l">关键词</label>
+                    <input type="text" id="item-keywords" class="con-item-r" name="keywords" style="width: 800px"
+                           value="{$article['keywords']}" readonly>
+                </div>
+                <div class="con-item" style="margin-top: 50px">
+                    <label for="item-describe" class="con-item-l">描述</label>
+                    <input type="text" id="item-describe" class="con-item-r" name="description" style="width: 800px"
+                           value="{$article['description']}" readonly>
+                </div>
+
+                <div class="con-item">
+                    {if $article['status'] neq "审核通过"}
+                    <button type="button" class="btn btn-primary accept" data-id="{$article['article_id']}">通过</button>
+                    <button type="button" class="btn btn-warning reject" data-id="{$article['article_id']}">驳回</button>
+                    {/if}
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!-- 主要内容结束 -->
+</div>
+
+
+</body>
+<script src="__TEMPLATE__/bootstrap/js/bootstrap.js"></script>
+
+<!--富文本编辑器-->
+<script type="text/javascript" src="__STATIC__/customer_public/js/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.create(); //创建文本框
+    editor.disable();
+    var content = editor.txt.html();
+</script>
+
+<script>
+    $(".accept").click(function () {
+        var article_id = $(this).attr("data-id");
+        $.ajax({
+            url: "{:url('article/approval_article')}",
+            data: {
+                article_id: article_id,
+                status: 2
+            },
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                if (data.code == 200) {        //返回值status 为1时为执行成功
+
+                    window.location.href = "/admin/article/article";
+                } else {
+                    alert(data.msg);            //执行失败，弹出失败信息
+                }
+            }
+        })
+    });
+
+    $(".reject").click(function () {
+        var article_id = $(this).attr("data-id");
+        $.ajax({
+            url: "{:url('article/approval_article')}",
+            data: {
+                article_id: article_id,
+                status: -1
+            },
+            dataType: "json",
+            type: "POST",
+            success: function (data) {
+                if (data.code == 200) {        //返回值status 为1时为执行成功
+                    alert(data.msg);              //弹出成功信息
+                    window.location.href = "/admin/article/article";
+                } else {
+                    alert(data.msg);            //执行失败，弹出失败信息
+                }
+            }
+        })
+    });
+</script>
+</html>

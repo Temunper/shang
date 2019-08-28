@@ -152,9 +152,44 @@ class Project extends Base
     {
         $cl = new Clas();
         $params = Request::instance()->get();
-        $result = $this->project_model->table('view_pro')//获取id为返回信息的project对象
-        ->where('project_id', '=', $params['project_id'])
+//        $result = $this->project_model->table('view_pro')//获取id为返回信息的project对象
+//        ->where('project_id', '=', $params['project_id'])
+//            ->find()->toArray();
+
+        $result = $this->project_model->table('project')
+            ->field(['project . project_id AS project_id',
+                'project . yw_name AS yw_name',
+                'project . name AS name',
+                'project . abbr AS abbr',
+                'project . pattern AS pattern',
+                'project . crowd AS crowd',
+                'project . area AS area',
+                'project . client_phone AS client_phone',
+                'project . num_400 AS num_400',
+                'project . company_name AS company_name',
+                'project . company_addr AS company_addr',
+                'project . superiority AS superiority',
+                'project . analysis AS analysis',
+                'project . prospect AS prospect',
+                'project . summary AS summary',
+                'project . contact AS contact',
+                'project . class_id AS class_id',
+                'project . money AS money',
+                'project . keywords AS keywords',
+                'project . description AS description',
+                'project . kf_id AS kf_id',
+                'project . kf_type AS kf_type',
+                'project . status AS status',
+                'client . client_id AS client_id',
+                'client . name AS client_name',
+                'admin . name AS kf_name '])
+            ->join('client_project', 'project.project_id=client_project.project_id', 'LEFT')
+            ->join('client', 'client_project.client_id=client.client_id', 'LEFT')
+            ->join('admin', 'project.kf_id=admin.id')
+            ->where('project . project_id', '=', $params['project_id'])
             ->find();
+
+
         $d_class = $cl->get_all_clas();
         $this->assign("class", $d_class);
         $this->assign("project", $result);
@@ -167,7 +202,7 @@ class Project extends Base
         $cl = new Clas();
         $d_class = $cl->get_all_clas();
         $this->assign("class", $d_class);                       //赋值所需的分类信息到模板
-        return $this->fetch('project/add');
+        return $this->fetch('project / add');
     }
 
     //获得所有项目id和名称

@@ -181,6 +181,34 @@ body{
     cursor: pointer;
 }
 
+.login-view{
+    text-align: right;
+}
+.login-view .btn-primary{
+    border: none;
+
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 50px;
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+.login-view .btn-warning{
+    border: none;
+    background: #5dc2d0;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 50px;
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+
+
+
+
+
 .login-ft{
     background: #5dc2d0;
     text-align: right;
