@@ -64,9 +64,15 @@ $("body").on("change", "#select-theme", function () {
 //  查询后渲染
 $(function () {
     var d_project = [{}];
-    console.log(search.project_id);
+    // console.log(project);
     d_project[0] = {id: 0, text: "----------"};
     for (i = 1; i < project.length + 1; i++) {
+        if (project[i - 1].project_id == search.project_id){
+            d_project[0] = {
+                id: project[i - 1].project_id,
+                text: project[i - 1].name
+            }
+        } else
             d_project[i] = {
                 id: project[i - 1].project_id,
                 text: project[i - 1].name
@@ -79,7 +85,7 @@ $(function () {
         },
         data: d_project,
     });
-    $("#select-project").select2('val',search.project_id);
+    // $("#select-project").select2("val","31());
     $("#select-theme").val(search.theme_id).trigger("change");
     // $("#select-ad").select2('val',search.ad_id)
 });
