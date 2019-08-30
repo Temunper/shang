@@ -16,6 +16,8 @@ use think\Model;
 class AdPositionModel extends Model
 {
     protected $table = 'ad_position';
+    protected $autoWriteTimestamp = false;
+    protected $resultSetType = 'collection';             //使对象可以直接转换为字符串数组
 
 //    得到所有的广告位的广告
     function get_all_ap_position()
@@ -35,19 +37,15 @@ class AdPositionModel extends Model
 //    分类广告位
     function get_project_by_class($money, $class_id, $area)
     {
-        $c_status = "status = 1";         //其他条件
+        $c_status = "ad_position.status = 1";         //其他条件
         if ($area != null) $area2 = (int)$area + 10000000;
-        $area ? $and = "area between " . $area . " and " . $area2 : $and = null;
-        $class_id ? $where = 'class_id in(' . $class_id . ')' : $where = null;
-        $money ? $p_money = "money = " . $money : $p_money = null;
+        $area ? $and = "project.area between " . $area . " and " . $area2 : $and = null;
+        $class_id ? $where = 'class.class_id in(' . $class_id . ')' : $where = null;
+        $money ? $p_money = "project.money = " . $money : $p_money = null;
         $result = Db::table($this->table)
             ->join('ad', 'ad.ad_id = ad_position.ad_id', 'left')
             ->join('project', 'project.project_id = ad_position.project_id', 'left')
             ->join('class', 'class.class_id = project.class_id', 'left')
-            ->where($and)
-            ->where($class_id)
-            ->where($money)
-            ->where($c_status)
             ->field('ad_position.ad_position_id AS ad_position_id,
         ad_position.ad_id AS ad_id,
         ad_position.project_id AS project_id,
@@ -64,6 +62,10 @@ class AdPositionModel extends Model
         project.class_id AS class_id,
         project.money AS money,
         class.name AS class_name')
+            ->where($and)
+            ->where($where)
+            ->where($p_money)
+            ->where($c_status)
             ->paginate(10)
             ->each(function ($item, $key) {
                 if ($item['status'] == 1) {                                                   //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除
@@ -71,6 +73,8 @@ class AdPositionModel extends Model
                 } else $item['status'] = '已删除';
                 return $item;
             });
+//        if ($p_money)
+//            dump(123);die;
         return $result;
     }
 
@@ -103,15 +107,14 @@ class AdPositionModel extends Model
         project.class_id AS class_id,
         project.money AS money,
         class.name AS class_name')
-            ->where('status', '=', 1)
+            ->where('ad_position.status', '=', 1)
             ->where($clas)
-            ->where('name', 'like', '%' . $name . '%')
-            ->order('sort', 'desc')
+            ->where('ad_position.name', 'like', '%' . $name . '%')
+            ->order('ad_position.sort', 'desc')
             ->paginate(24)->each(function ($item, $key) {
                 $item['area'] = Area::getProvince($item['area']);
                 return $item;
             });
-        // dump($this->getLastSql());die;
         return $result;
     }
 
@@ -147,10 +150,10 @@ class AdPositionModel extends Model
         project.money AS money,
         class.name AS class_name')
             ->distinct(true)
-            ->where('status', '=', 1)
+            ->where('ad_position.status', '=', 1)
             ->where($params['class_id'])
-            ->where('name', 'like', '%' . $name . '%')
-            ->order('sort', 'desc')
+            ->where('ad_position.name', 'like', '%' . $name . '%')
+            ->order('ad_position.sort', 'desc')
             ->column('name');
     }
 

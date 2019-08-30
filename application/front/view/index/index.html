@@ -46,13 +46,10 @@
             <div id="zhome-slideshow" class="div-slideshow">
                 <div class="slideshow-images">
                     <div class="images-inner" style="width: 1760px; height: 194px; left: 0px;">
-                        {volist name = "ad_position" id = "item"}
-                        {if $item.ad_id eq 1001 && $i<=6}
+                        {volist name = "ad_position['1001']" id = "item"}
                         <a href="project/{$item.project_id}" data-id="76730"
                            data-type="cmsad" target="_self" class="link">
                             <img src="{$item.image}" class="img"/></a>
-                        {else/}{php}$i--;{/php}
-                        {/if}
                         {/volist}
                     </div>
                 </div>
@@ -74,25 +71,19 @@
                             </i>
                         </a>
                         <div data-id="pc1_a02_label" data-type="cmsadpos"></div>
-                        {volist name = "ad_position" id = "item"}
-                        {if $item.ad_id eq 1002 && $i<=6}
+                        {volist name = "ad_position['1002']" id = "item"}
                         <a href="project/{$item.project_id}" data-id="54613"
                            data-type="cmsad" target="_self" class="link-other">{$item.name}</a>
-                        {else/}{php}$i--;{/php}
-                        {/if}
                         {/volist}
                         <a href="slist" target="_self" class="link-more">MORE</a></div>
                 </div>
                 <div class="div-body">
                     <div class="div-inner clearfix">
                         <div class="swiper-wrapper">
-                            {volist name = "ad_position" id = "item"}
-                            {if $item.ad_id eq 1003 && $i<=4}
+                            {volist name = "ad_position['1003']" id = "item"}
                             <a href="project/{$item.project_id}" data-id="80651"
                                data-type="cmsad" target="_self" class="link">
                                 <img src="{$item.image}" class="img" alt=""></a>
-                            {else/}{php}$i--;{/php}
-                            {/if}
                             {/volist}
                         </div>
                         <div class="swiper-pagination" style="top: 90%;"></div>
@@ -107,25 +98,19 @@
                             </i>
                         </a>
                         <div data-id="pc1_a03_label" data-type="cmsadpos"></div>
-                        {volist name = "ad_position" id = "item"}
-                        {if $item.ad_id eq 1004 && $i<=6}
+                        {volist name = "ad_position['1004']" id = "item"}
                         <a href="project/{$item.project_id}"  data-type="cmsad" target="_self"
                            class="link-other">{$item.name}</a>
-                        {else/}{php}$i--;{/php}
-                        {/if}
                         {/volist}
                         <a href="slist" target="_self" class="link-more">MORE</a>
                     </div>
                 </div>
                 <div class="div-body" data-id="pc1_a03" data-type="cmsadpos">
                     <div class="div-inner clearfix">
-                        {volist name = "ad_position" id = "item"}
-                        {if $item.ad_id eq 1005 && $i<=6}
-                        <a href="project/{$item.project_id}" 
+                        {volist name = "ad_position['1005']" id = "item"}
+                        <a href="project/{$item.project_id}"
                            data-type="cmsad" target="_self" class="link">
                             <img src="{$item.image}" class="img" alt=""/></a>
-                        {else/}{php}$i--;{/php}
-                        {/if}
                         {/volist}
                     </div>
                 </div>
@@ -137,11 +122,9 @@
                 <div class="div-nav-login" id="hornDiv">
                     <span class="l-index-horn"></span>
                     <ul class="l-horn-ul" id="hornUl" style="margin-top: 0px;">
-                        {volist name = "ad_position" id = "item"}
-                        {if $item.ad_id eq 1006}
+                        {volist name = "ad_position['1006']" id = "item"}
                         <li>
                             <a href="project/{$item.project_id}">{$item.name}诚邀加盟</a></li>
-                        {/if}
                         {/volist}
                     </ul>
                 </div>
@@ -152,8 +135,7 @@
                 </div>
                 <div class="div-body" data-id="pc1_a04" data-type="cmsadpos">
                     <div class="div-inner clearfix">
-                        {volist name = "ad_position" id = "item"}
-                        {if $item.ad_id eq 1007 && $i<=10}
+                        {volist name = "ad_position['1007']" id = "item"}
                         <a href="project/{$item.project_id}"
                            data-id="29515" data-type="cmsad" target="_self" class="link link-active">
                             <i class="icon-ic-panel-rank icon-ic-panel-rank-1r"></i>
@@ -162,8 +144,6 @@
                             <span class="text-hot">
                 <i class="icon icon-ic-panel-fire-small"></i>{$item.attention}</span>
                         </a>
-                        {else/}{php}$i--;{/php}
-                        {/if}
                         {/volist}
                     </div>
                 </div>
@@ -206,32 +186,28 @@
     <div class="main">
         <div class="top">
             <p>
-                {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1008 && $i<=6}
+                {volist name = "ad_position['1008']" id = "item"}
                 <a target="_self" href="project/{$item.project_id}">{$item.name}</a>|
-                {else/}{php}$i--;{/php}
-                {/if}
                 {/volist}
             </p>
             <div class="clearfix"></div>
         </div>
         <div class="left">
             <div class="l_top">
-                {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1012 && $i<=1}
+                {volist name = "ad_position['1012']" id = "item"}
                 <div class="topMain">
                     <i class="light"></i>
-                    <h4>{item.name}</h4>
+                    <h4>{$item.name}</h4>
                     <dl>
                         <dt>
                             <img src="{$item.image}" alt=""/></dt>
-                        <dd class="one">{item.abbr}</dd>
+                        <dd class="one">{$item.abbr}</dd>
                         <dd class="two">
               <span>关注度：
-                <i>{item.attention}万</i>
+                <i>{$item.attention}万</i>
               </span>
                             <span>咨询：
-                <i>{item.click_num}</i>
+                <i>{$item.click_num}</i>
               </span>
                         </dd>
                     </dl>
@@ -239,33 +215,25 @@
                         <a href="project/{$item.project_id}" target="_self">查看详情</a>
                         <a href="#" target="_self" class="active">立即咨询</a></div>
                 </div>
-                {else/}{php}$i--;{/php}
-                {/if}
                 {/volist}
             </div>
             <div class="l_com">
-                {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1013 && $i<=1}
+                {volist name = "ad_position['1013']" id = "item"}
                 <dl>
                     <dt>
                         <img src="{$item.image}" alt=""/></dt>
-                    <dd>{item.abbr}</dd>
+                    <dd>{$item.abbr}</dd>
                 </dl>
                 <div class="btns">
                     <a href="project/{$item.project_id}" target="_self">查看详情</a>
                     <a href="#" target="_self" class="active">立即咨询</a></div>
-                {else/}{php}$i--;{/php}
-                {/if}
                 {/volist}
                 <ul>
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1011 && $i<=4}
+                    {volist name = "ad_position['1011']" id = "item"}
                     <li>
                         <a href="project/{$item.project_id}" target="_self">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </ul>
 
@@ -274,21 +242,17 @@
         <div class="right">
             <div class="topImg">
                 <ul>
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1009 && $i<=8}
+                    {volist name = "ad_position['1009']" id = "item"}
                     <li>
                         <a href="project/{$item.project_id}" target="_self">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </ul>
             </div>
             <div class="mainImg">
                 <div class="box">
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1010 && $i<=24}
+                    {volist name = "ad_position['1011']" id = "item"}
                     <dl>
                         <a href="project/{$item.project_id}">
                             <dt>
@@ -296,8 +260,6 @@
                             <dd>{$item.name}</dd>
                         </a>
                     </dl>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </div>
             </div>
@@ -313,26 +275,22 @@
     <div class="main">
         <div class="top">
             <p>
-                {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1014 && $i<=6}
+                {volist name = "ad_position['1014']" id = "item"}
                 <a target="_self" href="project/{$item.project_id}">{$item.name}</a>|
-                {else/}{php}$i--;{/php}
-                {/if}
                 {/volist}
             </p>
             <div class="clearfix"></div>
         </div>
         <div class="left">
             <div class="l_top">
-                {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1018 && $i<=1}
+                {volist name = "ad_position['1018']" id = "item"}
                 <div class="topMain">
                     <i class="light"></i>
-                    <h4>{item.name}</h4>
+                    <h4>{$item.name}</h4>
                     <dl>
                         <img src="{$item.image}" alt=""/></dt>
-                        <dd class="one">{item.abbr}</dd>
-                        <dd class="two"><span>关注度：<i>{item.attention}万</i></span><span>咨询：<i>{item.click_num}</i></span>
+                        <dd class="one">{$item.abbr}</dd>
+                        <dd class="two"><span>关注度：<i>{$item.attention}万</i></span><span>咨询：<i>{$item.click_num}</i></span>
                         </dd>
                     </dl>
                     <div class="btns">
@@ -340,32 +298,24 @@
                         <a href="#" target="_self" class="active">立即咨询</a>
                     </div>
                 </div>
-                {else/}{php}$i--;{/php}
-                {/if}
                 {/volist}
             </div>
 
             <div class="l_com">
-                {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1019 && $i<=1}
+                {volist name = "ad_position['1019']" id = "item"}
                 <dl>
                     <dt><img src="{$item.image}" alt=""/></dt>
-                    <dd>{item.abbr}</dd>
+                    <dd>{$item.abbr}</dd>
                 </dl>
                 <div class="btns">
                     <a href="project/{$item.project_id}" target="_self">查看详情</a>
                     <a href="#" target="_self" class="active">立即咨询</a>
                 </div>
-                {else/}{php}$i--;{/php}
-                {/if}
                 {/volist}
                 <ul>
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1017 && $i<=4}
+                    {volist name = "ad_position['1017']" id = "item"}
                     <li><a href="project/{$item.project_id}" target="_self">
                         <img src="{$item.image}" alt=""/></a></li>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </ul>
             </div>
@@ -373,22 +323,17 @@
         <div class="right">
             <div class="topImg">
                 <ul>
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1015 && $i<=8}
+                    {volist name = "ad_position['1015']" id = "item"}
                     <li>
                         <a href="project/{$item.project_id}" target="_self">
                             <img src="{$item.image}" alt=""/></a>
                     </li>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </ul>
             </div>
             <div class="mainImg">
                 <div class="box">
-
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1016 && $i<=24}
+                    {volist name = "ad_position['1016']" id = "item"}
                     <dl>
                         <a href="project/{$item.project_id}">
                             <dt>
@@ -396,8 +341,6 @@
                             <dd>{$item.name}</dd>
                         </a>
                     </dl>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
 
                 </div>
@@ -414,11 +357,8 @@
     <div class="main">
         <div class="top">
             <p>
-                {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1020 && $i<=6}
+                {volist name = "ad_position['1020']" id = "item"}
                 <a target="_self" href="project/{$item.project_id}">{$item.name}</a>|
-                {else/}{php}$i--;{/php}
-                {/if}
                 {/volist}
             </p>
             <div class="clearfix"></div>
@@ -426,28 +366,24 @@
         <div class="left">
             <div class="l_top">
                 <div class="topMain">
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1024 && $i<=1}
+                    {volist name = "ad_position['1024']" id = "item"}
                     <i class="light"></i>
-                    <h4>{item.name}</h4>
+                    <h4>{$item.name}</h4>
                     <dl>
                         <dt><img src="{$item.image}" alt=""/></dt>
-                        <dd class="one">{item.abbr}</dd>
-                        <dd class="two"><span>关注度：<i>{item.attention}万</i></span><span>咨询：<i>{item.click_num}</i></span>
+                        <dd class="one">{$item.abbr}</dd>
+                        <dd class="two"><span>关注度：<i>{$item.attention}万</i></span><span>咨询：<i>{$item.click_num}</i></span>
                         </dd>
                     </dl>
                     <div class="btns">
                         <a href="project/{$item.project_id}" target="_self">查看详情</a>
                         <a href="#" target="_self" class="active">立即咨询</a>
                     </div>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </div>
             </div>
             <div class="l_com">
-                {volist name = "ad_position" id = "item"}
-                {if $item.ad_id eq 1025 && $i<=1}
+                {volist name = "ad_position['1025']" id = "item"}
                 <dl>
                     <dt><img src="{$item.image}" alt=""/></dt>
                     <dd>{$item.image}</dd>
@@ -456,16 +392,11 @@
                     <a href="project/{$item.project_id}" target="_self">查看详情</a>
                     <a href="#" target="_self" class="active">立即咨询</a>
                 </div>
-                {else/}{php}$i--;{/php}
-                {/if}
                 {/volist}
                 <ul>
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1023 && $i<=4}
+                    {volist name = "ad_position['1023']" id = "item"}
                     <li><a href="project/{$item.project_id}" target="_self">
                         <img src="{$item.image}" alt=""/></a></li>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </ul>
             </div>
@@ -473,19 +404,15 @@
         <div class="right">
             <div class="topImg">
                 <ul>
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1021 && $i<=8}
+                    {volist name = "ad_position['1021']" id = "item"}
                     <li><a href="project/{$item.project_id}" target="_self">
                         <img src="{$item.image}" alt=""/></a></li>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </ul>
             </div>
             <div class="mainImg">
                 <div class="box">
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1022 && $i<=24}
+                    {volist name = "ad_position['1022']" id = "item"}
                     <dl>
                         <a href="project/{$item.project_id}">
                             <dt>
@@ -493,8 +420,6 @@
                             <dd>{$item.name}</dd>
                         </a>
                     </dl>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </div>
             </div>
@@ -630,11 +555,8 @@
     <div class="hd">
         <h2 class="fl">创业项目推荐</h2>
         <span class="fr">
-        {volist name = "ad_position" id = "item"}
-         {if $item.ad_id eq 1027 && $i<=6}
+                {volist name = "ad_position['1027']" id = "item"}
       <a href="project/{$item.project_id}" title="{$item.name}加盟" target="_self">{$item.name}加盟</a>
-         {else/}{php}$i--;{/php}
-          {/if}
          {/volist}
         </span>
     </div>
@@ -650,12 +572,9 @@
             <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position" id = "item" length="20"}
-                    {if $item.ad_id eq $k && $i<=20}
+                    {volist name = "ad_position[$k]" id = "item"}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </dd>
                 <em class="hot"></em>
@@ -671,12 +590,9 @@
             <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position" id = "item" }
-                    {if $item.ad_id eq $k && $i<=20}
+                    {volist name = "ad_position[$k]" id = "item"}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </dd>
             </dl>
@@ -691,12 +607,9 @@
             <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position" id = "item" }
-                    {if $item.ad_id eq $k && $i<=20}
+                    {volist name = "ad_position[$k]" id = "item"}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </dd>
             </dl>
@@ -711,12 +624,9 @@
             <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position" id = "item" }
-                    {if $item.ad_id eq $k && $i<=20}
+                    {volist name = "ad_position[$k]" id = "item"}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
-                    {else/}{php}$i--;{/php}
-                    {/if}
                     {/volist}
                 </dd>
             </dl>
@@ -728,19 +638,28 @@
      <div class="cyxmT-link">
             <ul>
                 <li class="red">
-                    {volist name = "ad_position" id = "item"  offset = "0" length="6"}
+                    {php}$i = 1;while($i != 6){{/php}
+                    {volist name = "ad_position[rand(1,40)+1000]" id = "item"}
                     <a target="_self" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}</a>
+                    {php}$i++;{/php}
                     {/volist}
+                    {php}}{/php}
                 </li>
                 <li>
-                    {volist name = "ad_position" id = "item"  offset = "6" length="6"}
+                    {php}$i = 1;while($i != 6){{/php}
+                    {volist name = "ad_position[rand(1,40)+1000]" id = "item"}
                     <a target="_self" title="$item.name}" href="project/{$item.project_id}">{$item.name}</a>
+                    {php}$i++;{/php}
                     {/volist}
+                    {php}}{/php}
                 </li>
                 <li class="red">
-                    {volist name = "ad_position" id = "item"  offset = "12" length="6"}
+                    {php}$i = 1;while($i != 6){{/php}
+                    {volist name = "ad_position[rand(1,40)+1000]" id = "item"}
                     <a target="_self" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}！</a>
+                    {php}$i++;{/php}
                     {/volist}
+                    {php}}{/php}
                 </li>
             </ul>
         </div>

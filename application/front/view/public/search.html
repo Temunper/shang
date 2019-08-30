@@ -18,15 +18,13 @@
                     </ul>
                 </div>
                 <div class="selectboxdown2">
-                    {volist name = "ad_position" id = "item"}
-                    {if $item.ad_id eq 1026}
+                    {volist name = "ad_position['1026']" id = "item"}
                     <div class="selectlist clearfix">
                         <a href="/project/{$item.project_id}" target="_blank" data-id="8724"
                            data-type="cmsad">
                             <p>{$item.name}</p>
                             <span>{$item.attention}</span></a>
                     </div>
-                    {/if}
                     {/volist}
 
                 </div>

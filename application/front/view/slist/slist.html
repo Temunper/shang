@@ -141,7 +141,9 @@
             <!--循环开始-->
             {volist name="ad_position" id="vo"}
             <li>
-                <img src="{vo.image}"/>
+                <div style="height: 173px;width: 275px">
+                    <img src="{$vo.image}" style="width: 100%;height: 100%"/>
+                </div>
                 <div class="cont_t"><a href="#">{$vo.name}</a><img src="__PUB08__/images/cont_b_01.png"/></div>
                 <div class="cont_c">
                     <p>品牌行业：{$vo.class_name}</p>

@@ -8,6 +8,8 @@
 
 namespace app\front\controller;
 
+use app\front\model\AdModel;
+use app\front\model\AdPositionModel;
 use think\Request;
 
 class Index extends Base
@@ -31,19 +33,32 @@ class Index extends Base
     {
         $clas = new Clas();
         $ad_position = new AdPosition();
+        $ad = AdModel::all(function ($query) {
+            $query->where('status', 1);
+        })->toArray();
         $article = new Article();
         $article->get_ten_articles();
         $d_clas = $clas->get_all_clas();
-       // $o_clas=$clas->get_one_clas(18);
+        // $o_clas=$clas->get_one_clas(18);
         //       // dump($o_clas);die;
-        $d_ad_position = $ad_position->get_all_ad_position();        //得到广告位的所有广告
-        $this->assign('ad_position', $d_ad_position);  //返回三个广告类的值
+        $d_ad_position = AdPositionModel::all(function ($query) {
+            $query->where('status', 1);
+        })->toArray();        //得到广告位的所有广告
+        $adp = [];
+        foreach ($d_ad_position as $value) {
+            foreach ($ad as $item) {
+                if ($item['ad_id'] == $value['ad_id']) {
+                    $adp[$item['ad_id']][] = $value;
+                }
+            }
+        }
+        $this->assign('ad_position', $adp);  //返回三个广告类的值
         $this->assign('clas', $d_clas);    //返回分类
     }
 
 
-
-    public function test(){
+    public function test()
+    {
         return $this->fetch("/test");
     }
 }
