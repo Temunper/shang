@@ -46,7 +46,7 @@
             <div id="zhome-slideshow" class="div-slideshow">
                 <div class="slideshow-images">
                     <div class="images-inner" style="width: 1760px; height: 194px; left: 0px;">
-                        {volist name = "ad_position['1001']" id = "item"}
+                        {volist name = "ad_position['1001']" id = "item" length="4"}
                         <a href="project/{$item.project_id}" data-id="76730"
                            data-type="cmsad" target="_self" class="link">
                             <img src="{$item.image}" class="img"/></a>
@@ -71,7 +71,7 @@
                             </i>
                         </a>
                         <div data-id="pc1_a02_label" data-type="cmsadpos"></div>
-                        {volist name = "ad_position['1002']" id = "item"}
+                        {volist name = "ad_position['1002']" id = "item" length="4"}
                         <a href="project/{$item.project_id}" data-id="54613"
                            data-type="cmsad" target="_self" class="link-other">{$item.name}</a>
                         {/volist}
@@ -80,7 +80,7 @@
                 <div class="div-body">
                     <div class="div-inner clearfix">
                         <div class="swiper-wrapper">
-                            {volist name = "ad_position['1003']" id = "item"}
+                            {volist name = "ad_position['1003']" id = "item" length="4"}
                             <a href="project/{$item.project_id}" data-id="80651"
                                data-type="cmsad" target="_self" class="link">
                                 <img src="{$item.image}" class="img" alt=""></a>
@@ -98,7 +98,7 @@
                             </i>
                         </a>
                         <div data-id="pc1_a03_label" data-type="cmsadpos"></div>
-                        {volist name = "ad_position['1004']" id = "item"}
+                        {volist name = "ad_position['1004']" id = "item" length="4"}
                         <a href="project/{$item.project_id}"  data-type="cmsad" target="_self"
                            class="link-other">{$item.name}</a>
                         {/volist}
@@ -107,7 +107,7 @@
                 </div>
                 <div class="div-body" data-id="pc1_a03" data-type="cmsadpos">
                     <div class="div-inner clearfix">
-                        {volist name = "ad_position['1005']" id = "item"}
+                        {volist name = "ad_position['1005']" id = "item" length="4"}
                         <a href="project/{$item.project_id}"
                            data-type="cmsad" target="_self" class="link">
                             <img src="{$item.image}" class="img" alt=""/></a>
@@ -135,7 +135,7 @@
                 </div>
                 <div class="div-body" data-id="pc1_a04" data-type="cmsadpos">
                     <div class="div-inner clearfix">
-                        {volist name = "ad_position['1007']" id = "item"}
+                        {volist name = "ad_position['1007']" id = "item" length="10"}
                         <a href="project/{$item.project_id}"
                            data-id="29515" data-type="cmsad" target="_self" class="link link-active">
                             <i class="icon-ic-panel-rank icon-ic-panel-rank-1r"></i>
@@ -186,7 +186,7 @@
     <div class="main">
         <div class="top">
             <p>
-                {volist name = "ad_position['1008']" id = "item"}
+                {volist name = "ad_position['1008']" id = "item" length="6"}
                 <a target="_self" href="project/{$item.project_id}">{$item.name}</a>|
                 {/volist}
             </p>
@@ -194,7 +194,7 @@
         </div>
         <div class="left">
             <div class="l_top">
-                {volist name = "ad_position['1012']" id = "item"}
+                {volist name = "ad_position['1012']" id = "item" length="1"}
                 <div class="topMain">
                     <i class="light"></i>
                     <h4>{$item.name}</h4>
@@ -218,7 +218,7 @@
                 {/volist}
             </div>
             <div class="l_com">
-                {volist name = "ad_position['1013']" id = "item"}
+                {volist name = "ad_position['1013']" id = "item" length="1"}
                 <dl>
                     <dt>
                         <img src="{$item.image}" alt=""/></dt>
@@ -229,7 +229,7 @@
                     <a href="#" target="_self" class="active">立即咨询</a></div>
                 {/volist}
                 <ul>
-                    {volist name = "ad_position['1011']" id = "item"}
+                    {volist name = "ad_position['1011']" id = "item" length="4"}
                     <li>
                         <a href="project/{$item.project_id}" target="_self">
                             <img src="{$item.image}" alt=""/></a>
@@ -242,7 +242,7 @@
         <div class="right">
             <div class="topImg">
                 <ul>
-                    {volist name = "ad_position['1009']" id = "item"}
+                    {volist name = "ad_position['1009']" id = "item" length="6"}
                     <li>
                         <a href="project/{$item.project_id}" target="_self">
                             <img src="{$item.image}" alt=""/></a>
@@ -252,7 +252,7 @@
             </div>
             <div class="mainImg">
                 <div class="box">
-                    {volist name = "ad_position['1011']" id = "item"}
+                    {volist name = "ad_position['1012']" id = "item" length="24"}
                     <dl>
                         <a href="project/{$item.project_id}">
                             <dt>
@@ -275,7 +275,7 @@
     <div class="main">
         <div class="top">
             <p>
-                {volist name = "ad_position['1014']" id = "item"}
+                {volist name = "ad_position['1014']" id = "item" length="6"}
                 <a target="_self" href="project/{$item.project_id}">{$item.name}</a>|
                 {/volist}
             </p>
@@ -283,47 +283,55 @@
         </div>
         <div class="left">
             <div class="l_top">
-                {volist name = "ad_position['1018']" id = "item"}
+                {volist name = "ad_position['1018']" id = "item" length="1"}
                 <div class="topMain">
                     <i class="light"></i>
                     <h4>{$item.name}</h4>
                     <dl>
-                        <img src="{$item.image}" alt=""/></dt>
+                        <dt>
+                            <img src="{$item.image}" alt=""/></dt>
                         <dd class="one">{$item.abbr}</dd>
-                        <dd class="two"><span>关注度：<i>{$item.attention}万</i></span><span>咨询：<i>{$item.click_num}</i></span>
+                        <dd class="two">
+              <span>关注度：
+                <i>{$item.attention}万</i>
+              </span>
+                            <span>咨询：
+                <i>{$item.click_num}</i>
+              </span>
                         </dd>
                     </dl>
                     <div class="btns">
                         <a href="project/{$item.project_id}" target="_self">查看详情</a>
-                        <a href="#" target="_self" class="active">立即咨询</a>
-                    </div>
+                        <a href="#" target="_self" class="active">立即咨询</a></div>
                 </div>
                 {/volist}
             </div>
-
             <div class="l_com">
-                {volist name = "ad_position['1019']" id = "item"}
+                {volist name = "ad_position['1019']" id = "item" length="1"}
                 <dl>
-                    <dt><img src="{$item.image}" alt=""/></dt>
+                    <dt>
+                        <img src="{$item.image}" alt=""/></dt>
                     <dd>{$item.abbr}</dd>
                 </dl>
                 <div class="btns">
                     <a href="project/{$item.project_id}" target="_self">查看详情</a>
-                    <a href="#" target="_self" class="active">立即咨询</a>
-                </div>
+                    <a href="#" target="_self" class="active">立即咨询</a></div>
                 {/volist}
                 <ul>
-                    {volist name = "ad_position['1017']" id = "item"}
-                    <li><a href="project/{$item.project_id}" target="_self">
-                        <img src="{$item.image}" alt=""/></a></li>
+                    {volist name = "ad_position['1017']" id = "item" length="4"}
+                    <li>
+                        <a href="project/{$item.project_id}" target="_self">
+                            <img src="{$item.image}" alt=""/></a>
+                    </li>
                     {/volist}
                 </ul>
+
             </div>
         </div>
         <div class="right">
             <div class="topImg">
                 <ul>
-                    {volist name = "ad_position['1015']" id = "item"}
+                    {volist name = "ad_position['1015']" id = "item" length="6"}
                     <li>
                         <a href="project/{$item.project_id}" target="_self">
                             <img src="{$item.image}" alt=""/></a>
@@ -333,7 +341,7 @@
             </div>
             <div class="mainImg">
                 <div class="box">
-                    {volist name = "ad_position['1016']" id = "item"}
+                    {volist name = "ad_position['1016']" id = "item" length="24"}
                     <dl>
                         <a href="project/{$item.project_id}">
                             <dt>
@@ -357,7 +365,7 @@
     <div class="main">
         <div class="top">
             <p>
-                {volist name = "ad_position['1020']" id = "item"}
+                {volist name = "ad_position['1020']" id = "item" length="6"}
                 <a target="_self" href="project/{$item.project_id}">{$item.name}</a>|
                 {/volist}
             </p>
@@ -366,7 +374,7 @@
         <div class="left">
             <div class="l_top">
                 <div class="topMain">
-                    {volist name = "ad_position['1024']" id = "item"}
+                    {volist name = "ad_position['1024']" id = "item" length="1"}
                     <i class="light"></i>
                     <h4>{$item.name}</h4>
                     <dl>
@@ -383,7 +391,7 @@
                 </div>
             </div>
             <div class="l_com">
-                {volist name = "ad_position['1025']" id = "item"}
+                {volist name = "ad_position['1025']" id = "item" length="1"}
                 <dl>
                     <dt><img src="{$item.image}" alt=""/></dt>
                     <dd>{$item.image}</dd>
@@ -394,7 +402,7 @@
                 </div>
                 {/volist}
                 <ul>
-                    {volist name = "ad_position['1023']" id = "item"}
+                    {volist name = "ad_position['1023']" id = "item" length="4"}
                     <li><a href="project/{$item.project_id}" target="_self">
                         <img src="{$item.image}" alt=""/></a></li>
                     {/volist}
@@ -404,7 +412,7 @@
         <div class="right">
             <div class="topImg">
                 <ul>
-                    {volist name = "ad_position['1021']" id = "item"}
+                    {volist name = "ad_position['1021']" id = "item" length="6"}
                     <li><a href="project/{$item.project_id}" target="_self">
                         <img src="{$item.image}" alt=""/></a></li>
                     {/volist}
@@ -412,7 +420,7 @@
             </div>
             <div class="mainImg">
                 <div class="box">
-                    {volist name = "ad_position['1022']" id = "item"}
+                    {volist name = "ad_position['1022']" id = "item" length="24"}
                     <dl>
                         <a href="project/{$item.project_id}">
                             <dt>
@@ -555,7 +563,7 @@
     <div class="hd">
         <h2 class="fl">创业项目推荐</h2>
         <span class="fr">
-                {volist name = "ad_position['1027']" id = "item"}
+                {volist name = "ad_position['1027']" id = "item" length="10"}
       <a href="project/{$item.project_id}" title="{$item.name}加盟" target="_self">{$item.name}加盟</a>
          {/volist}
         </span>
@@ -572,7 +580,7 @@
             <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position[$k]" id = "item"}
+                    {volist name = "ad_position[$k]" id = "item" length="21"}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
                     {/volist}
@@ -590,7 +598,7 @@
             <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position[$k]" id = "item"}
+                    {volist name = "ad_position[$k]" id = "item" length="21"}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
                     {/volist}
@@ -607,7 +615,7 @@
             <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position[$k]" id = "item"}
+                    {volist name = "ad_position[$k]" id = "item" length="21"}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
                     {/volist}
@@ -624,7 +632,7 @@
             <a target="_self" title="{$vo.describe}" href="slist/{$vo.class_id}">{$vo.describe}</a></span>
                 </dt>
                 <dd>
-                    {volist name = "ad_position[$k]" id = "item"}
+                    {volist name = "ad_position[$k]" id = "item" length="21"}
                     <a href="project/{$item.project_id}" title="{$item.name}"
                        target="_self">{$item.name}</a>
                     {/volist}
@@ -638,28 +646,33 @@
      <div class="cyxmT-link">
             <ul>
                 <li class="red">
-                    {php}$i = 1;while($i != 6){{/php}
+                    {php}$i = 0;{/php}
                     {volist name = "ad_position[rand(1,40)+1000]" id = "item"}
+                    {php}while($i < 7){{/php}
                     <a target="_self" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}</a>
                     {php}$i++;{/php}
-                    {/volist}
                     {php}}{/php}
+                    {/volist}
+
                 </li>
                 <li>
-                    {php}$i = 1;while($i != 6){{/php}
+                    {php}$i = 0;{/php}
                     {volist name = "ad_position[rand(1,40)+1000]" id = "item"}
+                    {php}while($i < 7){{/php}
                     <a target="_self" title="$item.name}" href="project/{$item.project_id}">{$item.name}</a>
                     {php}$i++;{/php}
-                    {/volist}
                     {php}}{/php}
+                    {/volist}
+
                 </li>
                 <li class="red">
-                    {php}$i = 1;while($i != 6){{/php}
+                    {php}$i = 0;{/php}
                     {volist name = "ad_position[rand(1,40)+1000]" id = "item"}
+                    {php}while($i < 7){{/php}
                     <a target="_self" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}！</a>
                     {php}$i++;{/php}
-                    {/volist}
                     {php}}{/php}
+                    {/volist}
                 </li>
             </ul>
         </div>

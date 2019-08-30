@@ -32,7 +32,7 @@
                             <ul>
                                 <!--内容子广告循环-->
                                 <!--父类项目-->
-                                {volist name="ad_position" id="pro" length="24"}
+                                {volist name="all_adp" id="pro" length="15"}
                                 {if condition="$pro['sort'] eq $vo['sort'] && $vo['f_class_id'] eq 0"}
                                 <li class="row1 col1">
                                     <a href="" target="_self">
@@ -50,7 +50,7 @@
                             <ul>
                                 <!--内容子广告循环-->
                                 <!--父类项目-->
-                                {volist name="ad_position" id="pro" length="24" }
+                                {volist name="all_adp" id="pro" length="15" }
                                 {if condition="$pro['sort'] eq $vo['sort'] && $vo['f_class_id'] eq 0"}
                                 <li class="row1 col1">
                                     <a href="/project/{$pro['project_id']}" target="_self">

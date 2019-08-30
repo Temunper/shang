@@ -64,15 +64,18 @@ class Slist extends Base
             $ad_position = $adp_model->select_like_name($class_id, $name);  //模糊查询
             // dump($ad_position);die;
         }
-        // dump($ad_position);die;
+
         $this->assign('title', $title);       //标题，keywords description
         $this->assign('search', json_encode($search));
         $this->assign('pro_name', $params['pro_name']);
         $this->assign('default_class', $default_class);
-        $this->assign('clas', $d_class);
-        $this->assign('ad_position', $ad_position);
+        $index = new Index();
+        $this->assign('ad_position_list', $ad_position);  //项目列表
+        $index->base_message();
+//        $this->assign('clas', $d_class);
+
         $this->assign('adp', $adp);
-        return $this->view->fetch();
+        return $this->fetch();
     }
 
     public function ajax_select()

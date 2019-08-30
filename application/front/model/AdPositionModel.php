@@ -34,6 +34,20 @@ class AdPositionModel extends Model
         return $result;
     }
 
+    function get_all_ad_position()
+    {
+        $result = Db::table($this->table)
+            ->alias('ap')
+            ->join('project p', 'p.project_id = ap.project_id', 'left')
+//            ->join('class c','c.class_id = p.class_id','left')
+            ->field('ap.*,p.money')
+            ->where('ap.status', '=', '1')
+            ->order('ap.sort')
+            ->select();
+        // dump($this->getLastSql());die;
+        return $result;
+    }
+
 //    分类广告位
     function get_project_by_class($money, $class_id, $area)
     {
@@ -66,7 +80,7 @@ class AdPositionModel extends Model
             ->where($where)
             ->where($p_money)
             ->where($c_status)
-            ->paginate(10)
+            ->paginate(24)
             ->each(function ($item, $key) {
                 if ($item['status'] == 1) {                                                   //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除
                     $item['status'] = '正常';

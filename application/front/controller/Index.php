@@ -52,6 +52,7 @@ class Index extends Base
                 }
             }
         }
+        $this->assign('all_adp',$ad_position->get_all_ad_position());
         $this->assign('ad_position', $adp);  //返回三个广告类的值
         $this->assign('clas', $d_clas);    //返回分类
     }

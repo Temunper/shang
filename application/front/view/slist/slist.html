@@ -139,7 +139,7 @@
         <ul>
 
             <!--循环开始-->
-            {volist name="ad_position" id="vo"}
+            {volist name="ad_position_list" id="vo"}
             <li>
                 <div style="height: 173px;width: 275px">
                     <img src="{$vo.image}" style="width: 100%;height: 100%"/>
@@ -169,7 +169,7 @@
 
     <!--分页-->
     <div align="center">
-        {$ad_position->render()}
+        {$ad_position_list->render()}
     </div>
 
     <!--猜你喜欢开始-->
