@@ -60,8 +60,12 @@ class Clas extends Controller
     public function get_all_clas()
     {
         $result = $this->clas_model->get_all_clas();
-        $result = $this->set_tree($result);                 //将二级分类生成树型结构
-        return $result;
+        if ($result) {
+            $result = $this->set_tree($result);                 //将二级分类生成树型结构
+            return $result;
+        } else {
+            return null;
+        }
     }
 
 //    查询分类
@@ -139,7 +143,7 @@ class Clas extends Controller
         $clas->keywords = $request->param('keywords');
         $clas->describe = $request->param('describe');
         $clas->image = $file_path;
-        $clas->pinyin = implode('', $pinyin->convert($request->param('name'),PINYIN_KEEP_ENGLISH));       //生成拼音
+        $clas->pinyin = implode('', $pinyin->convert($request->param('name'), PINYIN_KEEP_ENGLISH));       //生成拼音
         $validate = $this->validate($clas->toArray(), 'Clas');                              //验证分类信息
         if ($validate === true && $clas->save()) {                                                  //根据验证结果存储数据并返回结果
             $data = ['code' => 200, 'data' => "添加成功"];
@@ -209,7 +213,7 @@ class Clas extends Controller
         $clas->keywords = $request->param('keywords');
         $clas->describe = $request->param('describe');
         if ($file_path) $clas->image = $file_path;
-        $pinyin = implode('', $pinyin->convert($request->param('name'),PINYIN_KEEP_ENGLISH));   //生成拼音
+        $pinyin = implode('', $pinyin->convert($request->param('name'), PINYIN_KEEP_ENGLISH));   //生成拼音
         !$pinyin ? $clas->pinyin = $request->param('name') : $clas->pinyin = $pinyin;
         $validate = $this->validate($clas->toArray(), 'Clas');                    //验证分类信息
         if ($validate && $clas->isUpdate(true)->save()) {                        //根据验证结果存储数据并返回结果

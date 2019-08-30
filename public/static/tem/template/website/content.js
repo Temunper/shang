@@ -19,6 +19,7 @@ $("#update-website").click(function () {
     fd.append('company_abbr', $("#company_abbr").val());
     fd.append('phone', $("#phone").val());
     fd.append('keywords',$("#keywords").val());
+    fd.append('title', $("#title").val());
     fd.append('description',$("#description").val());
     $.ajax({
         url: "/admin/website/update",

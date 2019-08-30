@@ -36,7 +36,7 @@ $(".add-project").click(function () {
 
 $(".project-content").each(function (index) {
     $(this).click(function () {
-        window.location.href = "/admin/project/content?project_id=" + data_project[index].project_id;
+        window.location.href = "/admin/project/content?project_id=" + $(this).attr('data-project');
     });
 });
 
@@ -44,12 +44,12 @@ $(".project-content").each(function (index) {
 $(".project-del").each(function (index) {
     $(this).click(function () {
         var del = $(this);
-        var r = confirm("确定删除项目：‘" + data_project[index].name + "’?\n"+"和项目有关的所有广告都将删除");
+        var r = confirm("确定删除项目和项目有关的所有广告都将删除");
         if (r === true) {
             $.ajax({
                 url: "/admin/project/update_status",
                 data: {
-                    project_id: data_project[index].project_id
+                    project_id: $(this).attr('data-project')
                 },
                 dataType: "json",
                 type: "POST",

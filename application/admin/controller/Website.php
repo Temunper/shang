@@ -72,6 +72,7 @@ class Website extends Base
             $website->company_name = $request->param('company_name');
             $website->company_addr = $request->param('company_addr');
             $website->phone = $request->param('phone');
+            $website->domain = $request->param('title');
             $website->type = $request->param('type');
             $website->keywords = $request->param('keywords');
             $website->description = $request->param('description');
@@ -121,6 +122,7 @@ class Website extends Base
         if (!$website) {
             $website = new WebsiteModel();
             $website->domain = $param['domain'];
+            $website->domain = $param['title'];
             $website->theme_id = $param['theme_id'];
             $website->logo = $file_path;
             $website->filing_number = $param['filing_number'];
@@ -136,7 +138,7 @@ class Website extends Base
                 $data = ['code' => 200, 'data' => '添加成功'];
                 return json_encode($data);
             } else {
-                $data = ['code' => 202, 'data' => '添加失败，'.$validate];
+                $data = ['code' => 202, 'data' => '添加失败，' . $validate];
                 return json_encode($data);
             }
         } else {

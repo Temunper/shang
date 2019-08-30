@@ -152,6 +152,7 @@
                             </label>
                         </div>
                     </div>
+                    {if $project.client_name neq null}
                     <div class="clearfix input-left binding-client" style="margin-left: 121px;margin-top: -47px;" data-client="{$project.client_id}" data-project="{$project.project_id}">
                         <h6 class="font-left ">绑定客户客户</h6>
                         <div class="col-sm-5" style="margin-left: 6px;margin-top: 3px;">
@@ -160,6 +161,7 @@
                         </div>
                         <input type="button" class="del-binding btn btn-sm btn-primary" id="binding-btn" value="解除绑定">
                     </div>
+                    {/if}
                 </div>
 
                 <div class="sign-up-row widget-shadow add-right">
@@ -209,7 +211,7 @@
 
                     <input type="button" class="btn btn-success d-submit-a" value="确认修改">
                     <input type="button" class="btn btn-danger d-submit-b" value="返回">
-
+                    <div class="account"></div>
                 </div>
             </div>
         </div>

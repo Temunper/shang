@@ -42,15 +42,16 @@ class Project extends Base
         isset($params['bind_code']) ? $bind_code = $params['bind_code'] : $bind_code = null;
         $default_class = $cl->get_class_by_id($class_id);
         $c = [];
-        foreach ($d_class as $item) {                                                                               //当分类id是一级分类时遍历出所有树叶
-            if ($item['class_id'] == $class_id && $item['son'] != null) {
-                foreach ($item['son'] as $value) {
-                    $c [] = $value['class_id'];
+        if ($d_class != null)
+            foreach ($d_class as $item) {                                                                               //当分类id是一级分类时遍历出所有树叶
+                if ($item['class_id'] == $class_id && $item['son'] != null) {
+                    foreach ($item['son'] as $value) {
+                        $c [] = $value['class_id'];
+                    }
+                    $class_id = $c;
+                    $class_id = implode(',', $class_id);                                                            //将数组转为字符串，并用‘,’隔开
                 }
-                $class_id = $c;
-                $class_id = implode(',', $class_id);                                                            //将数组转为字符串，并用‘,’隔开
             }
-        }
         $search = ['project_name' => $project_name, 'client_name' => $client_name, 'bind' => $bind_code];                                     //将查询的条件返回到模板
         $d_project = $this->project_model->get_project_by_class($status, $class_id, $project_name, $client_name, $bind_code);  //查询project数据
         $this->assign('search', $search);
@@ -191,6 +192,7 @@ class Project extends Base
 
 
         $d_class = $cl->get_all_clas();
+//        dump($result);die;
         $this->assign("class", $d_class);
         $this->assign("project", $result);
         return $this->fetch();
@@ -202,7 +204,7 @@ class Project extends Base
         $cl = new Clas();
         $d_class = $cl->get_all_clas();
         $this->assign("class", $d_class);                       //赋值所需的分类信息到模板
-        return $this->fetch('project / add');
+        return $this->fetch('project/add');
     }
 
     //获得所有项目id和名称

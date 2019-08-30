@@ -59,9 +59,13 @@ class Clas extends Controller
 //    得到所有的分类
     public function get_all_clas()
     {
-        $result = $this->clas_model->get_all_clas();
-        $result = $this->set_tree($result);                 //将二级分类生成树型结构
-        return $result;
+        $clas = $this->clas_model->get_all_clas();
+        if ($clas){
+            $result = $this->set_tree($clas);                 //将二级分类生成树型结构
+            return $result;
+        }
+        else
+            return null;
     }
 
     public function get_one_clas($project_id)

@@ -40,17 +40,37 @@ class AdPositionModel extends Model
         $area ? $and = "area between " . $area . " and " . $area2 : $and = null;
         $class_id ? $where = 'class_id in(' . $class_id . ')' : $where = null;
         $money ? $p_money = "money = " . $money : $p_money = null;
-        $result = Db::table("view_adp")
-            ->where($where)
+        $result = Db::table($this->table)
+            ->join('ad', 'ad.ad_id = ad_position.ad_id', 'left')
+            ->join('project', 'project.project_id = ad_position.project_id', 'left')
+            ->join('class', 'class.class_id = project.class_id', 'left')
             ->where($and)
-            ->where($p_money)
+            ->where($class_id)
+            ->where($money)
             ->where($c_status)
-            ->order('sort', 'desc')
-            ->paginate(24)->each(function ($item, $key) {
-                $item['area'] = Area::getProvince($item['area']);
+            ->field('ad_position.ad_position_id AS ad_position_id,
+        ad_position.ad_id AS ad_id,
+        ad_position.project_id AS project_id,
+        ad_position.name AS name,
+        ad_position.image AS image,
+        ad_position.abbr AS abbr,
+        ad_position.sort AS sort,
+        ad_position.status AS status,
+        ad_position.click_num AS click_num,
+        ad_position.attention AS attention,
+        ad.name AS ad_name,
+        project.name AS project_name,
+        project.area AS area,
+        project.class_id AS class_id,
+        project.money AS money,
+        class.name AS class_name')
+            ->paginate(10)
+            ->each(function ($item, $key) {
+                if ($item['status'] == 1) {                                                   //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除
+                    $item['status'] = '正常';
+                } else $item['status'] = '已删除';
                 return $item;
             });
-//        dump($this->getLastSql());die;
         return $result;
     }
 
@@ -63,7 +83,26 @@ class AdPositionModel extends Model
             $clas = null;
         }
 
-        $result = Db::table('view_adp')
+        $result = Db::table($this->table)
+            ->join('ad', 'ad.ad_id = ad_position.ad_id', 'left')
+            ->join('project', 'project.project_id = ad_position.project_id', 'left')
+            ->join('class', 'class.class_id = project.class_id', 'left')
+            ->field('ad_position.ad_position_id AS ad_position_id,
+        ad_position.ad_id AS ad_id,
+        ad_position.project_id AS project_id,
+        ad_position.name AS name,
+        ad_position.image AS image,
+        ad_position.abbr AS abbr,
+        ad_position.sort AS sort,
+        ad_position.status AS status,
+        ad_position.click_num AS click_num,
+        ad_position.attention AS attention,
+        ad.name AS ad_name,
+        project.name AS project_name,
+        project.area AS area,
+        project.class_id AS class_id,
+        project.money AS money,
+        class.name AS class_name')
             ->where('status', '=', 1)
             ->where($clas)
             ->where('name', 'like', '%' . $name . '%')
@@ -87,7 +126,26 @@ class AdPositionModel extends Model
     public function ajax_select_like($params)
     {
         $name = $params['pro_name'];
-        return Db::table('view_adp')
+        return Db::table($this->table)
+            ->join('ad', 'ad.ad_id = ad_position.ad_id', 'left')
+            ->join('project', 'project.project_id = ad_position.project_id', 'left')
+            ->join('class', 'class.class_id = project.class_id', 'left')
+            ->field('ad_position.ad_position_id AS ad_position_id,
+        ad_position.ad_id AS ad_id,
+        ad_position.project_id AS project_id,
+        ad_position.name AS name,
+        ad_position.image AS image,
+        ad_position.abbr AS abbr,
+        ad_position.sort AS sort,
+        ad_position.status AS status,
+        ad_position.click_num AS click_num,
+        ad_position.attention AS attention,
+        ad.name AS ad_name,
+        project.name AS project_name,
+        project.area AS area,
+        project.class_id AS class_id,
+        project.money AS money,
+        class.name AS class_name')
             ->distinct(true)
             ->where('status', '=', 1)
             ->where($params['class_id'])

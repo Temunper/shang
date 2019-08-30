@@ -24,6 +24,7 @@ class Website extends Validate
         ['type','require'],
         ['keywords|关键词','require|length:1,255'],
         ['description|描述','require|length:1,500'],
+        ['title|标题','require|length:1,45'],
     ];
     public function checkPhone($value)
     {

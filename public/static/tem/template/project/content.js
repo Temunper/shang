@@ -67,7 +67,7 @@ $(".d-submit-a").click(function () {
         data: {
             project_id: $(".data-project-id").attr("data-project-id"),
             name: $("#d_name").val(),
-            yw_name:$("#d_yw_name").val(),
+            yw_name: $("#d_yw_name").val(),
             abbr: $("#d_abbr").val(),
             pattern: $("#d_pattern").val(),
             crowd: $("#d_crowd").val(),
@@ -113,14 +113,15 @@ $("#binding-btn").click(function () {
             type: "POST",
             success: function (data) {
                 data = jQuery.parseJSON(data);
-                if (data.code === 200){
-                    $("#d_client_name").val("");
+                if (data.code === 200) {
+                    window.location.reload();
                 }
                 alert(data.data);
             }
         })
     }
 });
+
 
 $(".d-submit-b").click(function () {
     window.location.href = "/admin/project/project";

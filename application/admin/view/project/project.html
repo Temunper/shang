@@ -122,8 +122,8 @@
                             <td>{$vo.kf_name}</td>
                             <td>{$vo.status}</td>
                             <td>
-                                <input type="button" value="详情" class="btn btn-info btn-sm project-content">
-                                <input type="button" value="删除" class="btn btn-danger btn-sm project-del">
+                                <input type="button" value="详情" class="btn btn-info btn-sm project-content" data-project="{$vo.project_id}">
+                                <input type="button" value="删除" class="btn btn-danger btn-sm project-del" data-project="{$vo.project_id}">
                                 {if $vo.client_name neq null}<input type="button" value="重生密码"
                                                                 class="btn btn-primary btn-sm new-pass" data-client="{$vo.client_name}" data-id="{$vo.client_id}">{/if}
                             </td>
@@ -152,5 +152,6 @@
 </script>
 <script>
     var data_project = JSON.parse('{:json_encode_unicode($project)}').data;
+    console.log(data_project);
 </script>
 </html>
