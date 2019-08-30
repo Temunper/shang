@@ -15,7 +15,7 @@ use Overtrue\Pinyin\Pinyin;
 use think\Controller;
 use think\Request;
 
-class Clas extends Controller
+class Clas extends Base
 {
     protected $clas_model = null;
 

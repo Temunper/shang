@@ -15,7 +15,7 @@ use think\Controller;
 use think\Request;
 
 
-class Slist extends Controller
+class Slist extends Base
 {
     public function slist()
     {

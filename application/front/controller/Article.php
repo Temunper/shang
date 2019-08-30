@@ -13,7 +13,7 @@ use app\front\model\Article as ArticleModel;
 use think\Controller;
 use think\Request;
 
-class Article extends Controller
+class Article extends Base
 {
     protected $article_model = null;
 

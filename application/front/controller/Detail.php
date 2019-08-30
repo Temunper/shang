@@ -12,7 +12,7 @@ use app\front\model\Article as ArticleModel;
 use think\Controller;
 use think\Request;
 
-class Detail extends Controller
+class Detail extends Base
 {
     //文章详情页
     public function detail()

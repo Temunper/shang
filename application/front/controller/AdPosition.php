@@ -13,7 +13,7 @@ use app\front\model\AdPositionModel;
 use think\Controller;
 use think\Request;
 
-class AdPosition extends Controller
+class AdPosition extends Base
 {
     protected $ad_position_model = null;
 

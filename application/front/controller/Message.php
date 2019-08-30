@@ -14,7 +14,7 @@ use app\front\model\ProjectModel;
 use think\Controller;
 use think\Request;
 
-class Message extends Controller
+class Message extends Base
 {
     protected $model = null;
 
