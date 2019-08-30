@@ -16,7 +16,7 @@ $("#update-website").click(function () {
     fd.append('file_path', $("#file_path").val());
     fd.append('file', file_obj);
     fd.append('company_name', $("#company_name").val());
-    fd.append('company_abbr', $("#company_abbr").val());
+    fd.append('company_addr', $("#company_addr").val());
     fd.append('phone', $("#phone").val());
     fd.append('keywords',$("#keywords").val());
     fd.append('title', $("#title").val());

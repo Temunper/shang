@@ -14,7 +14,7 @@ $("#add-website").click(function () {
     fd.append('keywords', $("#keywords").val());
     fd.append('title', $("#title").val());
     fd.append('description', $("#description").val());
-
+    console.log(fd);
     $.ajax({
         url: "/admin/website/add",
         dataType: "json",

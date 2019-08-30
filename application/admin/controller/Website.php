@@ -63,6 +63,7 @@ class Website extends Base
         $d_website = WebsiteModel::getByDomain($request->param('domain'), function ($query) {       //根据域名查询返回对象
             $query->where('status', 1);
         });
+        dump($d_website->toArray());die;
         $website = WebsiteModel::get($request->param('website_id'));                                //根据返回id获得对象
         if (!$d_website || $request->param('domain') == $website->domain) {                         //判断站点是否已经存在
             $website->domain = $request->param('domain');
@@ -72,7 +73,7 @@ class Website extends Base
             $website->company_name = $request->param('company_name');
             $website->company_addr = $request->param('company_addr');
             $website->phone = $request->param('phone');
-            $website->domain = $request->param('title');
+            $website->title = $request->param('title');
             $website->type = $request->param('type');
             $website->keywords = $request->param('keywords');
             $website->description = $request->param('description');
@@ -122,7 +123,7 @@ class Website extends Base
         if (!$website) {
             $website = new WebsiteModel();
             $website->domain = $param['domain'];
-            $website->domain = $param['title'];
+            $website->title = $param['title'];
             $website->theme_id = $param['theme_id'];
             $website->logo = $file_path;
             $website->filing_number = $param['filing_number'];
