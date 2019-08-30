@@ -28,7 +28,7 @@ class Client extends Controller
         $status = 0;            //设置初始返回状态值
         $result = "";           //设置初始返回信息
         $data = Request::instance()->param();
-
+      //  dump($data);die;
         //验证信息
         $validate = 'app\customer\validate\ClientValidate';
         $result = $this->validate($data, $validate);
@@ -38,6 +38,7 @@ class Client extends Controller
             $db = new ClientModel();
             //通过用户名获取账户秘钥
             $verify = $db->get_verify($user);  //通过用户名获取用户秘钥
+
             if (empty($verify)) {    //如果秘钥为空，返回错误信息
                 return ['status' => $status, 'message' => '用户名或密码错误，请检查'];
             }

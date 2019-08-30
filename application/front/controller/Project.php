@@ -51,7 +51,7 @@ class Project extends Base
 
         // dump($article_info);die;
         //5.设置cdn文件路径并创建cdn对象
-        $cdn = "http://cdn.hao987.cn/shophtml/" . $project_info['yw_name'] . "/item.html";
+        $cdn = $project_info['host']."/shophtml/" . $project_info['yw_name'] . "/item.html";
         $cdn = CUrl::curl($cdn);   //渲染cdn链接
 
         //6.将cdn链接拼接到项目信息数组
