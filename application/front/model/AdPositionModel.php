@@ -85,10 +85,9 @@ class AdPositionModel extends Model
                 if ($item['status'] == 1) {                                                   //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除
                     $item['status'] = '正常';
                 } else $item['status'] = '已删除';
+                $item['area'] = Area::getProvince($item['area']);
                 return $item;
             });
-//        if ($p_money)
-//            dump(123);die;
         return $result;
     }
 

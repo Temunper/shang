@@ -252,7 +252,7 @@
             </div>
             <div class="mainImg">
                 <div class="box">
-                    {volist name = "ad_position['1012']" id = "item" length="24"}
+                    {volist name = "ad_position['1010']" id = "item" length="24"}
                     <dl>
                         <a href="project/{$item.project_id}">
                             <dt>
@@ -646,33 +646,34 @@
      <div class="cyxmT-link">
             <ul>
                 <li class="red">
-                    {php}$i = 0;{/php}
+                    {php}$k = 0;while($k<6){{/php}
                     {volist name = "ad_position[rand(1,40)+1000]" id = "item"}
-                    {php}while($i < 7){{/php}
-                    <a target="_self" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}</a>
-                    {php}$i++;{/php}
-                    {php}}{/php}
+                    {if $k<6}
+                    <a target="_self" title="$item.name}" href="project/{$item.project_id}">{$item.name}</a>
+                    {php}$k++;{/php}
+                    {/if}
                     {/volist}
-
+                    {php}}{/php}
                 </li>
                 <li>
-                    {php}$i = 0;{/php}
+                    {php}$k = 0;while($k<6){{/php}
                     {volist name = "ad_position[rand(1,40)+1000]" id = "item"}
-                    {php}while($i < 7){{/php}
+                    {if $k<6}
                     <a target="_self" title="$item.name}" href="project/{$item.project_id}">{$item.name}</a>
-                    {php}$i++;{/php}
-                    {php}}{/php}
+                    {php}$k++;{/php}
+                    {/if}
                     {/volist}
-
+                    {php}}{/php}
                 </li>
                 <li class="red">
-                    {php}$i = 0;{/php}
+                    {php}$k = 0;while($k<6){{/php}
                     {volist name = "ad_position[rand(1,40)+1000]" id = "item"}
-                    {php}while($i < 7){{/php}
-                    <a target="_self" title="$item.name}" href="project/{$item.project_id}" style="color: red">{$item.name}！</a>
-                    {php}$i++;{/php}
-                    {php}}{/php}
+                    {if $k<6}
+                    <a target="_self" title="$item.name}" href="project/{$item.project_id}">{$item.name}</a>
+                    {php}$k++;{/php}
+                    {/if}
                     {/volist}
+                    {php}}{/php}
                 </li>
             </ul>
         </div>

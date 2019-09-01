@@ -66,7 +66,9 @@ class AdPositionModel extends Model
         project.class_id AS class_id,
         project.money AS money,
         class.name AS class_name')
-            ->paginate(10)
+            ->paginate(10 ,false,[
+             'query'=>request()->param()
+            ])
             ->each(function ($item, $key) {
                 if ($item['status'] == 1) {                                                   //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除
                     $item['status'] = '正常';

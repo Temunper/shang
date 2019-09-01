@@ -78,8 +78,10 @@ class ProjectModel extends Model
             ->where($bind)
             ->where('project.'.$c_status)
             ->order('project.project_id', 'desc')
-
-            ->paginate(10)->each(function ($item, $key) {
+            ->paginate(10 ,false,[
+                'query'=>request()->param()
+            ])
+            ->each(function ($item, $key) {
                 if ($item['status'] == 1) {
                     $item['status'] = '正常';
                 } else $item['status'] = '已删除';                      //将返回信息遍历，更改状态信息 ，1-》正常，2-》删除

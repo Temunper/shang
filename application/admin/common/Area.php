@@ -120,6 +120,7 @@ class Area
     public static function getProvince($area)
     {
         $pro_id = (int)substr($area, 1, 2);
-        return self::$province[$pro_id - 1]['name'];
+        if ($pro_id != 0 )
+            return self::$province[$pro_id - 1]['name'];
     }
 }
