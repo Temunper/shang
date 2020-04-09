@@ -42,8 +42,8 @@ class Article extends Base
         $data = Request::instance()->param();
         //判断是否存在search 字段，存在则为精确搜索
         if (isset($data['search'])) {
-            $time = !empty($data['date1']) ? strtotime($data['date1']) : 0;  //如果为真则赋值，否则赋值0
-            $time2 = !empty($data['date2']) ? strtotime($data['date2']) : time();  //如果为真则赋值，否则赋值当前时间
+            $time   = !empty($data['date1']) ? strtotime($data['date1']) : 0;  //如果为真则赋值，否则赋值0
+            $time2  = !empty($data['date2']) ? strtotime($data['date2']) : time();  //如果为真则赋值，否则赋值当前时间
             $status = !empty($data['status']) ? $data['status'] : '1,2';
             unset($data['date1']);
             unset($data['date2']);
@@ -67,7 +67,7 @@ class Article extends Base
     {
         $allow = [-1, 2];  //设置允许更改的状态值，驳回或通过
         //设置默认返回值，默认更新失败
-        $code = 202;    //设置返回状态值，默认失败
+        $code    = 202;    //设置返回状态值，默认失败
         $results = "更新文章状态失败";   //设置返回信息
         //接收传入的article_id
         $data = Request::instance()->param();
@@ -87,7 +87,7 @@ class Article extends Base
             if ($data['status'] == 2) {
                 $results = "审核成功";
             } else {
-                $results ="驳回文章成功";
+                $results = "驳回文章成功";
             }
         }
         return ['code' => $code, 'msg' => $results];
@@ -97,17 +97,17 @@ class Article extends Base
     public function delete_article()
     {
         //设置默认返回值，默认更新失败
-        $code = 202;  //设置返回状态值，默认失败
+        $code    = 202;  //设置返回状态值，默认失败
         $results = "删除文章失败"; //设置返回信息
-        $status = 4;  //设置要修改的文章状态值
+        $status  = 4;  //设置要修改的文章状态值
         //接收传入的article_id
-        $data = Request::instance()->param(['article_id', 'status']);
+        $data       = Request::instance()->param(['article_id', 'status']);
         $article_id = $data ? $data : 0;
         //执行修改
         $result = $this->article_model->change_status($article_id, $status);
         if ($result) {
             //执行成功，修改返回的状态值
-            $code = 200;
+            $code    = 200;
             $results = "删除成功";
         }
         return ['code' => $code, 'msg' => $results];
@@ -116,9 +116,9 @@ class Article extends Base
     //后台管理发布文章
     public function do_release(Request $request)
     {
-        $status = 0;   //设置初始状态值
+        $status   = 0;   //设置初始状态值
         $date_now = time();  //获得当前时间戳
-        $data = $request->param(true);
+        $data     = $request->param(true);
 
         //执行验证
         $result = $this->validate($data, 'Article');
@@ -144,9 +144,9 @@ class Article extends Base
         }
         unset($data['image']);//删除data里的image字段
         unset($data['img']);
-        $arr = [
-            'lis_img' => $file_path,
-            'author' => 0,
+        $arr  = [
+            'lis_img'     => $file_path,
+            'author'      => 0,
             'create_time' => $date_now,
             'update_time' => $date_now,
         ];

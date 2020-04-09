@@ -46,12 +46,12 @@ class Project extends Base
         }
 
         //4.查询该项目相关文章
-        $get = new ArticleModel();
+        $get          = new ArticleModel();
         $article_info = $get->get_some_article($data);   //得到项目id 最新的10条项目咨询
 
         // dump($article_info);die;
         //5.设置cdn文件路径并创建cdn对象
-        $cdn = $project_info['host']."/shophtml/" . $project_info['yw_name'] . "/item.html";
+        $cdn = $project_info['host'] . "/shophtml/" . $project_info['yw_name'] . "/item.html";
         $cdn = CUrl::curl($cdn);   //渲染cdn链接
 
         //6.将cdn链接拼接到项目信息数组
@@ -60,14 +60,14 @@ class Project extends Base
         $title = ['title' => $project_info['name'], 'keywords' => $project_info['keywords'], 'description' => $project_info['description']];
 
         //8.查找当前项目父类和二级类名称和id
-        $re = $this->get_class_name($project_info['class_id']);
+        $re      = $this->get_class_name($project_info['class_id']);
         $place[] = $re;
         if ($re['f_class_id'] != 0) {
-            $res = $this->get_class_name($re['f_class_id']);
+            $res      = $this->get_class_name($re['f_class_id']);
             $place[1] = $place[0];
             $place[0] = $res;
         }
-        $ad_p = new AdPosition();
+        $ad_p        = new AdPosition();
         $mt_position = $ad_p->get_rand();
 
         //9.声明变量
